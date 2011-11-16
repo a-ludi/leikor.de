@@ -1,0 +1,24 @@
+<% flash.keep :popup %>
+<div id='message_window'>
+  <div class="title">
+    Bild von „<%= @article.name %>“bearbeiten
+  </div>
+  <% form_for @article, :url => article_picture_path(@article.id), :method => :put, :html => {:multipart => true} do |f| %>
+    <%= make_if_error_messages_for @article %>
+    <div class="message">
+      <%= f.file_field :picture %><br>
+    </div>
+    <div class="response">
+      <%= submit_tag 'Bild speichern!', :disable_with => 'Wird hochgeladen …' %>
+    </div>
+  <% end %>
+  <%= set_focus_to 'article_picture' %>
+  <div class="response">
+    <%= button_to(
+      'Bild löschen?',
+      article_picture_path(@article.id),
+      :method => :delete,
+      :confirm => 'Soll das Bild wirklich dauerhaft gelöscht werden?'
+    ) unless @article.picture.nil?%>
+  </div>
+</div>

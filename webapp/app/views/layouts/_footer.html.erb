@@ -1,0 +1,14 @@
+<div id="footer">
+  <%= link_to 'Kontakt', static_path('kontakt') %> |
+  <%= link_to 'Impressum', static_path('impressum') %> |
+  <%= link_to 'AGB', static_path('AGB') %> |
+  <% unless user_logged_in? %>
+    <%= link_to 'Anmelden', new_session_path %>
+  <% else %>
+    <%= link_to 'Abmelden', session_path, :method => :delete %>
+  <% end %>
+  <br>
+  ©2010, leikor.de&emsp;
+  Stand: 11:02 Uhr 15.04.2015
+</div>
+

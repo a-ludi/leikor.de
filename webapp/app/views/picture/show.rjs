@@ -1,0 +1,6 @@
+page.replace 'picture_viewer', :partial => 'viewer', :locals => {:article => @article}
+
+unless flash[:no_animations]
+  page['picture_viewer'].hide()
+  page.visual_effect :appear, 'picture_viewer'
+end

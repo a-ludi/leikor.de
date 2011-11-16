@@ -1,0 +1,28 @@
+<% flash.keep %>
+<div id="message_window">
+  <% form_tag session_path do %>
+    <div class="title">
+      Anmelden
+    </div>
+    <% if flash[:wrong_login_or_password] %>
+      <div class="message error">
+        Falscher Benutzername oder Passwort.
+      </div>
+    <% end %>
+    <div class="message">
+      <p>
+        <%= label_tag :login, t('activerecord.attributes.user.login') %><br />
+        <%= text_field_tag :login, flash[:login] %>
+      </p>
+      <p>
+        <%= label_tag :password, t('activerecord.attributes.user.password') %><br />
+        <%= password_field_tag :password %>
+      </p>
+    </div>
+    <div class="response">
+      <%= submit_tag 'Anmelden!' %>
+    </div>
+  <% end %>
+  <%= set_focus_to :login %>
+</div>
+

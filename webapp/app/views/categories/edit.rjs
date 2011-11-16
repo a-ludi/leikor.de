@@ -1,0 +1,5 @@
+page.replace(
+  @html_id ? @html_id : @category.html_id,
+  :partial => @partial,
+  :locals => {:category => @category, :html_id => @html_id}
+)

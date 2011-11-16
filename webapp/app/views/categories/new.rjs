@@ -1,0 +1,12 @@
+unless @cancel
+  page.insert_html(
+    :after,
+    'category_administration',
+    :partial => 'form',
+    :locals => {:category => @category, :html_id => @html_id}
+  )
+  page.toggle @html_id
+  page.visual_effect :appear, @html_id
+else
+  page.visual_effect :drop_out, @html_id
+end

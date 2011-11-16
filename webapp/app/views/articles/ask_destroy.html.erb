@@ -1,0 +1,17 @@
+<div id="message_window">
+  <div class="title">
+    Artikel löschen?
+  </div>
+  <div class="message">
+    Möchten Sie wirklich den Artikel
+    <p>
+      „<%= @article.name %>“
+    </p>
+    <em>endgültig</em> löschen?
+  </div>
+  <div class="response">
+    <%= button_to 'Nein, lieber nicht.', subcategory_path(@article.subcategory.url_hash(:anchor => @article.html_id)) %>
+    <%= button_to 'Ja, wirklich!', @article, :method => :delete  %>
+  </div>
+</div>
+

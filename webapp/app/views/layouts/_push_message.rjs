@@ -1,0 +1,2 @@
+page.replace 'message', :partial => 'layouts/message'
+page << "Effect.ScrollTo('message')"

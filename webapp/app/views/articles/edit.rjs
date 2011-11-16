@@ -1,0 +1,7 @@
+html_id = flash[:html_id].blank? ? @article.html_id : flash[:html_id]
+flash.discard :html_id
+page.replace(
+  html_id,
+  :partial => @partial,
+  :locals => {:article => @article}
+)
