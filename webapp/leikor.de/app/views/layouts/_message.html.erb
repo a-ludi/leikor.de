@@ -1,0 +1,14 @@
+<% if not flash[:message].nil? %>
+  <% message = flash[:message] %>
+  <div id="message" onmouseover="this.style.visibility='hidden'" class="<%= message[:class] %>">
+    <h1>
+      <%= message[:title] or 'Hinweis' %>
+    </h1>
+    <p>
+      <%= message[:text] %>
+    </p>
+  </div>
+  <% flash.discard :message %>
+<% else %>
+  <div id="message" style="display: none;"></div>
+<% end %>

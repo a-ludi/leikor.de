@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+john:
+  login: john
+  # password = sekret
+  password: $2a$10$Xb00In6pGvg9UF68CdTQdOJ7aEB9wmUR1ikUwB35g0Ij5fpSHTQom
+  name: John Doe
+
+max:
+  login: Max
+  # password = geheim
+  password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
+  name: Max Mustermann

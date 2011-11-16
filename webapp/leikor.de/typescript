@@ -1,0 +1,2882 @@
+Script wurde gestartet: Sa 05 Nov 2011 19:08:29 CET
+
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ 
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ ^C
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ ls
+[0m[01;34mapp[0m  [01;34mconfig[0m  [01;34mdb[0m  [01;34mdoc[0m  [01;34mlib[0m  [01;34mlog[0m  [01;34mpublic[0m  Rakefile  README  [01;34mscript[0m  [01;34mtest[0m  [01;34mtmp[0m  typescript  [01;34mvendor[0m
+[m]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ script/
+about        dbconsole    generate     plugin       runner       
+console      destroy      performance/ process/     server       
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ script/console [K[K[K[K[K[K[K[Kserver --help
+=> Booting WEBrick...
+Usage: ruby server [options]
+
+    -p, --port=port                  Runs Rails on the specified port.
+                                     Default: 3000
+    -b, --binding=ip                 Binds Rails to the specified ip.
+                                     Default: 0.0.0.0
+    -e, --environment=name           Specifies the environment to run this server under (test/development/production).
+                                     Default: development
+    -m, --mime-types=filename        Specifies an Apache style mime.types configuration file to be used for mime types
+                                     Default: none
+    -d, --daemon                     Make Rails run as a Daemon (only works if fork is available -- meaning on *nix).
+    -u, --debugger                   Enable ruby-debugging for the server.
+    -c, --charset=charset            Set default charset for output.
+                                     Default: UTF-8
+
+    -h, --help                       Show this help message.
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ script/server --help[K[K[K[K[K[K[K
+=> Booting WEBrick...
+=> Rails 2.2.3 application started on http://0.0.0.0:3000
+=> Ctrl-C to shutdown server; call with --help for options
+[2011-11-05 19:09:11] INFO  WEBrick 1.3.1
+[2011-11-05 19:09:11] INFO  ruby 1.8.7 (2010-01-10) [i486-linux]
+[2011-11-05 19:09:11] INFO  WEBrick::HTTPServer#start: pid=1908 port=3000
+127.0.0.1 - - [05/Nov/2011:19:37:40 CET] "GET / HTTP/1.1" 200 7385
+- -> /
+127.0.0.1 - - [05/Nov/2011:19:37:40 CET] "GET /javascripts/effects.js HTTP/1.1" 200 38675
+Referer -> /javascripts/effects.js
+127.0.0.1 - - [05/Nov/2011:19:37:40 CET] "GET /javascripts/prototype.js HTTP/1.1" 200 129738
+Referer -> /javascripts/prototype.js
+127.0.0.1 - - [05/Nov/2011:19:37:40 CET] "GET /images/rails.png HTTP/1.1" 200 6646
+Referer -> /images/rails.png
+127.0.0.1 - - [05/Nov/2011:19:37:41 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:37:47 CET] "GET /c HTTP/1.1" 404 645
+- -> /c
+127.0.0.1 - - [05/Nov/2011:19:37:48 CET] "GET /cat HTTP/1.1" 404 0
+- -> /cat
+127.0.0.1 - - [05/Nov/2011:19:37:48 CET] "GET /cate HTTP/1.1" 404 648
+- -> /cate
+127.0.0.1 - - [05/Nov/2011:19:37:48 CET] "GET /categ HTTP/1.1" 404 649
+- -> /categ
+127.0.0.1 - - [05/Nov/2011:19:37:49 CET] "GET /category HTTP/1.1" 404 652
+- -> /category
+127.0.0.1 - - [05/Nov/2011:19:37:49 CET] "GET /category/ HTTP/1.1" 404 653
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:19:37:50 CET] "GET /category/list HTTP/1.1" 404 657
+- -> /category/list
+127.0.0.1 - - [05/Nov/2011:19:37:53 CET] "GET /category/list/ HTTP/1.1" 404 658
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:37:53 CET] "GET /category/list/ HTTP/1.1" 404 658
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:38:10 CET] "GET /ategory/list/ HTTP/1.1" 404 657
+- -> /ategory/list/
+127.0.0.1 - - [05/Nov/2011:19:38:11 CET] "GET /Category/list/ HTTP/1.1" 404 658
+- -> /Category/list/
+127.0.0.1 - - [05/Nov/2011:19:38:18 CET] "GET /ategory/list/ HTTP/1.1" 404 657
+- -> /ategory/list/
+127.0.0.1 - - [05/Nov/2011:19:38:19 CET] "GET /category/list/ HTTP/1.1" 404 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:38:21 CET] "GET /category/list/ HTTP/1.1" 404 658
+- -> /category/list/
+[2011-11-05 19:38:38] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cdf170>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:38:38 CET] "GET / HTTP/1.1" 500 339
+- -> /
+127.0.0.1 - - [05/Nov/2011:19:38:39 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:39:21 CET] "GET /category/list/ HTTP/1.1" 500 17430
+- -> /category/list/
+[2011-11-05 19:39:22] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6a8cef4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:39:22 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:39:42 CET] "GET /category/list/ HTTP/1.1" 500 13674
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:39:42 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:40:07 CET] "GET /category/list/ HTTP/1.1" 500 13674
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:40:21 CET] "GET /category/list/ HTTP/1.1" 500 13704
+- -> /category/list/
+[2011-11-05 19:40:22] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b178b0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:40:22 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:40:30 CET] "GET /category/list/ HTTP/1.1" 200 1661
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:40:30 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:40:30 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:40:30 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:40:30 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:40:31 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/list/ HTTP/1.1" 200 5728
+- -> /category/list/
+[2011-11-05 19:42:51] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c9af70>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 19:42:51] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c6d7a0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:51 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:52 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:52 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:42:52 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+[2011-11-05 19:42:53] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c5f1a0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:42:53 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:43:02 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:43:02 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:43:02 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:03 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:04 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:05 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+[2011-11-05 19:43:09] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b7a028>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 19:43:09] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b3b990>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:09 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:10 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:10 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:10 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:14 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:15 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:15 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:43:15 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:43 CET] "GET /category/list/ HTTP/1.1" 500 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:52:43 CET] "GET /category/list/ HTTP/1.1" 500 14331
+- -> /category/list/
+[2011-11-05 19:52:45] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b38da8>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:52:45 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/list/ HTTP/1.1" 200 4985
+- -> /category/list/
+[2011-11-05 19:52:57] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6acfce0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 19:52:57] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ac80bc>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:57 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:58 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:58 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:58 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:52:59 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:00 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:53:03 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:04 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:05 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:05 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:05 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:05 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:05 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:25 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+[2011-11-05 19:53:25] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6d3ee54>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:53:25 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 19:53:25] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cf98f4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:53:25 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:53:25 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:26 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:47 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:48 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:53:48 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:13 CET] "GET /category/list/ HTTP/1.1" 200 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:57:13 CET] "GET /category/list/ HTTP/1.1" 200 5061
+- -> /category/list/
+[2011-11-05 19:57:14] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b9ef04>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 19:57:14] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b7b720>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:14 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:15 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+[2011-11-05 19:57:16] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b76b80>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:19:57:16 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:57:35 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:36 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:37 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:37 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:19:57:38 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:19:57:51 CET] "GET /category/list/ HTTP/1.1" 500 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:19:57:52 CET] "GET /category/list/ HTTP/1.1" 500 13677
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:01:28 CET] "GET /category/list/ HTTP/1.1" 200 4857
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /stylesheets/layoutbrowsercategory/list.css HTTP/1.1" 404 686
+Referer -> /stylesheets/layoutbrowsercategory/list.css
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:29 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:30 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:30 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+[2011-11-05 20:01:31] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6d27c2c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:01:31 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:01:51 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/list/ HTTP/1.1" 200 4857
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /stylesheets/layoutbrowsercategory/list.css HTTP/1.1" 404 686
+Referer -> /stylesheets/layoutbrowsercategory/list.css
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:52 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:53 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:53 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:01:54 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:02:19 CET] "GET /category/list/ HTTP/1.1" 200 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:02:19 CET] "GET /category/list/ HTTP/1.1" 200 5043
+- -> /category/list/
+[2011-11-05 20:02:20] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b10bf0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:02:19 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:02:20] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6afdf28>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:02:19 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:20 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:21 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:21 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:32 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:33 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:33 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:02:33 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /category/list/ HTTP/1.1" 200 5084
+- -> /category/list/
+[2011-11-05 20:07:34] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6a21be0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:07:34] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb69e66d0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:34 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:35 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:37 CET] "GET /category/list/favicon.ico HTTP/1.1" 500 711
+- -> /category/list/favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /category/list/ HTTP/1.1" 304 0
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /category/img/leikor_new.png HTTP/1.1" 404 620
+Referer -> /category/img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /category/img/elefant1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /category/img/elefant2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:39 CET] "GET /category/img/elefant3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:40 CET] "GET /category/img/elefant4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:40 CET] "GET /category/img/eule1.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:40 CET] "GET /category/img/eule2.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:40 CET] "GET /category/img/eule3.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:40 CET] "GET /category/img/eule4.jpg HTTP/1.1" 404 620
+Referer -> /category/img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:07:42 CET] "GET /category/list/favicon.ico HTTP/1.1" 500 711
+- -> /category/list/favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:08:25 CET] "GET /category/list/ HTTP/1.1" 500 14617
+- -> /category/list/
+[2011-11-05 20:08:27] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6d6692c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:08:27 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:13:05 CET] "GET /category/list/ HTTP/1.1" 500 9477
+- -> /category/list/
+127.0.0.1 - - [05/Nov/2011:20:13:06 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:13:08 CET] "GET /category/ HTTP/1.1" 500 9497
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:13:37 CET] "GET /category/ HTTP/1.1" 500 10340
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:14:16 CET] "GET /category/ HTTP/1.1" 500 10340
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:14:20 CET] "GET /category/0 HTTP/1.1" 500 0
+- -> /category/0
+127.0.0.1 - - [05/Nov/2011:20:14:21 CET] "GET /category/0 HTTP/1.1" 500 10350
+- -> /category/0
+127.0.0.1 - - [05/Nov/2011:20:14:23 CET] "GET /category/ HTTP/1.1" 500 10340
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:14:24 CET] "GET /category/nil HTTP/1.1" 500 10352
+- -> /category/nil
+127.0.0.1 - - [05/Nov/2011:20:14:51 CET] "GET /category/nil HTTP/1.1" 500 13497
+- -> /category/nil
+127.0.0.1 - - [05/Nov/2011:20:15:13 CET] "GET /category/ HTTP/1.1" 500 0
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:15:14 CET] "GET /category/ HTTP/1.1" 500 14637
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:15:18 CET] "GET /category HTTP/1.1" 500 0
+- -> /category
+127.0.0.1 - - [05/Nov/2011:20:15:18 CET] "GET /category HTTP/1.1" 500 14637
+- -> /category
+127.0.0.1 - - [05/Nov/2011:20:15:22 CET] "GET /category/ HTTP/1.1" 500 0
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:15:23 CET] "GET /category/ HTTP/1.1" 500 14637
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:15:53 CET] "GET /category/ HTTP/1.1" 500 13465
+- -> /category/
+127.0.0.1 - - [05/Nov/2011:20:16:06 CET] "GET /category HTTP/1.1" 500 0
+- -> /category
+127.0.0.1 - - [05/Nov/2011:20:16:07 CET] "GET /categor HTTP/1.1" 404 651
+- -> /categor
+127.0.0.1 - - [05/Nov/2011:20:16:07 CET] "GET /categories HTTP/1.1" 500 715
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:16:25 CET] "GET /categories HTTP/1.1" 500 14649
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:16:58 CET] "GET /categories HTTP/1.1" 500 14649
+- -> /categories
+[2011-11-05 20:17:00] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6bafc8c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:17:00 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /categories HTTP/1.1" 200 5156
+- -> /categories
+[2011-11-05 20:17:09] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b40bd4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+[2011-11-05 20:17:09] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b001ec>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:09 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:10 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:10 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:10 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:11 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:17:13 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /stylesheets/browser.css HTTP/1.1" 404 667
+Referer -> /stylesheets/browser.css
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:14 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:15 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:15 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:17:15 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:41 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:18:42] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6bf4300>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:18:41 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:18:41 CET] "GET /stylesheets/category_browser.css?1320493649 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category_browser.css?1320493649
+[2011-11-05 20:18:42] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6be0e90>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:18:41 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:42 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:45 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:18:45 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:18:45] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ca3cb0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:18:45 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:18:45 CET] "GET /stylesheets/category_browser.css?1320493649 HTTP/1.1" 500 337
+Referer -> /stylesheets/category_browser.css?1320493649
+127.0.0.1 - - [05/Nov/2011:20:18:45 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:18:46 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:26 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:19:26 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:19:27] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cea638>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /stylesheets/category_browser.css?1320493649 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category_browser.css?1320493649
+[2011-11-05 20:19:27] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cdbe30>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:27 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:30 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:19:31] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6a492bc>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /stylesheets/category_browser.css?1320493649 HTTP/1.1" 500 337
+Referer -> /stylesheets/category_browser.css?1320493649
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:19:31 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:27 CET] "GET /categories HTTP/1.1" 200 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:20:27 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:20:28] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6a6334c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:20:28] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6a5cbf0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /stylesheets/category/browser.css?1320493649 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320493649
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:28 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:29 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:29 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:29 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:35 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:20:35 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:20:35] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6af1b24>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:20:35 CET] "GET /stylesheets/category/browser.css?1320493649 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320493649
+127.0.0.1 - - [05/Nov/2011:20:20:35 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:20:35 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:20:36 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:43 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:21:43] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b86b34>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:21:43 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:21:43 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+[2011-11-05 20:21:43] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b7c648>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:21:43 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:44 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+[2011-11-05 20:21:45] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c9a458>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:21:45 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:21:58] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c11770>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:58 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:59 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:59 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:21:59 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:00 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:22:14] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cd8104>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:22:14] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ccb3b4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:14 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:15 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:21 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+[2011-11-05 20:22:22] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6d4fd58>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:22 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:23 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:23 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /categories HTTP/1.1" 200 5156
+- -> /categories
+[2011-11-05 20:22:49] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ad0398>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:49 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:50 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:50 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:22:50 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /categories HTTP/1.1" 200 5153
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:23:06] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b4e4dc>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:06 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:07 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:07 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:07 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:07 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+[2011-11-05 20:23:27] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6bff1c4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:27 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:28 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:28 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:28 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:30 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:23:31] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ccbd14>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:31 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:23:32 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+^C[2011-11-05 20:23:54] INFO  going to shutdown ...
+[2011-11-05 20:23:54] INFO  WEBrick::HTTPServer#start done.
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ script/server
+=> Booting WEBrick...
+=> Rails 2.2.3 application started on http://0.0.0.0:3000
+=> Ctrl-C to shutdown server; call with --help for options
+[2011-11-05 20:24:01] INFO  WEBrick 1.3.1
+[2011-11-05 20:24:01] INFO  ruby 1.8.7 (2010-01-10) [i486-linux]
+[2011-11-05 20:24:01] INFO  WEBrick::HTTPServer#start: pid=2918 port=3000
+127.0.0.1 - - [05/Nov/2011:20:24:04 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+[2011-11-05 20:24:05] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6bfd248>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:24:04 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:24:04 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:05 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:09 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:24:10] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6d3172c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:10 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:11 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:11 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:32 CET] "GET /categories HTTP/1.1" 200 5176
+- -> /categories
+[2011-11-05 20:24:33] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ac0754>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:24:33] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6de6a64>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:33 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:34 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /categories HTTP/1.1" 304 0
+- -> /categories
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:24:40] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b50ed0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:40 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:41 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:41 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:41 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:48 CET] "GET /categories HTTP/1.1" 304 0
+Referer -> /categories
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/eule1.jpg HTTP/1.1" 404 657
+Referer -> /img/eule1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/eule2.jpg HTTP/1.1" 404 657
+Referer -> /img/eule2.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/eule3.jpg HTTP/1.1" 404 657
+Referer -> /img/eule3.jpg
+127.0.0.1 - - [05/Nov/2011:20:24:49 CET] "GET /img/eule4.jpg HTTP/1.1" 404 657
+Referer -> /img/eule4.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /categories HTTP/1.1" 200 2989
+Referer -> /categories
+[2011-11-05 20:32:25] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6cb0604>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:32:25] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ca80d0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+[2011-11-05 20:32:25] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6ca0bc8>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:25 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+[2011-11-05 20:32:26] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6b7b464>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:26 CET] "GET /favicon.ico HTTP/1.1" 500 337
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /categories HTTP/1.1" 304 0
+Referer -> /categories
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:28 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:30 CET] "GET /favicon.ico HTTP/1.1" 200 1406
+- -> /favicon.ico
+127.0.0.1 - - [05/Nov/2011:20:32:42 CET] "GET /categories HTTP/1.1" 304 0
+Referer -> /categories
+[2011-11-05 20:32:43] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c757ac>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:32:43] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c6d520>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+[2011-11-05 20:32:43] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c615e0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:43 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /categories HTTP/1.1" 304 0
+Referer -> /categories
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+127.0.0.1 - - [05/Nov/2011:20:32:46 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:47 CET] "GET /img/elefant2.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant2.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:47 CET] "GET /img/elefant3.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant3.jpg
+127.0.0.1 - - [05/Nov/2011:20:32:47 CET] "GET /img/elefant4.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant4.jpg
+127.0.0.1 - - [05/Nov/2011:20:33:36 CET] "GET /categories HTTP/1.1" 200 2401
+Referer -> /categories
+[2011-11-05 20:33:37] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c4b22c>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+[2011-11-05 20:33:37] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c43ae0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:33:37 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:33:37] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6c36de0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:33:37 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:33:37 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:33:37 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:33:37 CET] "GET /img/leikor_new.png HTTP/1.1" 404 662
+Referer -> /img/leikor_new.png
+^C[2011-11-05 20:33:41] INFO  going to shutdown ...
+[2011-11-05 20:33:41] INFO  WEBrick::HTTPServer#start done.
+]0;ludi@ludis-laptop: ~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.deludi@ludis-laptop:~/.dropbox-data/Dropbox/Projekte/leikor.de/webapp/leikor.de
+$ script/server
+=> Booting WEBrick...
+=> Rails 2.2.3 application started on http://0.0.0.0:3000
+=> Ctrl-C to shutdown server; call with --help for options
+[2011-11-05 20:33:49] INFO  WEBrick 1.3.1
+[2011-11-05 20:33:49] INFO  ruby 1.8.7 (2010-01-10) [i486-linux]
+[2011-11-05 20:33:49] INFO  WEBrick::HTTPServer#start: pid=2994 port=3000
+127.0.0.1 - - [05/Nov/2011:20:35:37 CET] "GET /categories HTTP/1.1" 200 2356
+Referer -> /categories
+127.0.0.1 - - [05/Nov/2011:20:35:38 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 200 1186
+Referer -> /stylesheets/layout.css?1320495870
+127.0.0.1 - - [05/Nov/2011:20:35:38 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 200 1006
+Referer -> /stylesheets/category/browser.css?1320520880
+127.0.0.1 - - [05/Nov/2011:20:35:38 CET] "GET /stylesheets/category/list.css?1320307838 HTTP/1.1" 200 717
+Referer -> /stylesheets/category/list.css?1320307838
+127.0.0.1 - - [05/Nov/2011:20:35:38 CET] "GET /images/leikor HTTP/1.1" 404 657
+Referer -> /images/leikor
+127.0.0.1 - - [05/Nov/2011:20:35:38 CET] "GET /img/elefant1.jpg HTTP/1.1" 404 660
+Referer -> /img/elefant1.jpg
+127.0.0.1 - - [05/Nov/2011:20:35:58 CET] "GET /categories HTTP/1.1" 304 0
+Referer -> /categories
+[2011-11-05 20:35:59] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb6996414>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:35:59 CET] "GET /stylesheets/layout.css?1320495870 HTTP/1.1" 500 337
+Referer -> /stylesheets/layout.css?1320495870
+[2011-11-05 20:35:59] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb698fca4>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94:in `handle_file'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:73:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+	/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+	/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+	/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+	/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+	/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:60:in `dispatch'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/servers/webrick.rb:66
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	/var/lib/gems/1.8/gems/activesupport-2.2.3/lib/active_support/dependencies.rb:153:in `require'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/commands/server.rb:49
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	/usr/lib/ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	script/server:3
+127.0.0.1 - - [05/Nov/2011:20:35:59 CET] "GET /stylesheets/category/browser.css?1320520880 HTTP/1.1" 500 337
+Referer -> /stylesheets/category/browser.css?1320520880
+[2011-11-05 20:35:59] ERROR NoMethodError: private method `gsub!' called for #<Class:0xb69894d0>
+	/usr/lib/ruby/1.8/webrick/htmlutils.rb:16:in `escape'
+	/usr/lib/ruby/1.8/webrick/httpresponse.rb:232:in `set_error'
+	/var/lib/gems/1.8/gems/rails-2.2.3/lib/webrick_server.rb:94

@@ -1,0 +1,14 @@
+<% if superuser_logged_in? %>
+  <div id="category_administration" class="administration">
+    <%= link_to_remote(
+      "Neue Kategorie",
+      :url => new_category_path,
+      :method => :get
+    ) %>
+  </div>
+<% end %>
+<% unless @categories.empty? %>
+  <%= render :partial => 'category', :collection => @categories %>
+<% else %>
+  <div class="empty_category">Keine Kategorien vorhanden.</div>
+<% end %>

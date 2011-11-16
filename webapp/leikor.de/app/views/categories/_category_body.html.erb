@@ -1,0 +1,10 @@
+<% unless category.articles.empty? %>
+  <div class="body">
+    <%= render :partial => 'article', :collection => category.overview %>
+  </div>
+<% else %>
+  <div class="body no_article">
+    Keine Artikel in dieser Kategorie.
+  </div>
+<% end %>
+
