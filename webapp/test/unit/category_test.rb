@@ -10,8 +10,8 @@ class Categorytest < ActiveSupport::TestCase
   end
   
   test "subcategories should be ordered alphabetically" do
-    assert_equal categories(:super).subcategories[0], categories(:sub1)
-    assert_equal categories(:super).subcategories[1], categories(:sub2)
+    assert_equal categories(:sub1), categories(:super).subcategories[0]
+    assert_equal categories(:sub2), categories(:super).subcategories[1]
   end
   
   test "should have articles" do
@@ -19,7 +19,7 @@ class Categorytest < ActiveSupport::TestCase
   end
   
   test "articles should be ordered alphabetically" do
-    assert_equal categories(:super).articles, articles(:one, :three, :two, :five, :four)
+    assert_equal articles(:one, :three, :two, :five, :four), categories(:super).articles
   end
   
   TEST_CATEGORY_HASH = {:name => 'Einzigartige Kategorie'}
@@ -50,7 +50,7 @@ class Categorytest < ActiveSupport::TestCase
   test "to_param translates special chararacters" do
     c = categories(:super)
     c.name = 'Südhärbeßt & Söhne'
-    assert_equal c.to_param, '1-suedhaerbesst-und-soehne'
+    assert_equal "#{Fixtures.identify :super}-suedhaerbesst-und-soehne", c.to_param
   end
   
   test "self.from_param returns correct record" do
@@ -63,13 +63,13 @@ class Categorytest < ActiveSupport::TestCase
   end
   
   test "url_hash includes correct values" do
-    assert_equal categories(:super).url_hash, {:category => '1-super-category'}
+    assert_equal Hash[:category => categories(:super).to_param], categories(:super).url_hash
   end
   
   test "url_hash propagates custom options" do
     url_hash = categories(:super).url_hash(:custom_key => :custom_value)
     assert_includes url_hash, :custom_key
-    assert_equal url_hash[:custom_key], :custom_value
+    assert_equal :custom_value, url_hash[:custom_key]
   end
 
   test "html ids are unique" do

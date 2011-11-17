@@ -1,19 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 super:
-  id: &supercat 1
   name: Super Category
 
 sub1:
-  id: &subcat 2
   name: Subcategory A1
-  category_id: *supercat
+  category: super
   type: Subcategory
 
 sub2:
-  id: 3
   name: Subcategory B2
-  category_id: *supercat
+  category: super
   type: Subcategory
-
-

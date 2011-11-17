@@ -15,7 +15,7 @@ class Subcategorytest < ActiveSupport::TestCase
   end
   
   test "articles should be ordered alphabetically" do
-    assert_equal categories(:sub1).articles, articles(:one, :three, :two, :five, :four)
+    assert_equal articles(:one, :three, :two, :five, :four), categories(:sub1).articles
   end
   
   TEST_SUBCATEGORY_HASH = {:name => 'Einzigartige Unterkategorie', :category_id => 1}
@@ -37,12 +37,12 @@ class Subcategorytest < ActiveSupport::TestCase
   end
   
   test "url_hash includes correct values" do
-    assert_equal categories(:sub1).url_hash, {:category => '1-super-category', :subcategory => '2-subcategory-a1'}
+    assert_equal Hash[:category => categories(:sub1).category.to_param, :subcategory => categories(:sub1).to_param], categories(:sub1).url_hash
   end
   
   test "url_hash propagates custom options" do
     url_hash = categories(:sub1).url_hash(:custom_key => :custom_value)
     assert_includes url_hash, :custom_key
-    assert_equal url_hash[:custom_key], :custom_value
+    assert_equal :custom_value, url_hash[:custom_key]
   end
 end
