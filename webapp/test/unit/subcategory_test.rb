@@ -15,17 +15,18 @@ class Subcategorytest < ActiveSupport::TestCase
   end
   
   test "articles should be ordered alphabetically" do
-    assert_equal articles(:one, :three, :two, :five, :four), categories(:sub1).articles
+    assert_equal(articles(:one, :three, :two, :five, :four),
+      categories(:sub1).articles)
   end
   
-  TEST_SUBCATEGORY_HASH = {:name => 'Einzigartige Unterkategorie', :category_id => 1}
-  test "save succeeds with TEST_SUBCATEGORY_HASH" do
-    assert_creates_record_from Subcategory, TEST_SUBCATEGORY_HASH
+  test "save succeeds with test hash" do
+    assert_creates_record_from(Subcategory, {:name =>
+      'Einzigartige Unterkategorie', :category_id => 1})
   end
   
   test "record invalid without category_id" do
-    c = Subcategory.create TEST_SUBCATEGORY_HASH.merge(:category_id => '')
-    assert_errors_on c, :on => :category_id
+    categories(:sub1).category_id = nil
+    assert_errors_on categories(:sub1), :on => :category_id
   end
   
   test "human_name returns String" do
@@ -37,7 +38,8 @@ class Subcategorytest < ActiveSupport::TestCase
   end
   
   test "url_hash includes correct values" do
-    assert_equal Hash[:category => categories(:sub1).category.to_param, :subcategory => categories(:sub1).to_param], categories(:sub1).url_hash
+    assert_equal(Hash[:category => categories(:sub1).category.to_param,
+      :subcategory => categories(:sub1).to_param], categories(:sub1).url_hash)
   end
   
   test "url_hash propagates custom options" do

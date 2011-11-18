@@ -19,24 +19,25 @@ class Categorytest < ActiveSupport::TestCase
   end
   
   test "articles should be ordered alphabetically" do
-    assert_equal articles(:one, :three, :two, :five, :four), categories(:super).articles
+    assert_equal(articles(:one, :three, :two, :five, :four),
+      categories(:super).articles)
   end
   
-  TEST_CATEGORY_HASH = {:name => 'Einzigartige Kategorie'}
-  test "save succeeds with TEST_CATEGORY_HASH" do
-    assert_creates_record_from Category, TEST_CATEGORY_HASH
+  test "save succeeds with test hash" do
+    assert_creates_record_from Category, {:name => 'Einzigartige Kategorie'}
   end
   
   test "record invalid without name" do
-    c = Category.create TEST_CATEGORY_HASH.merge(:name => '')
-    assert_errors_on c, :on => :name
+    categories(:super).name = ''
+    assert_errors_on categories(:super), :on => :name
   end
   
   test "record invalid with non-unique name" do
-    c = Category.create TEST_CATEGORY_HASH.merge(:name => categories(:super).name)
-    assert_errors_on c, :on => :name
-    c = Category.create TEST_CATEGORY_HASH.merge(:name => categories(:sub1).name)
-    assert_errors_on c, :on => :name
+    categories(:super).name = categories(:sub1).name
+    assert_errors_on categories(:super), :on => :name
+    
+    categories(:sub1).name = categories(:sub2).name
+    assert_errors_on categories(:sub1), :on => :name
   end
   
   test "human_name returns String" do
@@ -50,12 +51,15 @@ class Categorytest < ActiveSupport::TestCase
   test "to_param translates special chararacters" do
     c = categories(:super)
     c.name = 'Südhärbeßt & Söhne'
-    assert_equal "#{Fixtures.identify :super}-suedhaerbesst-und-soehne", c.to_param
+    assert_equal("#{Fixtures.identify :super}-suedhaerbesst-und-soehne",
+      c.to_param)
   end
   
   test "self.from_param returns correct record" do
-    assert_equal categories(:super), Category.from_param(categories(:super).to_param)
-    assert_equal categories(:sub1), Category.from_param(categories(:sub1).to_param)
+    assert_equal(categories(:super),
+      Category.from_param(categories(:super).to_param))
+    assert_equal(categories(:sub1),
+      Category.from_param(categories(:sub1).to_param))
   end
   
   test "url_hash includes neccessary fields" do
@@ -63,7 +67,8 @@ class Categorytest < ActiveSupport::TestCase
   end
   
   test "url_hash includes correct values" do
-    assert_equal Hash[:category => categories(:super).to_param], categories(:super).url_hash
+    assert_equal(Hash[:category => categories(:super).to_param],
+      categories(:super).url_hash)
   end
   
   test "url_hash propagates custom options" do
@@ -73,18 +78,17 @@ class Categorytest < ActiveSupport::TestCase
   end
 
   test "html ids are unique" do
-    assert categories(:super).html_id != categories(:sub1)
-    assert categories(:super).html_id != categories(:sub2)
-    assert categories(:sub1).html_id != categories(:sub2)
+    assert categories(:super).html_id != categories(:sub1).html_id
+    assert categories(:super).html_id != categories(:sub2).html_id
+    assert categories(:sub1).html_id != categories(:sub2).html_id
   end
   
   test "overview returns at most 4 articles" do
     c = categories(:sub1)
-    c.articles.new :name => 'name', :description => 'desc', :price => 1.0, :article_number => '12345.1'
-    c.articles.new :name => 'name', :description => 'desc', :price => 1.0, :article_number => '12345.2'
-    c.articles.new :name => 'name', :description => 'desc', :price => 1.0, :article_number => '12345.3'
-    c.articles.new :name => 'name', :description => 'desc', :price => 1.0, :article_number => '12345.4'
-    c.articles.new :name => 'name', :description => 'desc', :price => 1.0, :article_number => '12345.5'
+    for i in 1..6
+      c.articles.new :name => 'name', :description => 'desc', :price => 1.0,
+        :article_number => "12345.#{i}"
+    end
     assert c.overview.length <= 4
   end
   

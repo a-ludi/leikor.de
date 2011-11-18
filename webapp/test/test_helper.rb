@@ -37,15 +37,18 @@ class Test::Unit::TestCase
   # Add more helper methods to be used by all tests here...
   def assert_errors_on(obj, options={})
     if options[:on].is_a? Symbol
+      message = "expected errors on #{obj}.#{options[:on]}" unless options[:message]
       obj.valid?
-      assert obj.errors.on(options[:on])
+      assert obj.errors.on(options[:on]), :message => message
     else
-      assert !obj.valid?
+      message = "expected errors on #{obj}" unless options[:message]
+      assert !obj.valid?, :message => message
     end
   end
   
   def assert_creates_record_from(record_class, options={})
-    assert record_class.create(options).save
+    message = "record of class #{record_class} could not be generated from #{options.inspect}"
+    assert record_class.create(options).save, :message => message
   end
   
   def assert_includes(obj, *keys)
@@ -53,16 +56,20 @@ class Test::Unit::TestCase
     keys.each do |key|
       includes_all &= obj.include? key
     end
-    
-    assert includes_all
+    message = "#{obj} does not include all of #{keys.inspect}"
+    assert includes_all, :message => message
   end
   
-  def assert_exact_match(pattern, string)
-    assert (string =~ pattern) == 0 && string[pattern].length == string.length
+  def assert_exact_match(pattern, string, options={})
+    options[:message] = "#{string} does not exactly match #{pattern}" unless options[:message]
+    assert (string =~ pattern) == 0 && string[pattern].length == string.length, :message => options[:message]
   end
   
   def assert_items_unique(collection, options={})
-    assert !collection.empty? if options[:not_empty]
-    assert_equal collection.length, collection.uniq.length
+    options[:message] = "#{collection} is empty" unless options[:message]
+    assert !collection.empty?, :message => options[:message] if options[:not_empty]
+    
+    options[:message] = "non-unique items in: #{collection.inspect}" unless options[:message]
+    assert_equal collection.length, collection.uniq.length, :message => options[:message]
   end
 end

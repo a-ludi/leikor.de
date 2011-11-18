@@ -1,64 +1,62 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  TEST_USER_HASH = {:name => 'Heinz Hinze', :login => 'hinze', :password => 'loeffel'}
-
-  test "save succeeds with TEST_USER_HASH" do
-    assert_creates_record_from User, TEST_USER_HASH
+  test "save succeeds with test hash" do
+    assert_creates_record_from User, {:name => 'Heinz Hinze', :login => 'hinze', :password => 'loeffel'}
   end
   
   test "record invalid without name" do
-    user = User.create TEST_USER_HASH.merge(:name => '')
-    assert_errors_on user, :on => :name
+    users(:john).name = ''
+    assert_errors_on users(:john), :on => :name
   end
 
   test "record invalid without login" do
-    user = User.create TEST_USER_HASH.merge(:login => '')
-    assert_errors_on user, :on => :login
+    users(:john).login = ''
+    assert_errors_on users(:john), :on => :login
   end
 
   test "record invalid without password" do
-    user = User.create TEST_USER_HASH.merge(:password => '')
-    assert_errors_on user, :on => :password
+    users(:john).password = ''
+    assert_errors_on users(:john), :on => :password
   end
 
   test "record invalid with short login" do
-    user = User.create TEST_USER_HASH.merge(:login => 'heh')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'jon'
+    assert_errors_on users(:john), :on => :login
   end
   
   test "record invalid with long login" do
-    user = User.create TEST_USER_HASH.merge(:login => 'john_doe_the_hero_of_america_damn')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'john_doe_the_hero_of_america_damn'
+    assert_errors_on users(:john), :on => :login
   end
   
   test "record invalid with invalid first char in login" do
-    user = User.create TEST_USER_HASH.merge(:login => '_heinz')
-    assert_errors_on user, :on => :login
+    users(:john).login = '_john'
+    assert_errors_on users(:john), :on => :login
   end
   
   test "record invalid with invalid char in login" do
-    user = User.create TEST_USER_HASH.merge(:login => 'hinze!')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'john!'
+    assert_errors_on users(:john), :on => :login
     
-    user = User.create TEST_USER_HASH.merge(:login => 'h/nze')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'jo\n'
+    assert_errors_on users(:john), :on => :login
     
-    user = User.create TEST_USER_HASH.merge(:login => 'hinze&co')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'john&brother'
+    assert_errors_on users(:john), :on => :login
     
-    user = User.create TEST_USER_HASH.merge(:login => 'hinze-und-söhne')
-    assert_errors_on user, :on => :login
+    users(:john).login = 'jöhne'
+    assert_errors_on users(:john), :on => :login
   end
   
   test "record invalid with non-unique login" do
-    user = User.create TEST_USER_HASH.merge(:login => users(:john).login)
-    assert_errors_on user, :on => :login
+    users(:john).login = users(:max).login
+    assert_errors_on users(:john), :on => :login
   end
   
   test "record invalid with short password" do
-    user = User.create TEST_USER_HASH.merge(:password => 'tuer')
-    assert_errors_on user, :on => :password
+    users(:john).password = 'big'
+    assert_errors_on users(:john), :on => :password
   end
   
   test "raises error with invalid password hash" do
