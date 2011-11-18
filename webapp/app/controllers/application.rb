@@ -1,3 +1,4 @@
+include ActionController::Translation
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
@@ -14,8 +15,31 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   before_filter :fetch_logged_in_user
+  LAST_UPDATED_FILE_PATH = File.join(Rails.root, 'public', 'last_updated')
+  LAST_UPDATED_TIME_FORMAT = '%H:%M Uhr %d.%m.%Y'
   
-protected
+  def save_last_updated
+    if File::writable? LAST_UPDATED_FILE_PATH
+      f = File.new LAST_UPDATED_FILE_PATH, 'w'
+      f.write Time.now.strftime(LAST_UPDATED_TIME_FORMAT)
+      f.close
+    else
+      logger.warn 'could not save last_updated'
+    end
+  end
+  
+  def load_last_updated
+    if File::readable? LAST_UPDATED_FILE_PATH
+      f = File.new LAST_UPDATED_FILE_PATH, 'r'
+      last_updated = f.read
+      f.close
+      return last_updated
+    else
+      return Time.mktime(2011, 11, 11, 11, 11, 11, 11).strftime(LAST_UPDATED_TIME_FORMAT)
+    end
+  end
+  helper_method :load_last_updated
+  
   def fetch_logged_in_user
     return if @current_user = User.find_by_id(session[:user_id])
     @current_user = nil

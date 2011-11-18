@@ -5,7 +5,8 @@ class StaticController < ApplicationController
     'ueber_uns' => {:stylesheets => ['static']},
     'kontakt' => {:stylesheets => ['message']},
     'impressum' => {:stylesheets => ['message']},
-    'AGB' =>  {:stylesheets => ['static']}
+    'AGB' =>  {:stylesheets => ['static']},
+    'colors' =>  {:stylesheets => ['static']}
   }
   
   def show

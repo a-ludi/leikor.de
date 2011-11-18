@@ -29,6 +29,11 @@ label {
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
+h1, h2 { padding: 0ex; color: #00a663; }
+h1 { font-size: 150%; margin: 3ex 0em 3ex 0em }
+h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
+
+
 #message {
   display: block;
   overflow: hidden;

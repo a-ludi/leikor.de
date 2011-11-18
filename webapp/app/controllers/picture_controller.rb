@@ -1,5 +1,6 @@
 class PictureController < ApplicationController
   before_filter :login_required, :except => [:show]
+  after_filter :save_last_updated, :only => [:update, :destroy]
   
   def show
     @article = Article.find params[:article_id]
