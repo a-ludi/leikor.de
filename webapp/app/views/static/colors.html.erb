@@ -1,0 +1,30 @@
+<style type="text/css">
+  #colors {
+    font-family: "monofur";
+    overflow: hidden;
+  }
+  
+  #colors div {
+    display: block;
+    float: left;
+    margin: 1ex;
+    text-align: center;
+  }
+  
+  #colors .color {
+    height: 5em;
+    width: 5em;
+    display: inline-block;
+    border: 2px solid black;
+  }
+</style>
+<div id="colors">
+    <% for c in ['a80000', 'fe0000', 'ffc3c3', '00a663', 'D9FFF0', '0065a8',
+      '0099ff', 'D9F0FF', '333333', 'aaaaaa', 'cccccc', 'dddddd', 'eeeeee'] %>
+      <div>
+          #<%= c.upcase %><br />
+          <div class="color" style="background: #<%= c %>;"></div>
+      </div>
+    <% end %>
+</div>
+
