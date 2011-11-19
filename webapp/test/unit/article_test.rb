@@ -5,6 +5,51 @@ class ArticleTest < ActiveSupport::TestCase
     articles.each {|a| assert_equal categories(:sub1), a.subcategory}
   end
   
+  test "record invalid without name" do
+    articles(:one).name = ''
+    assert_errors_on articles(:one), :on => :name
+  end
+  
+  test "record invalid without price" do
+    articles(:one).price = ''
+    assert_errors_on articles(:one), :on => :price
+  end
+  
+  test "record invalid without article number" do
+    articles(:one).article_number = ''
+    assert_errors_on articles(:one), :on => :article_number
+  end
+  
+  test "record invalid without subcategory" do
+    articles(:one).subcategory = nil
+    assert_errors_on articles(:one), :on => :subcategory
+  end
+  
+  test "record invalid with non-numeric price" do
+    articles(:one).price = 'Five Dollars Fiveteen'
+    assert_errors_on articles(:one), :on => :price
+  end
+  
+  test "record invalid with low price" do
+    articles(:one).price = 0.0
+    assert_errors_on articles(:one), :on => :price
+    
+    articles(:one).price = -1.0
+    assert_errors_on articles(:one), :on => :price
+  end
+  
+  test "record invalid with non-unique article number" do
+    articles(:one).article_number = articles(:two).article_number
+    assert_errors_on articles(:one), :on => :article_number
+  end
+  
+  test "record invalid with malformatted article number" do
+    for mf_number in ['123456.1', '12345.123', 'a2345.1', '1234.12', '12345,1']
+      articles(:one).article_number = mf_number
+      assert_errors_on articles(:one), :on => :article_number, :message => "article number #{mf_number} is invalid"
+    end
+  end
+  
   test "should return default picture url" do
     assert_equal '/images/picture/original/dummy.png', articles(:one).picture.url
   end
@@ -14,10 +59,8 @@ class ArticleTest < ActiveSupport::TestCase
   end
   
   test "html ids are unique" do
-    for a in articles
-      for b in articles
-        assert a.html_id != b.html_id unless a == b
-      end
+    assert_items_unique Article.find(:all), :not_empty => true do |a|
+      a.html_id
     end
   end
   

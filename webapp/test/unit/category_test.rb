@@ -23,10 +23,6 @@ class Categorytest < ActiveSupport::TestCase
       categories(:super).articles)
   end
   
-  test "save succeeds with test hash" do
-    assert_creates_record_from Category, {:name => 'Einzigartige Kategorie'}
-  end
-  
   test "record invalid without name" do
     categories(:super).name = ''
     assert_errors_on categories(:super), :on => :name

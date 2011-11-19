@@ -19,11 +19,6 @@ class Subcategorytest < ActiveSupport::TestCase
       categories(:sub1).articles)
   end
   
-  test "save succeeds with test hash" do
-    assert_creates_record_from(Subcategory, {:name =>
-      'Einzigartige Unterkategorie', :category_id => 1})
-  end
-  
   test "record invalid without category_id" do
     categories(:sub1).category_id = nil
     assert_errors_on categories(:sub1), :on => :category_id

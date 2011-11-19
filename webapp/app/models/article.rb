@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include UtilityHelper
+  
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/
   
   belongs_to :subcategory
@@ -18,7 +20,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :name, :price, :article_number, :subcategory
   validates_numericality_of :price, :greater_than => 0.0
   validates_uniqueness_of :article_number
-  validates_format_of :article_number, :with => ARTICLE_NUMBER_FORMAT
+  validates_format_of :article_number, :with => UtilityHelper::delimited(ARTICLE_NUMBER_FORMAT)
   
   def html_id
     "artnr_#{article_number}"
