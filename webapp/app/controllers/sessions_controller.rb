@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   
   def new
     @stylesheets = ['message', 'sessions']
-    flash[:referer] = request.referer if flash[:referer].blank?
+    flash[:referer] = request.referer ? request.referer : "/" if flash[:referer].blank?
   end
 
   def create
