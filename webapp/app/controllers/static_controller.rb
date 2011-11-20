@@ -6,8 +6,8 @@ class StaticController < ApplicationController
     'kontakt' => {:stylesheets => ['message']},
     'impressum' => {:stylesheets => ['message']},
     'AGB' =>  {:stylesheets => ['static']},
-    'colors' =>  {:stylesheets => ['static']}
   }
+  REGISTERED_PAGES['colors'] = {:stylesheets => ['static']} if RAILS_ENV == 'development'
   
   def show
     path = File.join params[:path] unless params[:path].nil?

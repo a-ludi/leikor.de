@@ -33,7 +33,7 @@
         <!--a>Angebote</a-->
         <!--a>Messetermine</a-->
         <%= link_to 'Über uns', static_path('ueber_uns') %>
-        <%= link_to 'Farbpalette', static_path('colors') %>
+        <%= link_to 'Farbpalette', static_path('colors') if RAILS_ENV == 'development' %>
       </div>
     </div>
     <div id="body">
