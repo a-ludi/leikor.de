@@ -15,8 +15,7 @@ class StaticController < ApplicationController
       @stylesheets = REGISTERED_PAGES[path][:stylesheets]
       render :action => path
     else
-      logger.warn "Tried to access unkown path '#{params[:path].inspect}'"
-      render :file => File.join(Rails.root, 'public', '404.html'), :status => :not_found
+      raise ActionController::RoutingError, "No route matches \"/#{path}\" with {:method => :get}"
     end
   end
 end
