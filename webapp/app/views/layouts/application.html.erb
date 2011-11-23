@@ -10,7 +10,7 @@
         <% if user_logged_in? %>
           <span class="logged_in_user">
             <span class="name"><%= @current_user.name %></span>
-            (<%= link_to 'abmelden', session_path, :method => :delete %>)
+            (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
         <% end %> 
         <%= link_to 'Kontakt', static_path('kontakt') %> |

@@ -29,6 +29,6 @@ class SessionsController < ApplicationController
       :class => 'info',
       :title => 'Bis bald!',
       :text => "… und auf Wiedersehen."}
-    redirect_to request.referer
+    redirect_to (request.referer.blank? ? '/' : request.referer)
   end
 end

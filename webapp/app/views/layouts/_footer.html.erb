@@ -5,7 +5,7 @@
   <% unless user_logged_in? %>
     <%= link_to 'Anmelden', new_session_path %>
   <% else %>
-    <%= link_to 'Abmelden', session_path, :method => :delete %>
+    <%= link_to 'Abmelden', session_destroy_path %>
   <% end %>
   <br>
   ©2010, leikor.de &bull;

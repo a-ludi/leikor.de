@@ -68,10 +68,9 @@ ActionController::Routing::Routes.draw do |map|
     articles.resource :picture, :as => 'bild', :controller => 'picture'
   end
   
-  map.resource(
-    :session,
-    :as => 'sitzung',
-    :path_names => { :new => 'anmelden', :destroy => 'abmelden' })
+  map.resource(:session, :as => 'sitzung', :path_names => {:new => 'anmelden'}) do |session|
+    session.destroy 'abmelden', :controller => 'sessions', :action => 'destroy'
+  end
   
   map.root :path => 'ueber_uns', :controller => 'static', :action => 'show'
   map.static(

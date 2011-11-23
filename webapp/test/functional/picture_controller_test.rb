@@ -1,8 +1,5 @@
 require 'test_helper'
 
 class PictureControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
-  end
+  #fixture_file_upload
 end
