@@ -1,11 +1,22 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  value: MyText
-  type: MyString
+string:
+  name: string
+  value: admin
+  data_type: String
 
-two:
-  name: MyString
-  value: MyText
-  type: MyString
+fixnum:
+  name: fixnum
+  value: 5138450
+  data_type: Fixnum
+
+float:
+  name: float
+  value: 3.14159265
+  data_type: Float
+
+time:
+  name: time
+  value: 'Thu Nov 24 08:47:13 +0100 2011'
+  data_type: Time
+

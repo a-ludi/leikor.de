@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   before_filter :login_required, :except => [:index]
-  after_filter :save_last_updated, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy]
   
   def index
     @stylesheets = ['category/browser', 'article/index']

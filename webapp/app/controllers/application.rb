@@ -14,29 +14,15 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
   
-  before_filter :fetch_logged_in_user
-  LAST_UPDATED_FILE_PATH = File.join(Rails.root, 'public', 'last_updated')
+  before_filter :fetch_logged_in_user, :fetch_updated_at
   LAST_UPDATED_TIME_FORMAT = '%H:%M Uhr %d.%m.%Y'
   
-  def save_last_updated
-    if File::writable? LAST_UPDATED_FILE_PATH
-      f = File.new LAST_UPDATED_FILE_PATH, 'w'
-      f.write Time.now.strftime(LAST_UPDATED_TIME_FORMAT)
-      f.close
-    else
-      logger.warn 'could not save last_updated'
-    end
+  def save_updated_at
+    AppData['updated_at'] = Time.now
   end
   
-  def load_last_updated
-    if File::readable? LAST_UPDATED_FILE_PATH
-      f = File.new LAST_UPDATED_FILE_PATH, 'r'
-      last_updated = f.read
-      f.close
-      return last_updated
-    else
-      return Time.mktime(2011, 11, 11, 11, 11, 11, 11).strftime(LAST_UPDATED_TIME_FORMAT)
-    end
+  def fetch_updated_at
+    @updated_at = AppData['updated_at'].to_formatted_s :short
   end
   helper_method :load_last_updated
   

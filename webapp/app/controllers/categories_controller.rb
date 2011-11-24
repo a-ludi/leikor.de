@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :login_required, :except => [:show, :index, :subindex]
-  after_filter :save_last_updated, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy]
 
   def index
     @stylesheets = ['category/browser', 'category/index']
