@@ -15,7 +15,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
   
   before_filter :fetch_logged_in_user, :fetch_updated_at
-  LAST_UPDATED_TIME_FORMAT = '%H:%M Uhr %d.%m.%Y'
   
   def save_updated_at
     AppData['updated_at'] = Time.now
