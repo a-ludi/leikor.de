@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
   def fetch_updated_at
     @updated_at = AppData['updated_at']
   end
-  helper_method :load_last_updated
   
   def fetch_logged_in_user
     return if @current_user = User.find_by_id(session[:user_id])
