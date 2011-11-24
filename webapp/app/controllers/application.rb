@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
   
   def fetch_updated_at
-    @updated_at = AppData['updated_at'].to_formatted_s :short
+    @updated_at = AppData['updated_at']
   end
   helper_method :load_last_updated
   
