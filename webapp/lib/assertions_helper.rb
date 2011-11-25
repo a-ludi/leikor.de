@@ -15,12 +15,10 @@ module AssertionsHelper
     assert record_class.create(options).save, message
   end
   
-  def assert_includes(obj, *keys)
+  def assert_includes(collection, *objs)
     includes_all = true
-    keys.each do |key|
-      includes_all &= obj.include? key
-    end
-    message = "#{obj.inspect} does not include all of #{keys.inspect}"
+    objs.each{|obj| includes_all &= collection.include? obj}
+    message = "#{collection.inspect} does not include all of #{objs.inspect}"
     assert includes_all, message
   end
   
@@ -31,14 +29,16 @@ module AssertionsHelper
   
   def assert_items_unique(collection, options={}, &proc)
     if block_given?
-      collection.map! &proc
+      collection = collection.map &proc
     end
-  
-    options[:message] = "#{collection} is empty" unless options[:message]
-    assert ! collection.empty?, options[:message] if options[:not_empty]
     
-    options[:message] = "non-unique items in: #{collection.inspect}" unless options[:message]
-    assert_equal collection.length, collection.uniq.length, options[:message]
+    message = options[:message].to_s + (options[:message] ? '\n' : '')
+    message += "#{collection.inspect} is empty"
+    assert ! collection.empty?, message if options[:not_empty]
+    
+    message = options[:message].to_s + (options[:message] ? '\n' : '')
+    message += "non-unique items in: #{collection.inspect}"
+    assert_equal collection.length, collection.uniq.length, message
   end
   
   def assert_not_empty(collection, options={})
@@ -47,39 +47,51 @@ module AssertionsHelper
   end
   
   def assert_before_filter_applied(filter_name, controller, action)
-    filter = find_matching_before_filter(controller, filter_name)
-    message = "no before filter set for '#{action}'; "
-    if filter.options.empty?
-      assert true
-    elsif ! filter.options[:only].nil?
-      assert filter.options[:only].include?(action.to_s), message + 'appers not in :only'
-    elsif ! filter.options[:except].nil?
-      assert ! filter.options[:except].include?(action.to_s), message + 'appers in :except'
-    else
-      flunk 'unkown state of options occured; please investigate'
-    end
+    filter = find_matching_before_filter controller, filter_name
+    assert_filter_applied filter, action, :message => "before filter set for '#{action}'"
   end
 
   def assert_before_filter_not_applied(filter_name, controller, action)
-    filter = find_matching_before_filter(controller, filter_name)
-    message = "before filter set for '#{action}'"
+    filter = find_matching_before_filter controller, filter_name
+    assert_filter_applied filter, action, :message => "before filter set for '#{action}'", :not => true
+  end
+  
+  def assert_after_filter_applied(filter_name, controller, action)
+    filter = find_matching_after_filter controller, filter_name
+    assert_filter_applied filter, action, :message => "after filter set for '#{action}'"
+  end
+
+  def assert_after_filter_not_applied(filter_name, controller, action)
+    filter = find_matching_after_filter controller, filter_name
+    assert_filter_applied filter, action, :message => "after filter set for '#{action}'", :not => true
+  end
+
+private
+  def assert_filter_applied(filter, action, options={})
     if filter.options.empty?
-      flunk message
+      assert ! options[:not], options[:message]
     elsif ! filter.options[:except].nil?
-      assert filter.options[:except].include?(action.to_s), message + 'appers not in :except'
+      assert options[:not] ^ ! filter.options[:except].include?(action.to_s), options[:message] + 'appers not in :except'
     elsif ! filter.options[:only].nil?
-      assert !filter.options[:only].include?(action.to_s), message + 'appers in :only'
+      assert options[:not] ^ filter.options[:only].include?(action.to_s), options[:message] + 'appers in :only'
     else
       flunk 'unkown state of options occured; please investigate'
     end
   end
-
-private
+  
   def find_matching_before_filter(controller, filter_name)
+    find_matching_filter(controller, filter_name) {|filter| filter.before?}
+  end
+  
+  def find_matching_after_filter(controller, filter_name)
+    find_matching_filter(controller, filter_name) {|filter| filter.after?}
+  end
+  
+  def find_matching_filter(controller, filter_name)
     filters = controller.class.filter_chain()
-    filters.each do |filter|
-      return filter if filter.before? and filter == filter_name
+    match_idx = filters.index do |filter|
+      filter == filter_name && (yield filter)
     end unless filters.nil?
-    return nil
+    filters[match_idx] unless match_idx.nil?
   end
 end

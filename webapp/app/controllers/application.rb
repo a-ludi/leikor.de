@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
   
   def fetch_updated_at
-    @updated_at = AppData['updated_at']
+    @updated_at = AppData['updated_at'] || Time::mktime(2011, 11, 11, 11, 11, 11, 111)
   end
   
   def fetch_logged_in_user
@@ -49,12 +49,13 @@ class ApplicationController < ActionController::Base
     return false
   end
   
-  def fetch_categories(category_id=nil)
+  def fetch_categories
     @categories = Category.find(
       :all,
       :conditions => {:type => nil},
       :order => 'name ASC')
     
+    category_id = params[:category] 
     unless category_id.nil?
       category = Category.from_param category_id
       unless category.is_a? Subcategory
@@ -64,6 +65,8 @@ class ApplicationController < ActionController::Base
         @category = @subcategory.category
       end
     end
+    
+    return true
   end
   
   def render_to_nested_layout(options={})

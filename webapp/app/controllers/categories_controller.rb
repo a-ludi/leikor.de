@@ -1,10 +1,10 @@
 class CategoriesController < ApplicationController
-  before_filter :login_required, :except => [:show, :index, :subindex]
+  before_filter :login_required, :except => [:index, :subindex]
+  before_filter :fetch_categories, :only => [:index, :subindex]
   after_filter :save_updated_at, :only => [:create, :update, :destroy]
 
   def index
     @stylesheets = ['category/browser', 'category/index']
-    fetch_categories
     @title = 'Sortiment'
     
     render_to_nested_layout :layout => 'browser'
@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
   
   def subindex
     @stylesheets = ['category/browser', 'category/index']
-    fetch_categories params[:category]
     @title = @category.name
     
     render_to_nested_layout :layout => 'browser'
@@ -23,13 +22,7 @@ class CategoriesController < ApplicationController
       Subcategory.new(:category => Category.find(params[:category_id])) :
       Category.new
     @category.name = "Neue #{@category.class.human_name}"
-    unless params[:html_id]
-      @category.id = Time.now.usec
-      @html_id = @category.html_id
-      @category.id = nil
-    else
-      @html_id = params[:html_id]
-    end
+    set_random_html_id_or_take_from_param
     @cancel = true unless params[:cancel].blank?
   end
   
@@ -74,7 +67,7 @@ class CategoriesController < ApplicationController
   end
   
   def ask_destroy
-    unless params[:subcategory]
+    if params[:category]
       @category = Category.from_param params[:category]
     else
       @category = Subcategory.from_param params[:subcategory]
@@ -91,5 +84,10 @@ class CategoriesController < ApplicationController
     redirect_to @category.is_a?(Subcategory) ?
       category_path(@category.category.url_hash) :
       categories_path
+  end
+
+private
+  def set_random_html_id_or_take_from_param
+    @html_id = params[:html_id] ? params[:html_id] : "new_category_#{Time.now.usec.to_s}"
   end
 end
