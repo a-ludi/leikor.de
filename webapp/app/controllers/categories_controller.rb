@@ -27,11 +27,7 @@ class CategoriesController < ApplicationController
   end
   
   def create
-    if params[:category]
-      @category = Category.create params[:category]
-    else
-      @category = Subcategory.create params[:subcategory]
-    end
+    create_sub_or_category_from_params
     @html_id = params[:html_id]
     if @category.save
       @partial = 'category'
@@ -48,30 +44,18 @@ class CategoriesController < ApplicationController
   end
   
   def update
-    if params[:category]
-      @category = Category.find params[:id]
-      @category.name = params[:category][:name]
-    else
-      @category = Subcategory.find params[:id]
-      @category.name = params[:subcategory][:name]
-    end
-    
-    if @category.save
+    if update_sub_or_category_from_params
       @partial = 'category'
       flash[:saved_category_id] = @category.id
     else
-      flash[:errors_occurred] = true
       @partial = 'form'
+      flash[:errors_occurred] = true
     end
     render :action => 'edit'
   end
   
   def ask_destroy
-    if params[:category]
-      @category = Category.from_param params[:category]
-    else
-      @category = Subcategory.from_param params[:subcategory]
-    end
+    fetch_sub_or_category_from_params
     @stylesheets = ['message']
     @title = "#{@category.class.human_name} löschen?"
   end
@@ -81,7 +65,7 @@ class CategoriesController < ApplicationController
     @category.destroy
     flash[:message] = {:text => "#{@category.class.human_name} „#{@category.name}“ wurde gelöscht."}
     
-    redirect_to @category.is_a?(Subcategory) ?
+    redirect_to @category.class == Subcategory ?
       category_path(@category.category.url_hash) :
       categories_path
   end
@@ -89,5 +73,39 @@ class CategoriesController < ApplicationController
 private
   def set_random_html_id_or_take_from_param
     @html_id = params[:html_id] ? params[:html_id] : "new_category_#{Time.now.usec.to_s}"
+  end
+  
+  def create_sub_or_category_from_params
+    if_category = Proc.new {@category = Category.create params[:category]}
+    if_subcategory = Proc.new {@category = Subcategory.create params[:subcategory]}
+    do_for_sub_or_category if_category, if_subcategory
+  end
+  
+  def update_sub_or_category_from_params
+    if_category = Proc.new do
+      @category = Category.find params[:id]
+      @category.update_attributes params[:category]
+    end
+    if_subcategory = Proc.new do
+      @category = Subcategory.find params[:id]
+      @category.update_attributes params[:subcategory]
+    end
+    do_for_sub_or_category if_category, if_subcategory
+  end
+  
+  def fetch_sub_or_category_from_params
+    if_category = Proc.new {@category = Category.from_param params[:category]}
+    if_subcategory = Proc.new {@category = Subcategory.from_param params[:subcategory]}
+    do_for_sub_or_category if_category, if_subcategory
+  end
+  
+  def do_for_sub_or_category(if_category, if_subcategory)
+    if params[:category] and ! params[:subcategory]
+      if_category.call
+    elsif params[:subcategory]
+      if_subcategory.call
+    else
+      raise ActionController::ActionControllerError, "parameter ':category' or ':subcategory' is missing"
+    end
   end
 end

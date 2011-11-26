@@ -23,3 +23,4 @@ config.action_controller.resources_path_names = {
 }
 config.i18n.default_locale = :de
 Paperclip.options[:command_path] = "/usr/bin/"
+

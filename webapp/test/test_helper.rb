@@ -1,17 +1,22 @@
-ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require 'rubygems'
+require 'spork'
 
-class Test::Unit::TestCase
-  include UtilityHelper
-  include AssertionsHelper
-  self.use_transactional_fixtures = true
-  self.use_instantiated_fixtures  = false
+Spork.prefork do
+  ENV["RAILS_ENV"] = "test"
+  require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+  require 'test_help'
+  class Test::Unit::TestCase
+    self.use_transactional_fixtures = true
+    self.use_instantiated_fixtures  = false
+  end
+end
 
-  fixtures :all
+Spork.each_run do
+  class Test::Unit::TestCase
+    fixtures :all
 
-  def with_user(user=:john, session={})
-    user = users(user) if user.is_a? Symbol
-    session.merge(:user_id => user.id)
+    include UtilityHelper
+    include AssertionsHelper
+    include TestHelper
   end
 end

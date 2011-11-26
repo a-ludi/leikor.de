@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   before_filter :login_required, :except => [:index]
+  before_filter :fetch_categories, :only => [:index]
   after_filter :save_updated_at, :only => [:create, :update, :destroy]
   
   def index
     @stylesheets = ['category/browser', 'article/index']
-    fetch_categories params[:subcategory]
     @title = "#{@subcategory.name} (#{@category.name})"
     
     render_to_nested_layout :layout => 'browser'

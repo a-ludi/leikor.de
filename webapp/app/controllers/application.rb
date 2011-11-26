@@ -50,20 +50,13 @@ class ApplicationController < ActionController::Base
   end
   
   def fetch_categories
-    @categories = Category.find(
-      :all,
-      :conditions => {:type => nil},
-      :order => 'name ASC')
+    @categories = Category.find(:all, :conditions => {:type => nil}, :order => 'name ASC')
     
-    category_id = params[:category] 
-    unless category_id.nil?
-      category = Category.from_param category_id
-      unless category.is_a? Subcategory
-        @category = category
-      else
-        @subcategory = category
-        @category = @subcategory.category
-      end
+    if params[:subcategory]
+      @subcategory = Subcategory.from_param params[:subcategory]
+      @category = @subcategory.category
+    elsif params[:category]
+      @category = Category.from_param params[:category]
     end
     
     return true

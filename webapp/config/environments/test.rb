@@ -4,13 +4,14 @@
 # test suite.  You never need to work with it otherwise.  Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs.  Don't rely on the data there!
-config.cache_classes = true
+config.cache_classes = false
 
 # Log error messages when you accidentally call methods on nil.
 config.whiny_nils = true
 
 # Show full error reports and disable caching
 config.action_controller.consider_all_requests_local = true
+config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
 # Disable request forgery protection in test environment
@@ -20,3 +21,12 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+config.action_controller.resources_path_names = {
+  :new => 'neu',
+  :edit => 'bearbeiten',
+  :destroy => 'loeschen'
+}
+config.i18n.default_locale = :de
+Paperclip.options[:command_path] = "/usr/bin/"
+
