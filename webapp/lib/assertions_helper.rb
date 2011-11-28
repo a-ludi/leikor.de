@@ -68,7 +68,7 @@ module AssertionsHelper
 
 private
   def assert_filter_applied(filter, action, options={})
-    if filter.options.empty?
+    if filter.nil? or filter.options.empty?
       assert ! options[:not], options[:message]
     elsif ! filter.options[:except].nil?
       assert options[:not] ^ ! filter.options[:except].include?(action.to_s), options[:message] + 'appers not in :except'
@@ -80,11 +80,15 @@ private
   end
   
   def find_matching_before_filter(controller, filter_name)
-    find_matching_filter(controller, filter_name) {|filter| filter.before?}
+    on_error_specify_filter_type 'before_filter' do
+      find_matching_filter(controller, filter_name) {|filter| filter.before?}
+    end
   end
   
   def find_matching_after_filter(controller, filter_name)
-    find_matching_filter(controller, filter_name) {|filter| filter.after?}
+    on_error_specify_filter_type 'after_filter' do
+      find_matching_filter(controller, filter_name) {|filter| filter.after?}
+    end
   end
   
   def find_matching_filter(controller, filter_name)
@@ -92,6 +96,18 @@ private
     match_idx = filters.index do |filter|
       filter == filter_name && (yield filter)
     end unless filters.nil?
-    filters[match_idx] unless match_idx.nil?
+    unless match_idx.nil?
+      filters[match_idx]
+    else
+      raise StandardError, "no filter named '#{filter_name}' in controller #{controller.class}"
+    end
+  end
+  
+  def on_error_specify_filter_type(filter_type, &proc)
+    begin
+      yield
+    rescue StandardError => e
+      raise e, e.message.gsub(/\bfilter\b/, filter_type)
+    end
   end
 end

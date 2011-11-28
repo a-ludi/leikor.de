@@ -12,12 +12,13 @@ class ArticlesController < ApplicationController
   
   def new
     unless params[:cancel]
-      @article = Article.new
-      @article.name = 'Neuer Artikel'
-      @article.description = 'Hier die Beschreibung einfügen …'
-      @article.price = 0.0
-      @article.article_number = generated_article_number
-      @article.subcategory_id = params[:subcategory]
+      @article = Article.new do |a|
+        a.name = 'Neuer Artikel'
+        a.description = 'Hier die Beschreibung einfügen …'
+        a.price = 0.0
+        a.article_number = generated_article_number
+        a.subcategory_id = params[:subcategory]
+      end
     else
       @cancel = true
       @html_id = params[:html_id]
