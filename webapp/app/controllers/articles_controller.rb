@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   end
   
   def create
-    params[:article][:price] = get_price_from_params params[:article][:price]
+    params[:article][:price] = get_price_from_param params[:article][:price]
     params[:article][:subcategory] = Subcategory.find params[:article][:subcategory_id]
     @article = Article.create params[:article]
     if @article.save
@@ -46,13 +46,12 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find params[:id]
     flash[:html_id] = params[:html_id]
-    params[:article][:price] = get_price_from_params params[:article][:price]
+    params[:article][:price] = get_price_from_param params[:article][:price]
     
     if @article.update_attributes params[:article]
       @partial = 'article'
       flash[:saved_article_id] = @article.id
     else
-      flash[:errors_occurred] = true
       @partial = 'form'
     end
     render :action => 'edit'
@@ -78,7 +77,7 @@ private
     ('%06i' % Time.now.usec)[0...6].insert(-2, '.')
   end
   
-  def get_price_from_params(price)
-    (price.sub! ',', '.').to_f
+  def get_price_from_param(price)
+    (price.sub ',', '.').to_f
   end
 end
