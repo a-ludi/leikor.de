@@ -65,6 +65,11 @@ module AssertionsHelper
     filter = find_matching_after_filter controller, filter_name
     assert_filter_applied filter, action, :message => "after filter set for '#{action}'", :not => true
   end
+  
+  def assert_non_empty_kind_of(klass, object)
+    assert_kind_of klass, object
+    assert_not_empty object
+  end
 
 private
   def assert_filter_applied(filter, action, options={})

@@ -32,13 +32,13 @@ module ApplicationHelper
     return user_class
   end
   
-  def make_if_error_messages_for(object)
+  def make_if_error_messages_for(record)
     error_messages_for(
       :id => nil,
-      :object => object,
+      :object => record,
       :header_message => nil,
       :class => 'error message'
-    ) if flash[:errors_occurred]
+    ) unless record.errors.empty?
   end
   
   def set_focus_to(id)

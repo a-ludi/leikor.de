@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
         a.description = 'Hier die Beschreibung einfügen …'
         a.price = 0.0
         a.article_number = generated_article_number
-        a.subcategory_id = params[:subcategory]
+        a.subcategory_id = params[:subcategory].to_i
       end
     else
       @cancel = true
@@ -33,7 +33,6 @@ class ArticlesController < ApplicationController
       @partial = 'article'
       flash[:html_id] = params[:html_id]
     else
-      flash[:errors_occurred] = true
       @partial = 'form'
     end
     render :action => 'edit'
