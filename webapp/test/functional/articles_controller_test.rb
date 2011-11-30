@@ -3,21 +3,21 @@ require 'test_helper'
 class ArticlesControllerTest < ActionController::TestCase
   test "new create edit update ask_destroy destroy actions should require login" do
     [:new, :create, :edit, :update, :ask_destroy, :destroy].each do |action|
-      assert_before_filter_applied :login_required, @controller, action
+      assert_before_filter_applied :login_required, action
     end
   end
   
   test "index action should not require login" do
-    assert_before_filter_not_applied :login_required, @controller, :index
+    assert_before_filter_not_applied :login_required, :index
   end
   
   test "index action should fetch categories" do
-    assert_before_filter_applied :fetch_categories, @controller, :index
+    assert_before_filter_applied :fetch_categories, :index
   end
   
   test "create update destroy actions should save updated_at" do
     [:create, :update, :destroy].each do |action|
-      assert_after_filter_applied :save_updated_at, @controller, action
+      assert_after_filter_applied :save_updated_at, action
     end
   end
   

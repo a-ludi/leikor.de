@@ -4,13 +4,13 @@ class PictureControllerTest < ActionController::TestCase
   #fixture_file_upload
   test "login required except show" do
     [:edit, :update, :destroy].each do |action|
-      assert_before_filter_applied :login_required, @controller, action
+      assert_before_filter_applied :login_required, action
     end
   end
   
   test "save updated at only update destroy" do
     [:update, :destroy].each do |action|
-      assert_after_filter_applied :save_updated_at, @controller, action
+      assert_after_filter_applied :save_updated_at, action
     end
   end
   

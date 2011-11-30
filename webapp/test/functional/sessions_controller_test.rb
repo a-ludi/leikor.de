@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
   test "login required for logout" do
-    assert_before_filter_applied :login_required, @controller, :destroy
+    assert_before_filter_applied :login_required, :destroy
   end
   
   test "sets stylesheets on new" do

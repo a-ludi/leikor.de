@@ -60,23 +60,23 @@ module AssertionsHelper
     assert ! collection.empty?, options[:message]
   end
   
-  def assert_before_filter_applied(filter_name, controller, action=nil)
-    filter = find_matching_before_filter controller, filter_name
+  def assert_before_filter_applied(filter_name, action=nil)
+    filter = find_matching_before_filter filter_name
     assert_filter_applied filter, action, :message => "before filter '#{filter_name}' not set for '#{action or 'all actions'}'"
   end
 
-  def assert_before_filter_not_applied(filter_name, controller, action)
-    filter = find_matching_before_filter controller, filter_name
+  def assert_before_filter_not_applied(filter_name, action)
+    filter = find_matching_before_filter filter_name
     assert_filter_applied filter, action, :message => "before filter '#{filter_name}' set for '#{action}'", :not => true
   end
   
-  def assert_after_filter_applied(filter_name, controller, action=nil)
-    filter = find_matching_after_filter controller, filter_name
+  def assert_after_filter_applied(filter_name, action=nil)
+    filter = find_matching_after_filter filter_name
     assert_filter_applied filter, action, :message => "after filter '#{filter_name}' not set for '#{action or 'all actions'}'"
   end
 
-  def assert_after_filter_not_applied(filter_name, controller, action)
-    filter = find_matching_after_filter controller, filter_name
+  def assert_after_filter_not_applied(filter_name, action)
+    filter = find_matching_after_filter filter_name
     assert_filter_applied filter, action, :message => "after filter '#{filter_name}' set for '#{action}'", :not => true
   end
   
@@ -100,27 +100,27 @@ private
     end
   end
   
-  def find_matching_before_filter(controller, filter_name)
+  def find_matching_before_filter(filter_name)
     on_error_specify_filter_type 'before_filter' do
-      find_matching_filter(controller, filter_name) {|filter| filter.before?}
+      find_matching_filter(filter_name) {|filter| filter.before?}
     end
   end
   
-  def find_matching_after_filter(controller, filter_name)
+  def find_matching_after_filter(filter_name)
     on_error_specify_filter_type 'after_filter' do
-      find_matching_filter(controller, filter_name) {|filter| filter.after?}
+      find_matching_filter(filter_name) {|filter| filter.after?}
     end
   end
   
-  def find_matching_filter(controller, filter_name)
-    filters = controller.class.filter_chain()
+  def find_matching_filter(filter_name)
+    filters = @controller.class.filter_chain()
     match_idx = filters.index do |filter|
       filter == filter_name && (yield filter)
     end unless filters.nil?
     unless match_idx.nil?
       filters[match_idx]
     else
-      raise StandardError, "no filter named '#{filter_name}' in controller #{controller.class}"
+      raise StandardError, "no filter named '#{filter_name}' in controller #{@controller.class}"
     end
   end
   

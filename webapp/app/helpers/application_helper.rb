@@ -17,14 +17,6 @@ module ApplicationHelper
     end
   end
   
-  def render_to_nested_layout(options={})
-    options[:outer_layout] = 'application' if options[:outer_layout].nil?
-    
-    options[:text] = render_to_string options
-    options[:layout] = options[:outer_layout]
-    render options
-  end
-
   def positional_class(item, collection, user_class='')
     user_class += ' first' if item == collection.first
     user_class += ' last' if item == collection.last

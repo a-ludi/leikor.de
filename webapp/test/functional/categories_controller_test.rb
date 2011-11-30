@@ -1,220 +1,137 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
-  test "login required for new" do
-    assert_before_filter_applied :login_required, @controller, :new
+  test "login required for new create edit update ask_destroy destroy" do
+    [:new, :create, :edit, :update, :ask_destroy, :destroy].each do |action|
+      assert_before_filter_applied :login_required, action
+    end
   end
   
-  test "login required for create" do
-    assert_before_filter_applied :login_required, @controller, :create
+  test "categories fetched before index subindex" do
+    [:index, :subindex].each do |action|
+      assert_before_filter_applied :fetch_categories, action
+    end
   end
   
-  test "login required for edit" do
-    assert_before_filter_applied :login_required, @controller, :edit
+  test "updates last updated after create update destroy" do
+    [:create, :update, :destroy].each do |action|
+      assert_after_filter_applied :save_updated_at, action
+    end
   end
   
-  test "login required for update" do
-    assert_before_filter_applied :login_required, @controller, :update
-  end
-  
-  test "login required for ask_destroy" do
-    assert_before_filter_applied :login_required, @controller, :ask_destroy
-  end
-  
-  test "login required for destroy" do
-    assert_before_filter_applied :login_required, @controller, :destroy
-  end
-  
-  test "categories fetched before index" do
-    assert_before_filter_applied :fetch_categories, @controller, :index
-  end
-  
-  test "categories fetched before subindex" do
-    assert_before_filter_applied :fetch_categories, @controller, :subindex
-  end
-  
-  test "updates last updated after create" do
-    assert_after_filter_applied :save_updated_at, @controller, :create
-  end
-  
-  test "updates last updated after update" do
-    assert_after_filter_applied :save_updated_at, @controller, :update
-  end
-  
-  test "updates last updated after destroy" do
-    assert_after_filter_applied :save_updated_at, @controller, :destroy
-  end
-  
-  test "index action sets stylesheets" do
+  test "index action" do
     get 'index'
+    
     assert_respond_to assigns(:stylesheets), :each
-  end
-  
-  test "index action sets title" do
-    get 'index'
     assert_kind_of String, assigns(:title)
   end
   
-  test "subindex action sets stylesheets" do
+  test "subindex action" do
     get 'subindex', {:category => categories(:super).to_param}
+    
     assert_respond_to assigns(:stylesheets), :each
-  end
-  
-  test "subindex action sets title" do
-    get 'subindex', {:category => categories(:super).to_param}
     assert_kind_of String, assigns(:title)
   end
   
-  test "new action requires login" do
-    get 'new'
-    assert_response :redirect
-  end
-  
-  test "new action creates new category without category_id" do
+  test "new action" do
     get 'new', {}, with_user
+    
     assert_equal Category, assigns(:category).class
-  end
-  
-  test "new action creates new subcategory with category_id" do
-    get 'new', {:category_id => categories(:super).to_param}, with_user
-    assert_equal Subcategory, assigns(:category).class
-  end
-  
-  test "new action sets appropriate name for new category" do
-    get 'new', {}, with_user
     assert_includes assigns(:category).name, Category.human_name
-  end
-  
-  test "new action sets appropriate name for new subcategory" do
-    get 'new', {:category_id => categories(:super).to_param}, with_user
-    assert_includes assigns(:category).name, Subcategory.human_name
-  end
-  
-  test "new action sets html_id" do
-    get 'new', {}, with_user
     assert_kind_of String, assigns(:html_id)
   end
   
-  test "create action creates new category" do
-    create_category
-    assert_equal Category, assigns(:category).class
+  test "new action with subcategory" do
+    get 'new', {:category_id => categories(:super).to_param}, with_user
+    
+    assert_equal Subcategory, assigns(:category).class
+    assert_includes assigns(:category).name, Subcategory.human_name
   end
   
-  test "create action creates new subcategory" do
+  test "create action" do
+    create_category
+    
+    assert_equal Category, assigns(:category).class
+    assert_equal @html_id, assigns(:html_id)
+    assert_equal 'category', assigns(:partial)
+    assert_template 'edit'
+  end
+  
+  test "create action for subcategory" do
     create_subcategory
+    
     assert_equal Subcategory, assigns(:category).class
   end
   
-  test "create action passes html_id" do
-    create_category
-    assert_equal @html_id, assigns(:html_id)
-  end
-  
-  test "successful create action sets partial" do
-    create_category
-    assert_equal 'category', assigns(:partial)
-  end
-  
-  test "failed create action sets partial" do
+  test "create action with errors" do
     create_category :with => :errors
-    assert_equal 'form', assigns(:partial)
-  end
-  
-  test "create action renders edit template" do
-    create_category
-    assert_template 'edit'
     
-    create_category :with => :errors
+    assert_equal 'form', assigns(:partial)
     assert_template 'edit'
   end
   
-  test "edit action sets category" do
+  test "edit action" do
     get 'edit', {:id => categories(:super).to_param}, with_user
+    
     assert_kind_of Category, assigns(:category)
-  end
-  
-  test "edit action sets form partial" do
-    get 'edit', {:id => categories(:super).to_param}, with_user
     assert_equal 'form', assigns(:partial)
   end
   
-  test "edit action sets category partial on cancel" do
+  test "edit action on cancel" do
     get 'edit', {:id => categories(:super).to_param, :cancel => true}, with_user
-    assert_equal 'category', assigns(:partial)
-  end
-  
-  test "update action sets category partial on success" do
-    update_category
-    assert_equal 'category', assigns(:partial)
-  end
-  
-  test "update action sets saved_category_id on success" do
-    update_category
-    assert_equal @category.id, flash[:saved_category_id]
-  end
-  
-  test "update action sets form partial on failure" do
-    update_category :with => :errors
-    assert_equal 'form', assigns(:partial)
-  end
-  
-  test "update action renders edit action" do
-    update_category
-    assert_template 'edit'
     
-    update_category :with => :errors
+    assert_equal 'category', assigns(:partial)
+  end
+  
+  test "update action" do
+    update_category
+    
+    assert_equal 'category', assigns(:partial)
+    assert_equal @category.id, flash[:saved_category_id]
     assert_template 'edit'
   end
   
-  test "ask_destroy action gets category" do
+  test "update action with errors" do
+    update_category :with => :errors
+    
+    assert_equal 'form', assigns(:partial)
+    assert_template 'edit'
+  end
+  
+  test "ask_destroy action" do
     ask_destroy_category
+    
     assert_equal Category, assigns(:category).class
+    assert_respond_to assigns(:stylesheets), :each
+    assert_kind_of String, assigns(:title)
   end
     
   test "ask_destroy action gets subcategory" do
     ask_destroy_subcategory
+    
     assert_equal Subcategory, assigns(:category).class
   end
 
-  test "ask_destroy action sets stylesheets" do
-    ask_destroy_category
-    assert_respond_to assigns(:stylesheets), :each
-  end
-  
-  test "ask_destroy action sets title" do
-    ask_destroy_category
-    assert_kind_of String, assigns(:title)
-  end
-  
-  test "destroy action gets category" do
+  test "destroy action" do
     destroy_category
+    
     assert_kind_of Category, assigns(:category)
-  end
-  
-  test "destroy action destroys category" do
-    destroy_category
     assert assigns(:category).frozen?
     assert ! Category.exists?(@category.id)
-  end
-  
-  test "destroy action sets flash message" do
-    destroy_category
     assert_not_empty flash[:message]
-  end
-  
-  test "destroy action redirects to categories after category deleted" do
-    destroy_category
     assert_redirected_to categories_path
   end
   
-  test "destroy action redirects to category after subcategory deleted" do
+  test "destroy action with subcategory" do
     destroy_subcategory
+    
     assert_redirected_to category_path(@category.category.url_hash)
   end
   
   test "set_random_html_id_or_take_from_param passes html_id from params" do
     html_id = 'not_generated'
     get 'new', {:html_id => html_id}, with_user
+    
     assert_equal html_id, @controller.send(:set_random_html_id_or_take_from_param)
   end
   
