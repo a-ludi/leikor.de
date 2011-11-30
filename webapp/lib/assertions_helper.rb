@@ -1,11 +1,25 @@
 module AssertionsHelper
+  def assert_layout(layout, message=nil)
+    clean_backtrace do
+      rendered = @response.layout.to_s
+      msg = build_message(message, "expecting layout <?> but rendering with <?>", layout, rendered)
+      assert_block(msg) do
+        if layout.nil?
+          rendered.blank?
+        else
+          rendered.to_s.match(layout)
+        end
+      end
+    end
+  end
+  
   def assert_errors_on(obj, options={})
     if options[:on].is_a? Symbol
-      options[:message] = "expected errors on #{obj}.#{options[:on]}" unless options[:message]
+      options[:message] = "expected errors on <#{obj}.#{options[:on]}>" unless options[:message]
       obj.valid?
       assert obj.errors.on(options[:on]), options[:message]
     else
-      options[:message] = "expected errors on #{obj}" unless options[:message]
+      options[:message] = "expected errors on <#{obj}>" unless options[:message]
       assert ! obj.valid?, options[:message]
     end
   end
@@ -46,24 +60,24 @@ module AssertionsHelper
     assert ! collection.empty?, options[:message]
   end
   
-  def assert_before_filter_applied(filter_name, controller, action)
+  def assert_before_filter_applied(filter_name, controller, action=nil)
     filter = find_matching_before_filter controller, filter_name
-    assert_filter_applied filter, action, :message => "before filter set for '#{action}'"
+    assert_filter_applied filter, action, :message => "before filter '#{filter_name}' not set for '#{action or 'all actions'}'"
   end
 
   def assert_before_filter_not_applied(filter_name, controller, action)
     filter = find_matching_before_filter controller, filter_name
-    assert_filter_applied filter, action, :message => "before filter set for '#{action}'", :not => true
+    assert_filter_applied filter, action, :message => "before filter '#{filter_name}' set for '#{action}'", :not => true
   end
   
-  def assert_after_filter_applied(filter_name, controller, action)
+  def assert_after_filter_applied(filter_name, controller, action=nil)
     filter = find_matching_after_filter controller, filter_name
-    assert_filter_applied filter, action, :message => "after filter set for '#{action}'"
+    assert_filter_applied filter, action, :message => "after filter '#{filter_name}' not set for '#{action or 'all actions'}'"
   end
 
   def assert_after_filter_not_applied(filter_name, controller, action)
     filter = find_matching_after_filter controller, filter_name
-    assert_filter_applied filter, action, :message => "after filter set for '#{action}'", :not => true
+    assert_filter_applied filter, action, :message => "after filter '#{filter_name}' set for '#{action}'", :not => true
   end
   
   def assert_non_empty_kind_of(klass, object)
@@ -73,7 +87,9 @@ module AssertionsHelper
 
 private
   def assert_filter_applied(filter, action, options={})
-    if filter.nil? or filter.options.empty?
+    if action.nil?
+      assert filter.options.empty?, options[:message]
+    elsif filter.options.empty?
       assert ! options[:not], options[:message]
     elsif ! filter.options[:except].nil?
       assert options[:not] ^ ! filter.options[:except].include?(action.to_s), options[:message] + 'appers not in :except'

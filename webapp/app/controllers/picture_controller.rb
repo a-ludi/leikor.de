@@ -4,7 +4,6 @@ class PictureController < ApplicationController
   
   def show
     @article = Article.find params[:article_id]
-    flash[:no_animations] = params[:no_animations]
     
     respond_to do |format|
       format.html do
@@ -13,7 +12,9 @@ class PictureController < ApplicationController
           :layout => 'popup',
           :locals => {:article => @article})
       end
-      format.js
+      format.js do
+        flash[:no_animations] = params[:no_animations]
+      end
     end
   end
 
@@ -32,35 +33,28 @@ class PictureController < ApplicationController
   def update
     @article = Article.find params[:article_id]
     @article.picture = params[:article][:picture]
-    try_save_and_render_response(
-      @article,
-      :success => "Bild für „#{@article.name}“ wurde gespeichert."
-    ) and return
+    try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gespeichert."
   end
 
   def destroy
     @article = Article.find params[:article_id]
     @article.picture = nil
-    try_save_and_render_response(
-      @article,
-      :success => "Bild für „#{@article.name}“ wurde gelöscht."
-    ) and return
+    try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gelöscht."
   end
   
 private
   
-  def try_save_and_render_response(article, options={})
+  def try_save_and_render_response(options={})
     @stylesheets = ['message']
-    if article.save
+    if @article.save
       flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?
       if flash[:popup]
         render :action => 'success', :layout => 'popup'
       else
-        redirect_to subcategory_url(article.subcategory.url_hash)
+        redirect_to subcategory_url(@article.subcategory.url_hash)
       end
     else
-      flash[:errors_occurred] = true
-      article.errors.clear and article.errors.add(
+      @article.errors.clear and @article.errors.add(
         :picture, Article::PICTURE_INVALID_MESSAGE)
       flash.keep :popup
       render :action => 'edit', :layout => flash[:popup] ? 'popup' : true

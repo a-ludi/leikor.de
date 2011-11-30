@@ -32,7 +32,6 @@ class CategoriesController < ApplicationController
     if @category.save
       @partial = 'category'
     else
-      flash[:errors_occurred] = true
       @partial = 'form'
     end
     render :action => 'edit'
@@ -49,7 +48,6 @@ class CategoriesController < ApplicationController
       flash[:saved_category_id] = @category.id
     else
       @partial = 'form'
-      flash[:errors_occurred] = true
     end
     render :action => 'edit'
   end

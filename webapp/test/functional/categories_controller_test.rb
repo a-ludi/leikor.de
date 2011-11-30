@@ -120,11 +120,6 @@ class CategoriesControllerTest < ActionController::TestCase
     assert_equal 'form', assigns(:partial)
   end
   
-  test "failed create action sets errors_occurred flag" do
-    create_category :with => :errors
-    assert flash[:errors_occurred]
-  end
-  
   test "create action renders edit template" do
     create_category
     assert_template 'edit'
@@ -161,11 +156,6 @@ class CategoriesControllerTest < ActionController::TestCase
   test "update action sets form partial on failure" do
     update_category :with => :errors
     assert_equal 'form', assigns(:partial)
-  end
-  
-  test "update action sets errors_occurred on failure" do
-    update_category :with => :errors
-    assert flash[:errors_occurred]
   end
   
   test "update action renders edit action" do

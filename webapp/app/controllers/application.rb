@@ -1,19 +1,10 @@
 include ActionController::Translation
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-
-  # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
   protect_from_forgery # :secret => '17d1fe39ecf394810dac8720303d7e9d'
-  
-  # See ActionController::Base for details 
-  # Uncomment this to filter the contents of submitted sensitive data parameters
-  # from your application log (in this case, all fields with names like "password"). 
   filter_parameter_logging :password
-  
+
   before_filter :fetch_logged_in_user, :fetch_updated_at
   
   def save_updated_at
@@ -52,11 +43,11 @@ class ApplicationController < ActionController::Base
   def fetch_categories
     @categories = Category.find(:all, :conditions => {:type => nil}, :order => 'name ASC')
     
-    if params[:subcategory]
+    if params[:category] and not params[:subcategory]
+      @category = Category.from_param params[:category]
+    elsif params[:subcategory]
       @subcategory = Subcategory.from_param params[:subcategory]
       @category = @subcategory.category
-    elsif params[:category]
-      @category = Category.from_param params[:category]
     end
     
     return true
