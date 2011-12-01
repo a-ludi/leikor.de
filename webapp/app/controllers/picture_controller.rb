@@ -21,12 +21,11 @@ class PictureController < ApplicationController
   def edit
     @article = Article.find params[:article_id]
     @stylesheets = ['message']
-    unless params[:popup].blank?
+    if params[:popup]
       flash[:popup] = true
-      render :action => 'edit', :layout => 'popup'
+      render :layout => 'popup'
     else
       flash[:popup] = false
-      render :action => 'edit'
     end
   end
 
@@ -38,7 +37,7 @@ class PictureController < ApplicationController
 
   def destroy
     @article = Article.find params[:article_id]
-    @article.picture = nil
+    @article.picture.clear
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gelöscht."
   end
   
@@ -48,16 +47,27 @@ private
     @stylesheets = ['message']
     if @article.save
       flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?
-      if flash[:popup]
-        render :action => 'success', :layout => 'popup'
-      else
-        redirect_to subcategory_url(@article.subcategory.url_hash)
-      end
+      render_response :success
     else
       @article.errors.clear and @article.errors.add(
         :picture, Article::PICTURE_INVALID_MESSAGE)
-      flash.keep :popup
-      render :action => 'edit', :layout => flash[:popup] ? 'popup' : true
+      render_response :failure
+    end
+  end
+  
+  def render_response(state=:success)
+    case state
+      when :success
+        if flash[:popup]
+          render :action => 'success', :layout => 'popup'
+        else
+          redirect_to subcategory_url(@article.subcategory.url_hash)
+        end
+      when :failure
+        flash.keep :popup
+        render :action => 'edit', :layout => flash[:popup] ? 'popup' : true
+      else
+        raise StandardError, 'internal error: state <#{state.inspect}> is unknown'
     end
   end
 end

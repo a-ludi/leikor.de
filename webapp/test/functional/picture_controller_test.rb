@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class PictureControllerTest < ActionController::TestCase
-  #fixture_file_upload
   test "login required except show" do
     [:edit, :update, :destroy].each do |action|
       assert_before_filter_applied :login_required, action
@@ -31,6 +30,54 @@ class PictureControllerTest < ActionController::TestCase
     assert_template 'show'
   end
   
+  test "edit action with popup" do
+    @article = articles(:one)
+    get 'edit', {:article_id => @article.to_param, :popup => '1'}, with_user
+    
+    assert_equal @article, assigns(:article)
+    assert_respond_to assigns(:stylesheets), :each
+    assert flash[:popup]
+    assert_template 'edit'
+    assert_layout 'popup'
+  end
+  
+  test "edit action without popup" do
+    @article = articles(:one)
+    get 'edit', {:article_id => @article.to_param}, with_user
+    
+    assert ! flash[:popup]
+    assert_template 'edit'
+  end
+  
+  test "update action with jpg" do
+    @article = articles(:one)
+    picture = fixture_file_upload 'pictures/jpg', 'image/jpg', :binary
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    
+    assert_equal @article, assigns(:article)
+    assert assigns(:article).picture.valid?
+    assert_equal 'image/jpg', assigns(:article).picture.content_type
+    assert_not_empty flash[:message]
+  end
+  
+  test "update action with png" do
+    @article = articles(:one)
+    picture = fixture_file_upload 'pictures/png', 'image/png', :binary
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    
+    assert assigns(:article).picture.valid?
+    assert_equal 'image/png', assigns(:article).picture.content_type
+  end
+  
+  test "update action with not image" do
+    @article = articles(:one)
+    picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    
+    assert ! assigns(:article).picture.valid?
+    assert_errors_on assigns(:article), :on => :picture
+  end
+  
   test "destroy with popup" do
     @article = articles(:one)
     delete 'destroy', {:article_id => @article.to_param}, with_user, {:popup => true}
@@ -47,5 +94,64 @@ class PictureControllerTest < ActionController::TestCase
     delete 'destroy', {:article_id => @article.to_param}, with_user
     
     assert_redirected_to subcategory_url(@article.subcategory.url_hash)
+  end
+  
+  test "try_save_and_render_response with success" do
+    successful_request # gives success message
+    
+    assert_respond_to assigns(:stylesheets), :each
+    assert_not_empty flash[:message]
+    assert ! assigns(:article).picture.dirty?
+  end
+  
+  test "try_save_and_render_response with failure" do
+    failed_request
+    
+    assert_errors_on assigns(:article), :on => :picture
+  end
+  
+  test "render_response with success and popup" do
+    successful_request :popup => true
+    
+    assert_template 'success'
+    assert_layout 'popup'
+  end
+
+  test "render_response with success and no popup" do
+    successful_request :popup => false
+    
+    assert_redirected_to subcategory_url(@article.subcategory.url_hash)
+  end
+
+  test "render_response with failure and popup" do
+    failed_request :popup => true
+    
+    assert_template 'edit'
+    assert_layout 'popup'
+    #TODO test flash.keep :popup
+  end
+  
+  test "render_response with failure and no popup" do
+    failed_request :popup => false
+    
+    assert_template 'edit'
+    assert_layout 'application'
+  end
+  
+private
+  
+  def successful_request(options={})
+    @article = articles(:one)
+    delete 'destroy', {:article_id => @article.to_param}, with_user, {:popup => options[:popup]}
+  end
+  
+  def failed_request(options={})
+    @article = articles(:one)
+    picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user, {:popup => options[:popup]}
+  end
+  
+  def intermediate_request()
+    get 'show', {:article_id => @article.to_param}
   end
 end

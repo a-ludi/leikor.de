@@ -60,4 +60,9 @@ class ApplicationController < ActionController::Base
     options[:layout] = options[:outer_layout]
     render options
   end
+  
+  def md5sum(str)
+    include Digest
+    Digest::MD5.new.update(str).to_s
+  end
 end
