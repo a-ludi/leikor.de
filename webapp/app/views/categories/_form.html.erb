@@ -8,7 +8,9 @@
     ) do |f| %>
       <%= hidden_field_tag 'html_id', html_id %>
       <%= f.hidden_field :category_id if category.is_a? Subcategory %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name %>&emsp;
+      <%= f.label :ord, "#{t('activerecord.attributes.category.ord')}:" %>
+      <%= f.text_field :ord, :size => 3 %>
       <%= submit_tag 'Speichern!' %>
       <% unless category.new_record? %>
         <%= button_to_remote 'Abbrechen', :url => edit_category_path(category, :cancel => true), :method => :get %>

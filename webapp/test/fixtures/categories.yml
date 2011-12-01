@@ -2,13 +2,20 @@
 
 super:
   name: Super Category
+  ord: 2
+
+super_fst:
+  name: Zuper Category
+  ord: 1
 
 sub1:
   name: Subcategory A1
   category: super
   type: Subcategory
+  ord: 2
 
 sub2:
   name: Subcategory B2
   category: super
   type: Subcategory
+  ord: 1

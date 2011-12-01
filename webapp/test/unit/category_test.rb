@@ -9,9 +9,9 @@ class Categorytest < ActiveSupport::TestCase
     assert_equal 2, categories(:super).subcategories.length
   end
   
-  test "subcategories should be ordered alphabetically" do
-    assert_equal categories(:sub1), categories(:super).subcategories[0]
-    assert_equal categories(:sub2), categories(:super).subcategories[1]
+  test "subcategories should be ordered by ord" do
+    assert_equal categories(:sub2), categories(:super).subcategories[0]
+    assert_equal categories(:sub1), categories(:super).subcategories[1]
   end
   
   test "should have articles" do
@@ -34,6 +34,26 @@ class Categorytest < ActiveSupport::TestCase
     
     categories(:sub1).name = categories(:sub2).name
     assert_errors_on categories(:sub1), :on => :name
+  end
+  
+  test "record invalid without ord" do
+    categories(:super).ord = nil
+    assert_errors_on categories(:super), :on => :ord
+  end
+  
+  test "record invalid with non-numeric ord" do
+    categories(:super).ord = 'first'
+    assert_errors_on categories(:super), :on => :ord
+  end
+  
+  test "record invalid with ord lower than 1" do
+    categories(:super).ord = 0
+    assert_errors_on categories(:super), :on => :ord
+  end
+  
+  test "record invalid with non-integral ord" do
+    categories(:super).ord = 1.5
+    assert_errors_on categories(:super), :on => :ord
   end
   
   test "human_name returns String" do

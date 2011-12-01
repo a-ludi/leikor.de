@@ -1,10 +1,12 @@
 class Category < ActiveRecord::Base
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
-  has_many :subcategories
+  has_many :subcategories, :order => 'ord ASC'
   has_many :articles, :through => :subcategories, :order => 'name ASC'
 
   validates_presence_of :name
   validates_uniqueness_of :name
+  validates_presence_of :ord
+  validates_numericality_of :ord, :greater_than_or_equal_to => 1, :only_integer => true
   
   def self.human_name
     'Kategorie'

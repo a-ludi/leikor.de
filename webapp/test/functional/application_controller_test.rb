@@ -66,6 +66,7 @@ class ApplicationControllerTest < ActionController::TestCase
     get 'index' # calls fetch_categories
     
     assert_not_empty assigns(:categories)
+    assert_equal [categories(:super_fst), categories(:super)], assigns(:categories)
   end
   
   test "fetch_categories with category" do

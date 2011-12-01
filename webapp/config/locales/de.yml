@@ -215,7 +215,8 @@ de:
       header:
         one:    "Konnte {{model}} nicht speichern: ein Fehler."
         other:  "Konnte {{model}} nicht speichern: {{count}} Fehler."
-      body: "Bitte überprüfen Sie die folgenden Felder:"
+      body: &errors_body "Bitte überprüfen Sie die folgenden Felder:"
+  body: *errors_body
 
   activerecord:
     errors:
@@ -244,6 +245,7 @@ de:
         picture: Bild
       category:
         name: Name
+        ord: Rang
       user:
         login: Benutzername
         password: Passwort

@@ -1,11 +1,9 @@
 <div id="message_window">
-  <div class="title">
-    <%= @category.class.human_name %> löschen?
-  </div>
+  <h1><%= @category.class.human_name %> löschen?</h1>
   <div class="message">
     Möchten Sie wirklich die <%= @category.class.human_name %>
-    <p>
-      „<%= @category.name %>“
+    <p class="em">
+      <%= @category.name %>
     </p>
     <em>endgültig</em> löschen?
   </div>
