@@ -12,8 +12,8 @@ class StaticControllerTest < ActionController::TestCase
     
     begin
       get 'show', {:path => :unkown_page}
-    rescue ActionController::RoutingError
-      assert_not_nil $!.inspect[:unkown_page]
+    rescue ActionController::RoutingError => e
+      assert_not_nil e.inspect['unkown_page']
     end
   end
 
@@ -22,9 +22,9 @@ class StaticControllerTest < ActionController::TestCase
     get 'show', {:path => page[0]}
     
     assert_equal page[1][:stylesheets], assigns(:stylesheets)
-    assert_equal page[1][:title], assigns(:title)
+    assert_equal page[1][:name], assigns(:title)
     assert_equal page[1], assigns(:page)
     assert_response :success
-    assert_template page[0]
+    assert_template page[0].to_s
   end
 end
