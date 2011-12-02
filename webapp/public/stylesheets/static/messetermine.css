@@ -1,0 +1,47 @@
+#fair_dates {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#fair_dates td, #fair_dates th {
+  text-align: left;
+  padding: 1ex 0.5em;
+  border: none;
+  vertical-align: top;
+}
+#fair_dates th {
+  padding-bottom: 0.3ex;
+  padding-top: 0.3ex;
+}
+#fair_dates tr.odd td { background: #EEEEEE; }
+#fair_dates tr.odd th { background: #0065A8; color: #FFFFFF; }
+#fair_dates tr.even th { background: #0099FF; color: #FFFFFF; }
+
+/* Corners */
+#fair_dates .first .first {border-top-left-radius: 0.3em;}
+#fair_dates .first .last {border-top-right-radius: 0.3em;}
+#fair_dates .last .first {border-bottom-left-radius: 0.3em;}
+#fair_dates .last .last {border-bottom-right-radius: 0.3em;}
+
+/* supress top/bottom border in first/last row  */
+#fair_dates tr.first td, #fair_dates tr.first th { border-top: none; }
+#fair_dates tr.last td, #fair_dates tr.last th { border-bottom: none; }
+
+#fair_dates td.date.from {
+  text-align: right;
+  border-right: none;
+  padding-right: 0em;
+}
+#fair_dates td.dash {
+  text-align: center;
+  border-left: none;
+  border-right: none;
+  padding-left: 0em;
+  padding-right: 0em;
+}
+#fair_dates td.date.to {
+  text-align: left;
+  border-left: none;
+  padding-left: 0em;
+}
+

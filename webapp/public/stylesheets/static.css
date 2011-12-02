@@ -12,13 +12,23 @@
   text-decoration: none;
 }
 
-#body p {
+#body p, #body table {
   padding: 0ex;
   margin: 1.5ex 0em;
-  font-family: "Serif" serif;
 }
+#body p { font-family: "Serif" serif; }
 #body li {
   font-family: "Serif" serif;
 }
 
 #body .center { text-align: center; }
+
+#body .infobox {
+  display: block;
+  overflow: hidden;
+  background: #fff;
+  padding: 1.5ex 1.2em;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  margin: 0.5ex 0em;
+}

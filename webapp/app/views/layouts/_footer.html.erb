@@ -1,7 +1,7 @@
 <div id="footer">
-  <%= link_to 'Kontakt', static_path('kontakt') %> |
-  <%= link_to 'Impressum', static_path('impressum') %> |
-  <%= link_to 'AGB', static_path('AGB') %> |
+  <%= static_link_to :kontakt %> |
+  <%= static_link_to :impressum %> |
+  <%= static_link_to :AGB %> |
   <% unless user_logged_in? %>
     <%= link_to 'Anmelden', new_session_path %>
   <% else %>

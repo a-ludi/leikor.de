@@ -7,6 +7,7 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
+a.external:after { content: '\200A\00bb'; }
 
 a:hover, a:focus { color: #aaa; }
 
@@ -26,6 +27,9 @@ label {
   font-variant: small-caps;
 }
 
+.no_padding { padding: 0em !important; }
+.no_margin { margin: 0em !important; }
+
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
@@ -33,6 +37,11 @@ h1, h2 { padding: 0ex; color: #00a663; }
 h1 { font-size: 150%; margin: 3ex 0em 3ex 0em }
 h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
 
+th {
+  font-variant: small-caps;
+  font-size: 110%;
+  font-weight: normal;
+}
 
 #message {
   display: block;
@@ -117,19 +126,6 @@ h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
   border-radius: 0.7em;
   margin: 1.5ex 0em;
 }
-
-#body table { text-align: left; }
-#body table td, #body table th {
-  vertical-align: top;
-  padding: 0.2ex 0em;
-}
-#body table th {
-  text-align: right;
-  font-variant: small-caps;
-  font-size: 110%;
-  font-weight: normal;
-}
-#body table td { padding-left: 1em; }
 
 a.toolbutton img {
   padding: 1px;

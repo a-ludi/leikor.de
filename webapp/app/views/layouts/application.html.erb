@@ -13,9 +13,9 @@
             (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
         <% end %> 
-        <%= link_to 'Kontakt', static_path('kontakt') %> |
-        <%= link_to 'Impressum', static_path('impressum') %> |
-        <%= link_to 'AGB', static_path('AGB') %>
+        <%= static_link_to :kontakt %> |
+        <%= static_link_to :impressum %> |
+        <%= static_link_to :AGB %>
       </div>
       <div id="logo_container">
         <%= link_to(
@@ -31,9 +31,9 @@
         <!--a>News</a-->
         <%= link_to 'Sortiment', :categories %>
         <!--a>Angebote</a-->
-        <!--a>Messetermine</a-->
-        <%= link_to 'Über uns', static_path('ueber_uns') %>
-        <%= link_to 'Farbpalette', static_path('colors') if RAILS_ENV == 'development' %>
+        <%= static_link_to :messetermine %>
+        <%= static_link_to :ueber_uns %>
+        <%= static_link_to :colors if RAILS_ENV == 'development' %>
       </div>
     </div>
     <div id="body">
