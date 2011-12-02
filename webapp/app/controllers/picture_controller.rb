@@ -1,6 +1,9 @@
 class PictureController < ApplicationController
+  include Paperclip::Storage::Database::ControllerClassMethods
+  
   before_filter :login_required, :except => [:show]
   after_filter :save_updated_at, :only => [:update, :destroy]
+  downloads_files_for :article, :picture
   
   def show
     @article = Article.find params[:article_id]

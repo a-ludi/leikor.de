@@ -65,7 +65,9 @@ ActionController::Routing::Routes.draw do |map|
     :action => 'ask_destroy',
     :article => Article::ARTICLE_NUMBER_FORMAT)
   map.resources :articles, :as => 'artikel' do |articles|
-    articles.resource :picture, :as => 'bild', :controller => 'picture'
+    articles.resource :picture, :as => 'bild', :controller => 'picture' do |picture|
+      picture.download 'download/:style', :action => 'pictures', :controller => 'picture'
+    end
   end
   
   map.resource(:session, :as => 'sitzung', :path_names => {:new => 'anmelden'}) do |session|

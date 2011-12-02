@@ -6,6 +6,8 @@ class Article < ActiveRecord::Base
   belongs_to :subcategory
   has_attached_file(
     :picture,
+    :storage => :database,
+    :url => '/artikel/:id/bild/download/:style',
     :default_url => '/images/picture/:style/dummy.png',
     :styles => {
       :thumb => ['150x150#', :png],

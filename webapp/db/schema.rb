@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111201101656) do
+ActiveRecord::Schema.define(:version => 20111202223800) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(:version => 20111201101656) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.binary   "picture_file"
+    t.binary   "picture_thumb_file"
+    t.binary   "picture_medium_file"
+    t.binary   "picture_large_file"
   end
 
   create_table "categories", :force => true do |t|
