@@ -21,7 +21,10 @@
   float: left;
   padding: 0ex;
   margin: 0ex 1em 1.5ex 0em;
+  width: 300px;
+  height: 300px;
 }
+#content .article .body .image img { width: 300px; height: 300px; }
 
 #content .article .administration { margin-top: 0ex; }
 #content .article .body .description {

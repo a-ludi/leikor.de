@@ -22,11 +22,5 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.action_controller.resources_path_names = {
-  :new => 'neu',
-  :edit => 'bearbeiten',
-  :destroy => 'loeschen'
-}
-config.i18n.default_locale = :de
 Paperclip.options[:command_path] = "/usr/bin/"
-
+config.gem 'spork', :veriosn => '~> 0.8'
