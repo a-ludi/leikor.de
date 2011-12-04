@@ -19,11 +19,12 @@
   }
 </style>
 <div id="colors">
-    <% for c in ['a80000', 'fe0000', 'ffc3c3', '00a663', 'D9FFF0', '0065a8',
-      '0099ff', 'D9F0FF', '333333', 'aaaaaa', 'cccccc', 'dddddd', 'eeeeee'] %>
+    <% for c in [:dark_red, :mid_red, :light_red, :dark_green, :light_green, :dark_blue, :mid_blue,
+        :light_blue, :dark_gray, :darker_gray, :mid_gray, :lighter_gray, :light_gray] %>
       <div>
-          #<%= c.upcase %><br />
-          <div class="color" style="background: #<%= c %>;"></div>
+          <b><%= c.to_s %></b><br />
+          <%=p c %><br />
+          <div class="color" style="background: <%=p c %>;"></div>
       </div>
     <% end %>
 </div>

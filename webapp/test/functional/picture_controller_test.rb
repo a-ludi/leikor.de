@@ -2,14 +2,26 @@ require 'test_helper'
 
 class PictureControllerTest < ActionController::TestCase
   test "login required except show" do
-    [:edit, :update, :destroy].each do |action|
-      assert_before_filter_applied :login_required, action
+    [:show, :pictures].each do |action|
+      assert_before_filter_not_applied :login_required, action
     end
   end
   
   test "save updated at only update destroy" do
     [:update, :destroy].each do |action|
       assert_after_filter_applied :save_updated_at, action
+    end
+  end
+  
+  test "pictures" do
+    @article = articles(:one)
+    picture = fixture_file_upload 'pictures/jpg', 'image/small', :binary
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    
+    [:original, :large, :medium, :thumb].each do |style|
+      get 'pictures', :article_id => @article.to_param, :style => style
+      
+      assert_response :success
     end
   end
   

@@ -8,7 +8,7 @@
     <%= link_to 'Abmelden', session_destroy_path %>
   <% end %>
   <br>
-  ©2010, leikor.de &bull;
+  ©2011 <%= static_link_to :impressum, :label => 'LEIKOR', :anchor => 'urheberrechte' %> &bull;
   Stand: <%=l @updated_at, :format => :short %>
 </div>
 

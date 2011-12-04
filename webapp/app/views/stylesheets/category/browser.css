@@ -1,7 +1,7 @@
 #content .empty_category {
   display: block;
   font-size: 200%;
-  color: #ccc;
+  color: <%=p :mid_gray %>;
   text-align: center;
   font-weight: bold;
   padding: 2ex 0em;
@@ -10,7 +10,7 @@
 #categories {
   float: left;
   background: none;
-  border-right: 1px solid #ccc;
+  border-right: 1px solid <%=p :mid_gray %>;
   margin-right: 1em;
   width: 12em;
 }
@@ -20,13 +20,13 @@
   padding: 1.4ex 1.0em;
   margin: 0em;
 }
-#categories a:hover, #categories a:focus { background: #00a663; color: #fff; }
+#categories a:hover, #categories a:focus { background: <%=p :dark_green %>; color: <%=p :white %>; }
 
 #categories .subcategory {
   border-width: 1px 0px;
   border-style: solid;
-  border-color: #ccc;
-  background: #D9F0FF;
+  border-color: <%=p :mid_gray %>;
+  background: <%=p :light_blue %>;
 }
 
 #categories .subcategory a {
@@ -37,26 +37,26 @@
   border: 1px solid rgba(0,0,0,0);
 }
 #categories .subcategory a.selected {
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #eee;
+  border-top: 1px solid <%=p :mid_gray %>;
+  border-bottom: 1px solid <%=p :mid_gray %>;
+  background: <%=p :light_gray %>;
 }
 #categories .subcategory a.selected.first { border-top: none; }
 #categories .subcategory a.selected.last { border-bottom: none; }
 #categories .subcategory a:hover, #categories .subcategory a:focus {
-  background: #0099ff; color: #fff;
+  background: <%=p :mid_blue %>; color: <%=p :white %>;
 }
 
 #content { margin-left: 13em; padding: 0ex 1em; }
 
 #content .administration {
-  color: #0065a8;
+  color: <%=p :dark_blue %>;
   text-align: right;
   margin: 0.5ex 0em 2ex 0em;
 }
 
 #content .message {
-  color: #0099ff;
+  color: <%=p :mid_blue %>;
   padding: 0ex 1em;
   margin: 0ex;
 }
@@ -67,7 +67,7 @@
   padding: 1ex 0em;
 }
 
-#content .administration a { color: #0065a8; }
+#content .administration a { color: <%=p :dark_blue %>; }
 #content .administration a:hover, #content .administration a:focus {
   text-decoration: underline;
 }

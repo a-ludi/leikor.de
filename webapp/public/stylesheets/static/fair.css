@@ -1,8 +1,0 @@
-#fair_dates tr th { text-align: left; }
-
-#fair_dates tr td { text-align: left; }
-
-#fair_dates tr td.date.from { text-align: right; }
-#fair_dates tr td.dash { text-align: center; }
-#fair_dates tr td.date.to { text-align: left; }
-

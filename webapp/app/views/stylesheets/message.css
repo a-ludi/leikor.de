@@ -3,7 +3,7 @@
   background: none;
   padding: 0ex;
   border: none;
-  border-radius: 0em;
+  <%=border_radius '0px' %>
   margin: 7ex 0.5em;
   text-align: center;
 }
@@ -11,10 +11,10 @@
 #message_window {
   display: inline-block;
   overflow: hidden;
-  background: #ddd;
+  background: <%=p :lighter_gray %>;
   padding: 1.5ex 0.5em;
-  border: 1px solid #aaa;
-  border-radius: 0.7em;
+  border: 1px solid <%=p :darker_gray %>;
+  <%=border_radius '0.7em' %>
   min-width: 10em;
   max-width: 23em;
 }
@@ -32,16 +32,16 @@
 }
 
 #message_window.success {
-  background: #D9FFF0;
-  border-color: #00a663;
+  background: <%=p :light_green %>;
+  border-color: <%=p :dark_green %>;
 }
-#message_window.success h1 { color: #00a663; }
+#message_window.success h1 { color: <%=p :dark_green %>; }
 
 #message_window.error {
-  background: #ffcccc;
-  border-color: #fe0000;
+  background: <%=p :light_red %>;
+  border-color: <%=p :mid_red %>;
 }
-#message_window.error h1 { color: #fe0000; }
+#message_window.error h1 { color: <%=p :mid_red %>; }
 
 #message_window .message {
   padding: 0em;
@@ -55,7 +55,7 @@
 }
 
 #message_window .message.error {
-  color: #fe0000;
+  color: <%=p :mid_red %>;
   font-size: 80%;
 }
 

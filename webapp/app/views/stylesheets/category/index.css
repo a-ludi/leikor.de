@@ -1,7 +1,7 @@
 #content { margin-left: 13em; padding: 0ex 1em; }
 #content .no_article {
   font-size: 150%;
-  color: #aaa;
+  color: <%=p :darker_gray %>;
   text-align: center;
   font-weight: bold;
   padding: 2ex 0em;
@@ -12,7 +12,7 @@
     font-size: 110%;
     padding: 0ex;
     margin: 0ex 1em;
-    color: #444;
+    color: <%=p :dark_gray %>;
 }
 #content .category_overview .title a:after {
   content: ' \00bb';
@@ -23,10 +23,10 @@
 #content .category_overview .title a.toolbutton:after { content: ''; }
 #content .category_overview .body {
     overflow: hidden;
-    background: #fff;
+    background: <%=p :white %>;
     padding: 0.5ex;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
+    border: 1px solid <%=p :mid_gray %>;
+    <%=border_radius '0.5em' %>
     margin: 0.5ex 0em;
 }
 
@@ -42,7 +42,7 @@
 
 #content .category_overview .no_article {
   font-size: 150%;
-  color: #aaa;
+  color: <%=p :darker_gray %>;
   text-align: center;
   font-weight: bold;
   padding: 2ex 0em;

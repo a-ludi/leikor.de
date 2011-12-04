@@ -74,7 +74,14 @@ ActionController::Routing::Routes.draw do |map|
     session.destroy 'abmelden', :controller => 'sessions', :action => 'destroy'
   end
   
-  map.root :path => 'ueber_uns', :controller => 'static', :action => 'show'
+  map.stylesheet(
+    'stylesheets/*path',
+    :controller => 'static',
+    :action => 'stylesheet',
+    :conditions => {:method => :get}
+  )
+  
+  map.root :path => 'ueber_uns', :controller => 'static', :action => 'show', :welcome => true
   map.static(
     '*path',
     :controller => 'static',

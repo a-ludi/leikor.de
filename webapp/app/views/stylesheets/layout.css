@@ -1,15 +1,14 @@
 body {
-  font-family: "Sans" sans-serif;
+  font-family: 'Sans', sans-serif;
 }
 
 a {
-  color: #333;
+  color: <%=p :dark_gray %>;
   font-weight: bold;
   text-decoration: none;
 }
 a.external:after { content: '\200A\00bb'; }
-
-a:hover, a:focus { color: #aaa; }
+a:hover, a:focus { color: <%=p :darker_gray %>; }
 
 div {
   padding: 0ex;
@@ -33,7 +32,7 @@ label {
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
-h1, h2 { padding: 0ex; color: #00a663; }
+h1, h2 { padding: 0ex; color: <%=p :dark_green %>; }
 h1 { font-size: 150%; margin: 3ex 0em 3ex 0em }
 h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
 
@@ -47,12 +46,12 @@ th {
   display: block;
   overflow: hidden;
   position: absolute;
-  background: #ddd;
-  color: #333;
+  background: <%=p :lighter_gray %>;
+  color: <%=p :dark_gray %>;
   padding: 1.5ex 0.5em;
   margin: 1ex 1em;
-  border: 1px solid #aaa;
-  border-radius: 0.5em;
+  border: 1px solid <%=p :darker_gray %>;
+  <%=border_radius '0.5em' %>
   max-width: 20em;
   font-size: 90%;
 }
@@ -72,16 +71,16 @@ th {
 }
 
 #message.success {
-  background: #D9FFF0;
-  border-color: #00a663;
+  background: <%=p :light_green %>;
+  border-color: <%=p :dark_green %>;
 }
-#message.success h1 { color: #00a663; }
+#message.success h1 { color: <%=p :dark_green %>; }
 
 #message.error {
-  background: #ffcccc;
-  border-color: #fe0000;
+  background: <%=p :light_red %>;
+  border-color: <%=p :mid_red %>;
 }
-#message.error h1 { color: #fe0000 }
+#message.error h1 { color: <%=p :mid_red %> }
 
 #important_links { text-align: right; }
 #important_links a:hover, #important_links a:focus {
@@ -102,9 +101,9 @@ th {
 
 #top_navigation {
   overflow: hidden;
-  background: #ddd;
-  border: 1px solid #aaa;
-  border-radius: 0.7em;
+  background: <%=p :lighter_gray %>;
+  border: 1px solid <%=p :darker_gray %>;
+  <%=border_radius '0.7em' %>
 }
 
 #top_navigation a {
@@ -113,26 +112,27 @@ th {
   padding: 1.4ex 1.0em;
   font-variant: small-caps;
 }
-#top_navigation a:first {
+#top_navigation a.first {
   padding-left: 1.2em;
+  <%=border_radius :left => '0.7em' %>
 }
-#top_navigation a:hover, #top_navigation a:focus { background: #fe0000; color: #fff; }
+#top_navigation a:hover, #top_navigation a:focus { background: <%=p :mid_red %>; color: <%=p :white %>; }
 
 #body {
   overflow: hidden;
-  background: #eee;
+  background: <%=p :light_gray %>;
   padding: 0ex;
-  border: 1px solid #ccc;
-  border-radius: 0.7em;
+  border: 1px solid <%=p :mid_gray %>;
+  <%=border_radius '0.7em' %>
   margin: 1.5ex 0em;
 }
 
 a.toolbutton img {
   padding: 1px;
-  border-radius: 22.22%;
+  <%=border_radius '22.22%' %>
 }
 a.toolbutton:hover img {
-  background: #fe0000;
+  background: <%=p :mid_red %>;
 }
 
 #picture_viewer, #picture_viewer div.background {
@@ -151,7 +151,7 @@ a.toolbutton:hover img {
   position: fixed;
   display: none;
   height: 100%;
-  background: #333;
+  background: <%=p :dark_gray %>;
   opacity: 0.5;
   z-index: -1;
 }
@@ -161,8 +161,8 @@ a.toolbutton:hover img {
   text-align: center;
   vertical-align: middle;
   overflow: hidden;
-  background: #fff;
-  border-radius: 30px;
+  background: <%=p :white %>;
+  <%=border_radius '30px' %>
   padding: 30px 30px;
   margin: 20px;
   opacity: 1.0;
@@ -177,7 +177,7 @@ a.toolbutton:hover img {
 
 #content .message.error {
   text-align: left;
-  color: #fe0000;
+  color: <%=p :mid_red %>;
 }
 #content .edit .fieldWithErrors {
   display: inline;
@@ -186,7 +186,7 @@ a.toolbutton:hover img {
   border: 0ex;
 }
 #content .edit .fieldWithErrors * {
-  background: #ffcccc;
+  background: <%=p :light_red %>;
 }
 
 #footer {
