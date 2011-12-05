@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
   
   def new
     @stylesheets = ['message', 'sessions']
-    flash[:referer] = request.referer ? request.referer : "/" if flash[:referer].blank?
+    @title = 'Anmeldung'
+    flash[:referer] = request.referer || "/" if flash[:referer].blank?
   end
 
   def create
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
         :class => 'success',
         :title => 'Wilkommen!',
         :text => "Hallo, #{@current_user.name}."}
-      redirect_to flash[:referer]
+      redirect_to (flash[:referer] || '/')
     else
       flash.keep
       flash[:wrong_login_or_password] = true

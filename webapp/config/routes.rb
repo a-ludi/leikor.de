@@ -67,6 +67,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :articles, :as => 'artikel' do |articles|
     articles.resource :picture, :as => 'bild', :controller => 'picture' do |picture|
       picture.download 'download/:style', :action => 'pictures', :controller => 'picture'
+      picture.download 'download', :action => 'pictures', :controller => 'picture'
     end
   end
   

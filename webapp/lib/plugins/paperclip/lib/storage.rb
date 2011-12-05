@@ -96,10 +96,11 @@ module Paperclip
       end
       
       def make_file_columns_from_styles
-        file_columns = {default_style => "#{@name}_file"}
+        file_columns = {}
         @options[:styles].each_key do |style|
           file_columns[style] = "#{@name}_#{style}_file"
         end
+        file_columns[default_style] = "#{@name}_file"
         ActiveRecord::Base.logger.debug "[paperclip] making file_columns <#{file_columns.inspect}>"
         file_columns
       end
@@ -109,6 +110,8 @@ module Paperclip
       end
         
       def instance_read_file(style)
+        ActiveRecord::Base.logger.debug "[paperclip] reading file with style <#{style.inspect}>"
+        ActiveRecord::Base.logger.debug "[paperclip] file_columns <#{@file_columns.inspect}>"
         column = column_for_style(style)
         responds = instance.respond_to?(column)
         cached = self.instance_variable_get("@_#{column}")
@@ -199,7 +202,7 @@ module Paperclip
           define_method("#{attachment.to_s.pluralize}") do
             user_id = params[:id] || params[(model.to_s + '_id').to_sym]
             model_record = Object.const_get(model.to_s.camelize.to_sym).find(user_id)
-            style = params[:style] ? params[:style] : 'original'
+            style = params[:style].to_sym if params[:style]
             send_data model_record.send(attachment).file_contents(style),
                       :filename => model_record.send("#{attachment}_file_name".to_sym),
                       :type => model_record.send("#{attachment}_content_type".to_sym)

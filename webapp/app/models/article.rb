@@ -10,9 +10,9 @@ class Article < ActiveRecord::Base
     :url => '/artikel/:id/bild/download/:style',
     :default_url => '/images/picture/:style/dummy.png',
     :styles => {
-      :thumb => ['150x150#', :png],
-      :medium => ['300x300#', :png],
-      :large => ['600x600>', :png]
+      :original => ['600x600>', :jpg],
+      :thumb => ['150x150#', :jpg],
+      :medium => ['300x300#', :jpg],
     }
   )
   PICTURE_INVALID_MESSAGE = 'scheint ungültig zu sein. Bitte wählen Sie ein

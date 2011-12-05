@@ -25,6 +25,8 @@
   height: 300px;
 }
 #content .article .body .image img { width: 300px; height: 300px; }
+#content .article.edit .body .image { width: 150px; height: 150px; }
+#content .article.edit .body .image img { width: 150px; height: 150px; }
 
 #content .article .administration { margin-top: 0ex; }
 #content .article .body .description {

@@ -24,23 +24,21 @@ class PictureController < ApplicationController
   def edit
     @article = Article.find params[:article_id]
     @stylesheets = ['message']
-    if params[:popup]
-      flash[:popup] = true
-      render :layout => 'popup'
-    else
-      flash[:popup] = false
-    end
+    @popup = params[:popup]
+    render :layout => 'popup' if @popup
   end
 
   def update
     @article = Article.find params[:article_id]
     @article.picture = params[:article][:picture]
+    @popup = params[:popup]
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gespeichert."
   end
 
   def destroy
     @article = Article.find params[:article_id]
     @article.picture.clear
+    @popup = params[:popup]
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gelöscht."
   end
   
@@ -61,14 +59,13 @@ private
   def render_response(state=:success)
     case state
       when :success
-        if flash[:popup]
+        if @popup
           render :action => 'success', :layout => 'popup'
         else
           redirect_to subcategory_url(@article.subcategory.url_hash)
         end
       when :failure
-        flash.keep :popup
-        render :action => 'edit', :layout => flash[:popup] ? 'popup' : true
+        render :action => 'edit', :layout => @popup ? 'popup' : true
       else
         raise StandardError, 'internal error: state <#{state.inspect}> is unknown'
     end
