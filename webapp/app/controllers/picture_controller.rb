@@ -61,7 +61,7 @@ private
   def render_response(state=:success)
     case state
       when :success
-        @title = flash[:message][:text]
+        @title ||= flash[:message][:text]
         if @popup
           render :action => 'success', :layout => 'popup'
         else

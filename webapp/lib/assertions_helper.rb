@@ -85,7 +85,31 @@ module AssertionsHelper
     assert_not_empty object
   end
 
+  def assert_logs(&proc)
+    @controller.logger = MockLogger.new @controller
+    yield
+    assert @controller.logger.logged?, "no message logged"
+  end
+
 private
+  class MockLogger
+    def initialize(controller)
+      @controller = controller
+      @logger = @controller.logger
+    end
+    
+    def debug(*args); @logged = true; end
+    alias :info :debug
+    alias :warn :debug
+    alias :error :debug
+    alias :fatal :debug
+    
+    def logged?
+      @controller.logger = @logger
+      @logged or false
+    end
+  end
+  
   def assert_filter_applied(filter, action, options={})
     if action.nil?
       assert filter.options.empty?, options[:message]

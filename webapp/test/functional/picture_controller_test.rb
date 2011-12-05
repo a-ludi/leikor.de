@@ -13,12 +13,12 @@ class PictureControllerTest < ActionController::TestCase
     end
   end
   
-  test "pictures" do
+  test "pictures action" do
     @article = articles(:one)
     picture = fixture_file_upload 'pictures/jpg', 'image/small', :binary
     put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
     
-    [:original, :large, :medium, :thumb].each do |style|
+    [:original, :medium, :thumb].each do |style|
       get 'pictures', :article_id => @article.to_param, :style => style
       
       assert_response :success
@@ -30,6 +30,7 @@ class PictureControllerTest < ActionController::TestCase
     get 'show', :format => 'html', :article_id => @article.to_param
     
     assert_equal @article, assigns(:article)
+    assert_non_empty_kind_of String, assigns(:title)
     assert_template '_viewer'
     assert_layout 'popup'
   end
@@ -48,7 +49,8 @@ class PictureControllerTest < ActionController::TestCase
     
     assert_equal @article, assigns(:article)
     assert_respond_to assigns(:stylesheets), :each
-    assert flash[:popup]
+    assert_non_empty_kind_of String, assigns(:title)
+    assert assigns(:popup)
     assert_template 'edit'
     assert_layout 'popup'
   end
@@ -57,7 +59,7 @@ class PictureControllerTest < ActionController::TestCase
     @article = articles(:one)
     get 'edit', {:article_id => @article.to_param}, with_user
     
-    assert ! flash[:popup]
+    assert ! assigns(:popup)
     assert_template 'edit'
   end
   
@@ -92,7 +94,7 @@ class PictureControllerTest < ActionController::TestCase
   
   test "destroy with popup" do
     @article = articles(:one)
-    delete 'destroy', {:article_id => @article.to_param}, with_user, {:popup => true}
+    delete 'destroy', {:article_id => @article.to_param, :popup => true}, with_user
     
     assert_equal @article, assigns(:article)
     assert ! assigns(:article).picture.file?
@@ -125,6 +127,7 @@ class PictureControllerTest < ActionController::TestCase
   test "render_response with success and popup" do
     successful_request :popup => true
     
+    assert_non_empty_kind_of String, assigns(:title)
     assert_template 'success'
     assert_layout 'popup'
   end
@@ -140,7 +143,6 @@ class PictureControllerTest < ActionController::TestCase
     
     assert_template 'edit'
     assert_layout 'popup'
-    #TODO test flash.keep :popup
   end
   
   test "render_response with failure and no popup" do
@@ -154,13 +156,13 @@ private
   
   def successful_request(options={})
     @article = articles(:one)
-    delete 'destroy', {:article_id => @article.to_param}, with_user, {:popup => options[:popup]}
+    delete 'destroy', {:article_id => @article.to_param, :popup => options[:popup]}, with_user
   end
   
   def failed_request(options={})
     @article = articles(:one)
     picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user, {:popup => options[:popup]}
+    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}, :popup => options[:popup]}, with_user
   end
   
   def intermediate_request()

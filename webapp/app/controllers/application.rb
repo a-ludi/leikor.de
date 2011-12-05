@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   before_filter :fetch_logged_in_user, :fetch_updated_at
-  after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] if RAILS_ENV == 'development'
+  after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] unless RAILS_ENV == 'production'
 
 protected
   def save_updated_at

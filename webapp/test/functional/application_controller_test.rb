@@ -9,8 +9,14 @@ class ApplicationControllerTest < ActionController::TestCase
     end
   end
   
+  test "after filters active" do
+    [:log_if_title_not_set].each do |filter|
+      assert_after_filter_applied filter, @controller
+    end
+  end
+  
   test "save_updated_at" do
-    t = @controller.save_updated_at
+    t = @controller.send :save_updated_at
     t = t.to_s.to_time
     
     assert_equal t.to_f, AppData['updated_at'].to_f
@@ -23,7 +29,7 @@ class ApplicationControllerTest < ActionController::TestCase
   end  
   
   test "fetch_updated_at returns correct Time" do
-    t = @controller.save_updated_at
+    t = @controller.send :save_updated_at
     t = t.to_s.to_time
     get 'index' # calls fetch_updated_at
     
@@ -33,7 +39,7 @@ class ApplicationControllerTest < ActionController::TestCase
   test "user_logged_in?" do
     get 'index', {}, with_user
     
-    assert @controller.user_logged_in?
+    assert @controller.send :user_logged_in?
   end
   
   test "superuser_logged_in?" do
@@ -84,5 +90,11 @@ class ApplicationControllerTest < ActionController::TestCase
     assert_not_empty assigns(:categories)
     assert_equal @subcategory.category, assigns(:category)
     assert_equal @subcategory, assigns(:subcategory)
+  end
+  
+  test "log_if_title_not_set logs and passes" do
+    assert_logs do
+      assert @controller.send :log_if_title_not_set
+    end
   end
 end
