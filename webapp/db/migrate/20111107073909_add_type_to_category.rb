@@ -7,7 +7,7 @@ class AddTypeToCategory < ActiveRecord::Migration
     
     for c in Category.all
       if c.root?
-        c.type = 'Category'
+        c.type = nil
       else
         c.type = 'Subcategory'
       end

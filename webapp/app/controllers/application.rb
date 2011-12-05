@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   before_filter :fetch_logged_in_user, :fetch_updated_at
-  
+  after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] if RAILS_ENV == 'development'
+
+protected
   def save_updated_at
     AppData['updated_at'] = Time.now
   end
@@ -59,6 +61,14 @@ class ApplicationController < ActionController::Base
     options[:text] = render_to_string options
     options[:layout] = options[:outer_layout]
     render options
+  end
+  
+  def log_if_title_not_set
+    if @title.nil? and not params[:welcome]
+      logger.warn "[warning] action <#{action_name}> in controller <#{controller_name}> does not set @title"
+    end
+    
+    return true
   end
   
   def md5sum(str)

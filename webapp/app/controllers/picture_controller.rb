@@ -7,6 +7,7 @@ class PictureController < ApplicationController
   
   def show
     @article = Article.find params[:article_id]
+    @title = "Bild von „#{@article.name}“"
     
     respond_to do |format|
       format.html do
@@ -24,6 +25,7 @@ class PictureController < ApplicationController
   def edit
     @article = Article.find params[:article_id]
     @stylesheets = ['message']
+    @title = "Bild von „#{@article.name}“ bearbeiten"
     @popup = params[:popup]
     render :layout => 'popup' if @popup
   end
@@ -59,6 +61,7 @@ private
   def render_response(state=:success)
     case state
       when :success
+        @title = flash[:message][:text]
         if @popup
           render :action => 'success', :layout => 'popup'
         else

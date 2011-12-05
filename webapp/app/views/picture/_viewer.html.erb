@@ -15,7 +15,7 @@
         <%= link_to(
           image_tag('pictogram/medium/edit.png'),
           edit_article_picture_path(article.id),
-          :onclick => "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/large/in_work.png'}') && openPopup(this.href); return false",
+          :onclick => "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/original/in_work.png'}') && openPopup(this.href); return false",
           :title => 'Bild bearbeiten',
           :class => 'toolbutton'
         ) %>
