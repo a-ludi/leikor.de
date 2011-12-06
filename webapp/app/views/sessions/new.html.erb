@@ -1,6 +1,7 @@
 <% flash.keep %>
 <div id="message_window">
   <% form_tag session_path do %>
+    <%= hidden_field_tag 'referer', @referer %>
     <h1>Anmelden</h1>
     <% if flash[:wrong_login_or_password] %>
       <div class="message error">
@@ -10,7 +11,7 @@
     <div class="message">
       <p>
         <%= label_tag :login, t('activerecord.attributes.user.login') %><br />
-        <%= text_field_tag :login, flash[:login] %>
+        <%= text_field_tag :login, @login %>
       </p>
       <p>
         <%= label_tag :password, t('activerecord.attributes.user.password') %><br />
@@ -21,6 +22,6 @@
       <%= submit_tag 'Anmelden!' %>
     </div>
   <% end %>
-  <%= set_focus_to :login %>
+  <%= set_focus_to (@login ? :password : :login) %>
 </div>
 

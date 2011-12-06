@@ -33,7 +33,7 @@
         <!--a>Angebote</a-->
         <%= static_link_to :messetermine %>
         <%= static_link_to :ueber_uns %>
-        <%= static_link_to :colors, :class => 'last' if RAILS_ENV == 'development' %>
+        <%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %>
       </div>
     </div>
     <div id="body">

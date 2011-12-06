@@ -219,12 +219,12 @@ class CategoriesControllerTest < ActionController::TestCase
 private
 
   def create_category(options={})
-    create_sub_or_category Hash[:category => {:id => nil, :name => 'New Category'}], options
+    create_sub_or_category Hash[:category => {:id => nil, :name => 'New Category', :ord => 99}], options
   end
   
   def create_subcategory(options={})
     create_sub_or_category Hash[:subcategory => {:id => nil, :name => 'New Category',
-        :category_id => categories(:super).id}], options
+        :category_id => categories(:super).id, :ord => 99}], options
   end
   
   def update_category(options={})

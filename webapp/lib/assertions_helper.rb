@@ -86,16 +86,16 @@ module AssertionsHelper
   end
 
   def assert_logs(&proc)
-    @controller.logger = MockLogger.new @controller
+    @controller.logger = MockLogger.new @controller.logger
     yield
     assert @controller.logger.logged?, "no message logged"
+    @controller.logger = @controller.logger.original_logger
   end
 
 private
   class MockLogger
-    def initialize(controller)
-      @controller = controller
-      @logger = @controller.logger
+    def initialize(logger)
+      @original_logger = logger
     end
     
     def debug(*args); @logged = true; end
@@ -105,9 +105,10 @@ private
     alias :fatal :debug
     
     def logged?
-      @controller.logger = @logger
       @logged or false
     end
+    
+    def original_logger; @original_logger; end
   end
   
   def assert_filter_applied(filter, action, options={})

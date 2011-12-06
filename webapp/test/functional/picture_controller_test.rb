@@ -132,6 +132,14 @@ class PictureControllerTest < ActionController::TestCase
     assert_layout 'popup'
   end
 
+  test "render_response with success and popup passes title" do
+    custom_title = 'Mein Titel'
+    @controller.instance_eval { @title = custom_title }
+    successful_request :popup => true
+    
+    assert_equal custom_title, assigns(:title)
+  end
+
   test "render_response with success and no popup" do
     successful_request :popup => false
     

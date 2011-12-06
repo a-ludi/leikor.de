@@ -28,6 +28,12 @@ class StaticControllerTest < ActionController::TestCase
     assert_template page[0].to_s
   end
   
+  test "show action each page" do
+    StaticController::REGISTERED_PAGES.each do |page, options|
+      get 'show', {:path => page.to_s}
+    end
+  end
+  
   test "show action with welcome" do
     page = StaticController::REGISTERED_PAGES.first
     get 'show', {:path => page[0].to_s, :welcome => true}

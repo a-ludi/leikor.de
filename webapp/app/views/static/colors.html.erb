@@ -7,8 +7,9 @@
   #colors div {
     display: block;
     float: left;
-    margin: 1ex;
+    padding: 2ex 0.5em;
     text-align: center;
+    border-bottom: 1px solid <%=p :mid_gray %>;
   }
   
   #colors .color {
@@ -16,15 +17,16 @@
     width: 5em;
     display: inline-block;
     border: 2px solid black;
+    <%=border_radius '1.5em' %>
   }
 </style>
 <div id="colors">
     <% for c in [:dark_red, :mid_red, :light_red, :dark_green, :light_green, :dark_blue, :mid_blue,
         :light_blue, :dark_gray, :darker_gray, :mid_gray, :lighter_gray, :light_gray] %>
       <div>
-          <b><%= c.to_s %></b><br />
-          <%=p c %><br />
-          <div class="color" style="background: <%=p c %>;"></div>
+          <b><%= c.inspect %></b><br />
+          <div class="color" style="background: <%=p c %>;"></div><br />
+          <%=p c %>
       </div>
     <% end %>
 </div>
