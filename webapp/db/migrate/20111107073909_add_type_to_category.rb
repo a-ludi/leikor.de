@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddTypeToCategory < ActiveRecord::Migration
   def self.up
     add_column(:categories, :type, :string)

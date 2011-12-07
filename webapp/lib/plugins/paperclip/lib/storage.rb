@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module Paperclip
   module Storage
 
@@ -75,8 +76,8 @@ module Paperclip
     module Database
       def self.extended base
         base.instance_eval do
-          @file_columns = make_file_columns_from_styles.merge (@options[:file_columns] || {})
-          if @url == base.class.default_options[:url]
+          @file_columns = make_file_columns_from_styles
+          if @url == options.default_url
             @url = "/:class/:attachment/:id?style=:style"
           end
         end
@@ -97,7 +98,7 @@ module Paperclip
       
       def make_file_columns_from_styles
         file_columns = {}
-        @options[:styles].each_key do |style|
+        options.styles.each_key do |style|
           file_columns[style] = "#{@name}_#{style}_file"
         end
         file_columns[default_style] = "#{@name}_file"

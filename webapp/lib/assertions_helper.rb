@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 module AssertionsHelper
   def assert_layout(layout, message=nil)
     clean_backtrace do

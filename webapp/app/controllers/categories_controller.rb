@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CategoriesController < ApplicationController
   before_filter :login_required, :except => [:index, :subindex]
   before_filter :fetch_categories, :only => [:index, :subindex]

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RenameTypeColumnInAppData < ActiveRecord::Migration
   def self.up
     rename_column :app_datas, :type, :data_type

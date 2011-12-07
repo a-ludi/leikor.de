@@ -1,8 +1,9 @@
-include ActionController::Translation
+# -*- encoding : utf-8 -*-
+#include ActionController::Translation
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  protect_from_forgery # :secret => '17d1fe39ecf394810dac8720303d7e9d'
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
   filter_parameter_logging :password
 
   before_filter :fetch_logged_in_user, :fetch_updated_at

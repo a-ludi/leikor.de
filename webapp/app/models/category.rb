@@ -1,4 +1,6 @@
+# -*- encoding : utf-8 -*-
 class Category < ActiveRecord::Base
+  URL_TRANSSCRIPTION = {'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss', '&' => 'und'}
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
   has_many :subcategories, :order => 'ord ASC'
   has_many :articles, :through => :subcategories, :order => 'name ASC'
@@ -13,8 +15,9 @@ class Category < ActiveRecord::Base
   end
   
   def to_param
-    transscription = {'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss', '&' => 'und'}
-    safe_name = name.downcase.gsub(/[äöüß&]/) { |match| transscription[match]}
+    #FIXME encoding stuff
+    safe_name = name.force_encoding('UTF-8').downcase
+    URL_TRANSSCRIPTION.each { |match, replacement| safe_name.gsub! match, replacement }
     safe_name = safe_name.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/(^-+|-+$)/, '')
     "#{id}-#{safe_name}"
   end
@@ -33,5 +36,10 @@ class Category < ActiveRecord::Base
   
   def overview
     articles.find(:all, :limit => 4, :order => 'RANDOM()')
+  end
+
+protected
+  def safe_encode(string)
+    string.force_encoding Encoding.default_internal unless string.valid_encoding?
   end
 end

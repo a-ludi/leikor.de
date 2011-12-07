@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AlterCategoryToSubcategoryInArticles < ActiveRecord::Migration
   def self.up
     rename_column :articles, :category_id, :subcategory_id

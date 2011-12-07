@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AppData < ActiveRecord::Base
   validates_uniqueness_of :name
   validates_inclusion_of :data_type, :in => [String, Fixnum, Float, Time].collect {|c| c.to_s}
