@@ -8,7 +8,7 @@ class Article < ActiveRecord::Base
   has_attached_file(
     :picture,
     :storage => :database,
-    :url => '/artikel/:id/bild/download/:style',
+    :url => '/artikel/:id/bild/download/:style.:extension',
     :default_url => '/images/picture/:style/dummy.png',
     :styles => {
       :original => ['600x600>', :jpg],

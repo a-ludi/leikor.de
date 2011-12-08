@@ -178,7 +178,7 @@ module Paperclip
       end
 
       def queue_existing_for_delete
-        [:original, *@styles.keys].uniq.each do |style|
+        [:original, *options.styles.keys].uniq.each do |style|
           instance_write_file(style, nil)
         end
         instance_write(:file_name, nil)
@@ -199,13 +199,15 @@ module Paperclip
         def self.included(base)
           base.extend(self)
         end
-        def downloads_files_for(model, attachment)
+        def downloads_files_for(model, attachment, options={})
+          attachment_name = options[:file_name] || "#{attachment}_file_name".to_sym
           define_method("#{attachment.to_s.pluralize}") do
             user_id = params[:id] || params[(model.to_s + '_id').to_sym]
             model_record = Object.const_get(model.to_s.camelize.to_sym).find(user_id)
             style = params[:style].to_sym if params[:style]
+            attachment_name = model_record.send(attachment_name) if attachment_name.is_a? Symbol
             send_data model_record.send(attachment).file_contents(style),
-                      :filename => model_record.send("#{attachment}_file_name".to_sym),
+                      :filename => attachment_name,
                       :type => model_record.send("#{attachment}_content_type".to_sym)
           end
         end

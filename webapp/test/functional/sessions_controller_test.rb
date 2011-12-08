@@ -7,18 +7,18 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   test "new action" do
-    get 'new'
+    get 'new', :referer => '/from_here_on'
     
     assert_respond_to assigns(:stylesheets), :each
     assert_non_empty_kind_of String, assigns(:title)
-    assert_equal '/', flash[:referer]
+    assert_equal '/from_here_on', assigns(:referer)
   end
   
   test "new action with http referer" do
     with_referer
     get 'new'
     
-    assert_equal @referer, flash[:referer]
+    assert_equal @referer, assigns(:referer)
   end
   
   test "create action with valid login" do
@@ -32,9 +32,9 @@ class SessionsControllerTest < ActionController::TestCase
   test "create action with invalid login" do
     create_with_invalid_login
     
-    assert_equal '/from_here_on', flash[:referer]
+    assert_equal '/from_here_on', assigns(:referer)
     assert flash[:wrong_login_or_password]
-    assert_equal @user.login, flash[:login]
+    assert_equal @user.login, assigns(:login)
     assert_redirected_to new_session_path
   end
   
@@ -61,12 +61,12 @@ class SessionsControllerTest < ActionController::TestCase
 private
   def create_with_valid_login
     @user = users(:john)
-    post 'create', {:login => @user.login, :password => 'sekret'}, {}, {:referer => '/from_here_on'}
+    post 'create', :login => @user.login, :password => 'sekret', :referer => '/from_here_on'
   end
 
   def create_with_invalid_login
     @user = users(:john)
-    post 'create', {:login => @user.login, :password => 'wrong'}, {}, {:referer => '/from_here_on'}
+    post 'create', :login => @user.login, :password => 'wrong', :referer => '/from_here_on'
   end
   
   def on_logout(options={})

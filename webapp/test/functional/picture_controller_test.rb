@@ -70,7 +70,7 @@ class PictureControllerTest < ActionController::TestCase
     put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
     
     assert_equal @article, assigns(:article)
-    assert assigns(:article).picture.valid?
+    assert_no_errors_on assigns(:article), :on => :picture
     assert_equal 'image/jpg', assigns(:article).picture.content_type
     assert_not_empty flash[:message]
   end
@@ -80,7 +80,7 @@ class PictureControllerTest < ActionController::TestCase
     picture = fixture_file_upload 'pictures/png', 'image/png', :binary
     put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
     
-    assert assigns(:article).picture.valid?
+    assert_no_errors_on assigns(:article), :on => :picture
     assert_equal 'image/png', assigns(:article).picture.content_type
   end
   
@@ -89,7 +89,6 @@ class PictureControllerTest < ActionController::TestCase
     picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
     put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
     
-    assert ! assigns(:article).picture.valid?
     assert_errors_on assigns(:article), :on => :picture
   end
   

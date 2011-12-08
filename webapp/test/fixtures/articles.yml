@@ -1,5 +1,3 @@
-# -*- encoding: utf-8 -*-
-
 one:
   name: Amsel
   description: desc
@@ -22,14 +20,14 @@ three:
   subcategory: sub1
 
 four:
-  name: Entenerpel
+  name: Möwe
   description: desc
   price: 1.0
   article_number: 12345.4
   subcategory: sub1
 
 five:
-  name: Möwe
+  name: Entenerpel
   description: desc
   price: 1.0
   article_number: 12345.5

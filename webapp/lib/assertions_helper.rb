@@ -25,6 +25,17 @@ module AssertionsHelper
     end
   end
   
+  def assert_no_errors_on(obj, options={})
+    if options[:on].is_a? Symbol
+      options[:message] = "expected no errors on <#{obj}.#{options[:on]}>" unless options[:message]
+      obj.valid?
+      assert ! obj.errors.on(options[:on]), options[:message]
+    else
+      options[:message] = "expected no errors on <#{obj}>" unless options[:message]
+      assert obj.valid?, options[:message]
+    end
+  end
+  
   def assert_creates_record_from(record_class, options={})
     message = "record of class #{record_class} could not be generated from #{options.inspect}"
     assert record_class.create(options).save, message
@@ -57,7 +68,7 @@ module AssertionsHelper
   end
   
   def assert_not_empty(collection, options={})
-    options[:message] = "collection is empty" unless options[:message].blank?
+    options[:message] = "collection is empty" if options[:message].blank?
     assert ! collection.empty?, options[:message]
   end
   
