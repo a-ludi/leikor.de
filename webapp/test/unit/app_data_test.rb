@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 require 'test_helper'
 
-class AppDatatest < ActiveSupport::TestCase
+class AppDataTest < ActiveSupport::TestCase
   test "record invalid with non-unique name" do
     app_datas(:string).name = app_datas(:fixnum).name
     assert_errors_on app_datas(:string), :on => :name

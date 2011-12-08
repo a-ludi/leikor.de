@@ -1,4 +1,4 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+# -*- encoding: utf-8 -*-
 
 one:
   name: Amsel
@@ -29,7 +29,7 @@ four:
   subcategory: sub1
 
 five:
-  name: Dorade
+  name: Möwe
   description: desc
   price: 1.0
   article_number: 12345.5
