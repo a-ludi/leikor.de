@@ -17,9 +17,9 @@
       <% @fair_dates.each_index do |i| %>
         <% fair_date = @fair_dates[i] %>
         <tr class="<%= positional_class (i+1), @fair_dates.count %>">
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date from first' %>"><%=l fair_date.from, :format => :short %></td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'date from first' %>"><%=l fair_date.from_date, :format => :short %></td>
           <td class="<%= positional_class (i+1), @fair_dates.count, 'dash' %>">&nbsp;-&nbsp;</td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date to' %>"><%=l fair_date.to, :format => :short_with_year %></td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'date to' %>"><%=l fair_date.to_date, :format => :short_with_year %></td>
           <td class="<%= positional_class (i+1), @fair_dates.count, 'fair' %>">
             <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
           </td>
