@@ -31,7 +31,7 @@
         <!--a>News</a-->
         <%= link_to 'Sortiment', :categories, :class => 'first' %>
         <!--a>Angebote</a-->
-        <%= static_link_to :messetermine %>
+        <%= link_to 'Messetermine', fair_dates_path %>
         <%= static_link_to :ueber_uns %>
         <%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %>
       </div>

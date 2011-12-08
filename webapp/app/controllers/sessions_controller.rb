@@ -21,7 +21,8 @@ class SessionsController < ApplicationController
     else
       flash[:wrong_login_or_password] = true
       @login = params[:login]
-      redirect_to new_session_path(:referer => params[:referer])
+      @referer = params[:referer]
+      redirect_to new_session_path
     end
   end
 

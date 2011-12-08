@@ -1,11 +1,29 @@
 # -*- encoding : utf-8 -*-
-# Methods added to this helper will be available to all templates in the application.
+
 module ApplicationHelper
-  def positional_class(item, collection, user_class='')
+  def positional_class(*args)
+    if args[0].is_a? Fixnum and args[1].is_a? Fixnum
+      index_based_positional_class *args
+    elsif args[1].respond_to? :first and args[1].respond_to? :last
+      collection_based_positional_class *args
+    else
+      raise ArgumentError, 'positional_class: invalid params <#{args.inspect}>'
+    end
+  end
+  
+  def collection_based_positional_class(item, collection, user_class='')
     user_class += ' first' if item == collection.first
     user_class += ' last' if item == collection.last
     
     return user_class
+  end
+  
+  def index_based_positional_class(index, length, user_class='')
+    user_class += ' first' if index == 0
+    user_class += ' last' if index == length - 1
+    user_class += index % 2 == 0 ? ' even' : ' odd'
+    
+    user_class
   end
   
   def make_if_error_messages_for(record)

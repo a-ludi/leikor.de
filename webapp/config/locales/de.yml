@@ -8,6 +8,7 @@ de:
     formats:
       default: "%d.%m.%Y"
       short: "%e. %b"
+      short_with_year: "%e. %b %Y"
       long: "%e. %B %Y"
       only_day: "%e"
 

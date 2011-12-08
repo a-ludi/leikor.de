@@ -6,8 +6,7 @@ class StaticController < ApplicationController
     :ueber_uns => {:name => 'Über uns', :stylesheets => ['static']},
     :kontakt => {:name => 'Kontakt', :stylesheets => ['message', 'static/kontakt']},
     :impressum => {:name => 'Impressum', :stylesheets => ['message', 'static', 'static/kontakt']},
-    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']},
-    :messetermine => {:name => 'Messetermine', :stylesheets => ['static', 'static/messetermine']},
+    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']}
   }
   REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => ['static']} if RAILS_ENV == 'development'
   
