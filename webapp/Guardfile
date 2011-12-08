@@ -1,9 +1,21 @@
 require 'active_support/inflector'
 
 guard 'minitest' do
-  # with Minitest::Unit
+  # tests
   watch(%r|^test/(.*)_test\.rb|)
+  
+  # fixtures
   watch(%r|^test/fixtures/(.*).yml|) {|m| "test/unit/#{m[1].singularize}_test.rb"}
-  #watch(%r|^lib/([^/]*)_helper\.rb|)     { |m| "test/#{m[1]}test_#{m[2]}.rb" }
+  
+  # test_helper.rb
   watch(%r|^test/test_helper\.rb|)    { "test" }
+  
+  # models
+  watch(%r|^app/models/(.*).rb|) {|m| "test/unit/#{m[1]}_test.rb"}
+  
+  # controllers
+  watch(%r|^app/controllers/(.*).rb|) {|m| "test/functional/#{m[1]}_test.rb"}
+  
+  # helpers
+  watch(%r|^app/helpers/(.*)_helper.rb|) {|m| "test/functional/#{m[1]}_controller_test.rb"}
 end
