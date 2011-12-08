@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111208163316) do
+ActiveRecord::Schema.define(:version => 20111208231238) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -29,8 +29,6 @@ ActiveRecord::Schema.define(:version => 20111208163316) do
     t.datetime "updated_at"
     t.string   "picture_file_name"
     t.string   "picture_content_type"
-    t.integer  "picture_file_size"
-    t.datetime "picture_updated_at"
     t.binary   "picture_file"
     t.binary   "picture_thumb_file"
     t.binary   "picture_medium_file"
@@ -46,8 +44,8 @@ ActiveRecord::Schema.define(:version => 20111208163316) do
   end
 
   create_table "fair_dates", :force => true do |t|
-    t.date     "from"
-    t.date     "to"
+    t.date     "from_date"
+    t.date     "to_date"
     t.string   "name"
     t.string   "homepage"
     t.string   "stand"
