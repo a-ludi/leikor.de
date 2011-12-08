@@ -1,0 +1,32 @@
+<h1>Messetermine</h1>
+<p>
+  Nachfolgend alle Messen, auf denen wir zu finden sind, mit allen wichtigen Infos aufgelistet. Wir
+  freuen uns, Sie an unserem Stand begrüßen zu dürfen!
+</p>
+<div class="infobox">
+  <table id="fair_dates">
+    <thead>
+      <tr class="first odd">
+        <th class="date first odd" colspan="3">Termin</th>
+        <th class="fair even">Messe</th>
+        <th class="stand odd">Stand</th>
+        <th class="comment last even">Kommentar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fair_dates.each_index do |i| %>
+        <% fair_date = @fair_dates[i] %>
+        <tr class="<%= positional_class (i+1), @fair_dates.count %>">
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'date from first' %>"><%=l fair_date.from, :format => :short %></td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'dash' %>">&nbsp;-&nbsp;</td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'date to' %>"><%=l fair_date.to, :format => :short_with_year %></td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'fair' %>">
+            <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
+          </td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'stand' %>"><%= fair_date.stand || '<span class="not_present">Noch unbekannt</span>' %></td>
+          <td class="<%= positional_class (i+1), @fair_dates.count, 'comment last' %>"><%= fair_date.comment || '<span class="not_present">Kein Kommentar</span>' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

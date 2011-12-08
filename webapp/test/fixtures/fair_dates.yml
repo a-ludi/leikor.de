@@ -1,0 +1,15 @@
+one:
+  from: 2012-01-15
+  to: 2012-01-18
+  name: Dekor-Messe
+  homepage: 'http://www.example.com/'
+  stand: Halle 5, Block A, Abschnitt 3
+  comment: Unsere Dekor-Artikel werden im Vordergrund stehen.
+
+two:
+  from: 2012-01-28
+  to: 2012-01-28
+  name: Imätschineyschon
+  homepage: 'http://www.example.com/'
+  stand: 23C, Halle 5
+  comment: Passend zum Motto der Messe zeigen wir unser ausgefallenes Sortiment.
