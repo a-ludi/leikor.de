@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def new
     @stylesheets = ['message', 'sessions']
     @title = 'Anmeldung'
-    @login = session[:login]
+    @login = session[:login] || params[:login]
     @referer = params[:referer] || request.referer
   end
 
@@ -20,9 +20,7 @@ class SessionsController < ApplicationController
       redirect_to (params[:referer] || '/')
     else
       flash[:wrong_login_or_password] = true
-      @login = params[:login]
-      @referer = params[:referer]
-      redirect_to new_session_path
+      redirect_to new_session_path(:referer => params[:referer], :login => params[:login])
     end
   end
 
