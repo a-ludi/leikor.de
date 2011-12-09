@@ -1,22 +1,22 @@
 <tr class="<%= pos_class %>">
-  <td class="<%= pos_class + 'date from first' %>">
+  <td class="<%= 'date from first' + pos_class %>">
     <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
   </td>
-  <td class="<%= pos_class + 'dash' %>">&nbsp;-&nbsp;</td>
-  <td class="<%= pos_class + 'date to' %>">
+  <td class="<%= 'dash' + pos_class %>">&nbsp;-&nbsp;</td>
+  <td class="<%= 'date to' + pos_class %>">
     <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
   </td>
-  <td class="<%= pos_class + 'fair' %>">
+  <td class="<%= 'fair' + pos_class %>">
     <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
   </td>
-  <td class="<%= pos_class + 'stand' %>">
+  <td class="<%= 'stand' + pos_class %>">
     <% if fair_date.stand? %>
       <%= fair_date.stand %>
     <% else %>
       <span class="not_present">Noch unbekannt</span>
     <% end %>
   </td>
-  <td class="<%= pos_class + 'comment ' + unless_su('last') %>">
+  <td class="<%= 'comment ' + pos_class + unless_su(' last') %>">
     <% if fair_date.comment? %>
       <%= fair_date.comment %>
     <% else %>
@@ -24,12 +24,13 @@
     <% end %>
   </td>
   <% if superuser_logged_in? %>
-    <td class="<%= pos_class + 'last administration' %>">
+    <td class="<%= 'last administration' + pos_class %>">
       <%= link_to(
         image_tag('pictogram/small/edit.png'),
         edit_fair_date_path(fair_date),
         :class => 'toolbutton',
-        :title => "Messetermin bearbeiten") %>
+        :title => "Messetermin bearbeiten",
+        :onclick => open_popup) %>
       <%= link_to(
         image_tag('pictogram/small/destroy.png'),
         fair_date_path(fair_date),

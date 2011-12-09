@@ -1,5 +1,6 @@
 <div id="message_window">
   <% form_for @fair_date do |f| %>
+    <%= hidden_field_tag 'popup', @popup %>
     <h1>Messetermin bearbeiten</h1>
     <div class="message error">
       <%= make_if_error_messages_for @fair_date %>
@@ -10,14 +11,22 @@
         <%= f.text_field :name, :size => 30 %>
       </p>
       <p style="text-align: left;">
+        <%= f.label :stand %>:<br />
+        <%= f.text_field :stand, :size => 30 %>
+      </p>
+      <p style="text-align: left;">
         <%= f.label :from_date, 'Zeitraum:' %><br />
-        <%= f.text_field :from_date, :size => 10 %>
-        bis
-        <%= f.text_field :to_date, :size => 10 %>
+        <%= f.text_field :from_date, :value => l(@fair_date.from_date), :size => 10 %>
+        <%= f.label :to_date, 'bis' %>
+        <%= f.text_field :to_date, :value => l(@fair_date.from_date), :size => 10 %>
+      </p>
+      <p style="text-align: left;">
+        <%= f.label :homepage %>:<br />
+        <%= f.text_field :homepage, :size => 30 %>
       </p>
       <p style="text-align: left;">
         <th colspan="2"><%= f.label :comment %>:<br />
-        <td colspan="2"><%= f.text_area :comment, :cols => 30, :rows => 10 %>
+        <td colspan="2"><%= f.text_area :comment, :cols => 30, :rows => 5 %>
       </p>
     </div>
     <div class="response">

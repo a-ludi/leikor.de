@@ -38,4 +38,8 @@ module ApplicationHelper
   def set_focus_to(id)
     javascript_tag "$('#{id}').focus()"
   end
+  
+  def open_popup
+    'openPopup(this.href); return false'
+  end
 end
