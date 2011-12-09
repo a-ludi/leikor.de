@@ -14,7 +14,7 @@
           <%= link_to(
             image_tag(article.picture.url(:thumb)),
             edit_article_picture_path(article.id),
-            :onclick => "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && openPopup(this.href); return false",
+            :onclick => "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && #{open_popup}",
             :title => 'Klicken um das Bild zu bearbeiten.'
           ) %>
         <% else %>
@@ -28,7 +28,6 @@
         <% else %>
           <%= button_to_remote 'Abbrechen', :url => new_article_path(:html_id => article.html_id, :cancel => true), :method => :get %>
         <% end %>
-        <input type="reset" value="Zurücksetzen!">
         <%= submit_tag 'Speichern!' %>
       </div>
       <%= f.text_area :description, :cols => 500, :rows => 6, :class => 'description' %>

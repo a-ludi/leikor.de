@@ -179,13 +179,13 @@ a.toolbutton:hover img {
   text-align: left;
   color: <%=p :mid_red %>;
 }
-#content .edit .fieldWithErrors {
+#content .fieldWithErrors {
   display: inline;
   padding: 0ex;
   margin: 0ex;
   border: 0ex;
 }
-#content .edit .fieldWithErrors * {
+#content .fieldWithErrors * {
   background: <%=p :light_red %>;
 }
 
