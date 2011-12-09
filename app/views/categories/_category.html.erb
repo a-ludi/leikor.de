@@ -11,7 +11,7 @@
         image_tag('pictogram/small/edit.png'),
         :url => edit_category_path(category.id),
         :method => :get,
-        :html => {:class => 'toolbutton', :title => "Titel der #{category.class.human_name} bearbeiten."}
+        :html => {:class => 'toolbutton', :title => "Titel von #{category.class.human_name} bearbeiten."}
       ) %>
       <%= link_to(
         image_tag('pictogram/small/destroy.png'),
