@@ -18,15 +18,9 @@
     </thead>
     <tbody>
       <% @fair_dates.each_index do |i| %>
-        <%if i != 0%>
-          <%= render :partial => 'fair_date', :locals => {
-            :fair_date => @fair_dates[i],
-            :pos_class => positional_class(i + 1, num_rows)} %>
-        <%else%>
-          <%= render :partial => 'form', :locals => {
-            :fair_date => @fair_dates[i],
-            :pos_class => positional_class(i + 1, num_rows)} %>
-        <%end%>
+        <%= render :partial => 'fair_date', :locals => {
+          :fair_date => @fair_dates[i],
+          :pos_class => positional_class(i + 1, num_rows)} %>
       <% end %>
     </tbody>
     <% if superuser_logged_in? %>

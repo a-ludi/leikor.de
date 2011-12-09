@@ -4,4 +4,10 @@ class FairDatesController < ApplicationController
     @stylesheets = ['static', 'fair_dates/index']
     @title = 'Messetermine'
   end
+  
+  def edit
+    @fair_date = FairDate.find params[:id]
+    @stylesheets = ['message']
+    @title = 'Messetermin bearbeiten'
+  end
 end

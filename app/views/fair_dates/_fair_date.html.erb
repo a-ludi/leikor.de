@@ -25,16 +25,17 @@
   </td>
   <% if superuser_logged_in? %>
     <td class="<%= pos_class + 'last administration' %>">
-      <%= link_to_remote(
+      <%= link_to(
         image_tag('pictogram/small/edit.png'),
-        :url => edit_fair_date_path(fair_date),
-        :method => :get,
-        :html => {:class => 'toolbutton', :title => "Messetermin bearbeiten"}) %>
-      <%= link_to_remote(
+        edit_fair_date_path(fair_date),
+        :class => 'toolbutton',
+        :title => "Messetermin bearbeiten") %>
+      <%= link_to(
         image_tag('pictogram/small/destroy.png'),
-        :url => fair_date_path(fair_date),
+        fair_date_path(fair_date),
         :method => :delete,
-        :html => {:class => 'toolbutton', :title => "Messetermin löschen"}) %>
+        :class => 'toolbutton',
+        :title => "Messetermin löschen") %>
     </td>
   <% end %>
 </tr>

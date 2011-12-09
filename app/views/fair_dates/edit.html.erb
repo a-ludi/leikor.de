@@ -1,0 +1,19 @@
+<div id="message_window">
+  <% form_for @fair_date do %>
+    <h1>Anmelden</h1>
+    <div class="message error">
+      <%= make_if_error_messages_for @fair_date %>
+    </div>
+    <div class="message">
+      <p>
+        <%= f.label :from_date %>
+        <%= f.text_field :from_date %>
+      </p>
+    </div>
+    <div class="response">
+      <%= submit_tag 'Speichern!' %>
+    </div>
+  <% end %>
+  <%= set_focus_to (@login ? :password : :login) %>
+</div>
+
