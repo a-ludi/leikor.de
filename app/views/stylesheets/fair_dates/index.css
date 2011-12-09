@@ -13,6 +13,8 @@
   padding-bottom: 0.3ex;
   padding-top: 0.3ex;
 }
+#fair_dates th a { color: <%=p :white %> }
+
 #fair_dates tr.odd td { background: <%=p :light_gray %>; }
 #fair_dates tr.even td { background: <%=p :white %>; }
 #fair_dates tr.odd th { background: <%=p :dark_blue %>; color: <%=p :white %>; }
@@ -52,3 +54,8 @@
 
 #fair_dates td .not_present { font-style: italic; color: <%=p :darker_gray %>; }
 
+#new_fair_date td, #new_fair_date th { text-align: right; }
+#new_fair_date a {
+  font-weight: bold;
+  text-decoration: none;
+}

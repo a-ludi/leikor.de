@@ -1,3 +1,7 @@
+<%
+  last_unless_su = superuser_logged_in? ? '' : 'last'
+  num_rows = superuser_logged_in? ? @fair_dates.count + 2 : @fair_dates.count + 1
+%>
 <h1>Messetermine</h1>
 <p>
   Nachfolgend alle Messen, auf denen wir zu finden sind, mit allen wichtigen Infos aufgelistet. Wir
@@ -10,23 +14,68 @@
         <th class="date first odd" colspan="3">Termin</th>
         <th class="fair even">Messe</th>
         <th class="stand odd">Stand</th>
-        <th class="comment last even">Kommentar</th>
+        <th class="comment <%=last_unless_su %> even">Kommentar</th>
+        <% if superuser_logged_in? %>
+          <th class="administration last odd">Verwaltung</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @fair_dates.each_index do |i| %>
         <% fair_date = @fair_dates[i] %>
-        <tr class="<%= positional_class (i+1), @fair_dates.count %>">
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date from first' %>"><%=l fair_date.from_date, :format => :short %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'dash' %>">&nbsp;-&nbsp;</td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date to' %>"><%=l fair_date.to_date, :format => :short_with_year %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'fair' %>">
+        <tr class="<%= positional_class (i+1), num_rows %>">
+          <td class="<%= positional_class (i+1), num_rows, 'date from first' %>">
+            <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
+          </td>
+          <td class="<%= positional_class (i+1), num_rows, 'dash' %>">&nbsp;-&nbsp;</td>
+          <td class="<%= positional_class (i+1), num_rows, 'date to' %>">
+            <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
+          </td>
+          <td class="<%= positional_class (i+1), num_rows, 'fair' %>">
             <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
           </td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'stand' %>"><%= fair_date.stand || '<span class="not_present">Noch unbekannt</span>' %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'comment last' %>"><%= fair_date.comment || '<span class="not_present">Kein Kommentar</span>' %></td>
+          <td class="<%= positional_class (i+1), num_rows, 'stand' %>">
+            <% if fair_date.stand? %>
+              <%= fair_date.stand %>
+            <% else %>
+              <span class="not_present">Noch unbekannt</span>
+            <% end %>
+          </td>
+          <td class="<%= positional_class (i+1), num_rows, 'comment ' + last_unless_su %>">
+            <% if fair_date.comment? %>
+              <%= fair_date.comment %>
+            <% else %>
+              <span class="not_present">Kein Kommentar</span>
+            <% end %>
+          </td>
+          <% if superuser_logged_in? %>
+            <td class="<%= positional_class (i+1), num_rows, 'last administration' %>">
+              <%= link_to_remote(
+                image_tag('pictogram/small/edit.png'),
+                :url => edit_fair_date_path(fair_date),
+                :method => :get,
+                :html => {:class => 'toolbutton', :title => "Messetermin bearbeiten"}) %>
+              <%= link_to_remote(
+                image_tag('pictogram/small/destroy.png'),
+                :url => fair_date_path(fair_date),
+                :method => :delete,
+                :html => {:class => 'toolbutton', :title => "Messetermin löschen"}) %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
+    <% if superuser_logged_in? %>
+      <tfoot>
+        <tr id="new_fair_date" class="<%= positional_class num_rows-1, num_rows %>">
+          <th class="first last" colspan="7">
+            <%= link_to_remote(
+              'Neuen Messetermin erstellen',
+              :url => new_fair_date_path,
+              :method => :get) %>
+          </th>
+        </tr>
+      </tfoot>
+    <% end %>
   </table>
 </div>
