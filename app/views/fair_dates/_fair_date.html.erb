@@ -1,0 +1,41 @@
+<tr class="<%= pos_class %>">
+  <td class="<%= pos_class + 'date from first' %>">
+    <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
+  </td>
+  <td class="<%= pos_class + 'dash' %>">&nbsp;-&nbsp;</td>
+  <td class="<%= pos_class + 'date to' %>">
+    <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
+  </td>
+  <td class="<%= pos_class + 'fair' %>">
+    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
+  </td>
+  <td class="<%= pos_class + 'stand' %>">
+    <% if fair_date.stand? %>
+      <%= fair_date.stand %>
+    <% else %>
+      <span class="not_present">Noch unbekannt</span>
+    <% end %>
+  </td>
+  <td class="<%= pos_class + 'comment ' + unless_su('last') %>">
+    <% if fair_date.comment? %>
+      <%= fair_date.comment %>
+    <% else %>
+      <span class="not_present">Kein Kommentar</span>
+    <% end %>
+  </td>
+  <% if superuser_logged_in? %>
+    <td class="<%= pos_class + 'last administration' %>">
+      <%= link_to_remote(
+        image_tag('pictogram/small/edit.png'),
+        :url => edit_fair_date_path(fair_date),
+        :method => :get,
+        :html => {:class => 'toolbutton', :title => "Messetermin bearbeiten"}) %>
+      <%= link_to_remote(
+        image_tag('pictogram/small/destroy.png'),
+        :url => fair_date_path(fair_date),
+        :method => :delete,
+        :html => {:class => 'toolbutton', :title => "Messetermin löschen"}) %>
+    </td>
+  <% end %>
+</tr>
+
