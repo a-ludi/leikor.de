@@ -23,9 +23,8 @@ class FairDatesController < ApplicationController
   def create
     @fair_date = FairDate.create params[:fair_date]
     @stylesheets = ['message']
-    @title = 'Neuer Messetermin'
     flash[:message] = {
-      :title => 'Neuer Messetermin gespeichert',
+      :title => 'Messetermin gespeichert',
       :text => "Der neue Messetermin „#{@fair_date.name}“ wurde erfolgreich gespeichert"}
     
     try_save_and_render_response
@@ -44,7 +43,7 @@ class FairDatesController < ApplicationController
     @fair_date = FairDate.find params[:id]
     @fair_date.update_attributes params[:fair_date]
     flash[:message] = {
-      :title => 'Änderungen am Messetermin gespeichert',
+      :title => 'Messetermin gespeichert',
       :text => "Änderungen an „#{@fair_date.name}“ wurden erfolgreich gespeichert"}
     
     try_save_and_render_response

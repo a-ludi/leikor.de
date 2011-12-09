@@ -26,6 +26,8 @@ label {
   font-variant: small-caps;
 }
 
+textarea { font-family: 'Sans', sans-serif; font-size: small; }
+
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
 
@@ -119,7 +121,6 @@ th {
 #top_navigation a:hover, #top_navigation a:focus { background: <%=p :mid_red %>; color: <%=p :white %>; }
 
 #body {
-  overflow: hidden;
   background: <%=p :light_gray %>;
   padding: 0ex;
   border: 1px solid <%=p :mid_gray %>;

@@ -35,6 +35,7 @@
         image_tag('pictogram/small/destroy.png'),
         fair_date_path(fair_date),
         :method => :delete,
+        :confirm => "Soll der Messetermin „#{fair_date.name}“ wirklich gelöscht werden?",
         :class => 'toolbutton',
         :title => "Messetermin löschen") %>
     </td>

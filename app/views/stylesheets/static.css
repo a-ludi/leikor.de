@@ -25,7 +25,6 @@
 
 #body .infobox {
   display: block;
-  overflow: hidden;
   background: <%=p :white %>;
   padding: 1.5ex 1.2em;
   border: 1px solid #ccc;

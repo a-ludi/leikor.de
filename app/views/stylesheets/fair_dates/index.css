@@ -52,6 +52,8 @@
   padding-left: 0em;
 }
 
+#fair_dates td.administration { text-align: center; }
+
 #fair_dates td .not_present { font-style: italic; color: <%=p :darker_gray %>; }
 
 #new_fair_date td, #new_fair_date th { text-align: right; }
