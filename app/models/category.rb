@@ -15,8 +15,7 @@ class Category < ActiveRecord::Base
   end
   
   def to_param
-    #FIXME encoding stuff
-    safe_name = name.force_encoding('UTF-8').downcase
+    safe_name = name.downcase
     URL_TRANSSCRIPTION.each { |match, replacement| safe_name.gsub! match, replacement }
     safe_name = safe_name.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/(^-+|-+$)/, '')
     "#{id}-#{safe_name}"
