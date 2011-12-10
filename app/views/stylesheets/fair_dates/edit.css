@@ -1,0 +1,5 @@
+p { text-align: left; }
+input, textarea { width: 100%; }
+input.date { width: 10em; }
+input[type=button], input[type=submit], input.button { width: auto; }
+#body div.fieldWithErrors { display: block; text-align: left; }

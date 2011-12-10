@@ -177,17 +177,17 @@ a.toolbutton:hover img {
   margin-top: -30px;
 }
 
-#content .message.error {
+#body .error.message {
   text-align: left;
   color: <%=p :mid_red %>;
 }
-#content .fieldWithErrors {
+#body .fieldWithErrors {
   display: inline;
   padding: 0ex;
   margin: 0ex;
   border: 0ex;
 }
-#content .fieldWithErrors * {
+#body .fieldWithErrors * {
   background: <%=p :light_red %>;
 }
 

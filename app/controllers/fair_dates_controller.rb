@@ -13,7 +13,7 @@ class FairDatesController < ApplicationController
       fd.from_date = Date.today
       fd.to_date = Date.today >> 1
     end
-    @stylesheets = ['message']
+    @stylesheets = ['message', 'fair_dates/edit']
     @title = 'Neuer Messetermin'
     @popup = params[:popup]
     
@@ -32,7 +32,7 @@ class FairDatesController < ApplicationController
   
   def edit
     @fair_date = FairDate.find params[:id]
-    @stylesheets = ['message']
+    @stylesheets = ['message', 'fair_dates/edit']
     @title = 'Messetermin bearbeiten'
     @popup = params[:popup]
     
@@ -57,15 +57,17 @@ private
   
   def try_save_and_render_response(options={})
     @stylesheets = ['message']
-    @popup = params[:fair_date][:popup]
+    @popup = params[:popup]
     if @fair_date.save
       @title ||= flash[:message][:title]
       if @popup
         render :action => 'success', :layout => 'popup'
       else
-        redirect_to fair_dates_url
+        render :text => params.inspect
+        #redirect_to fair_dates_url
       end
     else
+      @stylesheets << 'fair_dates/edit'
       render :action => 'edit', :layout => @popup ? 'popup' : true
     end
   end

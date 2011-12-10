@@ -10,7 +10,6 @@
     </div>
     <div class="body">
       <div class="administration">
-        <%= make_if_error_messages_for article  %>
         <% unless article.new_record? %>
           <%= button_to_remote 'Abbrechen', :url => edit_article_path(article, :cancel => true), :method => :get %>
         <% else %>
@@ -18,6 +17,7 @@
         <% end %>
         <%= submit_tag 'Speichern!' %>
       </div>
+      <%= make_if_error_messages_for article  %>
       <%= f.text_area :description, :cols => 40, :rows => 6, :class => 'description' %>
       <div class="image">
         <% unless article.new_record? %>

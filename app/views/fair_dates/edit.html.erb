@@ -2,36 +2,34 @@
   <% form_for @fair_date do |f| %>
     <%= hidden_field_tag 'popup', @popup %>
     <h1>Messetermin bearbeiten</h1>
-    <div class="message error">
-      <%= make_if_error_messages_for @fair_date %>
-    </div>
+    <%= make_if_error_messages_for @fair_date %>
     <div class="message">
-      <p style="text-align: left;">
-        <%= f.label :name %>:<br />
+      <p>
+        <%= f.label :name %><br />
         <%= f.text_field :name, :size => 30 %>
       </p>
-      <p style="text-align: left;">
-        <%= f.label :stand %>:<br />
+      <p>
+        <%= f.label :stand %><br />
         <%= f.text_field :stand, :size => 30 %>
       </p>
-      <p style="text-align: left;">
+      <p>
         <%= f.label :from_date, 'Zeitraum:' %><br />
-        <%= f.text_field :from_date, :value => l(@fair_date.from_date), :size => 10 %>
+        <%= f.text_field :from_date, :value => l(@fair_date.from_date), :size => 10, :class => 'date' %>
         <%= f.label :to_date, 'bis' %>
-        <%= f.text_field :to_date, :value => l(@fair_date.from_date), :size => 10 %>
+        <%= f.text_field :to_date, :value => l(@fair_date.from_date), :size => 10, :class => 'date' %>
       </p>
-      <p style="text-align: left;">
-        <%= f.label :homepage %>:<br />
+      <p>
+        <%= f.label :homepage %><br />
         <%= f.text_field :homepage, :size => 30 %>
       </p>
-      <p style="text-align: left;">
-        <th colspan="2"><%= f.label :comment %>:<br />
+      <p>
+        <th colspan="2"><%= f.label :comment %><br />
         <td colspan="2"><%= f.text_area :comment, :cols => 30, :rows => 5 %>
       </p>
     </div>
     <div class="response">
-      <%= a_button_to 'Abbrechen.', fair_dates_path, :onclick => 'closeAfter(0); return false' %>
-      <%= submit_tag 'Speichern!' %>
+      <%= a_button_to 'Abbrechen.', fair_dates_path, :onclick => 'closeAfter(0); return false', :class => 'button' %>
+      <%= submit_tag 'Speichern!', :class => 'button' %>
     </div>
   <% end %>
   <%= set_focus_to :fair_date_name %>

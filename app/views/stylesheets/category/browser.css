@@ -60,12 +60,6 @@
   padding: 0ex 1em;
   margin: 0ex;
 }
-#content .message ul {
-  list-style-type: none;
-}
-#content .message ul li {
-  padding: 1ex 0em;
-}
 
 #content .administration a { color: <%=p :dark_blue %>; }
 #content .administration a:hover, #content .administration a:focus {
