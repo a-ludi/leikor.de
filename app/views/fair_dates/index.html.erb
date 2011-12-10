@@ -10,23 +10,27 @@
         <th class="date first odd" colspan="3">Termin</th>
         <th class="fair even">Messe</th>
         <th class="stand odd">Stand</th>
-        <th class="comment last even">Kommentar</th>
+        <th class="<%= 'comment even ' + unless_su('last') %>">Kommentar</th>
+        <% if superuser_logged_in? %>
+          <th class="administration last odd">Verwaltung</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @fair_dates.each_index do |i| %>
-        <% fair_date = @fair_dates[i] %>
-        <tr class="<%= positional_class (i+1), @fair_dates.count %>">
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date from first' %>"><%=l fair_date.from_date, :format => :short %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'dash' %>">&nbsp;-&nbsp;</td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'date to' %>"><%=l fair_date.to_date, :format => :short_with_year %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'fair' %>">
-            <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
-          </td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'stand' %>"><%= fair_date.stand || '<span class="not_present">Noch unbekannt</span>' %></td>
-          <td class="<%= positional_class (i+1), @fair_dates.count, 'comment last' %>"><%= fair_date.comment || '<span class="not_present">Kein Kommentar</span>' %></td>
-        </tr>
+        <%= render :partial => 'fair_date', :locals => {
+          :fair_date => @fair_dates[i],
+          :pos_class => positional_class(i + 1, num_rows)} %>
       <% end %>
     </tbody>
+    <% if superuser_logged_in? %>
+      <tfoot>
+        <tr id="new_fair_date" class="<%= positional_class num_rows-1, num_rows %>">
+          <th class="first last" colspan="7">
+            <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
+          </th>
+        </tr>
+      </tfoot>
+    <% end %>
   </table>
 </div>

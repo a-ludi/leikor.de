@@ -3,7 +3,7 @@ function openPopup (href) {
     href += '?popup=1';
   else
     href += '&popup=1';
-  popup = window.open(href, "_popup", "width=500,height=400,dependent=yes,location=no,menubar=no,toolbar=no");
+  popup = window.open(href, "_popup", "width=500,height=400,dependent=yes,location=no,menubar=no,toolbar=no,scrollbars=yes");
   popup.focus();
 }
 

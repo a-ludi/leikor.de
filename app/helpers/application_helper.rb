@@ -1,6 +1,12 @@
 # -*- encoding : utf-8 -*-
 
 module ApplicationHelper
+  def a_button_to(label, href, html_options={})
+    attributes = []
+    html_options.each{|key, value| attributes << "#{key}=\"#{value}\""}
+    "<a href=\"#{href}\" #{attributes.join ' '}><input type=\"button\" value=\"#{label}\" /></a>"
+  end
+  
   def positional_class(*args)
     if args[0].is_a? Fixnum and args[1].is_a? Fixnum
       index_based_positional_class *args
@@ -46,5 +52,9 @@ module ApplicationHelper
     end
     
     "width: #{width}; height: #{height};"
+  end
+  
+  def open_popup
+    'openPopup(this.href); return false'
   end
 end

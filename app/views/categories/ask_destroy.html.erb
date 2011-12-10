@@ -8,13 +8,11 @@
     <em>endgültig</em> löschen?
   </div>
   <div class="response">
-    <%= button_to(
+    <%= a_button_to(
       'Nein, lieber nicht.',
       @category.is_a?(Subcategory) ?
         category_path(@category.category.url_hash(:anchor => @category.html_id)) :
-        categories_path(:anchor => @category.html_id),
-      :method => :get
-    ) %>
+        categories_path(:anchor => @category.html_id)) %>
     <%= button_to(
       'Ja, wirklich!',
       {:controller => 'categories', :action => 'destroy', :id => @category.id},

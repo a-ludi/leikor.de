@@ -1,0 +1,13 @@
+<div id="message_window" class="success">
+  <h1><%= flash[:message][:title] %></h1>
+  <div class="message">
+    <p>
+      <%= flash[:message][:text] %>
+    </p>
+  </div>
+  <div class="response">
+    <%= javascript_tag 'closeAfter(3000)' %>
+    <%= link_to_function 'Fenster schließen.', 'window.close()' %>
+  </div>
+</div>
+

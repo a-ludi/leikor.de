@@ -6,32 +6,31 @@
   ) do |f| %>
     <%= f.hidden_field :subcategory_id %>
     <div class="title">
-      <%= f.text_field :name, :size => 255 %>
+      <%= f.text_field :name, :size => 40 %>
     </div>
     <div class="body">
+      <div class="administration">
+        <% unless article.new_record? %>
+          <%= button_to_remote 'Abbrechen', :url => edit_article_path(article, :cancel => true), :method => :get %>
+        <% else %>
+          <%= button_to_remote 'Abbrechen', :url => new_article_path(:html_id => article.html_id, :cancel => true), :method => :get %>
+        <% end %>
+        <%= submit_tag 'Speichern!' %>
+      </div>
+      <%= make_if_error_messages_for article  %>
+      <%= f.text_area :description, :cols => 40, :rows => 6, :class => 'description' %>
       <div class="image">
         <% unless article.new_record? %>
           <%= link_to(
             image_tag(article.picture.url(:thumb)),
             edit_article_picture_path(article.id),
-            :onclick => "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && openPopup(this.href); return false",
+            :onclick => "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && #{open_popup}",
             :title => 'Klicken um das Bild zu bearbeiten.'
           ) %>
         <% else %>
           <%= image_tag(article.picture.url(:thumb)) %>
         <% end %>
       </div>
-      <div class="administration">
-        <%= make_if_error_messages_for article  %>
-        <% unless article.new_record? %>
-          <%= button_to_remote 'Abbrechen', :url => edit_article_path(article, :cancel => true), :method => :get %>
-        <% else %>
-          <%= button_to_remote 'Abbrechen', :url => new_article_path(:html_id => article.html_id, :cancel => true), :method => :get %>
-        <% end %>
-        <input type="reset" value="Zurücksetzen!">
-        <%= submit_tag 'Speichern!' %>
-      </div>
-      <%= f.text_area :description, :cols => 500, :rows => 6, :class => 'description' %>
       <!--span class="dimensions">
         <label class="label" for="estimate_1">Größe:</label>
         <select id="estimate_1">

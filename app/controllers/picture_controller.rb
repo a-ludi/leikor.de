@@ -37,20 +37,19 @@ class PictureController < ApplicationController
     params[:article].delete :picture_height
     params[:article].delete :picture_width
     @article.picture = params[:article][:picture]
-    @popup = params[:popup]
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gespeichert."
   end
 
   def destroy
     @article = Article.find params[:article_id]
     @article.picture.clear
-    @popup = params[:popup]
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gelöscht."
   end
   
 private
   
   def try_save_and_render_response(options={})
+    @popup = params[:popup]
     @stylesheets = ['message']
     if @article.save
       flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?

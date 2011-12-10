@@ -236,6 +236,7 @@ de:
       subcategory: Unterkategorie
       article: Artikel
       user: Benutzer
+      fair_date: Messetermin
       
     attributes:
       article:
@@ -251,3 +252,10 @@ de:
         login: Benutzername
         password: Passwort
         name: Name
+      fair_date:
+        from_date: Vom
+        to_date: Bis zum
+        name: Messe
+        stand: Stand
+        homepage: Website
+        comment: Kommentar

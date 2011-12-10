@@ -22,7 +22,8 @@
       <% end %>
       <%= link_to(
         image_tag('pictogram/medium/close.png'),
-        'javascript:Effect.Fade("picture_viewer")',
+        '#',
+        :onclick => 'Effect.Fade("picture_viewer"); return false',
         :title => 'Schließen',
         :class => 'toolbutton'
       ) %>

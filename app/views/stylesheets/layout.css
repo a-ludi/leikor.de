@@ -26,6 +26,8 @@ label {
   font-variant: small-caps;
 }
 
+textarea { font-family: 'Sans', sans-serif; font-size: small; }
+
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
 
@@ -119,7 +121,6 @@ th {
 #top_navigation a:hover, #top_navigation a:focus { background: <%=p :mid_red %>; color: <%=p :white %>; }
 
 #body {
-  overflow: hidden;
   background: <%=p :light_gray %>;
   padding: 0ex;
   border: 1px solid <%=p :mid_gray %>;
@@ -166,6 +167,7 @@ a.toolbutton:hover img {
   padding: 30px 30px;
   margin: 20px;
   opacity: 1.0;
+  width: 600px;
 }
 
 #picture_viewer .frame .toolbar {
@@ -175,17 +177,17 @@ a.toolbutton:hover img {
   margin-top: -30px;
 }
 
-#content .message.error {
+#body .error.message {
   text-align: left;
   color: <%=p :mid_red %>;
 }
-#content .edit .fieldWithErrors {
+#body .fieldWithErrors {
   display: inline;
   padding: 0ex;
   margin: 0ex;
   border: 0ex;
 }
-#content .edit .fieldWithErrors * {
+#body .fieldWithErrors * {
   background: <%=p :light_red %>;
 }
 

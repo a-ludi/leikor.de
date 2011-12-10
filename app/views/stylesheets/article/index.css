@@ -64,15 +64,13 @@
 #content .article.edit .body .image img { height: 150px; width: 150px; }
 
 #content .article.edit .title input {
-  min-width: 10em;
-  max-width: 100em;
+  width: 100%;
   font-size: 100%;
 }
 
 #content .article.edit .body .description {
   display: block;
-  min-width: 10em;
-  max-width: 100em;
+  width: 100%;
 }
 
 #content .article.edit .body .price input, #content .article.edit .body
