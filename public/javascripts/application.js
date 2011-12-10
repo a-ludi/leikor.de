@@ -12,12 +12,16 @@ function closeAfter(timeout) {
 }
 
 var MyUtils = {
-  replaceSurroundedImage: function(root, new_src) {
+  replaceSurroundedImage: function(root, new_src, width, height) {
     if(root.childNodes) {
       for(var i = 0; i < root.childNodes.length; i++) {
         node = root.childNodes[i]
         if(node.nodeType == 1 && node.nodeName == 'IMG') {
           node.src = new_src
+          if(width != null)
+            node.style.width = width
+          if(height != null)
+            node.style.height = height
           return true;
         }
       }

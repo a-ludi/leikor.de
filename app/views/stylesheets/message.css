@@ -16,7 +16,7 @@
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.7em' %>
   min-width: 10em;
-  max-width: 23em;
+  max-width: 70%;
 }
 
 #message_window a:hover, #message_window a:focus { text-decoration: underline; }

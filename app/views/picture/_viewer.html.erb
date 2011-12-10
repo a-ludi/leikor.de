@@ -15,7 +15,7 @@
         <%= link_to(
           image_tag('pictogram/medium/edit.png'),
           edit_article_picture_path(article.id),
-          :onclick => "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/original/in_work.png'}') && openPopup(this.href); return false",
+          :onclick => "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/original/in_work.png'}', '600px', '600px') && openPopup(this.href); return false",
           :title => 'Bild bearbeiten',
           :class => 'toolbutton'
         ) %>
@@ -28,7 +28,7 @@
       ) %>
     </div>
     <div id="picture_viewer_picture">
-      <%= image_tag article.picture.url, :alt => article.name %>
+      <%= image_tag article.picture.url, :alt => article.name, :style => css_dimensions(article.picture_width, article.picture_height, 'px') %>
     </div>
   </div>
   <% javascript_tag do %>

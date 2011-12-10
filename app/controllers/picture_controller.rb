@@ -4,6 +4,7 @@ class PictureController < ApplicationController
   
   before_filter :login_required, :except => [:show, :pictures]
   after_filter :save_updated_at, :only => [:update, :destroy]
+  after_filter :update_picture_dimensions, :only => [:update, :destroy]
   downloads_files_for :article, :picture, :file_name => :name
   
   def show
@@ -33,6 +34,8 @@ class PictureController < ApplicationController
 
   def update
     @article = Article.find params[:article_id]
+    params[:article].delete :picture_height
+    params[:article].delete :picture_width
     @article.picture = params[:article][:picture]
     @popup = params[:popup]
     try_save_and_render_response :success => "Bild für „#{@article.name}“ wurde gespeichert."
@@ -53,6 +56,7 @@ private
       flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?
       render_response :success
     else
+      logger.debug "[PictureController] errors on article: <#{@article.errors.inspect}>"
       @article.errors.clear and @article.errors.add(
         :picture, Article::PICTURE_INVALID_MESSAGE)
       render_response :failure
@@ -73,5 +77,15 @@ private
       else
         raise StandardError, 'internal error: state <#{state.inspect}> is unknown'
     end
+  end
+  
+  def update_picture_dimensions
+    if @article.picture?
+      geom = Paperclip::Geometry.from_file @article.picture.to_file
+      @article.picture_width, @article.picture_height = geom.width, geom.height
+    else
+      @article.picture_width, @article.picture_height = 600, 600
+    end
+    @article.save
   end
 end

@@ -38,4 +38,13 @@ module ApplicationHelper
   def set_focus_to(id)
     javascript_tag "$('#{id}').focus()"
   end
+  
+  def css_dimensions(width, height, unit=nil)
+    if width.is_a? Numeric and height.is_a? Numeric and unit.is_a? String
+      width = width.to_s + unit
+      height = height.to_s + unit
+    end
+    
+    "width: #{width}; height: #{height};"
+  end
 end
