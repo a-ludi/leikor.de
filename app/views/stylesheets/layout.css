@@ -167,6 +167,7 @@ a.toolbutton:hover img {
   padding: 30px 30px;
   margin: 20px;
   opacity: 1.0;
+  width: 600px;
 }
 
 #picture_viewer .frame .toolbar {
