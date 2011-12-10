@@ -106,11 +106,17 @@ th {
   background: <%=p :lighter_gray %>;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.7em' %>
+  padding: 0em;
+  list-style: none;
+}
+
+#top_navigation li {
+/*  display: block;*/
+  float: left;
 }
 
 #top_navigation a {
   display: block;
-  float: left;
   padding: 1.4ex 1.0em;
   font-variant: small-caps;
 }

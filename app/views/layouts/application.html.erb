@@ -27,14 +27,14 @@
           :root
         ) %>
       </div>
-      <div id="top_navigation">
+      <ul id="top_navigation">
         <!--a>News</a-->
-        <%= link_to 'Sortiment', :categories, :class => 'first' %>
+        <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
         <!--a>Angebote</a-->
-        <%= link_to 'Messetermine', fair_dates_path %>
-        <%= static_link_to :ueber_uns %>
-        <%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %>
-      </div>
+        <li><%= link_to 'Messetermine', fair_dates_path %></li>
+        <li><%= static_link_to :ueber_uns %></li>
+        <li><%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %></li>
+      </ul>
     </div>
     <div id="body">
       <%= yield %>
