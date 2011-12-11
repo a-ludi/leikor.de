@@ -5,3 +5,4 @@ page.replace(
   :partial => @partial,
   :locals => {:article => @article}
 )
+page << "$('article_name').focus()" if @partial == 'form'

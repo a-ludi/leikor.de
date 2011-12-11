@@ -18,7 +18,6 @@
         <%= button_to_remote 'Abbrechen', :url => new_category_path(:html_id => html_id, :cancel => true), :method => :get %>
       <% end %>
     <% end %>
-    <%= set_focus_to "#{category.class.name.underscore}_name" %>
   </div>
   <%= render :partial => 'category_body', :locals => {:category => category} %>
 </div>

@@ -3,3 +3,4 @@ page.replace(
   :partial => @partial,
   :locals => {:category => @category, :html_id => @html_id}
 )
+page << "$('#{@category.class.name.underscore}_name').focus()" if @partial == 'form'

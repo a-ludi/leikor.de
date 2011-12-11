@@ -26,9 +26,7 @@
   margin: 0em;
 }
 #categories a:hover, #categories a:focus { background: <%=p :dark_green %>; color: <%=p :white %>; }
-#categories a.first {
-  <%=border_radius :topleft => '0.7em' %>
-}
+#categories a.first { <%=border_radius :topleft => '0.7em' %> }
 
 #categories .subcategory {
   border-width: 1px 0px;
@@ -49,6 +47,8 @@
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0);
 }
+
+#categories .subcategory a.first { <%=border_radius '0.0em' %> }
 
 #categories .subcategory a.selected {
   border-top: 1px solid <%=p :mid_gray %>;
