@@ -1,6 +1,7 @@
 <div id="message_window">
   <h1>Bild von „<%= @article.name %>“bearbeiten</h1>
-  <% form_for @article, :url => article_picture_path(@article.id, :popup => @popup), :method => :put, :html => {:multipart => true} do |f| %>
+  <% form_for @article, :url => article_picture_path(@article.id), :method => :put, :html => {:multipart => true} do |f| %>
+    <%= hidden_field_tag 'popup', true if @popup %>
     <%= make_if_error_messages_for @article %>
     <div class="message">
       <%= f.file_field :picture %>

@@ -1,6 +1,6 @@
 <div id="message_window">
   <% form_for @fair_date do |f| %>
-    <%= hidden_field_tag 'popup', @popup %>
+    <%= hidden_field_tag 'popup', true if @popup %>
     <h1>Messetermin bearbeiten</h1>
     <%= make_if_error_messages_for @fair_date %>
     <div class="message">
@@ -32,6 +32,6 @@
       <%= submit_tag 'Speichern!', :class => 'button' %>
     </div>
   <% end %>
-  <%= set_focus_to :fair_date_name %>
+  <%= set_focus_to 'fair_date_name' %>
 </div>
 
