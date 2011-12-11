@@ -16,9 +16,9 @@
   padding: 0ex;
   margin: 1.5ex 0em;
 }
-#body p { font-family: "Serif" serif; }
+#body p { font-family: "Serif", serif; }
 #body li {
-  font-family: "Serif" serif;
+  font-family: "Serif", serif;
 }
 
 #body .center { text-align: center; }
