@@ -26,7 +26,7 @@ class Article < ActiveRecord::Base
   validates_format_of :article_number, :with => UtilityHelper::delimited(ARTICLE_NUMBER_FORMAT)
   
   def html_id
-    "artnr_#{article_number}"
+    "artnr_#{article_number}".sub '.', '_'
   end
   
   def url_hash(options={})

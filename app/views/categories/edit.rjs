@@ -1,6 +1,9 @@
 page.replace(
-  @html_id ? @html_id : @category.html_id,
+  @html_id || @category.html_id,
   :partial => @partial,
   :locals => {:category => @category, :html_id => @html_id}
 )
-page << "$('#{@category.class.name.underscore}_name').focus()" if @partial == 'form'
+if @partial == 'form'
+  page << "$('#{@html_id || @category.html_id}').select('[name=\"#{@category.class.name.underscore}[name]\"]')[0].focus();"
+end
+

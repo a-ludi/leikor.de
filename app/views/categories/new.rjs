@@ -7,7 +7,9 @@ unless @cancel
   )
   page.hide @html_id
   page.visual_effect :appear, @html_id
-  page << "$('#{@category.class.name.underscore}_name').focus()"
+  page.delay 0.02 do
+    page << "$('#{@html_id}').select('[name=\"#{@category.class.name.underscore}[name]\"]')[0].focus()"
+  end
 else
   page.visual_effect :drop_out, @html_id
 end

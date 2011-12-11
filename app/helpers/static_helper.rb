@@ -12,7 +12,7 @@ module StaticHelper
   def border_radius(options={})
     if options.is_a? String
       radius = options
-      <<-OUT.gsub ' '*10, ''
+      <<-OUT
         -webkit-border-radius: #{radius};
         -moz-border-radius: #{radius};
         border-radius: #{radius};
@@ -38,25 +38,25 @@ module StaticHelper
       out = ''
       out += border_radius options[:all] if options[:all]
       
-      out += <<-OUT.gsub ' '*10, '' if options[:topleft]
+      out += <<-OUT if options[:topleft]
         -webkit-border-top-left-radius: #{options[:topleft]};
         -moz-border-radius-topleft: #{options[:topleft]};
         border-top-left-radius: #{options[:topleft]};
       OUT
       
-      out += <<-OUT.gsub ' '*10, '' if options[:topright]
+      out += <<-OUT if options[:topright]
         -webkit-border-top-right-radius: #{options[:topright]};
         -moz-border-radius-topright: #{options[:topright]};
         border-top-right-radius: #{options[:topright]};
       OUT
       
-      out += <<-OUT.gsub ' '*10, '' if options[:bottomleft]
+      out += <<-OUT if options[:bottomleft]
         -webkit-border-bottom-left-radius: #{options[:bottomleft]};
         -moz-border-radius-bottomleft: #{options[:bottomleft]};
         border-bottom-left-radius: #{options[:bottomleft]};
       OUT
       
-      out += <<-OUT.gsub ' '*10, '' if options[:bottomright]
+      out += <<-OUT if options[:bottomright]
         -webkit-border-bottom-right-radius: #{options[:bottomright]};
         -moz-border-radius-bottomright: #{options[:bottomright]};
         border-bottom-right-radius: #{options[:bottomright]};

@@ -1,4 +1,4 @@
-<div id="<%= html_id ? html_id : category.html_id %>" class="category_overview edit">
+<div id="<%= html_id || category.html_id %>" class="category_overview edit">
   <%= make_if_error_messages_for category %>
   <div class="title">
     <% action = category.new_record? ? 'create' : 'update' %>

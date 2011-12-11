@@ -5,9 +5,11 @@ unless @cancel
     :partial => 'form',
     :locals => {:article => @article}
   )
-  page.toggle @article.html_id
+  page.hide @article.html_id
   page.visual_effect :appear, @article.html_id
-  page << "$('article_name').focus()"
+  page.delay 0.02 do
+    page << "$('#{@article.html_id}').select('[name=\"article[name]\"]')[0].focus()"
+  end
 else
   page.visual_effect :drop_out, @html_id
 end
