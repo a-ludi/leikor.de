@@ -50,7 +50,11 @@ class FairDatesController < ApplicationController
   end
   
   def destroy
+    @fair_date = FairDate.find params[:id]
+    @fair_date.destroy
+    flash[:message] = {:text => "Messetermin „#{@fair_date.name}“ wurde gelöscht."}
     
+    redirect_to fair_dates_path
   end
   
 private
@@ -63,8 +67,7 @@ private
       if @popup
         render :action => 'success', :layout => 'popup'
       else
-        render :text => params.inspect
-        #redirect_to fair_dates_url
+        redirect_to fair_dates_path
       end
     else
       @stylesheets << 'fair_dates/edit'
