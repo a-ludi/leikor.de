@@ -107,6 +107,7 @@ th {
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.7em' %>
   padding: 0em;
+  margin: 0em;
   list-style: none;
 }
 

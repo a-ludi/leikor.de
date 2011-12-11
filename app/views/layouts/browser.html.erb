@@ -1,42 +1,46 @@
-<div id="categories">
+<ul id="categories">
   <% for category in @categories %>
-    <% unless category === @category %>
-      <%= link_to(
-        category.name,
-        category_path(category.url_hash),
-        :class => positional_class(category, @categories)
-      ) %>
-    <% else %>
-      <%= link_to(
-        category.name,
-        category_path(category.url_hash),
-        :class => positional_class(category, @categories, 'selected')
-      ) %>
-      <% unless @category.subcategories.empty? %>
-        <div class="subcategory">
-          <% for subcategory in @category.subcategories %>
-            <% unless subcategory === @subcategory %>
-              <%= link_to(
-                subcategory.name,
-                subcategory_path(subcategory.url_hash),
-                :class => positional_class(subcategory, @category.subcategories)
-              ) %>
-            <% else %>
-              <%= link_to(
-                subcategory.name,
-                subcategory_path(subcategory.url_hash),
-                :class => positional_class(
-                  subcategory,
-                  @category.subcategories,
-                  'selected')
-              ) %>
+    <li>
+      <% unless category === @category %>
+        <%= link_to(
+          category.name,
+          category_path(category.url_hash),
+          :class => positional_class(category, @categories)
+        ) %>
+      <% else %>
+        <%= link_to(
+          category.name,
+          category_path(category.url_hash),
+          :class => positional_class(category, @categories, 'selected')
+        ) %>
+        <% unless @category.subcategories.empty? %>
+          <ul class="subcategory">
+            <% for subcategory in @category.subcategories %>
+              <li>
+                <% unless subcategory === @subcategory %>
+                  <%= link_to(
+                    subcategory.name,
+                    subcategory_path(subcategory.url_hash),
+                    :class => positional_class(subcategory, @category.subcategories)
+                  ) %>
+                <% else %>
+                  <%= link_to(
+                    subcategory.name,
+                    subcategory_path(subcategory.url_hash),
+                    :class => positional_class(
+                      subcategory,
+                      @category.subcategories,
+                      'selected')
+                  ) %>
+                <% end %>
+              </li>
             <% end %>
-          <% end %>
-        </div>
+          </ul>
+        <% end %>
       <% end %>
-    <% end %>
+    </li>
   <% end %>
-</div>
+</ul>
 <div id="content">
   <%= yield %>
 </div>
