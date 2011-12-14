@@ -11,11 +11,12 @@ class ApplicationController < ActionController::Base
 
 protected
   def save_updated_at
-    AppData['updated_at'] = Time.now
+    AppData['updated_at'] = Time.now.getutc
   end
   
   def fetch_updated_at
     @updated_at = AppData['updated_at'] || Time::mktime(2011, 11, 11, 11, 11, 11, 111)
+    @updated_at = @updated_at.localtime("+01:00")
   end
   
   def fetch_logged_in_user
