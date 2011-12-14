@@ -7,7 +7,6 @@ RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'string_blank_patch'
-require 'span_field_with_errors_patch'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -51,3 +50,5 @@ Rails::Initializer.run do |config|
     :destroy => 'loeschen'
   }
 end
+
+

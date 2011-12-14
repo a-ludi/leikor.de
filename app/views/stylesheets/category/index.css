@@ -8,11 +8,11 @@
 }
 #content .category_overview { margin: 1.5ex 0em; }
 #content .category_overview .title a {
-    font-weight: bold;
-    font-size: 110%;
-    padding: 0ex;
-    margin: 0ex 1em;
-    color: <%=p :dark_gray %>;
+  font-weight: bold;
+  font-size: 110%;
+  padding: 0ex;
+  margin: 0ex 1em;
+  color: <%=p :dark_gray %>;
 }
 #content .category_overview .title a:after {
   content: ' \00bb';
@@ -22,21 +22,20 @@
 #content .category_overview .title a.toolbutton { margin: 0px 2px; }
 #content .category_overview .title a.toolbutton:after { content: ''; }
 #content .category_overview .body {
-    overflow: hidden;
-    background: <%=p :white %>;
-    padding: 0.5ex;
-    border: 1px solid <%=p :mid_gray %>;
-    <%=border_radius '0.5em' %>
-    margin: 0.5ex 0em;
+  background: <%=p :white %>;
+  padding: 0.5ex;
+  border: 1px solid <%=p :mid_gray %>;
+  <%=border_radius '0.5em' %>
+  margin: 0.5ex 0em;
 }
 
 #content .category_overview .body a {
-    display: block;
-    float: left;
-    padding: 0ex;
-    margin: 0.5ex;
-    width: 150px;
-    height: 150px;
+  display: block;
+  float: left;
+  padding: 0ex;
+  margin: 0.5ex;
+  width: 150px;
+  height: 150px;
 }
 #content .category_overview .body a img { width: 150px; height: 150px;}
 

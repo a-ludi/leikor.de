@@ -11,13 +11,13 @@ class FairDatesController < ApplicationController
   def new
     @fair_date = FairDate.new do |fd|
       fd.from_date = Date.today
-      fd.to_date = Date.today >> 1
+      fd.to_date = fd.from_date >> 1
     end
     @stylesheets = ['message', 'fair_dates/edit']
     @title = 'Neuer Messetermin'
     @popup = params[:popup]
     
-    render :action => 'edit', :layout => 'popup' if @popup
+    render :action => 'edit', :layout => (@popup ? 'popup' : true)
   end
   
   def create

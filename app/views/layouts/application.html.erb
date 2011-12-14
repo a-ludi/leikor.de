@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="de">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
   <head>
     <%= render :partial => 'layouts/head' %>
   </head>
@@ -20,21 +20,24 @@
       <div id="logo_container">
         <%= link_to(
           image_tag(
-            'leikor.png',
+            'logo/original.png',
             :alt => 'LEIKOR-Logo',
             :title => 'Zurück zur Startseite'
           ),
           :root
         ) %>
       </div>
-      <ul id="top_navigation">
-        <!--a>News</a-->
-        <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
-        <!--a>Angebote</a-->
-        <li><%= link_to 'Messetermine', fair_dates_path %></li>
-        <li><%= static_link_to :ueber_uns %></li>
-        <li><%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %></li>
-      </ul>
+      <div id="top_navigation">
+        <ul class="navigation">
+          <!--a>News</a-->
+          <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
+          <!--a>Angebote</a-->
+          <li><%= link_to 'Messetermine', fair_dates_path %></li>
+          <li><%= static_link_to :ueber_uns %></li>
+          <li><%= static_link_to :colors, {}, {:class => 'last'} if RAILS_ENV == 'development' %></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
     </div>
     <div id="body">
       <%= yield %>

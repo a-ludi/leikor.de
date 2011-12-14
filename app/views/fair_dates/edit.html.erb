@@ -16,15 +16,15 @@
         <%= f.label :from_date, 'Zeitraum:' %><br />
         <%= f.text_field :from_date, :value => l(@fair_date.from_date), :size => 10, :class => 'date' %>
         <%= f.label :to_date, 'bis' %>
-        <%= f.text_field :to_date, :value => l(@fair_date.from_date), :size => 10, :class => 'date' %>
+        <%= f.text_field :to_date, :value => l(@fair_date.to_date), :size => 10, :class => 'date' %>
       </p>
       <p>
         <%= f.label :homepage %><br />
         <%= f.text_field :homepage, :size => 30 %>
       </p>
       <p>
-        <th colspan="2"><%= f.label :comment %><br />
-        <td colspan="2"><%= f.text_area :comment, :cols => 30, :rows => 5 %>
+        <%= f.label :comment %><br />
+        <%= f.text_area :comment, :cols => 30, :rows => 5 %>
       </p>
     </div>
     <div class="response">

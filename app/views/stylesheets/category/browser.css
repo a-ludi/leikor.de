@@ -15,7 +15,6 @@
   width: 12em;
   padding: 0em;
   margin: 0em;
-  list-style: none;
 }
 
 #categories li { padding: 0em; margin: 0em; }
@@ -35,7 +34,6 @@
   background: <%=p :light_blue %>;
   padding: 0em;
   margin: 0em;
-  list-style: none;
 }
 
 #categories .subcategory li { padding: 0em; margin: 0em; }

@@ -1,4 +1,4 @@
-table.contact { text-align: left; width: 100%; }
+table.contact { text-align: left; width: auto; }
 
 table.contact td, table.contact th {
   vertical-align: top;
