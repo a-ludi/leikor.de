@@ -4,7 +4,8 @@ module ApplicationHelper
   def a_button_to(label, href, html_options={})
     attributes = []
     html_options.each{|key, value| attributes << "#{key}=\"#{value}\""}
-    "<a href=\"#{href}\" #{attributes.join ' '}><input type=\"button\" value=\"#{label}\" /></a>"
+    tabindex = "tabindex=\"#{html_options[:tabindex]}\"" unless html_options[:tabindex].blank?
+    "<a href=\"#{href}\" #{attributes.join ' '}><input type=\"button\" value=\"#{label}\"#{tabindex} /></a>"
   end
   
   def positional_class(*args)
@@ -27,7 +28,8 @@ module ApplicationHelper
   def index_based_positional_class(index, length, user_class='')
     user_class += ' first' if index == 0
     user_class += ' last' if index == length - 1
-    user_class += index % 2 == 0 ? ' even' : ' odd'
+    # index 0 is the first line therefore it's odd ... that's odd, ey?
+    user_class += index % 2 == 0 ? ' odd' : ' even'
     
     user_class
   end
