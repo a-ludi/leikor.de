@@ -12,20 +12,40 @@
   background: none;
   border-right: 1px solid <%=p :mid_gray %>;
   margin-right: 1em;
-  width: 12em;
+  width: 14em;
   padding: 0em;
   margin: 0em;
 }
 
-#categories li { padding: 0em; margin: 0em; }
-
-#categories a {
-  display: block;
-  padding: 1.4ex 1.0em;
+#categories li {
+  padding: 0em;
   margin: 0em;
 }
-#categories a:hover, #categories a:focus { background: <%=p :dark_green %>; color: <%=p :white %>; }
-#categories a.first { <%=border_radius :topleft => '0.7em' %> }
+#categories li .entry.first { <%=border_radius :topleft => '0.7em' %> }
+#categories li .entry:hover {
+  background: <%=p :dark_green %>;
+  color: <%=p :white %>;
+}
+#categories li .entry:hover a.button { color: <%=p :white %>; }
+
+#categories li a.button {
+  display: block;
+  padding: 1.4ex 1.0em;
+}
+
+#categories li .handle {
+  display: block;
+  float: right;
+  margin-top: 1.0ex;
+  padding: 0.4ex 0.5em 0.4ex 0.2em;
+  cursor: move;
+  text-align: left;
+  font-weight: bold;
+  color: <%=p :darker_gray %>;
+}
+#categories li .entry:hover .handle {
+  color: <%=p :white %>;
+}
 
 #categories .subcategory {
   border-width: 1px 0px;
@@ -34,32 +54,33 @@
   background: <%=p :light_blue %>;
   padding: 0em;
   margin: 0em;
+  font-size: 85%;
 }
 
-#categories .subcategory li { padding: 0em; margin: 0em; }
+#categories .subcategory li .entry.first { <%=border_radius '0.0em' %> }
+#categories .subcategory li .entry:hover {
+  background: <%=p :mid_blue %>;
+}
 
-#categories .subcategory a {
+#categories .subcategory a.button {
   padding: 0.8ex 1.0em;
   padding-left: 2.0em;
-  font-size: 85%;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0);
 }
 
-#categories .subcategory a.first { <%=border_radius '0.0em' %> }
 
-#categories .subcategory a.selected {
+#categories .subcategory a.button.selected {
   border-top: 1px solid <%=p :mid_gray %>;
   border-bottom: 1px solid <%=p :mid_gray %>;
   background: <%=p :light_gray %>;
 }
-#categories .subcategory a.selected.first { border-top: none; }
-#categories .subcategory a.selected.last { border-bottom: none; }
-#categories .subcategory a:hover, #categories .subcategory a:focus {
-  background: <%=p :mid_blue %>; color: <%=p :white %>;
-}
+#categories .subcategory a.button.selected.first { border-top: none; }
+#categories .subcategory a.button.selected.last { border-bottom: none; }
 
-#content { margin-left: 13em; padding: 0ex 1em; }
+#categories .subcategory li .handle { margin-top: 0.4ex; }
+
+#content { margin-left: 15em; padding: 0ex 1em; }
 
 #content .administration {
   color: <%=p :dark_blue %>;

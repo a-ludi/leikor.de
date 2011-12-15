@@ -1,0 +1,10 @@
+<div class="entry<%= css_class.blank? ? '' : ' ' + css_class %>">
+  <% if show_handle %>
+    <div class="handle">&equiv;</div>
+  <% end %>
+  <%= link_to(
+        label,
+        path,
+        :class => 'button') %>
+  <%=clear_float %>
+</div>

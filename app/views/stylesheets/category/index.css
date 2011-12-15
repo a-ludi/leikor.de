@@ -1,4 +1,3 @@
-#content { margin-left: 13em; padding: 0ex 1em; }
 #content .no_article {
   font-size: 150%;
   color: <%=p :darker_gray %>;

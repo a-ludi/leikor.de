@@ -52,6 +52,14 @@
   padding-left: 0em;
 }
 
+#fair_dates td.no_dates {
+  font-size: 200%;
+  color: <%=p :mid_gray %>;
+  text-align: center;
+  font-weight: bold;
+  padding: 2ex 0em;
+}
+
 #fair_dates td.administration { text-align: center; }
 
 #fair_dates td .not_present { font-style: italic; color: <%=p :darker_gray %>; }

@@ -68,6 +68,30 @@ class CategoriesController < ApplicationController
       category_path(@category.category.url_hash) :
       categories_path
   end
+  
+  def reorder
+    errors = false
+    new_order = params[:categories_list] || params[:subcategories_list]
+    new_order.each_index do |ord|
+      id = new_order[ord].to_i
+      category = Category.find id
+      category.ord = ord
+      errors |= ! category.save
+    end
+    
+    unless errors
+      flash[:message] = {
+        :text => "Reihenfolge aktualisiert.",
+        :class => 'success'}
+    else
+      flash[:message] = {
+        :title => 'Fehler',
+        :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
+        :class => 'error'}
+    end
+    
+    render :partial => 'layouts/push_message'
+  end
 
 private
   def set_random_html_id_or_take_from_param
@@ -75,8 +99,8 @@ private
   end
   
   def create_sub_or_category_from_params
-    if_category = Proc.new {@category = Category.create params[:category]}
-    if_subcategory = Proc.new {@category = Subcategory.create params[:subcategory]}
+    if_category = Proc.new {@category = Category.create params[:category].merge(:ord => Category.next_ord)}
+    if_subcategory = Proc.new {@category = Subcategory.create params[:subcategory].merge(:ord => Subcategory.next_ord(params[:subcategory][:category_id]))}
     do_for_sub_or_category if_category, if_subcategory
   end
   

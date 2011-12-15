@@ -19,19 +19,21 @@ module ApplicationHelper
   end
   
   def collection_based_positional_class(item, collection, user_class='')
-    user_class += ' first' if item == collection.first
-    user_class += ' last' if item == collection.last
+    classes = user_class.blank? ? [] : [user_class]
+    classes << 'first' if item == collection.first
+    classes << 'last' if item == collection.last
     
-    return user_class
+    return classes.join ' '
   end
   
   def index_based_positional_class(index, length, user_class='')
-    user_class += ' first' if index == 0
-    user_class += ' last' if index == length - 1
+    classes = user_class.blank? ? [] : [user_class]
+    classes << 'first' if index == 0
+    classes << 'last' if index == length - 1
     # index 0 is the first line therefore it's odd ... that's odd, ey?
-    user_class += index % 2 == 0 ? ' odd' : ' even'
+    classes << index % 2 == 0 ? 'odd' : 'even'
     
-    user_class
+    return classes.join ' '
   end
   
   def make_if_error_messages_for(record)
@@ -58,5 +60,17 @@ module ApplicationHelper
   
   def open_popup
     'openPopup(this.href); return false'
+  end
+  
+  def handle_if_superuser(options={})
+    if (superuser_logged_in? and (options.empty? or options[:and])) or options[:or]
+      '<div class="handle">&nbsp;</div>'
+    else
+      ''
+    end
+  end
+  
+  def clear_float
+    '<div class="clear"></div>'
   end
 end

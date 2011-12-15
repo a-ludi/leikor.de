@@ -11,6 +11,26 @@ function closeAfter(timeout) {
   window.setTimeout('window.close()', timeout)
 }
 
+function hideMessage() {
+  Effect.Fade('message', {duration: 0.3});
+  window.setTimeout("Effect.Appear('message', {duration: 2.0})", 2000);
+}
+
+recreatePositionalClasses = function(element) {
+  elements = element.parentNode.childElements()
+  for(var i=0; i < elements.length; i++) {
+    container = elements[i].firstDescendant()
+    if(container.hasClassName('last'))
+      container.removeClassName('last');
+    if(container.hasClassName('first'))
+      container.removeClassName('first');
+    if(i == 0)
+      container.addClassName('first');
+    else if(i == elements.length - 1)
+      container.addClassName('last');
+  }
+}
+
 var MyUtils = {
   replaceSurroundedImage: function(root, new_src, width, height) {
     if(root.childNodes) {

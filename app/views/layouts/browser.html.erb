@@ -1,40 +1,27 @@
 <div id="categories">
-  <ul class="navigation">
+  <ul id="categories_list" class="navigation">
     <% for category in @categories %>
-      <li>
-        <% unless category === @category %>
-          <%= link_to(
-            category.name,
-            category_path(category.url_hash),
-            :class => positional_class(category, @categories)
-          ) %>
-        <% else %>
-          <%= link_to(
-            category.name,
-            category_path(category.url_hash),
-            :class => positional_class(category, @categories, 'selected')
-          ) %>
+      <li id="<%= 'categoryBrowser_' + category.id.to_s %>">
+        <%= render(
+          :partial => 'layouts/category_link',
+          :locals => {
+            :label => category.name,
+            :path => category_path(category.url_hash),
+            :css_class => positional_class(category, @categories, category === @category ? 'selected' : ''),
+            :show_handle => superuser_logged_in?}) %>
+        <% if category === @category %>
           <% unless @category.subcategories.empty? %>
             <div class="subcategory">
-              <ul class="navigation">
+              <ul id="subcategories_list" class="navigation">
                 <% for subcategory in @category.subcategories %>
-                  <li>
-                    <% unless subcategory === @subcategory %>
-                      <%= link_to(
-                        subcategory.name,
-                        subcategory_path(subcategory.url_hash),
-                        :class => positional_class(subcategory, @category.subcategories)
-                      ) %>
-                    <% else %>
-                      <%= link_to(
-                        subcategory.name,
-                        subcategory_path(subcategory.url_hash),
-                        :class => positional_class(
-                          subcategory,
-                          @category.subcategories,
-                          'selected')
-                      ) %>
-                    <% end %>
+                  <li id="<%= 'subcategoryBrowser_' + subcategory.id.to_s %>">
+                    <%= render(
+                      :partial => 'layouts/category_link',
+                      :locals => {
+                        :label => subcategory.name,
+                        :path => subcategory_path(subcategory.url_hash),
+                        :css_class => positional_class(subcategory, @category.subcategories, subcategory === @subcategory ? 'selected' : ''),
+                        :show_handle => superuser_logged_in?}) %>
                   </li>
                 <% end %>
               </ul>
@@ -47,6 +34,17 @@
   </ul>
   <div class="clear"></div>
 </div>
+<% if superuser_logged_in? %>
+  <% sortables = ['categories_list'] %>
+  <% sortables << 'subcategories_list' unless @category.nil? %>
+  <% sortables.each do |html_id| %>
+    <%= sortable_element(
+      html_id,
+      :url => reorder_categories_path,
+      :onChange => 'recreatePositionalClasses',
+      :handle => 'handle') %>
+  <% end %>
+<% end %>
 <div id="content">
   <%= yield %>
 </div>

@@ -47,8 +47,8 @@ class Categorytest < ActiveSupport::TestCase
     assert_errors_on categories(:super), :on => :ord
   end
   
-  test "record invalid with ord lower than 1" do
-    categories(:super).ord = 0
+  test "record invalid with ord lower than 0" do
+    categories(:super).ord = -1
     assert_errors_on categories(:super), :on => :ord
   end
   

@@ -17,10 +17,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @fair_dates.each_index do |i| %>
-        <%= render :partial => 'fair_date', :locals => {
-          :fair_date => @fair_dates[i],
-          :pos_class => positional_class(i + 1, num_rows)} %>
+      <% unless @fair_dates.empty? %>
+        <% @fair_dates.each_index do |i| %>
+          <%= render :partial => 'fair_date', :locals => {
+            :fair_date => @fair_dates[i],
+            :pos_class => positional_class(i + 1, num_rows)} %>
+        <% end %>
+      <% else %>
+        <tr class="even">
+          <td colspan="7" class="first last no_dates">
+            Zur Zeit keine Messetermine.
+          </td>
+        </tr>
       <% end %>
     </tbody>
     <% if superuser_logged_in? %>

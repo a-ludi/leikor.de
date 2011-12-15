@@ -6,6 +6,10 @@ class FairDatesController < ApplicationController
     @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
     @stylesheets = ['static', 'fair_dates/index']
     @title = 'Messetermine'
+    flash[:message] = {
+      :title => 'Messetermin gespeichert',
+      :text => "Der neue Messetermin wurde erfolgreich gespeichert",
+      :class => 'error'}
   end
   
   def new
