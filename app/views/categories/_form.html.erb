@@ -1,6 +1,6 @@
 <div id="<%= html_id || category.html_id %>" class="category_overview edit">
   <%= make_if_error_messages_for category %>
-  <div class="title">
+  <h2>
     <% action = category.new_record? ? 'create' : 'update' %>
     <% remote_form_for(
       category,
@@ -16,7 +16,7 @@
         <%= button_to_remote 'Abbrechen', :url => new_category_path(:html_id => html_id, :cancel => true), :method => :get %>
       <% end %>
     <% end %>
-  </div>
+  </h2>
   <%= render :partial => 'category_body', :locals => {:category => category} %>
 </div>
 

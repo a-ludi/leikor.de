@@ -1,5 +1,5 @@
 <div id="<%= category.html_id %>" class="category_overview">
-  <div class="title">
+  <h2>
     <%= link_to(
       category.name,
       category.is_a?(Subcategory) ?
@@ -23,7 +23,7 @@
         :title => "#{category.class.human_name} löschen!"
       ) %>
     <% end %>
-  </div>
+  </h2>
   <%= render :partial => 'category_body', :locals => {:category => category} %>
 </div>
 

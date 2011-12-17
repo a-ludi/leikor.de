@@ -1,6 +1,6 @@
 #content .article { margin: 3.5ex 0em; }
 #content .article.first { margin-top: 1.5ex; }
-#content .article .title {
+#content .article h2 {
   font-weight: bold;
   font-size: 110%;
   padding: 0ex;
