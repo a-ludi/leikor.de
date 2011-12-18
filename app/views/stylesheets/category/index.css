@@ -35,8 +35,7 @@
 }
 
 #content .category_overview .body a {
-  display: block;
-  float: left;
+  display: inline-block;
   padding: 0ex;
   margin: 0.5ex;
   width: 150px;

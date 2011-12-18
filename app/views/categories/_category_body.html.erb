@@ -1,7 +1,6 @@
 <% unless category.articles.empty? %>
   <div class="body">
     <%= render :partial => 'article', :collection => category.overview %>
-    <div class="clear"></div>
   </div>
 <% else %>
   <div class="body no_article">

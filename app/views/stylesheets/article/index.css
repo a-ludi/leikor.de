@@ -63,7 +63,7 @@
 }
 #content .article.edit .body .image img { height: 150px; width: 150px; }
 
-#content .article.edit .title input {
+#content .article.edit h2 input {
   width: 100%;
   font-size: 100%;
 }
