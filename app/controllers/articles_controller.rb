@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
       @article = Article.new do |a|
         a.name = 'Neuer Artikel'
         a.description = 'Hier die Beschreibung einfügen …'
-        a.price = 0.0
+        a.price = 0.99
         a.article_number = generated_article_number
         a.subcategory_id = params[:subcategory].to_i
       end
