@@ -31,7 +31,7 @@ module ApplicationHelper
     classes << 'first' if index == 0
     classes << 'last' if index == length - 1
     # index 0 is the first line therefore it's odd ... that's odd, ey?
-    classes << index % 2 == 0 ? 'odd' : 'even'
+    classes << (index % 2 == 0 ? 'odd' : 'even')
     
     return classes.join ' '
   end

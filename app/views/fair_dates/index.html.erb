@@ -34,7 +34,7 @@
     <% if superuser_logged_in? %>
       <tfoot>
         <tr id="new_fair_date" class="<%= positional_class num_rows-1, num_rows %>">
-          <th class="first last" colspan="7">
+          <th class="first last odd" colspan="7">
             <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
           </th>
         </tr>

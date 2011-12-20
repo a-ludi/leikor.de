@@ -1,6 +1,21 @@
 <div id="<%= article.html_id %>" class="article">
   <h2>
-    <%= article.name %>
+    <span><%= article.name %></span>
+    <% if superuser_logged_in? %>
+      <%= link_to_remote(
+        image_tag('pictogram/small/edit.png'),
+        :url => edit_article_path(article),
+        :method => :get,
+        :html => {:class => 'toolbutton', :title => "„#{article.name}“ bearbeiten."}
+      ) %>
+      <%= link_to(
+        image_tag('pictogram/small/destroy.png'),
+        ask_destroy_article_url(article.url_hash),
+        :method => :get,
+        :class => 'toolbutton',
+        :title => "„#{article.name}“ löschen!"
+      ) %>
+    <% end %>
   </h2>
   <div class="body">
     <div class="image">
@@ -19,8 +34,6 @@
         <% if flash[:saved_article_id] === article.id %>
           <span class="message">Änderungen gespeichert.</span>
         <% end %>
-        <%= link_to_remote 'Bearbeiten', :url => edit_article_path(article), :method => :get %> |
-        <%= link_to 'Löschen', ask_destroy_article_url(article.url_hash) %>
       </div>
     <% end %>
     <div class="description">

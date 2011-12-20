@@ -4,9 +4,12 @@
   font-weight: bold;
   font-size: 110%;
   padding: 0ex;
-  margin: 0ex 1em;
   color: <%=p :dark_gray %>;
 }
+#content .article h2 span {
+  margin: 0ex 1em;
+}
+#content .article h2 a.toolbutton { margin: 0px 2px; }
 #content .article .body {
   overflow: hidden;
   background: <%=p :white %>;
@@ -58,7 +61,7 @@
 #content .article.edit .body .image {
   text-align: center;
   padding: 1ex 0.5em;
-  border: 1px solid #777;
+  border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.3em' %>
 }
 #content .article.edit .body .image img { height: 150px; width: 150px; }

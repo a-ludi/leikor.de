@@ -6,26 +6,27 @@
   ) do |f| %>
     <%= f.hidden_field :subcategory_id %>
     <h2>
-      <%= f.text_field :name, :size => 40 %>
+      <%= f.text_field :name, :size => 40, :tabindex => 1 %>
     </h2>
     <div class="body">
       <div class="administration">
         <% unless article.new_record? %>
-          <%= button_to_remote 'Abbrechen', :url => edit_article_path(article, :cancel => true), :method => :get %>
+          <%= button_to_remote 'Abbrechen', {:url => edit_article_path(article, :cancel => true), :method => :get}, :tabindex => 7 %>
         <% else %>
-          <%= button_to_remote 'Abbrechen', :url => new_article_path(:html_id => article.html_id, :cancel => true), :method => :get %>
+          <%= button_to_remote 'Abbrechen', {:url => new_article_path(:html_id => article.html_id, :cancel => true), :method => :get}, :tabindex => 7 %>
         <% end %>
-        <%= submit_tag 'Speichern!' %>
+        <%= submit_tag 'Speichern!', :tabindex => 6 %>
       </div>
       <%= make_if_error_messages_for article  %>
-      <%= f.text_area :description, :cols => 40, :rows => 6, :class => 'description' %>
+      <%= f.text_area :description, :cols => 40, :rows => 6, :class => 'description', :tabindex => 2 %>
       <div class="image">
         <% unless article.new_record? %>
           <%= link_to(
             image_tag(article.picture.url(:thumb)),
             edit_article_picture_path(article.id),
             :onclick => "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && #{open_popup}",
-            :title => 'Klicken um das Bild zu bearbeiten.'
+            :title => 'Klicken um das Bild zu bearbeiten.',
+            :tabindex => 5
           ) %>
         <% else %>
           <%= image_tag(article.picture.url(:thumb)) %>
@@ -47,11 +48,11 @@
         </select>
       </span-->
       <div class="price">
-        <%= f.text_field :price, :value => article.format(:price), :size => 7 %> €
+        <%= f.text_field :price, :value => article.format(:price), :size => 7, :tabindex => 3 %> €
       </div>
       <div class="article_number">
         <%= f.label :article_number, 'Artikelnummer:', :class => 'label' %>
-        <%= f.text_field :article_number, :size => 8, :maxlength => 8, :class => 'value' %>
+        <%= f.text_field :article_number, :size => 8, :maxlength => 8, :class => 'value', :tabindex => 4 %>
       </div>
     </div>
   <% end %>

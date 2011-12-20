@@ -1,15 +1,15 @@
 <tr class="<%= pos_class %>">
-  <td class="<%= 'date from first' + pos_class %>">
+  <td class="<%= 'date from first ' + pos_class %>">
     <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
   </td>
-  <td class="<%= 'dash' + pos_class %>">&nbsp;-&nbsp;</td>
-  <td class="<%= 'date to' + pos_class %>">
+  <td class="<%= 'dash ' + pos_class %>">&nbsp;-&nbsp;</td>
+  <td class="<%= 'date to ' + pos_class %>">
     <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
   </td>
-  <td class="<%= 'fair' + pos_class %>">
+  <td class="<%= 'fair ' + pos_class %>">
     <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
   </td>
-  <td class="<%= 'stand' + pos_class %>">
+  <td class="<%= 'stand ' + pos_class %>">
     <% if fair_date.stand? %>
       <%= fair_date.stand %>
     <% else %>
@@ -24,7 +24,7 @@
     <% end %>
   </td>
   <% if superuser_logged_in? %>
-    <td class="<%= 'last administration' + pos_class %>">
+    <td class="<%= 'last administration ' + pos_class %>">
       <%= link_to(
         image_tag('pictogram/small/edit.png'),
         edit_fair_date_path(fair_date),

@@ -8,12 +8,12 @@
     ) do |f| %>
       <%= hidden_field_tag 'html_id', html_id %>
       <%= f.hidden_field :category_id if category.is_a? Subcategory %>
-      <%= f.text_field :name %>
-      <%= submit_tag 'Speichern!' %>
+      <%= f.text_field :name, :tabindex => 1 %>
+      <%= submit_tag 'Speichern!', :tabindex => 2 %>
       <% unless category.new_record? %>
-        <%= button_to_remote 'Abbrechen', :url => edit_category_path(category, :cancel => true), :method => :get %>
+        <%= button_to_remote 'Abbrechen', {:url => edit_category_path(category, :cancel => true), :method => :get}, :tabindex => 3 %>
       <% else %>
-        <%= button_to_remote 'Abbrechen', :url => new_category_path(:html_id => html_id, :cancel => true), :method => :get %>
+        <%= button_to_remote 'Abbrechen', {:url => new_category_path(:html_id => html_id, :cancel => true), :method => :get}, :tabindex => 3 %>
       <% end %>
     <% end %>
   </h2>
