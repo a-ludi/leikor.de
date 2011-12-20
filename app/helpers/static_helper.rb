@@ -66,6 +66,16 @@ module StaticHelper
     end
   end
   
+  def box_shadow(*params)
+    param_str = params.map{|p| p.to_s}.join ' '
+    
+    <<-OUT
+      -moz-box-shadow: #{param_str};
+      -webkit-box-shadow: #{param_str};
+      box-shadow: #{param_str};
+    OUT
+  end
+  
   def palette(color)
     case color
       when :white then '#ffffff'
