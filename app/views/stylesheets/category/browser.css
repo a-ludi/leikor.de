@@ -98,3 +98,25 @@
 #content .administration a:hover, #content .administration a:focus {
   text-decoration: underline;
 }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #categories {
+    float: none;
+    border-right-width: 0px;
+    margin-right: 0em;
+    width: auto;
+    border-bottom: 1px solid <%=p :mid_gray %>;
+    margin-bottom: 4ex;
+  }
+
+  #categories li .entry.first {
+    <%=border_radius '0em' %>
+    <%=border_radius :top => '0.7em' %>
+  }
+  
+  #content { margin-left: 0em; }
+}

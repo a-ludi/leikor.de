@@ -1,13 +1,13 @@
 <h1>Messetermine</h1>
 <p>
-  Nachfolgend sind alle Messen, auf denen wir zu finden sind, mit allen wichtigen Infos aufgelistet. Wir
-  freuen uns, Sie an unserem Stand begrüßen zu dürfen!
+  Nachfolgend sind alle Messen, auf denen wir zu finden sind, mit allen wichtigen Infos aufgelistet.
+  Wir freuen uns, Sie an unserem Stand begrüßen zu dürfen!
 </p>
-<div class="infobox">
-  <table id="fair_dates">
+<div id="fair_dates" class="infobox">
+  <table>
     <thead>
       <tr class="first odd">
-        <th class="date first odd" colspan="3">Termin</th>
+        <th class="date first odd" colspan="3">Zeitraum</th>
         <th class="fair even">Messe</th>
         <th class="stand odd">Stand</th>
         <th class="<%= 'comment even ' + unless_su('last') %>">Kommentar</th>
@@ -42,3 +42,23 @@
     <% end %>
   </table>
 </div>
+<div id="fair_dates_mobile">
+  <ul>
+    <% unless @fair_dates.empty? %>
+      <% @fair_dates.each do |fd| %>
+        <%= render :partial => 'fair_date_mobile', :locals => {
+          :fair_date => fd} %>
+      <% end %>
+    <% else %>
+      <li class="last no_dates">
+        Zur Zeit keine Messetermine.
+      </li>
+    <% end %>
+  </ul>
+  <p class="administration">
+    <% if superuser_logged_in? %>
+      <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
+    <% end %>
+  </p>
+</div>
+

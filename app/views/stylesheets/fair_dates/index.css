@@ -1,6 +1,10 @@
-#fair_dates {
+#fair_dates table {
   border-collapse: collapse;
   width: 100%;
+}
+
+#fair_dates_mobile {
+  display: none;
 }
 
 #fair_dates td, #fair_dates th {
@@ -68,4 +72,58 @@
 #new_fair_date a {
   font-weight: bold;
   text-decoration: none;
+}
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #fair_dates { display: none !important; }
+  #fair_dates_mobile { display: block; }
+  
+  #fair_dates_mobile ul {
+    list-style: none;
+    padding: 0em;
+    margin: 0em;
+    margin-top: 3em;
+  }
+  
+  #fair_dates_mobile li.infobox {
+    margin-top: 1.5ex;
+    margin-bottom: 1ex;
+  }
+  
+  #fair_dates_mobile .administration {
+    float: right;
+  }
+  
+  #fair_dates_mobile .date, #fair_dates_mobile .stand {
+    margin: 0ex;
+    padding: 0ex 1em;
+    font-family: 'Sans', sans-serif;
+    font-size: 90%;
+  }
+  #fair_dates_mobile .date {
+    font-weight: bold;
+  }
+  
+  #fair_dates_mobile .stand .label { font-variant: small-caps; }
+  
+  #fair_dates_mobile h2 {
+    margin: 0ex 0em 0ex 0em;
+    font-size: 150%;
+  }
+  
+  #fair_dates_mobile h2 a, #fair_dates_mobile h2 {
+    color: <%=p :dark_blue %>;
+    font-family: 'Sans', sans-serif;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  #fair_dates_mobile .comment {
+    margin-top: 2.5ex;
+    font-family: 'Sans', sans-serif;
+  }
 }

@@ -51,3 +51,10 @@
   padding: 2ex 0em;
 }
 
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #content .category_overview { margin: 4ex 0em; }
+}

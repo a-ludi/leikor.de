@@ -121,6 +121,8 @@ div.clear {
 }
 #logo_container img { max-width: 90%; margin: 10px; }
 
+#logo_container .medium_logo { display: none; }
+
 #top_navigation {
   background: <%=p :lighter_gray %>;
   border: 1px solid <%=p :darker_gray %>;
@@ -136,7 +138,6 @@ ul.navigation {
 }
 
 #top_navigation li {
-/*  display: block;*/
   float: left;
 }
 
@@ -232,3 +233,25 @@ a.toolbutton:hover img {
 
 #footer a { font-weight: normal; }
 #footer a:hover, #footer a:focus { text-decoration: underline; }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  #logo_container .medium_logo { display: inline; }
+  #logo_container .original_logo { display: none; }
+
+  #top_navigation li {
+    float: none;
+    padding: 0em;
+  }
+
+  #top_navigation a.first {
+    <%=border_radius '0em' %>
+    <%=border_radius :top => '0.7em' %>
+  }
+  #top_navigation a.last {
+    <%=border_radius :bottom => '0.7em' %>
+  }
+}

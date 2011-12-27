@@ -1,0 +1,44 @@
+<li class="infobox">
+  <% if superuser_logged_in? %>
+    <div class="administration">
+      <%= link_to(
+        image_tag('pictogram/small/edit.png'),
+        edit_fair_date_path(fair_date),
+        :class => 'toolbutton',
+        :title => "Messetermin bearbeiten",
+        :onclick => open_popup) %>
+      <%= link_to(
+        image_tag('pictogram/small/destroy.png'),
+        fair_date_path(fair_date),
+        :method => :delete,
+        :confirm => "Soll der Messetermin „#{fair_date.name}“ wirklich gelöscht werden?",
+        :class => 'toolbutton',
+        :title => "Messetermin löschen") %>
+    </div>
+  <% end %>
+  <h2>
+    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
+  </h2>
+  <div class="date">
+    <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
+    &nbsp;-&nbsp;
+    <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
+  </div>
+  <div class="stand">
+    <span class="label">
+      Stand:
+    </span>
+    <% if fair_date.stand? %>
+      <%= fair_date.stand %>
+    <% else %>
+      <span class="not_present">Noch unbekannt</span>
+    <% end %>
+  </div>
+  <% if fair_date.comment? %>
+    <p class="comment">
+        <%= fair_date.comment %>
+    </p>
+  <% end %>
+  <%=clear_float %>
+</li>
+
