@@ -101,7 +101,6 @@
   #fair_dates_mobile .date, #fair_dates_mobile .stand {
     margin: 0ex;
     padding: 0ex 1em;
-    font-family: 'Sans', sans-serif;
     font-size: 90%;
   }
   #fair_dates_mobile .date {
@@ -117,13 +116,11 @@
   
   #fair_dates_mobile h2 a, #fair_dates_mobile h2 {
     color: <%=p :dark_blue %>;
-    font-family: 'Sans', sans-serif;
     text-decoration: none;
     font-weight: bold;
   }
   
   #fair_dates_mobile .comment {
     margin-top: 2.5ex;
-    font-family: 'Sans', sans-serif;
   }
 }

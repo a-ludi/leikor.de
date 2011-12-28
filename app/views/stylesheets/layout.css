@@ -1,5 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Overlock:400,700,400italic,700italic&subset=latin,latin-ext);
+
 body {
-  font-family: 'Sans', sans-serif;
+  font-family: 'Overlock', sans-serif;
+  font-size: 20px;
+  line-height: 170%;
 }
 
 a {
@@ -35,7 +39,7 @@ label {
   font-variant: small-caps;
 }
 
-textarea { font-family: 'Sans', sans-serif; font-size: small; }
+textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
