@@ -7,7 +7,6 @@ a {
   font-weight: bold;
   text-decoration: none;
 }
-a.external:after { content: '\200A\00bb'; }
 a:hover, a:focus { color: <%=p :darker_gray %>; }
 
 div {

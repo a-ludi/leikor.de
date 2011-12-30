@@ -17,7 +17,7 @@
     </div>
   <% end %>
   <h2>
-    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
+    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage %>
   </h2>
   <div class="date">
     <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
