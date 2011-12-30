@@ -6,7 +6,8 @@ class StaticController < ApplicationController
     :ueber_uns => {:name => 'Über uns', :stylesheets => ['static']},
     :kontakt => {:name => 'Kontakt', :stylesheets => ['message', 'static/kontakt']},
     :impressum => {:name => 'Impressum', :stylesheets => ['message', 'static', 'static/kontakt']},
-    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']}
+    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']},
+    :'google068735b263445301.html' => {:name => 'Google Verification'}
   }
   REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => ['static']} if RAILS_ENV == 'development'
   
@@ -16,7 +17,7 @@ class StaticController < ApplicationController
   def show
     path = File.join(params[:path]).to_sym unless params[:path].nil?
     if REGISTERED_PAGES[path]
-      @stylesheets = REGISTERED_PAGES[path][:stylesheets]
+      @stylesheets = REGISTERED_PAGES[path][:stylesheets] || []
       @title = REGISTERED_PAGES[path][:name] unless params[:welcome]
       @page = REGISTERED_PAGES[path]
       render :action => path.to_s
