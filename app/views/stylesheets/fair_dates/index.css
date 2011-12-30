@@ -6,11 +6,13 @@
 }
 
 #fair_dates_mobile li.infobox {
-  float: left;
+  display: inline-block;
   width: 25em;
   margin: 1.5ex 0.5em 1ex 0.5em;
   margin-top: 1.5ex;
   margin-bottom: 1ex;
+  text-align: left;
+  vertical-align: top;
 }
 
 #fair_dates_mobile .administration {
