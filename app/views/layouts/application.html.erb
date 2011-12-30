@@ -13,6 +13,9 @@
             (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
         <% end %> 
+        <% if superuser_logged_in? %>
+          <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %> |
+        <% end %> 
         <%= static_link_to :kontakt %> |
         <%= static_link_to :impressum %> |
         <%= static_link_to :AGB %>
