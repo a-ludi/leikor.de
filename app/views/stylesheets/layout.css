@@ -3,7 +3,6 @@
 body {
   font-family: 'Overlock', sans-serif;
   font-size: 20px;
-  line-height: 170%;
 }
 
 a {
@@ -25,7 +24,7 @@ hr {
   border: none;
   height: 1px;
   width: auto;
-  margin: 1ex 1em;
+  margin: 2ex 1em;
   padding: 0em;
 }
 
@@ -48,8 +47,8 @@ form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
 h1, h2 { padding: 0ex; color: <%=p :dark_green %>; }
-h1 { font-size: 150%; margin: 3ex 0em 3ex 0em }
-h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
+h1 { font-size: 150%; margin: 6ex 0em 6ex 0em }
+h2 { font-size: 110%; margin: 6ex 0em 2ex 0em }
 
 th {
   font-variant: small-caps;
@@ -67,13 +66,13 @@ div.clear {
   position: absolute;
   background: <%=p :lighter_gray %>;
   color: <%=p :dark_gray %>;
-  padding: 1.5ex 0.5em;
-  margin: 1ex 1em;
+  padding: 3ex 0.5em;
+  margin: 2ex 1em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.5em' %>
   max-width: 20em;
   font-size: 90%;
-  <%=box_shadow '0em', '0.5ex', '1ex', 'rgba(0, 0, 0, 0.5)' %>
+  <%=box_shadow '0em', '1ex', '2ex', 'rgba(0, 0, 0, 0.5)' %>
 }
 
 #message h1 {
@@ -82,7 +81,7 @@ div.clear {
   text-decoration: none;
   padding: 0em;
   margin: 0em;
-  margin-bottom: 1.5ex;
+  margin-bottom: 3ex;
 }
 
 #message p {
@@ -113,8 +112,8 @@ div.clear {
 #important_links .logged_in_user a { font-weight: normal; }
 
 #logo_container {
-  padding-top: 1ex;
-  padding-bottom: 2ex;
+  padding-top: 2ex;
+  padding-bottom: 4ex;
   text-align: center;
 }
 #logo_container.popup {
@@ -147,7 +146,7 @@ ul.navigation {
 
 #top_navigation a {
   display: block;
-  padding: 1.4ex 1.0em;
+  padding: 2.8ex 1.0em;
   font-variant: small-caps;
 }
 #top_navigation a.first {
@@ -161,7 +160,7 @@ ul.navigation {
   padding: 0ex;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.7em' %>
-  margin: 1.5ex 0em;
+  margin: 3ex 0em;
 }
 
 a.toolbutton img {
@@ -232,7 +231,7 @@ a.toolbutton:hover img {
   text-align: center;
   font-size: 80%;
   color: #666;
-  margin-top: 2ex;
+  margin-top: 4ex;
 }
 
 #footer a { font-weight: normal; }

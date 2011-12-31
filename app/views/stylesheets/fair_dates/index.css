@@ -9,13 +9,13 @@
 
 #fair_dates td, #fair_dates th {
   text-align: left;
-  padding: 1ex 0.5em;
+  padding: 2ex 0.5em;
   border: none;
   vertical-align: top;
 }
 #fair_dates th {
-  padding-bottom: 0.3ex;
-  padding-top: 0.3ex;
+  padding-bottom: 0.6ex;
+  padding-top: 0.6ex;
 }
 #fair_dates th a { color: <%=p :white %> }
 
@@ -61,7 +61,7 @@
   color: <%=p :mid_gray %>;
   text-align: center;
   font-weight: bold;
-  padding: 2ex 0em;
+  padding: 4ex 0em;
 }
 
 #fair_dates td.administration { text-align: center; }
@@ -90,8 +90,8 @@
   }
   
   #fair_dates_mobile li.infobox {
-    margin-top: 1.5ex;
-    margin-bottom: 1ex;
+    margin-top: 3ex;
+    margin-bottom: 2ex;
   }
   
   #fair_dates_mobile .administration {
@@ -121,6 +121,6 @@
   }
   
   #fair_dates_mobile .comment {
-    margin-top: 2.5ex;
+    margin-top: 5ex;
   }
 }
