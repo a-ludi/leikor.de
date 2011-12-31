@@ -2,7 +2,6 @@
   list-style: none;
   padding: 0em;
   margin: 0em;
-  margin-top: 3em;
 }
 
 #fair_dates_mobile li.infobox {
@@ -19,21 +18,10 @@
   float: right;
 }
 
-#fair_dates_mobile .date, #fair_dates_mobile .stand {
-  margin: 0ex;
-  padding: 0ex 1em;
-  font-family: 'Sans', sans-serif;
-  font-size: 90%;
-}
-#fair_dates_mobile .date {
-  font-weight: bold;
-}
-
-#fair_dates_mobile .stand .label { font-variant: small-caps; }
-
 #fair_dates_mobile h2 {
   margin: 0ex 0em 0ex 0em;
   font-size: 150%;
+  color: <%=p :dark_green %>;
 }
 
 #fair_dates_mobile h2 a, #fair_dates_mobile h2 {
@@ -42,8 +30,16 @@
   font-weight: bold;
 }
 
-#fair_dates_mobile h2 a { color: <%=p :mid_blue %>; }
-#fair_dates_mobile h2 { color: <%=p :dark_blue %>; }
+
+#fair_dates_mobile .info {
+  margin: 0ex;
+  padding: 0ex 1em;
+  font-family: 'Sans', sans-serif;
+  font-size: 90%;
+}
+#fair_dates_mobile .date {
+  font-weight: bold;
+}
 
 #fair_dates_mobile .comment {
   margin-top: 2.5ex;
