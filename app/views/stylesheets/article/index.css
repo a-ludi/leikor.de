@@ -1,5 +1,5 @@
-#content .article { margin: 3.5ex 0em; }
-#content .article.first { margin-top: 1.5ex; }
+#content .article { margin: 7ex 0em; }
+#content .article.first { margin-top: 3ex; }
 #content .article h2 {
   font-weight: bold;
   font-size: 110%;
@@ -13,17 +13,17 @@
 #content .article .body {
   overflow: hidden;
   background: <%=p :white %>;
-  padding: 1.5ex 1.2em;
+  padding: 3ex 1.2em;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.5em' %>
-  margin: 0.5ex 0em;
+  margin: 1ex 0em;
 }
 
 #content .article .body .image {
   display: block;
   float: left;
   padding: 0ex;
-  margin: 0ex 1em 1.5ex 0em;
+  margin: 0ex 1em 3ex 0em;
   max-width: 100%;
   text-align: center;
 }
@@ -38,14 +38,12 @@
 
 #content .article .administration { margin-top: 0ex; }
 #content .article .body .description {
-  font-family: "Serif" serif;
-  margin-bottom: 6ex;
+  margin-bottom: 12ex;
 }
 
 #content .article .body .dimensions {
-  font-family: "Serif" serif;
   text-align: left;
-  margin-top: 1ex;
+  margin-top: 2ex;
 }
 
 #content .article .body .dimensions .label {
@@ -61,11 +59,10 @@
   text-align: right;
   font-size: 85%;
 }
-#content .article .body .article_number .value { font-family: "Monospace" monospace; }
 
 #content .article.edit .body .image {
   text-align: center;
-  padding: 1ex 0.5em;
+  padding: 2ex 0.5em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.3em' %>
 }

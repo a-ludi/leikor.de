@@ -2,7 +2,7 @@ table.contact { text-align: left; width: auto; }
 
 table.contact td, table.contact th {
   vertical-align: top;
-  padding: 0.2ex 0em;
+  padding: 0.4ex 0em;
 }
 
 table.contact th { text-align: right; }
