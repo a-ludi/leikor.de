@@ -1,3 +1,4 @@
+/* 1ex = 0,178890877em */
 <% if RAILS_ENV == 'development' %>
   @import url(http://fonts.googleapis.com/css?family=Overlock:400,700,400italic,700italic&subset=latin,latin-ext);
 <% end %>
@@ -15,8 +16,8 @@ a {
 a:hover, a:focus { color: <%=p :darker_gray %>; }
 
 div {
-  padding: 0ex;
-  margin: 0ex;
+  padding: 0em;
+  margin: 0em;
   border: none;
 }
 
@@ -25,7 +26,7 @@ hr {
   border: none;
   height: 1px;
   width: auto;
-  margin: 2ex 1em;
+  margin: 0.36em 1em;
   padding: 0em;
 }
 
@@ -47,9 +48,9 @@ textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
-h1, h2 { padding: 0ex; color: <%=p :dark_green %>; }
-h1 { font-size: 150%; margin: 6ex 0em 6ex 0em }
-h2 { font-size: 110%; margin: 6ex 0em 2ex 0em }
+h1, h2 { padding: 0em; color: <%=p :dark_green %>; }
+h1 { font-size: 150%; margin: 1.07em 0em 1.07em 0em }
+h2 { font-size: 110%; margin: 1.07em 0em 0.36em 0em }
 
 th {
   font-variant: small-caps;
@@ -67,13 +68,13 @@ div.clear {
   position: absolute;
   background: <%=p :lighter_gray %>;
   color: <%=p :dark_gray %>;
-  padding: 3ex 0.5em;
-  margin: 2ex 1em;
+  padding: 0.54em 0.5em;
+  margin: 0.36em 1em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.5em' %>
   max-width: 20em;
   font-size: 90%;
-  <%=box_shadow '0em', '1ex', '2ex', 'rgba(0, 0, 0, 0.5)' %>
+  <%=box_shadow '0em', '0.18em', '0.36em', 'rgba(0, 0, 0, 0.5)' %>
 }
 
 #message h1 {
@@ -82,7 +83,7 @@ div.clear {
   text-decoration: none;
   padding: 0em;
   margin: 0em;
-  margin-bottom: 3ex;
+  margin-bottom: 0.54em;
 }
 
 #message p {
@@ -107,21 +108,21 @@ div.clear {
   text-decoration: underline;
 }
 #important_links .logged_in_user {
-  padding: 0ex 1.5em;
+  padding: 0em 1.5em;
 }
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
 
 #logo_container {
-  padding-top: 2ex;
-  padding-bottom: 4ex;
+  padding-top: 0.36em;
+  padding-bottom: 0.72em;
   text-align: center;
 }
 #logo_container.popup {
   padding: 0em;
   text-align: center;
   border-bottom: 1px solid <%=p :mid_gray %>;
-  margin: 0ex 1em;
+  margin: 0em 1em;
 }
 #logo_container img { max-width: 90%; margin: 10px; }
 
@@ -147,7 +148,7 @@ ul.navigation {
 
 #top_navigation a {
   display: block;
-  padding: 2.8ex 1.0em;
+  padding: 0.5em 1.0em;
   font-variant: small-caps;
 }
 #top_navigation a.first {
@@ -158,10 +159,10 @@ ul.navigation {
 
 #body {
   background: <%=p :light_gray %>;
-  padding: 0ex;
+  padding: 0em;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.7em' %>
-  margin: 3ex 0em;
+  margin: 0.54em 0em;
 }
 
 a.toolbutton img {
@@ -219,9 +220,9 @@ a.toolbutton:hover img {
 }
 #body .fieldWithErrors {
   display: inline;
-  padding: 0ex;
-  margin: 0ex;
-  border: 0ex;
+  padding: 0em;
+  margin: 0em;
+  border: 0em;
 }
 #body .fieldWithErrors * {
   background: <%=p :light_red %>;
@@ -232,7 +233,7 @@ a.toolbutton:hover img {
   text-align: center;
   font-size: 80%;
   color: #666;
-  margin-top: 4ex;
+  margin-top: 0.72em;
 }
 
 #footer a { font-weight: normal; }

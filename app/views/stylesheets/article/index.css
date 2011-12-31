@@ -1,29 +1,29 @@
-#content .article { margin: 7ex 0em; }
-#content .article.first { margin-top: 3ex; }
+#content .article { margin: 1.25em 0em; }
+#content .article.first { margin-top: 0.54em; }
 #content .article h2 {
   font-weight: bold;
   font-size: 110%;
-  padding: 0ex;
+  padding: 0em;
   color: <%=p :dark_gray %>;
 }
 #content .article h2 span {
-  margin: 0ex 1em;
+  margin: 0em 1em;
 }
 #content .article h2 a.toolbutton { margin: 0px 2px; }
 #content .article .body {
   overflow: hidden;
   background: <%=p :white %>;
-  padding: 3ex 1.2em;
+  padding: 0.54em 1.2em;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.5em' %>
-  margin: 1ex 0em;
+  margin: 0.18em 0em;
 }
 
 #content .article .body .image {
   display: block;
   float: left;
-  padding: 0ex;
-  margin: 0ex 1em 3ex 0em;
+  padding: 0em;
+  margin: 0em 1em 0.54em 0em;
   max-width: 100%;
   text-align: center;
 }
@@ -36,14 +36,14 @@
   height: 150px;
 }
 
-#content .article .administration { margin-top: 0ex; }
+#content .article .administration { margin-top: 0em; }
 #content .article .body .description {
-  margin-bottom: 12ex;
+  margin-bottom: 2.15em;
 }
 
 #content .article .body .dimensions {
   text-align: left;
-  margin-top: 2ex;
+  margin-top: 0.36em;
 }
 
 #content .article .body .dimensions .label {
@@ -62,7 +62,7 @@
 
 #content .article.edit .body .image {
   text-align: center;
-  padding: 2ex 0.5em;
+  padding: 0.36em 0.5em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.3em' %>
 }

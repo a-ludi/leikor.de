@@ -1,5 +1,5 @@
 #body {
-  padding: 3ex 1.2em;
+  padding: 0.54em 1.2em;
 }
 
 #body a {
@@ -13,8 +13,8 @@
 }
 
 #body p, #body table {
-  padding: 0ex;
-  margin: 3ex 0em;
+  padding: 0em;
+  margin: 0.54em 0em;
 }
 
 #body .center { text-align: center; }
@@ -22,8 +22,8 @@
 #body .infobox {
   display: block;
   background: <%=p :white %>;
-  padding: 3ex 1.2em;
+  padding: 0.54em 1.2em;
   border: 1px solid #ccc;
   <%=border_radius '0.5em' %>
-  margin: 1ex 0em;
+  margin: 0.18em 0em;
 }

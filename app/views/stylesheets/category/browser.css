@@ -4,7 +4,7 @@
   color: <%=p :mid_gray %>;
   text-align: center;
   font-weight: bold;
-  padding: 4ex 0em;
+  padding: 0.72em 0em;
 }
 
 #categories {
@@ -30,14 +30,14 @@
 
 #categories li a.button {
   display: block;
-  padding: 2.8ex 1.0em;
+  padding: 0.5em 1.0em;
 }
 
 #categories li .handle {
   display: block;
   float: right;
-  margin-top: 2ex;
-  padding: 0.8ex 0.5em 0.8ex 0.2em;
+  margin-top: 0.36em;
+  padding: 0.14em 0.5em 0.14em 0.2em;
   cursor: move;
   text-align: left;
   font-weight: bold;
@@ -63,7 +63,7 @@
 }
 
 #categories .subcategory a.button {
-  padding: 1.6ex 1.0em;
+  padding: 0.29em 1.0em;
   padding-left: 2.0em;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0);
@@ -78,20 +78,20 @@
 #categories .subcategory a.button.selected.first { border-top: none; }
 #categories .subcategory a.button.selected.last { border-bottom: none; }
 
-#categories .subcategory li .handle { margin-top: 0.8ex; }
+#categories .subcategory li .handle { margin-top: 0.14em; }
 
-#content { margin-left: 15em; padding: 0ex 1em; }
+#content { margin-left: 15em; padding: 0em 1em; }
 
 #content .administration {
   color: <%=p :dark_blue %>;
   text-align: right;
-  margin: 1ex 0em 4ex 0em;
+  margin: 0.18em 0em 0.72em 0em;
 }
 
 #content .message {
   color: <%=p :mid_blue %>;
-  padding: 0ex 1em;
-  margin: 0ex;
+  padding: 0em 1em;
+  margin: 0em;
 }
 
 #content .administration a { color: <%=p :dark_blue %>; }
@@ -110,7 +110,7 @@
     margin-right: 0em;
     width: auto;
     border-bottom: 1px solid <%=p :mid_gray %>;
-    margin-bottom: 8ex;
+    margin-bottom: 1.43em;
   }
 
   #categories li .entry.first {
