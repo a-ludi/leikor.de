@@ -7,10 +7,8 @@
 
 #fair_dates_mobile li.infobox {
   display: inline-block;
-  width: 25em;
-  margin: 1.5ex 0.5em 1ex 0.5em;
-  margin-top: 1.5ex;
-  margin-bottom: 1ex;
+  width: 20em;
+  margin: 3ex 0.25em;
   text-align: left;
   vertical-align: top;
 }
@@ -22,7 +20,6 @@
 #fair_dates_mobile .date, #fair_dates_mobile .stand {
   margin: 0ex;
   padding: 0ex 1em;
-  font-family: 'Sans', sans-serif;
   font-size: 90%;
 }
 #fair_dates_mobile .date {
@@ -37,7 +34,6 @@
 }
 
 #fair_dates_mobile h2 a, #fair_dates_mobile h2 {
-  font-family: 'Sans', sans-serif;
   text-decoration: none;
   font-weight: bold;
 }
@@ -47,7 +43,6 @@
 
 #fair_dates_mobile .comment {
   margin-top: 2.5ex;
-  font-family: 'Sans', sans-serif;
 }
 
 #new_fair_date a {
