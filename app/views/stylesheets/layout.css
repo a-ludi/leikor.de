@@ -106,9 +106,6 @@ div.clear {
 #message.error h1 { color: <%=p :mid_red %> }
 
 #important_links { text-align: right; }
-#important_links a:hover, #important_links a:focus {
-  text-decoration: underline;
-}
 #important_links .logged_in_user {
   padding: 0em 1.5em;
 }
@@ -244,7 +241,6 @@ a.toolbutton:hover img {
 }
 
 #footer a { font-weight: normal; }
-#footer a:hover, #footer a:focus { text-decoration: underline; }
 
 /**
  * Mobile (small) Version

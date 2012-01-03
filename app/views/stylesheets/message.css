@@ -16,8 +16,6 @@
   min-width: 10em;
 }
 
-#message_window a:hover, #message_window a:focus { text-decoration: underline; }
-
 #message_window h1 {
   padding-top: 0em;
   margin-top: 0em;

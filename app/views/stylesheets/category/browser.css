@@ -103,9 +103,6 @@
 }
 
 #content .administration a { color: <%=p :dark_blue %>; }
-#content .administration a:hover, #content .administration a:focus {
-  text-decoration: underline;
-}
 
 /**
  * Mobile (small) Version
