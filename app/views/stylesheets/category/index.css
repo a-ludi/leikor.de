@@ -5,7 +5,9 @@
   font-weight: bold;
   padding: 0.72em 0em;
 }
-#content .category_overview { margin: 0.54em 0em; }
+#content .category_overview {
+  margin: 0.54em 0em;
+}
 
 #content .category_overview h2 {
   font-size: 100%;
@@ -19,13 +21,8 @@
   margin: 0em 1em;
   color: <%=p :dark_gray %>;
 }
-#content .category_overview h2 a:after {
-  content: ' \00bb';
-  visibility: hidden;
-}
-#content .category_overview h2 a:hover:after { visibility: visible; }
+
 #content .category_overview h2 a.toolbutton { margin: 0px 2px; }
-#content .category_overview h2 a.toolbutton:after { content: ''; }
 #content .category_overview .body {
   background: <%=p :white %>;
   padding: 0.18em;

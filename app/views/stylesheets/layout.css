@@ -8,11 +8,14 @@ body {
 }
 
 a {
-  color: <%=p :dark_gray %>;
+  color: <%=p :dark_blue %>;
   font-weight: bold;
   text-decoration: none;
 }
-a:hover, a:focus { color: <%=p :darker_gray %>; }
+a:hover, a:focus {
+  color: <%=p :mid_blue %>;
+  font-style: italic;
+}
 
 div {
   padding: 0em;
@@ -35,7 +38,7 @@ img {
   margin: 0em;
 }
 
-label {
+label, .label {
   font-variant: small-caps;
 }
 
@@ -149,12 +152,17 @@ ul.navigation {
   display: block;
   padding: 0.5em 1.0em;
   font-variant: small-caps;
+  color: <%=p :dark_gray %>;
 }
 #top_navigation a.first {
   padding-left: 1.2em;
   <%=border_radius :left => '0.7em' %>
 }
-#top_navigation a:hover, #top_navigation a:focus { background: <%=p :mid_red %>; color: <%=p :white %>; }
+#top_navigation a:hover, #top_navigation a:focus {
+  background: <%=p :mid_red %>;
+  color: <%=p :white %>;
+  font-style: normal;
+}
 
 #body {
   background: <%=p :light_gray %>;

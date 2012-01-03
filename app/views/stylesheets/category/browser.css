@@ -21,16 +21,24 @@
   padding: 0em;
   margin: 0em;
 }
-#categories li .entry.first { <%=border_radius :topleft => '0.7em' %> }
+#categories li .entry.first {
+  <%=border_radius :topleft => '0.7em' %>
+}
+
 #categories li .entry:hover {
   background: <%=p :dark_green %>;
   color: <%=p :white %>;
 }
-#categories li .entry:hover a.button { color: <%=p :white %>; }
+
+#categories li .entry:hover a.button {
+  color: <%=p :white %>;
+  font-style: normal;
+}
 
 #categories li a.button {
   display: block;
   padding: 0.5em 1.0em;
+  color: <%=p :dark_gray %>;
 }
 
 #categories li .handle {

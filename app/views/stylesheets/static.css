@@ -2,16 +2,6 @@
   padding: 0.54em 1.2em;
 }
 
-#body a {
-  font-weight: normal;
-  text-decoration: underline;
-}
-
-#body a:hover, #body a:focus {
-  font-style: italic;
-  text-decoration: none;
-}
-
 #body p, #body table {
   padding: 0em;
   margin: 0.54em 0em;
