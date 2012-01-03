@@ -16,24 +16,6 @@
         :title => "Messetermin löschen") %>
     </div>
   <% end %>
-<<<<<<< HEAD
-  <h2>
-    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage %>
-  </h2>
-  <div class="date">
-    <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
-    -
-    <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
-  </div>
-  <div class="stand">
-    <span class="label">
-      Stand:
-    </span>
-    <% if fair_date.stand? %>
-      <%= fair_date.stand %>
-    <% else %>
-      <span class="not_present">Noch unbekannt</span>
-=======
   <h2><%= fair_date.name %></h2>
   <ul class="info">
     <li class="date">
@@ -58,7 +40,6 @@
         </span>
         <%= link_to nice_url(fair_date.homepage), fair_date.homepage %>
       </li>
->>>>>>> fair_dates_as_cards
     <% end %>
   </ul>
   <% if fair_date.comment? %>
