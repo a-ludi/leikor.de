@@ -14,6 +14,7 @@ a {
 }
 a:hover, a:focus {
   color: <%=p :mid_blue %>;
+  text-decoration: underline;
 }
 
 div {
