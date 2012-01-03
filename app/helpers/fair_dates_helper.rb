@@ -8,6 +8,6 @@ module FairDatesHelper
   end
   
   def nice_url(raw_url)
-    raw_url[/^([a-zA-Z]+:\/\/)?(.*)\//, 2]
+    raw_url[ /^([a-zA-Z]+:\/\/)?([^\/]+)/, 2]
   end
 end
