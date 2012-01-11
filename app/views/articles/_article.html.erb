@@ -2,6 +2,12 @@
   <h2>
     <span><%= article.name %></span>
     <% if superuser_logged_in? %>
+      <%= link_to(
+        image_tag('pictogram/small/link.png'),
+        subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),
+        :class => 'toolbutton',
+        :title => article.name
+      ) %>
       <%= link_to_remote(
         image_tag('pictogram/small/edit.png'),
         :url => edit_article_path(article),
