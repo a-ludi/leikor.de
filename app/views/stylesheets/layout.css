@@ -3,7 +3,8 @@
 <% end %>
 
 body {
-  font: 20px 'Overlock', 16px sans-serif;
+  font-family: 'Overlock', sans-serif;
+  font-size: 20px;
 }
 
 a {
