@@ -16,6 +16,10 @@ function hideMessage() {
   window.setTimeout("Effect.Appear('message', {duration: 2.0})", 2000);
 }
 
+function copyToClipboard(text) {
+  window.prompt ("Zum kopieren [Strg+C] drücken. Danach mit [Enter] den Dialog beenden.", text);
+}
+
 recreatePositionalClasses = function(element) {
   elements = element.parentNode.childElements()
   for(var i=0; i < elements.length; i++) {

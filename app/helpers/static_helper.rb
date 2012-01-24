@@ -90,9 +90,9 @@ module StaticHelper
       when :light_blue then '#d9f0ff'
       when :dark_gray then '#333333'
       when :darker_gray then '#aaaaaa'
-      when :mid_gray then '#cccccc'
-      when :lighter_gray then '#dddddd'
-      when :light_gray then '#eeeeee'
+      when :mid_gray then '#c9c9c9'
+      when :lighter_gray then '#d8d8d8'
+      when :light_gray then '#e5e5e5'
       else raise ActionView::ActionViewError, "unknown color: <#{color.inspect}>"
     end
   end

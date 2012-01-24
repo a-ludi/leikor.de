@@ -4,7 +4,7 @@
   color: <%=p :mid_gray %>;
   text-align: center;
   font-weight: bold;
-  padding: 2ex 0em;
+  padding: 0.72em 0em;
 }
 
 #categories {
@@ -21,23 +21,31 @@
   padding: 0em;
   margin: 0em;
 }
-#categories li .entry.first { <%=border_radius :topleft => '0.7em' %> }
+#categories li .entry.first {
+  <%=border_radius :topleft => '0.7em' %>
+}
+
 #categories li .entry:hover {
   background: <%=p :dark_green %>;
   color: <%=p :white %>;
 }
-#categories li .entry:hover a.button { color: <%=p :white %>; }
+
+#categories li .entry:hover a.button {
+  color: <%=p :white %>;
+  font-style: normal;
+}
 
 #categories li a.button {
   display: block;
-  padding: 1.4ex 1.0em;
+  padding: 0.5em 1.0em;
+  color: <%=p :dark_gray %>;
 }
 
 #categories li .handle {
   display: block;
   float: right;
-  margin-top: 1.0ex;
-  padding: 0.4ex 0.5em 0.4ex 0.2em;
+  margin-top: 0.36em;
+  padding: 0.14em 0.5em 0.14em 0.2em;
   cursor: move;
   text-align: left;
   font-weight: bold;
@@ -63,7 +71,7 @@
 }
 
 #categories .subcategory a.button {
-  padding: 0.8ex 1.0em;
+  padding: 0.29em 1.0em;
   padding-left: 2.0em;
   font-weight: normal;
   border: 1px solid rgba(0,0,0,0);
@@ -78,23 +86,42 @@
 #categories .subcategory a.button.selected.first { border-top: none; }
 #categories .subcategory a.button.selected.last { border-bottom: none; }
 
-#categories .subcategory li .handle { margin-top: 0.4ex; }
+#categories .subcategory li .handle { margin-top: 0.14em; }
 
-#content { margin-left: 15em; padding: 0ex 1em; }
+#content { margin-left: 15em; padding: 0em 1em; }
 
 #content .administration {
   color: <%=p :dark_blue %>;
   text-align: right;
-  margin: 0.5ex 0em 2ex 0em;
+  margin: 0.18em 0em 0.72em 0em;
 }
 
 #content .message {
   color: <%=p :mid_blue %>;
-  padding: 0ex 1em;
-  margin: 0ex;
+  padding: 0em 1em;
+  margin: 0em;
 }
 
 #content .administration a { color: <%=p :dark_blue %>; }
-#content .administration a:hover, #content .administration a:focus {
-  text-decoration: underline;
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #categories {
+    float: none;
+    border-right-width: 0px;
+    margin-right: 0em;
+    width: auto;
+    border-bottom: 1px solid <%=p :mid_gray %>;
+    margin-bottom: 1.43em;
+  }
+
+  #categories li .entry.first {
+    <%=border_radius '0em' %>
+    <%=border_radius :top => '0.7em' %>
+  }
+  
+  #content { margin-left: 0em; }
 }

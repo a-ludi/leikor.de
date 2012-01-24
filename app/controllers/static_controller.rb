@@ -16,7 +16,7 @@ class StaticController < ApplicationController
   def show
     path = File.join(params[:path]).to_sym unless params[:path].nil?
     if REGISTERED_PAGES[path]
-      @stylesheets = REGISTERED_PAGES[path][:stylesheets]
+      @stylesheets = REGISTERED_PAGES[path][:stylesheets] || []
       @title = REGISTERED_PAGES[path][:name] unless params[:welcome]
       @page = REGISTERED_PAGES[path]
       render :action => path.to_s

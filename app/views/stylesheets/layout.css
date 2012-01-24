@@ -1,18 +1,25 @@
+<% if RAILS_ENV != 'development' %>
+  @import url(http://fonts.googleapis.com/css?family=Overlock:400,700&subset=latin,latin-ext);
+<% end %>
+
 body {
-  font-family: 'Sans', sans-serif;
+  font-family: 'Overlock', sans-serif;
+  font-size: 20px;
 }
 
 a {
-  color: <%=p :dark_gray %>;
+  color: <%=p :dark_blue %>;
   font-weight: bold;
   text-decoration: none;
 }
-a.external:after { content: '\200A\00bb'; }
-a:hover, a:focus { color: <%=p :darker_gray %>; }
+a:hover, a:focus {
+  color: <%=p :mid_blue %>;
+  text-decoration: underline;
+}
 
 div {
-  padding: 0ex;
-  margin: 0ex;
+  padding: 0em;
+  margin: 0em;
   border: none;
 }
 
@@ -21,7 +28,7 @@ hr {
   border: none;
   height: 1px;
   width: auto;
-  margin: 1ex 1em;
+  margin: 0.36em 1em;
   padding: 0em;
 }
 
@@ -31,11 +38,11 @@ img {
   margin: 0em;
 }
 
-label {
+label, .label {
   font-variant: small-caps;
 }
 
-textarea { font-family: 'Sans', sans-serif; font-size: small; }
+textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
@@ -43,9 +50,9 @@ textarea { font-family: 'Sans', sans-serif; font-size: small; }
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
-h1, h2 { padding: 0ex; color: <%=p :dark_green %>; }
-h1 { font-size: 150%; margin: 3ex 0em 3ex 0em }
-h2 { font-size: 110%; margin: 3ex 0em 1ex 0em }
+h1, h2 { padding: 0em; color: <%=p :dark_green %>; }
+h1 { font-size: 150%; margin: 1.07em 0em 1.07em 0em }
+h2 { font-size: 110%; margin: 1.07em 0em 0.36em 0em }
 
 th {
   font-variant: small-caps;
@@ -63,13 +70,13 @@ div.clear {
   position: absolute;
   background: <%=p :lighter_gray %>;
   color: <%=p :dark_gray %>;
-  padding: 1.5ex 0.5em;
-  margin: 1ex 1em;
+  padding: 0.54em 0.5em;
+  margin: 0.36em 1em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.5em' %>
   max-width: 20em;
   font-size: 90%;
-  <%=box_shadow '0em', '0.5ex', '1ex', 'rgba(0, 0, 0, 0.5)' %>
+  <%=box_shadow '0em', '0.18em', '0.36em', 'rgba(0, 0, 0, 0.5)' %>
 }
 
 #message h1 {
@@ -78,7 +85,7 @@ div.clear {
   text-decoration: none;
   padding: 0em;
   margin: 0em;
-  margin-bottom: 1.5ex;
+  margin-bottom: 0.54em;
 }
 
 #message p {
@@ -99,27 +106,26 @@ div.clear {
 #message.error h1 { color: <%=p :mid_red %> }
 
 #important_links { text-align: right; }
-#important_links a:hover, #important_links a:focus {
-  text-decoration: underline;
-}
 #important_links .logged_in_user {
-  padding: 0ex 1.5em;
+  padding: 0em 1.5em;
 }
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
 
 #logo_container {
-  padding-top: 1ex;
-  padding-bottom: 2ex;
+  padding-top: 0.36em;
+  padding-bottom: 0.72em;
   text-align: center;
 }
 #logo_container.popup {
   padding: 0em;
   text-align: center;
   border-bottom: 1px solid <%=p :mid_gray %>;
-  margin: 0ex 1em;
+  margin: 0em 1em;
 }
 #logo_container img { max-width: 90%; margin: 10px; }
+
+#logo_container .medium_logo { display: none; }
 
 #top_navigation {
   background: <%=p :lighter_gray %>;
@@ -136,27 +142,31 @@ ul.navigation {
 }
 
 #top_navigation li {
-/*  display: block;*/
   float: left;
 }
 
 #top_navigation a {
   display: block;
-  padding: 1.4ex 1.0em;
+  padding: 0.5em 1.0em;
   font-variant: small-caps;
+  color: <%=p :dark_gray %>;
 }
 #top_navigation a.first {
   padding-left: 1.2em;
   <%=border_radius :left => '0.7em' %>
 }
-#top_navigation a:hover, #top_navigation a:focus { background: <%=p :mid_red %>; color: <%=p :white %>; }
+#top_navigation a:hover, #top_navigation a:focus {
+  background: <%=p :mid_red %>;
+  color: <%=p :white %>;
+  font-style: normal;
+}
 
 #body {
   background: <%=p :light_gray %>;
-  padding: 0ex;
+  padding: 0em;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.7em' %>
-  margin: 1.5ex 0em;
+  margin: 0.54em 0em;
 }
 
 a.toolbutton img {
@@ -214,9 +224,9 @@ a.toolbutton:hover img {
 }
 #body .fieldWithErrors {
   display: inline;
-  padding: 0ex;
-  margin: 0ex;
-  border: 0ex;
+  padding: 0em;
+  margin: 0em;
+  border: 0em;
 }
 #body .fieldWithErrors * {
   background: <%=p :light_red %>;
@@ -227,8 +237,29 @@ a.toolbutton:hover img {
   text-align: center;
   font-size: 80%;
   color: #666;
-  margin-top: 2ex;
+  margin-top: 0.72em;
 }
 
 #footer a { font-weight: normal; }
-#footer a:hover, #footer a:focus { text-decoration: underline; }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  #logo_container .medium_logo { display: inline; }
+  #logo_container .original_logo { display: none; }
+
+  #top_navigation li {
+    float: none;
+    padding: 0em;
+  }
+
+  #top_navigation a.first {
+    <%=border_radius '0em' %>
+    <%=border_radius :top => '0.7em' %>
+  }
+  #top_navigation a.last {
+    <%=border_radius :bottom => '0.7em' %>
+  }
+}

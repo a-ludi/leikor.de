@@ -1,71 +1,60 @@
-#fair_dates {
-  border-collapse: collapse;
-  width: 100%;
+#fair_dates_mobile ul {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
 }
 
-#fair_dates td, #fair_dates th {
+#fair_dates_mobile li.infobox {
+  display: inline-block;
+  width: 20em;
+  margin: 0.54em 0.25em;
   text-align: left;
-  padding: 1ex 0.5em;
-  border: none;
   vertical-align: top;
 }
-#fair_dates th {
-  padding-bottom: 0.3ex;
-  padding-top: 0.3ex;
-}
-#fair_dates th a { color: <%=p :white %> }
 
-#fair_dates tr.odd td { background: <%=p :light_gray %>; }
-#fair_dates tr.even td { background: <%=p :white %>; }
-#fair_dates tr.odd th { background: <%=p :dark_blue %>; color: <%=p :white %>; }
-#fair_dates tr.even th { background: <%=p :mid_blue %>; color: <%=p :white %>; }
-
-/* Corners */
-#fair_dates tr.first td.first, #fair_dates tr.first th.first {
-  <%=border_radius :topleft => '0.3em' %> }
-#fair_dates tr.first td.last, #fair_dates tr.first th.last {
-  <%=border_radius :topright => '0.3em' %> }
-#fair_dates tr.last td.first, #fair_dates tr.last th.first {
-  <%=border_radius :bottomleft => '0.3em' %> }
-#fair_dates tr.last td.last, #fair_dates tr.last th.last {
-  <%=border_radius :bottomright => '0.3em' %> }
-
-/* supress top/bottom border in first/last row  */
-#fair_dates tr.first td, #fair_dates tr.first th { border-top: none; }
-#fair_dates tr.last td, #fair_dates tr.last th { border-bottom: none; }
-
-#fair_dates td.date.from {
-  text-align: right;
-  border-right: none;
-  padding-right: 0em;
-}
-#fair_dates td.dash {
-  text-align: center;
-  border-left: none;
-  border-right: none;
-  padding-left: 0em;
-  padding-right: 0em;
-}
-#fair_dates td.date.to {
-  text-align: left;
-  border-left: none;
-  padding-left: 0em;
+#fair_dates_mobile .administration {
+  float: right;
 }
 
-#fair_dates td.no_dates {
-  font-size: 200%;
-  color: <%=p :mid_gray %>;
-  text-align: center;
+#fair_dates_mobile h2 {
+  margin: 0em 0em 0em 0em;
+  font-size: 150%;
+  color: <%=p :dark_green %>;
+}
+
+#fair_dates_mobile h2 a, #fair_dates_mobile h2 {
+  text-decoration: none;
   font-weight: bold;
-  padding: 2ex 0em;
 }
 
-#fair_dates td.administration { text-align: center; }
 
-#fair_dates td .not_present { font-style: italic; color: <%=p :darker_gray %>; }
+#fair_dates_mobile .info {
+  margin: 0ex;
+  padding: 0ex 1em;
+  font-size: 90%;
+}
+#fair_dates_mobile .date {
+  font-weight: bold;
+}
 
-#new_fair_date td, #new_fair_date th { text-align: right; }
+#fair_dates_mobile .comment {
+  margin-top: 0.45em;
+}
+
 #new_fair_date a {
   font-weight: bold;
   text-decoration: none;
+}
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #fair_dates_mobile li.infobox {
+    float: none;
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+  }
 }

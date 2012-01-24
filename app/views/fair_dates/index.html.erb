@@ -1,44 +1,21 @@
-<h1>Messetermine</h1>
-<p>
-  Nachfolgend sind alle Messen, auf denen wir zu finden sind, mit allen wichtigen Infos aufgelistet. Wir
-  freuen uns, Sie an unserem Stand begrüßen zu dürfen!
-</p>
-<div class="infobox">
-  <table id="fair_dates">
-    <thead>
-      <tr class="first odd">
-        <th class="date first odd" colspan="3">Termin</th>
-        <th class="fair even">Messe</th>
-        <th class="stand odd">Stand</th>
-        <th class="<%= 'comment even ' + unless_su('last') %>">Kommentar</th>
-        <% if superuser_logged_in? %>
-          <th class="administration last odd">Verwaltung</th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <% unless @fair_dates.empty? %>
-        <% @fair_dates.each_index do |i| %>
-          <%= render :partial => 'fair_date', :locals => {
-            :fair_date => @fair_dates[i],
-            :pos_class => positional_class(i + 1, num_rows)} %>
-        <% end %>
-      <% else %>
-        <tr class="even">
-          <td colspan="7" class="first last no_dates">
-            Zur Zeit keine Messetermine.
-          </td>
-        </tr>
+<div id="fair_dates_mobile">
+  <ul>
+    <% unless @fair_dates.empty? %>
+      <% @fair_dates.each do |fd| %>
+        <%= render :partial => 'fair_date_mobile', :locals => {
+          :fair_date => fd} %>
       <% end %>
-    </tbody>
-    <% if superuser_logged_in? %>
-      <tfoot>
-        <tr id="new_fair_date" class="<%= positional_class num_rows-1, num_rows %>">
-          <th class="first last odd" colspan="7">
-            <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
-          </th>
-        </tr>
-      </tfoot>
+    <% else %>
+      <li class="last no_dates">
+        Zur Zeit keine Messetermine.
+      </li>
     <% end %>
-  </table>
+  </ul>
+  <%=clear_float %>
+  <p id="new_fair_date" class="administration">
+    <% if superuser_logged_in? %>
+      <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
+    <% end %>
+  </p>
 </div>
+

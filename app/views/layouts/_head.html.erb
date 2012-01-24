@@ -1,7 +1,19 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<meta http-equiv="x-ua-compatible" content="IE=8" />
 <meta http-equiv="content-style-type" content="text/css" />
 <meta http-equiv="content-script-type" content="text/javascript" />
+<meta http-equiv="content-language" content="de" />
+<meta name="viewport" content="width=device-width, user-scalable=yes" />
+<meta name="description" lang="de" content="Bei uns finden Sie Schönes aus Naturmaterialien, wie
+  z.B. aus Teak-Holz geschnitzte Elefanten, Eulen oder Pferde, Wurzelholzdekorationen, Mobiles,
+  Taschen und Schals aus Baumwolle & Seide oder auch Musikinstrumente aus Naturmaterialien." />
+<meta name="author" content="LEIKOR" />
+<link rel="author" title="Impressum" href="<%=static_path :impressum %>" />
+<link rel="copyright" title="Urheberrecht" href="<%=static_path :impressum %>" />
+<link rel="start" title="Über Uns" href="<%=static_path '' %>" />
+<link rel="bookmark" title="leikor.de" href="<%=static_url '' %>" />
+<meta name="keywords" lang="de" content="LEIKOR,Naturmaterialien,Teak-Holz,Teakholz,Baumwolle,Seide,
+  Elefanten,Eulen,Pferde,Wohnaccessoires,Taschen,Schals,Musikinstrumente,Instrumente" />
+<meta name="google-site-verification" content="RCwJrk-MoarXBmm6EtlRhS6aKaJnQu8S1bj-Vn0IAsM" />
 <title>leikor.de - <%= @title || 'Willkommen' %></title>
 <%= tag 'link', :rel => 'shortcut icon', :type => 'image/png', :href => '/favicon.png' %>
 <%= tag 'link', :rel => 'shortcut icon', :type => 'image/x-icon', :href => '/favicon.ico' %>
@@ -10,3 +22,6 @@
   <%= stylesheet_link_tag s %>
 <% end unless @stylesheets.nil? %>
 <%= javascript_include_tag :defaults %>
+<!--[if lt IE 9]>
+	<%= javascript_include_tag 'respond.min.js' %>
+<![endif]-->

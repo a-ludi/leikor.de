@@ -13,6 +13,9 @@
             (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
         <% end %> 
+        <% if superuser_logged_in? %>
+          <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %> |
+        <% end %> 
         <%= static_link_to :kontakt %> |
         <%= static_link_to :impressum %> |
         <%= static_link_to :AGB %>
@@ -24,10 +27,21 @@
             :alt => 'LEIKOR-Logo',
             :title => 'Zurück zur Startseite'
           ),
-          :root
+          :root,
+          :class => 'original_logo'
+        ) %>
+        <%= link_to(
+          image_tag(
+            'logo/medium.png',
+            :alt => 'LEIKOR-Logo',
+            :title => 'Zurück zur Startseite'
+          ),
+          :root,
+          :class => 'medium_logo'
         ) %>
       </div>
       <div id="top_navigation">
+        <h1 style="display: none;">Navigation</h1>
         <ul class="navigation">
           <!--a>News</a-->
           <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
