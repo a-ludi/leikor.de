@@ -49,3 +49,12 @@
 <div id="content">
   <%= yield %>
 </div>
+<% javascript_tag do %>
+  if(document.viewport.getWidth() <= 470) {
+    target = '<%= @scroll_target %>';
+    if(window.location.hash != '')
+      target = window.location.hash.substr(1);
+    
+    Effect.ScrollTo(target, {duration: 1.0, offset: -8});
+  }
+<% end if @scroll_target %>

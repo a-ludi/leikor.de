@@ -1,6 +1,6 @@
 #body {
   background: none;
-  padding: 0em;
+  padding: 0em !important;
   border: none;
   <%=border_radius '0px' %>
   margin: 2.5em 0.5em;
@@ -9,7 +9,7 @@
 
 #message_window {
   display: inline-block;
-  background: <%=p :lighter_gray %>;
+  background: <%=p :light_gray %>;
   padding: 0.54em 0.8em;
   border: 1px solid <%=p :darker_gray %>;
   <%=border_radius '0.7em' %>
@@ -58,4 +58,15 @@
   font-variant: small-caps;
   font-size: 125%;
   font-weight: bold;
+}
+
+@media (max-width:470px) {
+  #body {
+    margin: 0.54em 0em;
+  }
+  
+  #message_window {
+    display: block;
+    min-width: 0em;
+  }
 }

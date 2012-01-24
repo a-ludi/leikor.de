@@ -46,6 +46,7 @@ textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
+.no_break { white-space: nowrap; }
 
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
@@ -247,6 +248,11 @@ a.toolbutton:hover img {
  */
 
 @media (max-width:470px) {
+  body {
+    font-family: 'Overlock', sans-serif;
+    font-size: 18px;
+  }
+
   #logo_container .medium_logo { display: inline; }
   #logo_container .original_logo { display: none; }
 

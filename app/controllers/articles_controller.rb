@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
   def index
     @stylesheets = ['category/browser', 'article/index']
     @title = "#{@subcategory.name} (#{@category.name})"
+    @scroll_target = 'content'
     
     render_to_nested_layout :layout => 'browser'
   end

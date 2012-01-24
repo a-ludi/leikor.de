@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
   def index
     @stylesheets = ['category/browser', 'category/index']
     @title = 'Sortiment'
+    @scroll_target = 'categories'
     
     render_to_nested_layout :layout => 'browser'
   end
@@ -14,6 +15,7 @@ class CategoriesController < ApplicationController
   def subindex
     @stylesheets = ['category/browser', 'category/index']
     @title = @category.name
+    @scroll_target = 'categoryBrowser_' + @category.id.to_s
     
     render_to_nested_layout :layout => 'browser'
   end
