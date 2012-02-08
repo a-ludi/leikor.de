@@ -47,6 +47,8 @@ textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
 
+span.mail_to { font-weight: bold; }
+
 form.button-to { display: inline; }
 form.button-to div { display: inline; }
 
