@@ -1,0 +1,9 @@
+<li id="<%= 'article_' + article.id.to_s %>" class="article">
+  <%= image_tag(
+    article.picture.url(:thumb),
+    :alt => article.name,
+    :title => 'Zum Verschieben ziehen',
+    :class => 'handle'
+  )%>
+</li>
+

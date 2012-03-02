@@ -1,6 +1,11 @@
 <% if superuser_logged_in? %>
   <div id="category_administration" class="administration">
     <%= link_to(
+      'Artikel umsortieren',
+      reorder_articles_path(@subcategory.url_hash),
+      :method => :get
+    ) %> |
+    <%= link_to(
       'Unterkategorie löschen',
       ask_destroy_subcategory_path(@subcategory.url_hash),
       :method => :get

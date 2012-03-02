@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ArticlesController < ApplicationController
   before_filter :login_required, :except => [:index]
-  before_filter :fetch_categories, :only => [:index]
+  before_filter :fetch_categories, :only => [:index, :reorder]
   after_filter :save_updated_at, :only => [:create, :update, :destroy]
   
   def index
@@ -24,6 +24,13 @@ class ArticlesController < ApplicationController
       @cancel = true
       @html_id = params[:html_id]
     end
+  end
+  
+  def reorder
+    @stylesheets = ['category/browser', 'article/reorder']
+    @title = "#{@subcategory.name} umsortieren"
+    
+    render_to_nested_layout :layout => 'browser'
   end
   
   def create

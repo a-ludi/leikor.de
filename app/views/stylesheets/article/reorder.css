@@ -1,0 +1,10 @@
+#articles_list {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+#content .article {
+  float: left;
+  cursor: move;
+}

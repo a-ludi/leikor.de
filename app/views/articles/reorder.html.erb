@@ -1,0 +1,19 @@
+<% unless @subcategory.articles.empty? %>
+  <div id="category_administration" class="administration">
+    <%= submit_tag 'Speichern!' %>
+  </div>
+  <ul id="articles_list">
+    <%= render :partial => 'article_reorder', :collection => @subcategory.articles, :as => :article %>
+  </ul>
+<% else %>
+  <div id="category_administration" class="administration">
+    <%= link_to 'Zurück zur Kategorie', subcategory_path(subcategory.url_hash) %>
+  </div>
+  <div class="empty_category">Keine Artikel in dieser Kategorie.</div>
+<% end %>
+<%= sortable_element(
+  'articles_list',
+  :handle => 'article',
+  :constraint => false
+)%>
+
