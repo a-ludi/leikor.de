@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   URL_TRANSSCRIPTION = {'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss', '&' => 'und'}
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
   has_many :subcategories, :order => 'ord ASC'
-  has_many :articles, :through => :subcategories, :order => 'name ASC'
+  has_many :articles, :through => :subcategories, :order => 'ord ASC'
   
   validates_presence_of :name
   validates_uniqueness_of :name
@@ -33,7 +33,7 @@ class Category < ActiveRecord::Base
   end
   
   def overview
-    articles.find(:all, :limit => 4, :order => 'RANDOM()')
+    articles.find(:all, :limit => 4)
   end
   
 protected

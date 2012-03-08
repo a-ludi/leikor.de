@@ -36,6 +36,7 @@ class ArticlesController < ApplicationController
   def create
     params[:article][:price] = get_price_from_param params[:article][:price]
     params[:article][:subcategory] = Subcategory.find params[:article][:subcategory_id]
+    params[:article][:ord] = Article.next_ord
     @article = Article.create params[:article]
     if @article.save
       @partial = 'article'

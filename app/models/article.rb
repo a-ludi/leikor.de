@@ -42,4 +42,14 @@ class Article < ActiveRecord::Base
       read_attribute(target)
     end
   end
+  
+protected
+  
+  def self.next_ord
+    if category = Category.first(:order => 'ord DESC')
+      category.ord + 1
+    else
+      0
+    end
+  end
 end
