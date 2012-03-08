@@ -54,6 +54,9 @@
 #categories li .entry:hover .handle {
   color: <%=p :white %>;
 }
+#categories li .entry .handle:hover {
+  text-decoration: none;
+}
 
 #categories .subcategory {
   border-width: 1px 0px;
@@ -78,13 +81,13 @@
 }
 
 
-#categories .subcategory a.button.selected {
+#categories .subcategory .entry.selected a.button {
   border-top: 1px solid <%=p :mid_gray %>;
   border-bottom: 1px solid <%=p :mid_gray %>;
   background: <%=p :light_gray %>;
 }
-#categories .subcategory a.button.selected.first { border-top: none; }
-#categories .subcategory a.button.selected.last { border-bottom: none; }
+#categories .subcategory .entry.selected.first a.button { border-top: none; }
+#categories .subcategory .entry.selected.last a.button { border-bottom: none; }
 
 #categories .subcategory li .handle { margin-top: 0.14em; }
 
