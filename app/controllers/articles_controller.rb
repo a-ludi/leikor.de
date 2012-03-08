@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ArticlesController < ApplicationController
   before_filter :login_required, :except => [:index]
-  before_filter :fetch_categories, :only => [:index, :reorder]
+  before_filter :fetch_categories, :only => [:index, :edit_order]
   after_filter :save_updated_at, :only => [:create, :update, :destroy]
   
   def index
@@ -26,8 +26,8 @@ class ArticlesController < ApplicationController
     end
   end
   
-  def reorder
-    @stylesheets = ['category/browser', 'article/reorder']
+  def edit_order
+    @stylesheets = ['category/browser', 'article/edit_order']
     @title = "#{@subcategory.name} umsortieren"
     
     render_to_nested_layout :layout => 'browser'
@@ -79,6 +79,30 @@ class ArticlesController < ApplicationController
     redirect_to subcategory_url(@article.subcategory.url_hash)
   end
   
+  def reorder
+    errors = false
+    new_order = params[:articles_list]
+    new_order.each_index do |ord|
+      id = new_order[ord].to_i
+      article = Article.find id
+      article.ord = ord
+      errors |= ! article.save
+    end
+    
+    unless errors
+      flash[:message] = {
+        :text => "Reihenfolge aktualisiert.",
+        :class => 'success'}
+    else
+      flash[:message] = {
+        :title => 'Fehler',
+        :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
+        :class => 'error'}
+    end
+    
+    render :partial => 'layouts/push_message'
+  end
+
 private
 
   def generated_article_number

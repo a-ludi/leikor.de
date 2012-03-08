@@ -7,4 +7,5 @@
 #content .article {
   float: left;
   cursor: move;
+  margin: 0.18em;
 }
