@@ -33,13 +33,13 @@ class Category < ActiveRecord::Base
   end
   
   def overview
-    articles.find(:all, :limit => 4)
+    articles.find(:all, :limit => 4, :order => 'ord ASC, RANDOM()')
   end
   
 protected
   
   def self.next_ord
-    if category = Category.first(:order => 'ord DESC')
+    if category = Category.last(:order => 'ord ASC')
       category.ord + 1
     else
       0

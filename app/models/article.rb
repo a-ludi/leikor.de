@@ -45,8 +45,8 @@ class Article < ActiveRecord::Base
   
 protected
   
-  def self.next_ord
-    if article = Article.first(:order => 'ord DESC')
+  def self.next_ord(subcategory_id)
+    if article = Article.last(:order => 'ord ASC', :conditions => ["subcategory_id = ?", subcategory_id])
       article.ord + 1
     else
       0
