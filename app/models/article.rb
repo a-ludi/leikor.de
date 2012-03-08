@@ -46,8 +46,8 @@ class Article < ActiveRecord::Base
 protected
   
   def self.next_ord
-    if category = Category.first(:order => 'ord DESC')
-      category.ord + 1
+    if article = Article.first(:order => 'ord DESC')
+      article.ord + 1
     else
       0
     end
