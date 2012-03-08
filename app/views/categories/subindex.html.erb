@@ -1,14 +1,19 @@
 <% if superuser_logged_in? %>
   <div id="category_administration" class="administration">
     <%= link_to(
-      'Kategorie löschen',
+      image_tag('pictogram/medium/destroy.png'),
       ask_destroy_category_path(@category.url_hash),
-      :method => :get
-    ) %> |
+      :class => 'toolbutton',
+      :title => 'Kategorie löschen'
+    ) %>
     <%= link_to_remote(
-      "Neue Unterkategorie",
+      image_tag('pictogram/medium/new.png'),
       :url => new_category_path(:category_id => @category.id),
-      :method => :get
+      :method => :get,
+      :html => {
+        :class => 'toolbutton',
+        :title => 'Neue Unterkategorie'
+      }
     ) %>
   </div>
 <% end %>

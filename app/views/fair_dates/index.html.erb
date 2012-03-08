@@ -1,4 +1,15 @@
 <div id="fair_dates_mobile">
+  <p id="new_fair_date" class="administration">
+    <% if superuser_logged_in? %>
+      <%= link_to(
+        image_tag('pictogram/medium/new.png'),
+        new_fair_date_path,
+        :onclick => open_popup,
+        :class => 'toolbutton',
+        :title => 'Neuen Messetermin erstellen'
+      ) %>
+    <% end %>
+  </p>
   <ul>
     <% unless @fair_dates.empty? %>
       <% @fair_dates.each do |fd| %>
@@ -12,10 +23,5 @@
     <% end %>
   </ul>
   <%=clear_float %>
-  <p id="new_fair_date" class="administration">
-    <% if superuser_logged_in? %>
-      <%= link_to 'Neuen Messetermin erstellen', new_fair_date_path, :onclick => open_popup %>
-    <% end %>
-  </p>
 </div>
 

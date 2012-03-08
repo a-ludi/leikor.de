@@ -13,7 +13,8 @@
 }
 
 #fair_dates_mobile .administration {
-  float: right;
+  text-align: right;
+  margin: 0em;
 }
 
 #fair_dates_mobile h2 {
