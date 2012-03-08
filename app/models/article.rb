@@ -22,7 +22,7 @@ class Article < ActiveRecord::Base
   
   validates_presence_of :name, :price, :article_number, :subcategory
   validates_numericality_of :price, :greater_than => 0.0
-  validates_uniqueness_of :article_number
+  validates_uniqueness_of :article_number, :ord
   validates_format_of :article_number, :with => UtilityHelper::delimited(ARTICLE_NUMBER_FORMAT)
   
   def html_id
