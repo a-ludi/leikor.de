@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
+
 class SessionsController < ApplicationController
+  include SslRequirement
+  ssl_required :new, :create
   before_filter :login_required, :only => [:destroy]
   
   def new

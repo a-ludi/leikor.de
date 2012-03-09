@@ -129,6 +129,7 @@ div.clear {
 #logo_container img { max-width: 90%; margin: 10px; }
 
 #logo_container .medium_logo { display: none; }
+#logo_container .original_logo { display: inline; }
 
 #top_navigation {
   background: <%=p :lighter_gray %>;
