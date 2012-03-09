@@ -1,0 +1,106 @@
+<div id="message_window">
+  <div class="toolbar">
+    <%= link_to(
+      image_tag('pictogram/medium/edit.png'),
+      '#',
+      :class => 'toolbutton',
+      :title => "Profil bearbeiten."
+    ) %>
+    <%= link_to(
+      image_tag('pictogram/medium/destroy.png'),
+      '#',
+      :class => 'toolbutton',
+      :title => "Firmendaten löschen."
+    ) %>
+  </div>
+  <h1>
+    <%= @page[:name] %>
+  </h1>
+  <div class="message">
+    <table class="profil">
+      <tr>
+        <th>
+          <span class="no_wrap">Firmenname:</span>
+        </th>
+        <td>
+          LEIKOR
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="no_wrap">Login:</span>
+        </th>
+        <td>
+          leikor
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="no_wrap">Passwort:</span>
+        </th>
+        <td>
+          <%= link_to 'Passwort ändern' %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <h2>Kontakt</h2>
+  <div class="message">
+    <table class="profil">
+      <tr>
+        <th>
+          <span class="no_wrap">Firmenname:</span>
+        </th>
+        <td>
+          LEIKOR
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="no_wrap">Website:</span>
+        </th>
+        <td>
+          <%= link_to 'www.leikor.de', 'http://www.leikor.de/' %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="no_wrap">E-Mail:</span>
+        </th>
+        <td>
+          <%= mail_to 'info@leikor.de' %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <h2>Ansprechpartner</h2>
+  <div class="message">
+    <table class="profil">
+      <tr>
+        <th>
+          <span class="no_wrap">Name:</span>
+        </th>
+        <td>
+          Petra Leiers-Kording
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <span class="no_wrap">E-Mail:</span>
+        </th>
+        <td>
+          <%= mail_to 'petra@leikor.de' %>
+        </td>
+      </tr>
+    </table>
+    <h2>Gruppen</h2>
+    <div class="message">
+      <ul class="groups infobox">
+        <li>Schnitzereien</li>
+        <li>Innendekoration</li>
+        <li>Spiele</li>
+      </ul>
+    </div>
+  </div>
+</div>
+

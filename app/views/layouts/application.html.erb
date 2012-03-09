@@ -18,6 +18,9 @@
             <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %>
           <span> |
         <% end %> 
+        <% if user_logged_in? %>
+          <%= static_link_to :profil %> |
+        <% end %> 
         <%= static_link_to :kontakt %> |
         <%= static_link_to :impressum %> |
         <%= static_link_to :AGB %>

@@ -1,0 +1,17 @@
+.toolbar { text-align: right; }
+
+table.profil { text-align: left; width: auto; }
+
+table.profil td, table.profil th {
+  vertical-align: top;
+  padding: 0.07em 0em;
+}
+
+table.profil th { text-align: right; }
+
+table.profil td { padding-left: 1em; }
+
+.groups {
+  list-style: none;
+  text-align: left;
+}
