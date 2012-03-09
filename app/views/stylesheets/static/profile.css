@@ -1,17 +1,24 @@
-.toolbar { text-align: right; }
+.toolbar {
+  float: right;
+  text-align: right;
+}
 
-table.profil { text-align: left; width: auto; }
+table.profile { text-align: left; width: auto; }
 
-table.profil td, table.profil th {
+table.profile td, table.profile th {
   vertical-align: top;
   padding: 0.07em 0em;
 }
 
-table.profil th { text-align: right; }
+table.profile th { text-align: right; }
 
-table.profil td { padding-left: 1em; }
+table.profile td { padding-left: 1em; }
 
 .groups {
   list-style: none;
   text-align: left;
+}
+
+table.profile tr.begin_section td, table.profile tr.begin_section th {
+  padding-top: 1em;
 }

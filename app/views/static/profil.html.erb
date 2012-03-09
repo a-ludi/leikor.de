@@ -14,18 +14,10 @@
     ) %>
   </div>
   <h1>
-    <%= @page[:name] %>
+    Meine Firma
   </h1>
   <div class="message">
-    <table class="profil">
-      <tr>
-        <th>
-          <span class="no_wrap">Firmenname:</span>
-        </th>
-        <td>
-          LEIKOR
-        </td>
-      </tr>
+    <table class="profile">
       <tr>
         <th>
           <span class="no_wrap">Login:</span>
@@ -39,67 +31,41 @@
           <span class="no_wrap">Passwort:</span>
         </th>
         <td>
-          <%= link_to 'Passwort ändern' %>
+          <%= link_to 'Passwort ändern', '#' %>
         </td>
       </tr>
     </table>
   </div>
   <h2>Kontakt</h2>
   <div class="message">
-    <table class="profil">
+    <table class="profile">
       <tr>
         <th>
-          <span class="no_wrap">Firmenname:</span>
+          <span class="no_wrap">Titel:</span>
         </th>
         <td>
-          LEIKOR
+          Prof. Dr.
         </td>
       </tr>
       <tr>
         <th>
-          <span class="no_wrap">Website:</span>
+          <span class="no_wrap">Name:</span>
         </th>
         <td>
-          <%= link_to 'www.leikor.de', 'http://www.leikor.de/' %>
+          Heinz Mustermann
         </td>
       </tr>
-      <tr>
+      <tr class="begin_section">
         <th>
-          <span class="no_wrap">E-Mail:</span>
+          <span class="no_wrap">geschäftlich:</span>
         </th>
         <td>
           <%= mail_to 'info@leikor.de' %>
         </td>
       </tr>
     </table>
-  </div>
-  <h2>Ansprechpartner</h2>
-  <div class="message">
-    <table class="profil">
-      <tr>
-        <th>
-          <span class="no_wrap">Name:</span>
-        </th>
-        <td>
-          Petra Leiers-Kording
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <span class="no_wrap">E-Mail:</span>
-        </th>
-        <td>
-          <%= mail_to 'petra@leikor.de' %>
-        </td>
-      </tr>
-    </table>
-    <h2>Gruppen</h2>
-    <div class="message">
-      <ul class="groups infobox">
-        <li>Schnitzereien</li>
-        <li>Innendekoration</li>
-        <li>Spiele</li>
-      </ul>
+    <div class="infobox">
+      Bitte nur in den Geschäftszeiten anrufen: Mo-Fr, 9:00 - 18:00 Uhr
     </div>
   </div>
 </div>
