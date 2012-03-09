@@ -1,14 +1,27 @@
 <% if superuser_logged_in? %>
   <div id="category_administration" class="administration">
+    <% unless @subcategory.articles.empty? %>
+      <%= link_to(
+        image_tag('pictogram/medium/reorder.png'),
+        edit_articles_order_path(@subcategory.url_hash),
+        :class => 'toolbutton',
+        :title => 'Artikel umsortieren'
+      ) %>
+    <% end %>
     <%= link_to(
-      'Unterkategorie löschen',
+      image_tag('pictogram/medium/destroy.png'),
       ask_destroy_subcategory_path(@subcategory.url_hash),
-      :method => :get
-    ) %> |
+      :class => 'toolbutton',
+      :title => 'Unterkategorie löschen'
+    ) %>
     <%= link_to_remote(
-      'Neuen Artikel einstellen',
+      image_tag('pictogram/medium/new.png'),
       :url => new_article_path(:subcategory => @subcategory),
-      :method => :get
+      :method => :get,
+      :html => {
+        :class => 'toolbutton',
+        :title => 'Neuen Artikel einstellen'
+      }
     ) %>
   </div>
 <% end %>

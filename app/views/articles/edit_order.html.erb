@@ -1,0 +1,13 @@
+<ul id="articles_list">
+  <div id="category_administration" class="administration">
+    <%= link_to 'Zurück zur Kategorie', subcategory_path(@subcategory.url_hash) %>
+  </div>
+  <%= render :partial => 'article_reorder', :collection => @subcategory.articles, :as => :article %>
+</ul>
+<%= sortable_element(
+  'articles_list',
+  :handle => 'article',
+  :constraint => false,
+  :url => reorder_articles_path
+)%>
+

@@ -60,10 +60,20 @@ ActionController::Routing::Routes.draw do |map|
     :conditions => {:method => :get})
   map.resources :categories, :as => 'kategorie'
   map.reorder_categories(
-    'kategorie/umsortieren',
+    'kategorie/sortieren',
     :controller => 'categories',
     :action => 'reorder')
   
+  map.edit_articles_order(
+    'sortiment/:category/:subcategory/umsortieren',
+    :controller => 'articles',
+    :action => 'edit_order',
+    :conditions => {:method => :get})
+  map.reorder_articles(
+    'sortiment/:category/:subcategory/sortieren',
+    :controller => 'articles',
+    :action => 'reorder',
+    :conditions => {:method => :post})
   map.ask_destroy_article(
     'sortiment/:category/:subcategory/:article/loeschen',
     :controller => 'articles',

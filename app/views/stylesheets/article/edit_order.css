@@ -1,0 +1,26 @@
+#articles_list {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+#content .article {
+  display: block;
+  float: left;
+  cursor: move;
+  margin: 0.18em;
+  width: 150px;
+  height: 150px;
+}
+
+#content .article.no_picture {
+  border: 2px solid <%=p :dark_blue %>;
+  background: <%=p :white %>;
+  color: <%=p :dark_blue %>;
+  <%=border_radius '10px' %>
+  padding: 10px;
+  text-align: left;
+  overflow: hidden;
+  width: 126px;
+  height: 126px;
+}

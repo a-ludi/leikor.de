@@ -1,8 +1,10 @@
 <% if superuser_logged_in? %>
   <div id="category_administration" class="administration">
     <%= link_to_remote(
-      "Neue Kategorie",
+      image_tag('pictogram/medium/new.png'),
       :url => new_category_path,
+      :class => 'toolbutton',
+      :title => 'Neue Kategorie',
       :method => :get
     ) %>
   </div>

@@ -22,6 +22,7 @@ class Article < ActiveRecord::Base
   
   validates_presence_of :name, :price, :article_number, :subcategory
   validates_numericality_of :price, :greater_than => 0.0
+  validates_numericality_of :ord, :greater_than_or_equal_to => 0, :only_integer => true
   validates_uniqueness_of :article_number
   validates_format_of :article_number, :with => UtilityHelper::delimited(ARTICLE_NUMBER_FORMAT)
   
@@ -39,6 +40,16 @@ class Article < ActiveRecord::Base
       ('%.2f' % price).sub '.', ','
     else
       read_attribute(target)
+    end
+  end
+  
+protected
+  
+  def self.next_ord(subcategory_id)
+    if article = Article.last(:order => 'ord ASC', :conditions => ["subcategory_id = ?", subcategory_id])
+      article.ord + 1
+    else
+      0
     end
   end
 end

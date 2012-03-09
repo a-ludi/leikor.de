@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Subcategory < Category
   belongs_to :category
-  has_many :articles, :order => 'name ASC'
+  has_many :articles, :order => 'ord ASC'
 
   validates_presence_of :category_id, :message => 'activerecord.errors.messages.internal_error'
   
