@@ -2,7 +2,7 @@
   <div class="background" onclick="Effect.Fade('picture_viewer')">&nbsp;</div>
   <div class="frame">
     <div id="picture_viewer_toolbar" class="toolbar">
-      <% if superuser_logged_in? %>
+      <% if employee_logged_in? %>
         <%= link_to_remote(
           image_tag('pictogram/medium/reload.png'),
           :url => article_picture_path(article.id, :no_animations => true),

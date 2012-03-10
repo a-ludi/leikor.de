@@ -9,7 +9,7 @@
             :label => category.name,
             :path => category_path(category.url_hash),
             :css_class => positional_class(category, @categories, category === @category ? 'selected' : ''),
-            :show_handle => superuser_logged_in?}) %>
+            :show_handle => employee_logged_in?}) %>
         <% if category === @category %>
           <% unless @category.subcategories.empty? %>
             <div class="subcategory">
@@ -22,7 +22,7 @@
                         :label => subcategory.name,
                         :path => subcategory_path(subcategory.url_hash),
                         :css_class => positional_class(subcategory, @category.subcategories, subcategory === @subcategory ? 'selected' : ''),
-                        :show_handle => superuser_logged_in?}) %>
+                        :show_handle => employee_logged_in?}) %>
                   </li>
                 <% end %>
               </ul>
@@ -35,7 +35,7 @@
   </ul>
   <div class="clear"></div>
 </div>
-<% if superuser_logged_in? %>
+<% if employee_logged_in? %>
   <% sortables = ['categories_list'] %>
   <% sortables << 'subcategories_list' unless @category.nil? %>
   <% sortables.each do |html_id| %>

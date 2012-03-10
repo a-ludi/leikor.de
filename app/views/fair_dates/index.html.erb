@@ -1,6 +1,6 @@
 <div id="fair_dates_mobile">
   <p id="new_fair_date" class="administration">
-    <% if superuser_logged_in? %>
+    <% if employee_logged_in? %>
       <%= link_to(
         image_tag('pictogram/medium/new.png'),
         new_fair_date_path,

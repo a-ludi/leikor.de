@@ -28,10 +28,10 @@ protected
     not @current_user.nil?
   end
   
-  def superuser_logged_in?
+  def employee_logged_in?
     user_logged_in? and @current_user.is_a? Employee
   end
-  helper_method :user_logged_in?, :superuser_logged_in?
+  helper_method :user_logged_in?, :employee_logged_in?
   
   def user_required
     return true if user_logged_in?
@@ -49,7 +49,7 @@ protected
   end
   
   def employee_required
-    return true if superuser_logged_in?
+    return true if employee_logged_in?
     
     flash[:message] = {
       :class => 'error',

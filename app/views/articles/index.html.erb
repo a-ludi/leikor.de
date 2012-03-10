@@ -1,4 +1,4 @@
-<% if superuser_logged_in? %>
+<% if employee_logged_in? %>
   <div id="category_administration" class="administration">
     <% unless @subcategory.articles.empty? %>
       <%= link_to(

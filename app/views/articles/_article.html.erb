@@ -1,7 +1,7 @@
 <div id="<%= article.html_id %>" class="article">
   <h2>
     <span><%= article.name %></span>
-    <% if superuser_logged_in? %>
+    <% if employee_logged_in? %>
       <%= link_to(
         image_tag('pictogram/small/link.png'),
         subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),
@@ -36,7 +36,7 @@
           :title => 'Klicken zum Vergrößern des Bildes.'}
       ) %>
     </div>
-    <% if superuser_logged_in? %>
+    <% if employee_logged_in? %>
       <div class="administration">
         <% if flash[:saved_article_id] === article.id %>
           <span class="message">Änderungen gespeichert.</span>

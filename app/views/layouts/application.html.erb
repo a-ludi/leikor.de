@@ -13,7 +13,7 @@
             (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
         <% end %> 
-        <% if superuser_logged_in? %>
+        <% if employee_logged_in? %>
           <span class="nobreak">
             <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %>
           <span> |
