@@ -27,17 +27,35 @@ protected
   def user_logged_in?
     not @current_user.nil?
   end
-  alias :superuser_logged_in? :user_logged_in?
+  
+  def superuser_logged_in?
+    user_logged_in? and @current_user.is_a? Employee
+  end
   helper_method :user_logged_in?, :superuser_logged_in?
   
-  def login_required
+  def user_required
     return true if user_logged_in?
+    
     flash[:referer] = request.referer if flash[:referer].blank?
     flash[:message] = {
       :class => 'error',
-      :text => 'Dafür müssen Sie angemeldet sein.'}
+      :text => 'Bitte melden Sie sich an.'}
     respond_to do |format|
       format.html { redirect_to new_session_path }
+      format.js { render :partial => 'layouts/push_message' }
+    end
+    
+    return false
+  end
+  
+  def employee_required
+    return true if superuser_logged_in?
+    
+    flash[:message] = {
+      :class => 'error',
+      :text => 'Dazu haben Sie keine Erlaubnis.'}
+    respond_to do |format|
+      format.html { redirect_to (request.referer || :root) }
       format.js { render :partial => 'layouts/push_message' }
     end
     

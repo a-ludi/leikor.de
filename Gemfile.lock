@@ -11,6 +11,8 @@ GEM
     activeresource (2.3.14)
       activesupport (= 2.3.14)
     activesupport (2.3.14)
+    acts-as-taggable-on (2.1.1)
+      rails
     bcrypt-ruby (3.0.1)
     cocaine (0.2.0)
     ffi (1.0.11)
@@ -46,6 +48,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on (~> 2.1.0)
   bcrypt-ruby (~> 3.0.1)
   guard-minitest
   libnotify

@@ -2,7 +2,7 @@
 class PictureController < ApplicationController
   include Paperclip::Storage::Database::ControllerClassMethods
   
-  before_filter :login_required, :except => [:show, :pictures]
+  before_filter :employee_required, :except => [:show, :pictures]
   after_filter :save_updated_at, :only => [:update, :destroy]
   after_filter :update_picture_dimensions, :only => [:update, :destroy]
   downloads_files_for :article, :picture, :file_name => :name

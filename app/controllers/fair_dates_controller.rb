@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 class FairDatesController < ApplicationController
+  before_filter :employee_required, :except => [:index]
   after_filter :save_updated_at, :only => [:update]
   
   def index
