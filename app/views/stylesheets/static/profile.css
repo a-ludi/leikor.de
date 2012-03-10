@@ -1,24 +1,48 @@
-.toolbar {
+.profile input, .profile textarea {
+  font-size: 100%;
+}
+
+.administration {
   float: right;
   text-align: right;
 }
 
-table.profile { text-align: left; width: auto; }
-
-table.profile td, table.profile th {
-  vertical-align: top;
-  padding: 0.07em 0em;
+.edit .administration {
+  float: none;
+  text-align: right;
 }
 
-table.profile th { text-align: right; }
+.profile {
+  margin-top: 1.08em;
+}
 
-table.profile td { padding-left: 1em; }
-
-.groups {
+ul.profile {
   list-style: none;
-  text-align: left;
+  margin-left: 0em;
+  margin-bottom: 0em;
+  margin-right: 0em;
+  padding: 0em;
 }
 
-table.profile tr.begin_section td, table.profile tr.begin_section th {
-  padding-top: 1em;
+.edit .profile input, .edit .profile textarea { width: 18em; }
+.edit .profile .scope { width: 6em; }
+.edit .profile.user .name { width: 12em; }
+.edit .profile.postal_address .postcode { width: 3em; }
+.edit .profile.postal_address .city { width: 14.57em; }
+.edit .profile.email_address .email_address { width: 11.57em; }
+.edit .profile.phone_number .country { width: 1.5em; }
+.edit .profile.phone_number .prefix { width: 2.5em; }
+.edit .profile.phone_number .number { width: 5.95em; }
+.edit .profile textarea { height: 12em; }
+
+.login .value {
+  font-weight: bold;
+}
+
+.email_address .label, .phone_number .label {
+  color: <%=p :dark_gray %>;
+}
+
+#body div.notes {
+  text-align: left;
 }

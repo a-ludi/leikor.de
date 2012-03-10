@@ -1,8 +1,8 @@
 <div id="message_window">
-  <div class="toolbar">
+  <div class="administration">
     <%= link_to(
       image_tag('pictogram/medium/edit.png'),
-      '#',
+      static_path(:profil_edit),
       :class => 'toolbutton',
       :title => "Profil bearbeiten."
     ) %>
@@ -16,56 +16,48 @@
   <h1>
     Meine Firma
   </h1>
-  <div class="message">
-    <table class="profile">
-      <tr>
-        <th>
-          <span class="no_wrap">Login:</span>
-        </th>
-        <td>
-          leikor
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <span class="no_wrap">Passwort:</span>
-        </th>
-        <td>
-          <%= link_to 'Passwort ändern', '#' %>
-        </td>
-      </tr>
-    </table>
+  <div class="message login">
+    <span class="label">Login:</span>
+    <span class="value">meine_firma</span>&emsp;
+    <%= link_to '(Passwort ändern)', '#' %>
   </div>
   <h2>Kontakt</h2>
   <div class="message">
-    <table class="profile">
-      <tr>
-        <th>
-          <span class="no_wrap">Titel:</span>
-        </th>
-        <td>
-          Prof. Dr.
-        </td>
-      </tr>
-      <tr>
-        <th>
-          <span class="no_wrap">Name:</span>
-        </th>
-        <td>
-          Heinz Mustermann
-        </td>
-      </tr>
-      <tr class="begin_section">
-        <th>
-          <span class="no_wrap">geschäftlich:</span>
-        </th>
-        <td>
-          <%= mail_to 'info@leikor.de' %>
-        </td>
-      </tr>
-    </table>
-    <div class="infobox">
-      Bitte nur in den Geschäftszeiten anrufen: Mo-Fr, 9:00 - 18:00 Uhr
+    <div class="profile name">
+      <span class="value">Prof. Dr. Heinz Mustermann<span>
+    </div>
+    <div class="profile postal_address">
+      <span class="value">
+        Lindenallee 13<br>
+        12345 Musterstadt<br>
+        Deutschland
+      <span>
+    </div>
+    <ul class="profile email_address">
+      <li>
+        <span class="value"><%= mail_to 'heinz.mustermann@firma.de' %><span>&emsp;
+        <span class="label">geschäftlich</span>
+      </li>
+      <li>
+        <span class="value"><%= mail_to 'info@firma.de' %><span>&emsp;
+        <span class="label">geschäftlich</span>
+      </li>
+    </ul>
+    <ul class="profile phone_number">
+      <li>
+        <span class="value">+49 4521 765897<span>&emsp;
+        <span class="label">geschäftlich</span>
+      </li>
+      <li>
+        <span class="value">+49 1520 17549320<span>&emsp;
+        <span class="label">mobil</span>
+      </li>
+    </ul>
+    <div class="profile">
+      <div class="infobox notes value">
+        Bitte nur in den Geschäftszeiten anrufen:<br>
+        Mo-Fr, 9:00 - 18:00 Uhr
+      </div>
     </div>
   </div>
 </div>
