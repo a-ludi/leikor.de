@@ -1,0 +1,18 @@
+<div class="user_index <%= positional_class %>">
+  <h2>
+    <%= type %>
+    <%= link_to(
+      image_tag('pictogram/small/new.png'),
+      static_path(:fehlt),
+      :class => 'toolbutton',
+      :title => "Neuen #{type} eintragen"
+    ) %>
+  </h2>
+  <ul class="infobox">
+    <% unless users.empty? %>
+      <%= render :partial => 'user', :collection => users %>
+    <% else %>
+      <li class="empty">Keine <%= type %> eingetragen.</li>
+    <% end %>
+  </ul>
+</div>

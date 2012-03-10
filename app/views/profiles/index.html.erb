@@ -1,0 +1,12 @@
+<div id="message_window">
+  <%= render :partial => 'user_index', :locals => {
+    :type => 'Kunden',
+    :users => @customers,
+    :positional_class => 'first'
+  } %>
+  <%= render :partial => 'user_index', :locals => {
+    :type => 'Mitarbeiter',
+    :users => @employees,
+    :positional_class => 'last'
+  } %>
+</div>

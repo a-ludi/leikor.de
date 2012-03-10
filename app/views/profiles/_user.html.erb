@@ -1,0 +1,5 @@
+<li>
+  <% link_to profile_path(user.login), :title => 'Profil anzeigen' do %>
+    <%= user.name %> (<%= user.login %>)
+  <% end %>
+</li>

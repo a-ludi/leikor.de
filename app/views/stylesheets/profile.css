@@ -46,3 +46,10 @@ ul.profile {
 #body div.notes {
   text-align: left;
 }
+
+.user_index { float: left; margin: 0em 1em; }
+.user_index.first { margin-left: 0em; }
+.user_index.last { margin-right: 0em; }
+
+.user_index h2 .toolbutton { display: block; float: right; }
+.user_index ul { margin-top: 0.54em; list-style: none; }

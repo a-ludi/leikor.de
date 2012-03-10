@@ -87,6 +87,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :fair_dates, :as => 'messetermine'
+  map.my_profile(
+    'profil',
+    :controller => 'profiles',
+    :action => 'show_mine',
+    :conditions => {:method => :get})
+  map.resources :profiles, :as => 'profile'
   
   map.resource(:session, :as => 'sitzung', :path_names => {:new => 'anmelden'}) do |session|
     session.destroy 'abmelden', :controller => 'sessions', :action => 'destroy'

@@ -26,6 +26,10 @@ module ApplicationHelper
     return classes.join ' '
   end
   
+  def parse_formatted_text(input_text)
+    output_text = input_text.gsub /[\n\r]+/, '<br>'
+  end
+  
   def index_based_positional_class(index, length, user_class='')
     classes = user_class.blank? ? [] : [user_class]
     classes << 'first' if index == 0
