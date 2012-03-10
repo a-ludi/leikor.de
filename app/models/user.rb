@@ -34,6 +34,9 @@ protected
   end
 
   def password_longer_than
-    errors.add :password, :'too_short', :count => 6 unless self.password_length >= 6
+    if (@password_length.nil? and new_record?) or
+       (not @password_length.nil? and @password_length < 6)
+      errors.add :password, :'too_short', :count => 6
+    end
   end
 end

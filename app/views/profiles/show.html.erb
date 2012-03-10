@@ -2,7 +2,7 @@
   <div class="administration">
     <%= link_to(
       image_tag('pictogram/medium/edit.png'),
-      static_path(:profil_edit),
+      @edit_path,
       :class => 'toolbutton',
       :title => "Profil bearbeiten."
     ) %>
@@ -16,50 +16,48 @@
   <h1>
     <%= @user.name %>
   </h1>
-  <div class="message login">
+  <div class="profile login">
     <span class="label">Login:</span>
     <span class="value"><%= @user.login %></span>&emsp;
-    <%= link_to '(Passwort ändern)', static_path(:fehlt) %>
+    <%= link_to '(Passwort ändern)', static_path(:fehlt) if @user == @current_user %>
   </div>
-  <!--h2>Kontakt</h2>
-  <div class="message">
-    <div class="profile name">
-      <span class="value">Prof. Dr. Heinz Mustermann<span>
-    </div>
-    <div class="profile postal_address">
-      <span class="value">
-        Lindenallee 13<br>
-        12345 Musterstadt<br>
-        Deutschland
-      <span>
-    </div>
-    <ul class="profile email_address">
-      <li>
-        <span class="value"><%= mail_to 'heinz.mustermann@firma.de' %><span>&emsp;
-        <span class="label">geschäftlich</span>
-      </li>
-      <li>
-        <span class="value"><%= mail_to 'info@firma.de' %><span>&emsp;
-        <span class="label">geschäftlich</span>
-      </li>
-    </ul>
-    <ul class="profile phone_number">
-      <li>
-        <span class="value">+49 4521 765897<span>&emsp;
-        <span class="label">geschäftlich</span>
-      </li>
-      <li>
-        <span class="value">+49 1520 17549320<span>&emsp;
-        <span class="label">mobil</span>
-      </li>
-    </ul-->
-    <% if employee_logged_in? and @user.notes %>
-      <div class="profile">
-        <div class="infobox notes value">
-          <%= parse_formatted_text @user.notes %>
-        </div>
+  <% if employee_logged_in? and @user.notes %>
+    <div class="profile">
+      <div class="infobox notes value">
+        <%= parse_formatted_text @user.notes %>
       </div>
-    <% end %>
+    </div>
+  <% end %>
+  <!--h2>Kontakt</h2>
+  <div class="profile name">
+    <span class="value">Prof. Dr. Heinz Mustermann<span>
   </div>
+  <div class="profile postal_address">
+    <span class="value">
+      Lindenallee 13<br>
+      12345 Musterstadt<br>
+      Deutschland
+    <span>
+  </div>
+  <ul class="profile email_address">
+    <li>
+      <span class="value"><%= mail_to 'heinz.mustermann@firma.de' %><span>&emsp;
+      <span class="label">geschäftlich</span>
+    </li>
+    <li>
+      <span class="value"><%= mail_to 'info@firma.de' %><span>&emsp;
+      <span class="label">geschäftlich</span>
+    </li>
+  </ul>
+  <ul class="profile phone_number">
+    <li>
+      <span class="value">+49 4521 765897<span>&emsp;
+      <span class="label">geschäftlich</span>
+    </li>
+    <li>
+      <span class="value">+49 1520 17549320<span>&emsp;
+      <span class="label">mobil</span>
+    </li>
+  </ul-->
 </div>
 

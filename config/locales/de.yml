@@ -236,6 +236,8 @@ de:
       subcategory: Unterkategorie
       article: Artikel
       user: Benutzer
+      employee: Mitarbeiter
+      customer: Kunde
       fair_date: Messetermin
       
     attributes:
@@ -252,6 +254,7 @@ de:
         login: Benutzername
         password: Passwort
         name: Name
+        notes: Notizen
       fair_date:
         from_date: Vom
         to_date: Bis zum

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def new
     @stylesheets = ['message', 'sessions']
     @title = 'Anmeldung'
-    @login = session[:login] || params[:login]
+    @login = params[:login] || session[:login]
     @referer = params[:referer] || request.referer
   end
 

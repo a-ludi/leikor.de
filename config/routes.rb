@@ -73,7 +73,7 @@ ActionController::Routing::Routes.draw do |map|
     'sortiment/:category/:subcategory/sortieren',
     :controller => 'articles',
     :action => 'reorder',
-    :conditions => {:method => :post})
+    :conditions => {:method => :put})
   map.ask_destroy_article(
     'sortiment/:category/:subcategory/:article/loeschen',
     :controller => 'articles',
@@ -92,6 +92,16 @@ ActionController::Routing::Routes.draw do |map|
     :controller => 'profiles',
     :action => 'show_mine',
     :conditions => {:method => :get})
+  map.edit_my_profile(
+    'profil/bearbeiten',
+    :controller => 'profiles',
+    :action => 'edit_mine',
+    :conditions => {:method => :get})
+  map.update_my_profile(
+    'profil',
+    :controller => 'profiles',
+    :action => 'update_mine',
+    :conditions => {:method => :put})
   map.resources :profiles, :as => 'profile'
   
   map.resource(:session, :as => 'sitzung', :path_names => {:new => 'anmelden'}) do |session|
