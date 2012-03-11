@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
   
+  has_many :secure_user_requests
+  
   validates_presence_of :login, :password, :name, :type
   validates_length_of :login, :in => 4..32
   validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen <tt>._-</tt> bestehen.'
@@ -21,6 +23,10 @@ class User < ActiveRecord::Base
     save_password_length new_password
     @password = Password.create(new_password)
     self[:password] = @password
+  end
+  
+  def set_random_password
+    self.password = ActiveSupport::SecureRandom.base64(32)
   end
 
 protected

@@ -81,9 +81,10 @@ class ProfilesController < ApplicationController
       else
         handle_illegal_user_type params[:profile][:type] and return
     end
-    @user.password = 'wertzu'
+    @user.set_random_password
     
     if @user.save
+      @user.secure_user_requests.create! :action => :validate_register
       flash[:message] = {:text => 'Profil wurde erstellt.'}
       
       redirect_to profile_path(@user.login)
@@ -98,12 +99,13 @@ protected
     t(type, :scope => [:activerecord, :models]).underscore
   end
   helper_method :type_as_param
-
+  
 private
   
   def show_profile
     @stylesheets = ['message', 'profile']
     @title = "#{@user.name}s Profil"
+    @validate_register = @user.secure_user_requests.find_by_action :validate_register
     
     render :show
   end

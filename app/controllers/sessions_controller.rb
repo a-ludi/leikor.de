@@ -14,8 +14,7 @@ class SessionsController < ApplicationController
 
   def create
     if @current_user = User.find_by_login(params[:login]) and @current_user.password == params[:password]
-      session[:user_id] = @current_user.id
-      session[:login] = @current_user.login
+      logon_user @current_user
       flash[:message] = {
         :class => 'success',
         :title => 'Wilkommen!',

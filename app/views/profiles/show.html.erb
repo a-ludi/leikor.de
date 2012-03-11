@@ -21,6 +21,17 @@
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', static_path(:fehlt) if @user == @current_user %>
   </div>
+  <% unless @validate_register.nil? %>
+    <div class="error message">
+      <p>
+        Dieser Benutzer muss noch bestätigt werden. Bitte den folgenden Link an den Benutzer
+        schicken:
+      </p>
+      <p class="center">
+        <%= @validate_register.external_id %>
+      </p>
+    </div>
+  <% end %>
   <% if employee_logged_in? and not @user.notes.blank? %>
     <div class="profile">
       <div class="infobox notes value">

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  external_id: MyString
+  action: MyString
+  memo: MyText
+
+two:
+  external_id: MyString
+  action: MyString
+  memo: MyText

@@ -19,6 +19,11 @@ protected
     @updated_at = @updated_at.localtime("+01:00")
   end
   
+  def logon_user(user)
+    session[:user_id] = user.id
+    session[:login] = user.login
+  end
+  
   def fetch_logged_in_user
     return if @current_user = User.find_by_id(session[:user_id])
     @current_user = nil
@@ -89,10 +94,5 @@ protected
     end
     
     return true
-  end
-  
-  def md5sum(str)
-    include Digest
-    Digest::MD5.new.update(str).to_s
   end
 end
