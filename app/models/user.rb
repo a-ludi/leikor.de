@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
   
-  validates_presence_of :login, :password, :name
+  validates_presence_of :login, :password, :name, :type
   validates_length_of :login, :in => 4..32
   validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen <tt>._-</tt> bestehen.'
   validates_uniqueness_of :login
@@ -34,9 +34,6 @@ protected
   end
 
   def password_longer_than
-    if (@password_length.nil? and new_record?) or
-       (not @password_length.nil? and @password_length < 6)
-      errors.add :password, :'too_short', :count => 6
-    end
+    errors.add :password, :'too_short', :count => 6 unless @password_length.nil? or  @password_length >= 6
   end
 end

@@ -52,6 +52,53 @@ class ProfilesController < ApplicationController
     update_profile
   end
   
+  def new
+    @user = flash[:user] ||
+      case params[:type]
+        when type_as_param(:employee)
+          @user = Employee.new
+        when type_as_param(:customer)
+          @user = Customer.new
+        else
+          handle_illegal_user_type params[:type] and return
+      end
+    params[:format] = nil
+    
+    set_new_paths
+    @stylesheets = ['message', 'profile']
+    @title = "Neues Profil erstellen"
+    @method = :post
+    
+    render :edit
+  end
+  
+  def create
+    case params[:profile][:type]
+      when 'Employee'
+        @user = Employee.create(params[:profile])
+      when 'Customer'
+        @user = Customer.create(params[:profile])
+      else
+        handle_illegal_user_type params[:profile][:type] and return
+    end
+    @user.password = 'wertzu'
+    
+    if @user.save
+      flash[:message] = {:text => 'Profil wurde erstellt.'}
+      
+      redirect_to profile_path(@user.login)
+    else
+      redirect_to new_profile_path, :flash => {:user => @user}
+    end
+  end
+
+protected
+  
+  def type_as_param(type)
+    t(type, :scope => [:activerecord, :models]).underscore
+  end
+  helper_method :type_as_param
+
 private
   
   def show_profile
@@ -64,6 +111,7 @@ private
   def edit_profile
     @stylesheets = ['message', 'profile']
     @title = "#{@user.name}s Profil bearbeiten"
+    @method = :put
     
     render :edit
   end
@@ -71,6 +119,7 @@ private
   def update_profile
     if @user.update_attributes params[:profile]
       flash[:message] = {:text => 'Profil wurde aktualisiert.'}
+      
       show_profile
     else
       edit_profile
@@ -85,5 +134,14 @@ private
   def set_paths
     @show_path = profile_path @user.login
     @edit_path = edit_profile_path @user.login
+  end
+  
+  def set_new_paths
+    @show_path = profiles_path
+  end
+  
+  def handle_illegal_user_type(type)
+    logger.warn "[warning] Attempt to create user of type <#{type.inspect}>"
+    redirect_to profiles_path
   end
 end

@@ -21,7 +21,7 @@
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', static_path(:fehlt) if @user == @current_user %>
   </div>
-  <% if employee_logged_in? and @user.notes %>
+  <% if employee_logged_in? and not @user.notes.blank? %>
     <div class="profile">
       <div class="infobox notes value">
         <%= parse_formatted_text @user.notes %>

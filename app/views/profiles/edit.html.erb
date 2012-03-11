@@ -1,9 +1,11 @@
 <div id="message_window" class="edit">
-  <% form_for :profile, @user, :url => @show_path, :html => {:method => :put} do |f| %>
+  <% form_for :profile, @user, :url => @show_path, :html => {:method => @method} do |f| %>
+    <%= f.hidden_field :type %>
     <div class="administration">
       <%= a_button_to 'Abbrechen', @show_path %>
       <%= submit_tag 'Speichern!' %>
     </div>
+    <%= make_if_error_messages_for @user  %>
     <h1 class="profile user">
       <%= f.label :name %><br>
       <%= f.text_field :name, :class => 'value name' %>
@@ -14,7 +16,7 @@
         <%= f.text_field :login, :class => 'value login' %>
       </div>
     <% end %>
-    <% if employee_logged_in? and @user.notes %>
+    <% if employee_logged_in? %>
       <div class="profile">
         <%= f.label :notes %>
         <div class="infobox notes value">
@@ -56,5 +58,6 @@
       </ul-->
     </div>
   <% end %>
+  <%= set_focus_to 'profile_name' %>
 </div>
 
