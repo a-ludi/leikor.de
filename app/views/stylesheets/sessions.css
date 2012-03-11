@@ -1,2 +1,9 @@
-#message_window input { text-align: center; }
+#message_window {
+  width: 11em;
+}
+
+#message_window input {
+  width: 12em;
+  text-align: center;
+}
 

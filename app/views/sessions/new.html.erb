@@ -19,6 +19,10 @@
     </div>
     <div class="response">
       <%= submit_tag 'Anmelden!' %>
+      <p style="font-size: 75%;">
+        Sie haben noch kein Login, sind aber bereits Kunde von uns? Dann
+        <%= link_to 'melden Sie sich', static_path(:kontakt) %> bei uns.
+      </p>
     </div>
   <% end %>
   <%= set_focus_to (@login ? :password : :login) %>
