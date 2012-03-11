@@ -12,6 +12,8 @@
             <span class="name"><%= @current_user.name %></span>
             (<%= link_to 'abmelden', session_destroy_path %>)
           </span>
+        <% else %>
+          <%= link_to 'Anmelden', new_session_path %> |
         <% end %> 
         <% if employee_logged_in? %>
           <span class="nobreak">

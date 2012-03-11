@@ -2,12 +2,7 @@
   <% unless defined? no_links and no_links  %>
     <%= static_link_to :kontakt %> |
     <%= static_link_to :impressum %> |
-    <%= static_link_to :AGB %> |
-    <% unless user_logged_in? %>
-      <%= link_to 'Anmelden', new_session_path %>
-    <% else %>
-      <%= link_to 'Abmelden', session_destroy_path %>
-    <% end %>
+    <%= static_link_to :AGB %>
   <% end %>
   <br />
   ©2011 <%= static_link_to :impressum, {:label => 'LEIKOR', :anchor => 'urheberrechte'}, :rel => 'license' %> &bull;
