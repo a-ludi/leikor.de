@@ -10,11 +10,11 @@
     <div class="message">
       <p>
         <%= label_tag :login, t('activerecord.attributes.user.login') %><br />
-        <%= text_field_tag :login, @login %>
+        <%= text_field_tag :login, @login, :class => 'value' %>
       </p>
       <p>
         <%= label_tag :password, t('activerecord.attributes.user.password') %><br />
-        <%= password_field_tag :password %>
+        <%= password_field_tag :password, nil, :class => 'value' %>
       </p>
     </div>
     <div class="response">

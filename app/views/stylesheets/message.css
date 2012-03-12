@@ -74,5 +74,6 @@
   #message_window {
     display: block;
     min-width: 0em;
+    width: auto !important;
   }
 }
