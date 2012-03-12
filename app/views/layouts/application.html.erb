@@ -54,12 +54,11 @@
           <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
           <!--a>Angebote</a-->
           <li><%= link_to 'Messetermine', fair_dates_path %></li>
-          <li><%= static_link_to :ueber_uns %></li>
-          <% if employee_logged_in? %>
+          <% unless employee_logged_in? %>
+            <li><%= static_link_to :ueber_uns, :class => 'last' %></li>
+          <% else %>
+            <li><%= static_link_to :ueber_uns %></li>
             <li><%= link_to 'Profile', profiles_path, :class => 'last' %></li>
-          <% end %>
-          <% if RAILS_ENV == 'development' %>
-            <li><%= static_link_to :colors, {}, {:class => 'last'} %></li>
           <% end %>
         </ul>
         <div class="clear"></div>

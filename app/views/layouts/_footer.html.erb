@@ -3,6 +3,9 @@
     <%= static_link_to :kontakt %> |
     <%= static_link_to :impressum %> |
     <%= static_link_to :AGB %>
+    <% if RAILS_ENV == 'development' %>
+      <%= static_link_to :colors, {}, {:class => 'last'} %>
+    <% end %>
   <% end %>
   <br />
   ©2011 <%= static_link_to :impressum, {:label => 'LEIKOR', :anchor => 'urheberrechte'}, :rel => 'license' %> &bull;
