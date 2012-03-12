@@ -62,6 +62,10 @@
   font-weight: bold;
 }
 
+/**
+ * Mobile (small) Version
+ */
+
 @media (max-width:470px) {
   #body {
     margin: 0.54em 0em;
