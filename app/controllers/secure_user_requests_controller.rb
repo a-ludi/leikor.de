@@ -1,10 +1,11 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
+  before_filter :get_and_set_secure_user_request, :destroy_if_expired
   after_filter :force_user_logout
   
   def edit
-    get_and_set_secure_user_request or return
+    return if @secure_user_request.nil?
     
     case @secure_user_request.action
       when :confirm_registration
@@ -16,7 +17,7 @@ class SecureUserRequestsController < ApplicationController
   end
 
   def update
-    get_and_set_secure_user_request or return
+    return if @secure_user_request.nil?
     
     case @secure_user_request.action
       when :confirm_registration
@@ -27,7 +28,8 @@ class SecureUserRequestsController < ApplicationController
   end
   
   def destroy
-    get_and_set_secure_user_request or return
+    return if @secure_user_request.nil?
+    
     @secure_user_request.destroy
     flash[:message] = {
       :class => 'error',
@@ -85,5 +87,11 @@ private
   def force_user_logout
     logout_user :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da " +
         "Sie eine #{SecureUserRequest.human_name} gestartet haben."
+  end
+  
+  def destroy_if_expired
+    return if @secure_user_request.nil?
+    
+    @secure_user_request.destroy if @secure_user_request.expired?
   end
 end

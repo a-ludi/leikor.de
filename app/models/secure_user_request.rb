@@ -1,7 +1,10 @@
 class SecureUserRequest < ActiveRecord::Base
   include Digest
   
-  REGISTERED_ACTIONS = [:confirm_registration]
+  REGISTERED_ACTIONS = {
+    :confirm_registration => {:lifetime => 7.days},
+    :set_new_password => {:lifetime => 3.days}
+  }
   MANDATORY_ARGUMENTS = [:action, :user_id]
 
   serialize :action, Symbol
@@ -9,7 +12,15 @@ class SecureUserRequest < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :action, :user_id
-  validates_inclusion_of :action, :in => REGISTERED_ACTIONS
+  validates_inclusion_of :action, :in => REGISTERED_ACTIONS.keys
+  
+  def lifetime
+    REGISTERED_ACTIONS[self.action][:lifetime]
+  end
+  
+  def expired?
+    self.created_at.since(lifetime).past?
+  end
   
   def after_validation_on_create
     generate_external_id
