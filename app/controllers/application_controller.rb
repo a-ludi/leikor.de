@@ -67,6 +67,10 @@ protected
     return false
   end
   
+  def logout_user
+    session[:user_id] = @current_user = nil
+  end
+  
   def fetch_categories
     @categories = Category.find(:all, :conditions => {:type => nil}, :order => 'ord ASC')
     

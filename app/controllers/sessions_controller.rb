@@ -27,7 +27,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = @current_user = nil
+    logout_user
     
     flash[:message] = {
       :class => 'info',
