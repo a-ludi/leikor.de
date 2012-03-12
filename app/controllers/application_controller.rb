@@ -35,6 +35,8 @@ protected
   end
   
   def prepare_flash_message
+    return unless flash.include? :message
+    
     flash[:message] = {:text => flash[:message]} if flash[:message].is_a? String
     flash[:message][:title] ||= 'Hinweis'
   end
