@@ -8,10 +8,12 @@
     ) %>
     <%= link_to(
       image_tag('pictogram/medium/destroy.png'),
-      static_path(:fehlt),
+      @show_path,
       :class => 'toolbutton',
-      :title => "Firmendaten löschen."
-    ) %>
+      :title => "Profil löschen.",
+      :method => :delete,
+      :confirm => "Das Profil von\n\n#{@user.name}\n\nwird dauerhaft gelöscht. Sind Sie sicher?"
+    ) unless @my_profile %>
   </div>
   <h1>
     <%= @user.name %>
@@ -19,7 +21,7 @@
   <div class="profile login">
     <span class="label">Login:</span>
     <span class="value"><%= @user.login %></span>&emsp;
-    <%= link_to '(Passwort ändern)', static_path(:fehlt) if @user == @current_user %>
+    <%= link_to '(Passwort ändern)', static_path(:fehlt) if @my_profile %>
   </div>
   <% unless @confirm_registration.nil? %>
     <div class="error message">

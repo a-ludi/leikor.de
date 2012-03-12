@@ -1,9 +1,12 @@
+# -*- encoding : utf-8 -*-
+
 class ProfilesController < ApplicationController
   before_filter :employee_required, :except => [:show_mine, :edit_mine, :update_mine]
   before_filter :user_required
   
   def show_mine
     @user = @current_user
+    @my_profile = true
     set_my_paths
     
     show_profile
@@ -26,6 +29,7 @@ class ProfilesController < ApplicationController
   
   def edit_mine
     @user = @current_user
+    @my_profile = true
     set_my_paths
     
     edit_profile
@@ -40,6 +44,7 @@ class ProfilesController < ApplicationController
   
   def update_mine
     @user = @current_user
+    @my_profile = true
     set_my_paths
     
     update_profile
@@ -91,6 +96,23 @@ class ProfilesController < ApplicationController
     else
       redirect_to new_profile_path, :flash => {:user => @user}
     end
+  end
+  
+  def destroy
+    if @user = User.find_by_login(params[:id])
+      @user.destroy
+      flash[:message] = {
+        :class => 'success',
+        :text => "Das Profil von <b>#{@user.name}</b> wurde gelöscht."
+      }
+    else
+      flash[:message] = {
+        :class => 'error',
+        :text => "Der #{User.human_name} <b>#{params[:id]}</b> konnte nicht gefunden werden."
+      }
+    end
+    
+    redirect_to profiles_path
   end
 
 protected
