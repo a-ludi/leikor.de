@@ -1,4 +1,8 @@
+# -*- encoding : utf-8 -*-
+
 class SecureUserRequestsController < ApplicationController
+  before_filter :force_user_logout
+  
   def edit
     get_and_set_secure_user_request
     
@@ -41,12 +45,33 @@ private
   end
   
   def update_confirm_registration
-    redirect_to profile_path(@secure_user_request.user.login)
+    user = @secure_user_request.user
+    passwords_match = params[:password] == params[:confirm_password]
+    if passwords_match and user.update_attributes :password => params[:password]
+      flash[:message] = {
+        
+      }
+      
+      @secure_user_request.destroy
+      logon_user user, :class => 'success', :title => 'Glückwunsch!', :text => render_to_string(
+          :partial => 'secure_user_requests/confirm_registration/welcome',
+          :locals => {:user => user})
+      
+      redirect_to my_profile_path
+    else
+      user.errors.add :password, :confirmation unless passwords_match
+      edit_confirm_registration
+    end
   end
   
   def get_and_set_secure_user_request
     external_id = params[:id]
     @secure_user_request = SecureUserRequest.find_by_external_id(external_id) or
         not_found("No SecureUserRequest with external ID <#{external_id.inspect}> found", true)
+  end
+  
+  def force_user_logout
+    logout_user :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da " +
+        "Sie eine #{SecureUserRequest.human_name} gestartet haben."
   end
 end

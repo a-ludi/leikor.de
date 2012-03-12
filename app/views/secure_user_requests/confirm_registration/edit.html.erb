@@ -1,21 +1,20 @@
-<div id="message_window">
-  <% form_tag @secure_user_request do %>
+<div id="message_window" style="max-width: 15em;">
+  <% form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do %>
+    <%= hidden_field_tag :id, @secure_user_request.external_id %>
     <div class="message">
       <p>
         Sie wurden bei LEIKOR als neuer <%= @secure_user_request.user.class.human_name %>
-        registriert. Bitte bestätigen Sie die Registrierung mit der Vergabe eines Passworts. Das
-        Passwort muss <b>mindestens 6 Zeichen</b> lang sein und darf <b>beliebige Zeichen</b>
-        enthalten.
+        registriert.
+      </p>
+      <p>
+        Bitte bestätigen Sie die Registrierung mit der Vergabe eines Passworts. Das Passwort muss
+        <b>mindestens 6 Zeichen</b> lang sein und darf <b>beliebige Zeichen</b> enthalten.
       </p>
       <p>
         Ihr Login lautet: <b><%= @secure_user_request.user.login %></b>
       </p>
     </div>
-    <% if flash[:passwords_not_matching] %>
-      <div class="message error">
-        Die Passwörter stimmen nicht überein.
-      </div>
-    <% end %>
+    <%= make_if_error_messages_for @secure_user_request.user  %>
     <div class="message">
       <p>
         <%= label_tag :password, t('secure_user_request.password') %><br />
@@ -35,4 +34,5 @@
       <%= submit_tag 'Speichern!' %>
     </div>
   <% end %>
+  <%= set_focus_to :password %>
 </div>

@@ -21,22 +21,23 @@ protected
   end
   
   def logon_user(user, message=nil)
-    flash[:message] = message
+    prepare_flash_message message
     session[:user_id] = user.id
     session[:login] = user.login
   end
   
   def logout_user(message=nil)
     if user_logged_in?
-      flash[:message] = message
+      prepare_flash_message message
     end
     
     session[:user_id] = @current_user = nil
   end
   
-  def prepare_flash_message
-    return unless flash.include? :message
+  def prepare_flash_message(message=nil)
+    return unless flash.include? :message or not message.nil?
     
+    flash[:message] = message unless message.nil?
     flash[:message] = {:text => flash[:message]} if flash[:message].is_a? String
     flash[:message][:title] ||= 'Hinweis'
   end
@@ -59,9 +60,7 @@ protected
     return true if user_logged_in?
     
     flash[:referer] = request.referer if flash[:referer].blank?
-    flash[:message] = {
-      :class => 'error',
-      :text => 'Bitte melden Sie sich an.'}
+    prepare_flash_message :class => 'error', :text => 'Bitte melden Sie sich an.'
     respond_to do |format|
       format.html { redirect_to new_session_path }
       format.js { render :partial => 'layouts/push_message' }
@@ -73,9 +72,7 @@ protected
   def employee_required
     return true if employee_logged_in?
     
-    flash[:message] = {
-      :class => 'error',
-      :text => 'Dazu haben Sie keine Erlaubnis.'}
+    prepare_flash_message :class => 'error', :text => 'Dazu haben Sie keine Erlaubnis.'
     respond_to do |format|
       format.html { redirect_to (request.referer || :root) }
       format.js { render :partial => 'layouts/push_message' }

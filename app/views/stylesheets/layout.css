@@ -102,6 +102,13 @@ div.clear {
   margin-bottom: 0.54em;
 }
 
+#message h2 {
+  font-size: 100%;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: center;
+}
+
 #message p {
   padding: 0em;
   margin: 0em;
@@ -111,13 +118,13 @@ div.clear {
   background: <%=p :light_green %>;
   border-color: <%=p :dark_green %>;
 }
-#message.success h1 { color: <%=p :dark_green %>; }
+#message.success h1, #message.success h2 { color: <%=p :dark_green %>; }
 
 #message.error {
   background: <%=p :light_red %>;
   border-color: <%=p :mid_red %>;
 }
-#message.error h1 { color: <%=p :mid_red %> }
+#message.error h1, #message.error h2 { color: <%=p :mid_red %> }
 
 #important_links { text-align: right; }
 #important_links .logged_in_user {
