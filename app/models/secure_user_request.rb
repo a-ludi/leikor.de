@@ -2,7 +2,7 @@ class SecureUserRequest < ActiveRecord::Base
   include Digest
   
   EXTERNAL_ID_FORMAT = /[a-f0-9]{32}/
-  REGISTERED_ACTIONS = [:validate_register]
+  REGISTERED_ACTIONS = [:confirm_registration]
   MANDATORY_ARGUMENTS = [:action, :user_id]
 
   serialize :action, Symbol

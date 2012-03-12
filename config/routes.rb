@@ -107,6 +107,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resource(:session, :as => 'sitzung',
       :collection => {:destroy => :get},
       :path_names => {:new => 'anmelden', :destroy => 'abmelden'}) do |session|
+    session.resources(
+      :secure_user_requests,
+      :as => 'sichere_benutzeranfrage',
+      :only => [:edit, :update],
+      :name_prefix => nil)
   end
   
   map.stylesheet(

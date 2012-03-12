@@ -21,14 +21,17 @@
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', static_path(:fehlt) if @user == @current_user %>
   </div>
-  <% unless @validate_register.nil? %>
+  <% unless @confirm_registration.nil? %>
     <div class="error message">
       <p>
-        Dieser Benutzer muss noch bestätigt werden. Bitte den folgenden Link an den Benutzer
-        schicken:
+        Dieser Benutzer muss noch bestätigt werden.<br>
+        Bitte den folgenden Link an den Benutzer schicken:
       </p>
-      <p class="center">
-        <%= @validate_register.external_id %>
+      <p>
+        <%= link_to(
+          t('secure_user_request.confirm_registration'),
+          edit_secure_user_request_path(@confirm_registration.external_id)
+        ) %>
       </p>
     </div>
   <% end %>

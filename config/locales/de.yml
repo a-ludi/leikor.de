@@ -239,6 +239,7 @@ de:
       employee: Mitarbeiter
       customer: Kunde
       fair_date: Messetermin
+      secure_user_request: Sichere Benutzeranfrage
       
     attributes:
       article:
@@ -262,3 +263,9 @@ de:
         stand: Stand
         homepage: Website
         comment: Kommentar
+      secure_user_request:
+        external_id: Externe ID
+        action: Aktion
+        memo: Notiz
+  secure_user_request:
+    confirm_registration: Registrierung bestätigen

@@ -26,6 +26,8 @@
   font-variant: small-caps;
 }
 
+#message_window p { text-align: center; }
+
 #message_window.success {
   background: <%=p :light_green %>;
   border-color: <%=p :dark_green %>;

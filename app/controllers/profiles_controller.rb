@@ -84,7 +84,7 @@ class ProfilesController < ApplicationController
     @user.set_random_password
     
     if @user.save
-      @user.secure_user_requests.create! :action => :validate_register
+      @user.secure_user_requests.create! :action => :confirm_registration
       flash[:message] = {:text => 'Profil wurde erstellt.'}
       
       redirect_to profile_path(@user.login)
@@ -105,7 +105,7 @@ private
   def show_profile
     @stylesheets = ['message', 'profile']
     @title = "#{@user.name}s Profil"
-    @validate_register = @user.secure_user_requests.find_by_action :validate_register
+    @confirm_registration = @user.secure_user_requests.find_by_action :confirm_registration
     
     render :show
   end
