@@ -25,5 +25,7 @@ private
       ActiveSupport::SecureRandom.base64(32)]
     
     self.external_id = Digest::MD5.hexdigest randomness_parameters.join
+    
+    generate_external_id unless SecureUserRequest.find_by_external_id(self.external_id).nil?
   end
 end
