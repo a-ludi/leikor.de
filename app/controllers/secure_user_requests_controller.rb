@@ -4,7 +4,10 @@ class SecureUserRequestsController < ApplicationController
     
     case @secure_user_request.action
       when :confirm_registration
-        render 'confirm_registration/edit'
+        edit_confirm_registration
+      else
+        not_found("SecureUserRequest action <#{@secure_user_request.action.inspect}> not known. " +
+            "Should be one of <#{SecureUserRequest::REGISTERED_ACTIONS.inspect}>", true)
     end
   end
 
@@ -20,6 +23,13 @@ class SecureUserRequestsController < ApplicationController
   end
 
 private
+  
+  def edit_confirm_registration
+    @stylesheets = ['message']
+    @title = t('secure_user_request.confirm_registration')
+    
+    render :action => 'confirm_registration/edit'
+  end
   
   def update_confirm_registration
     redirect_to profile_path(@secure_user_request.user.login)

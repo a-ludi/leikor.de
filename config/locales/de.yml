@@ -269,3 +269,5 @@ de:
         memo: Notiz
   secure_user_request:
     confirm_registration: Registrierung bestätigen
+    password: Passwort
+    confirm_password: Passwort bestätigen
