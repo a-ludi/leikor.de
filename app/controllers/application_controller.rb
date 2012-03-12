@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :fetch_logged_in_user, :fetch_updated_at
   after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] unless RAILS_ENV == 'production'
+  after_filter :prepare_flash_message
 
 protected
   def save_updated_at
@@ -31,6 +32,11 @@ protected
     end
     
     session[:user_id] = @current_user = nil
+  end
+  
+  def prepare_flash_message
+    flash[:message] = {:text => flash[:message]} if flash[:message].is_a? String
+    flash[:message][:title] ||= 'Hinweis'
   end
   
   def fetch_logged_in_user
