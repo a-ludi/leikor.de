@@ -24,7 +24,7 @@ ul.profile {
   padding: 0em;
 }
 
-.edit .profile input, .edit .profile textarea { width: 18em; }
+.edit .profile input, .edit .profile textarea { width: 18em; max-width: 100%; }
 .edit .profile .scope { width: 6em; }
 .edit .profile.user .name { width: 12em; }
 .edit .profile.postal_address .postcode { width: 3em; }
@@ -53,3 +53,11 @@ ul.profile {
 
 .user_index h2 .toolbutton { display: block; float: right; }
 .user_index ul { margin-top: 0.54em; list-style: none; }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  .user_index { float: none; margin: 0em; }
+}
