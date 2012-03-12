@@ -282,6 +282,12 @@ a.toolbutton:hover img {
   }
 
   #important_links { text-align: left; }
+
+  #important_links .logged_in_user {
+    display: block;
+    padding: 0em;
+    margin-bottom: 0.54em;
+  }
   
   #logo_container .medium_logo { display: inline; }
   #logo_container .original_logo { display: none; }
