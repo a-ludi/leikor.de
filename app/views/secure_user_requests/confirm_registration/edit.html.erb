@@ -27,6 +27,11 @@
       </p>
     </div>
     <div class="response">
+      <%= a_button_to(
+        'Anfrage abbrechen',
+        destroy_secure_user_request_path(@secure_user_request.external_id),
+        :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?'
+      ) %>
       <%= submit_tag 'Speichern!' %>
     </div>
   <% end %>

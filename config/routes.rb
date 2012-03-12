@@ -110,7 +110,9 @@ ActionController::Routing::Routes.draw do |map|
     session.resources(
       :secure_user_requests,
       :as => 'sichere_benutzeranfrage',
-      :only => [:edit, :update],
+      :member => {:destroy => :get},
+      :only => [:edit, :update, :destroy],
+      :path_names => {:destroy => 'abbrechen'},
       :name_prefix => nil)
   end
   

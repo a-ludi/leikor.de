@@ -21,6 +21,15 @@ class SecureUserRequestsController < ApplicationController
         not_found
     end
   end
+  
+  def destroy
+    get_and_set_secure_user_request #and @secure_user_request.destroy
+    flash[:message] = {
+      :class => 'error',
+      :text => "#{t "secure_user_request.#{@secure_user_request.action}"} abgebrochen."
+    }
+    redirect_to :root
+  end
 
 private
   
