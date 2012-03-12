@@ -88,6 +88,11 @@ protected
     render options
   end
   
+  def not_found(message, log=false)
+    logger.warn message if log
+    raise ActionController::RoutingError.new(message || 'Not found')
+  end
+  
   def log_if_title_not_set
     if @title.nil? and not params[:welcome]
       logger.warn "[warning] action <#{action_name}> in controller <#{controller_name}> does not set @title"
