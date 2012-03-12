@@ -1,10 +1,10 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
-  before_filter :force_user_logout
+  after_filter :force_user_logout
   
   def edit
-    get_and_set_secure_user_request
+    get_and_set_secure_user_request or return
     
     case @secure_user_request.action
       when :confirm_registration
@@ -16,7 +16,7 @@ class SecureUserRequestsController < ApplicationController
   end
 
   def update
-    get_and_set_secure_user_request
+    get_and_set_secure_user_request or return
     
     case @secure_user_request.action
       when :confirm_registration
@@ -27,7 +27,8 @@ class SecureUserRequestsController < ApplicationController
   end
   
   def destroy
-    get_and_set_secure_user_request and @secure_user_request.destroy
+    get_and_set_secure_user_request or return
+    @secure_user_request.destroy
     flash[:message] = {
       :class => 'error',
       :text => "#{t "secure_user_request.#{@secure_user_request.action}"} abgebrochen."
@@ -67,7 +68,18 @@ private
   def get_and_set_secure_user_request
     external_id = params[:id]
     @secure_user_request = SecureUserRequest.find_by_external_id(external_id) or
-        not_found("No SecureUserRequest with external ID <#{external_id.inspect}> found", true)
+        missing_secure_user_request
+  end
+  
+  def missing_secure_user_request
+    flash[:message] = {
+      :title => 'Fehler',
+      :class => 'error',
+      :text => render_to_string(:partial => 'secure_user_requests/missing',
+          :locals => {:external_id => params[:id]})
+    }
+    
+    redirect_to (request.referer || :root) and return false
   end
   
   def force_user_logout
