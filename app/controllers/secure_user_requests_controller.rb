@@ -23,7 +23,7 @@ class SecureUserRequestsController < ApplicationController
   end
   
   def destroy
-    get_and_set_secure_user_request #and @secure_user_request.destroy
+    get_and_set_secure_user_request and @secure_user_request.destroy
     flash[:message] = {
       :class => 'error',
       :text => "#{t "secure_user_request.#{@secure_user_request.action}"} abgebrochen."
