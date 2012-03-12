@@ -11,11 +11,6 @@ function closeAfter(timeout) {
   window.setTimeout('window.close()', timeout)
 }
 
-function hideMessage() {
-  Effect.Fade('message', {duration: 0.3});
-  window.setTimeout("Effect.Appear('message', {duration: 2.0})", 2000);
-}
-
 function copyToClipboard(text) {
   window.prompt ("Zum kopieren [Strg+C] drücken. Danach mit [Enter] den Dialog beenden.", text);
 }

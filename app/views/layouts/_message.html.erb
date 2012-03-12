@@ -1,12 +1,21 @@
 <% if flash.include? :message %>
   <% message = flash[:message] %>
-  <div id="message" onmouseover="hideMessage()" class="<%= message[:class] %>">
+  <div id="message" class="<%= message[:class] %>">
     <h1>
       <%= message[:title] %>
     </h1>
+    <%= clear_float %>
     <p>
       <%= message[:text] %>
     </p>
+    <h1 class="close">
+      <%= link_to(
+        'schließen',
+        '#',
+        :onclick => 'Effect.Fade("message", {duration: 0.3}); return false;',
+        :class => 'toolbutton'
+      ) %>
+    </h1>
   </div>
   <% flash.discard :message %>
 <% else %>
