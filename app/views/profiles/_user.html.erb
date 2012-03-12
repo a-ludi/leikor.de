@@ -2,4 +2,9 @@
   <% link_to profile_path(user.login), :title => 'Profil anzeigen' do %>
     <%= user.name %> (<%= user.login %>)
   <% end %>
+  <%= content_tag(
+    :span, '*',
+    :class => 'annotation_mark',
+    :title => "#{user.class.human_name} muss noch bestätigt werden."
+  ) unless user.registration_confirmed? %>
 </li>

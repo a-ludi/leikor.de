@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   def set_random_password
     self.password = ActiveSupport::SecureRandom.base64(32)
   end
+  
+  def registration_confirmed?
+    return self.secure_user_requests.find_by_action(:confirm_registration).nil?
+  end
 
 protected
   
