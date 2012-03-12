@@ -39,7 +39,11 @@ protected
     
     flash[:message] = message unless message.nil?
     flash[:message] = {:text => flash[:message]} if flash[:message].is_a? String
-    flash[:message][:title] ||= 'Hinweis'
+    flash[:message][:title] ||= case flash[:message][:class]
+      when 'error' then 'Fehler'
+      when 'success' then 'Erfolg'
+      else 'Hinweis'
+    end
   end
   
   def fetch_logged_in_user
