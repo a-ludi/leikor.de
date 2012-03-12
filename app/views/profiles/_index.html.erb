@@ -8,11 +8,13 @@
       :title => "Neuen #{human_type} eintragen"
     ) %>
   </h2>
-  <ul class="infobox">
-    <% unless users.empty? %>
+  <% unless users.empty? %>
+    <ul class="infobox">
       <%= render :partial => 'user', :collection => users %>
-    <% else %>
-      <li class="empty">Keine <%= human_type %> eingetragen.</li>
-    <% end %>
-  </ul>
+    </ul>
+  <% else %>
+    <div class="infobox">
+      <h1 class="empty">Keine <%= human_type %> eingetragen.</h1>
+    </div>
+  <% end %>
 </div>

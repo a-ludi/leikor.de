@@ -1,12 +1,3 @@
-#content .empty_category {
-  display: block;
-  font-size: 200%;
-  color: <%=p :mid_gray %>;
-  text-align: center;
-  font-weight: bold;
-  padding: 0.72em 0em;
-}
-
 #categories {
   float: left;
   background: none;
@@ -16,6 +7,8 @@
   padding: 0em;
   margin: 0em;
 }
+
+#categories.empty { display: none; }
 
 #categories li {
   padding: 0em;
@@ -92,6 +85,7 @@
 #categories .subcategory li .handle { margin-top: 0.14em; }
 
 #content { margin-left: 15em; padding: 0em 1em; }
+#content.empty { margin-left: 0em; padding: 0em 1em; }
 
 #content .administration {
   color: <%=p :dark_blue %>;

@@ -20,5 +20,5 @@
 <% unless @category.subcategories.empty? %>
   <%= render :partial => 'category', :collection => @category.subcategories %>
 <% else %>
-  <div class="empty_category">Keine Unterkategorien in dieser Kategorie.</div>
+  <h1 class="empty">Keine Unterkategorien in dieser Kategorie.</h1>
 <% end %>

@@ -10,18 +10,18 @@
       ) %>
     <% end %>
   </p>
-  <ul>
-    <% unless @fair_dates.empty? %>
+  <% unless @fair_dates.empty? %>
+    <ul>
       <% @fair_dates.each do |fd| %>
         <%= render :partial => 'fair_date_mobile', :locals => {
           :fair_date => fd} %>
       <% end %>
-    <% else %>
-      <li class="last no_dates">
-        Zur Zeit keine Messetermine.
-      </li>
-    <% end %>
-  </ul>
-  <%=clear_float %>
+    </ul>
+    <%=clear_float %>
+  <% else %>
+    <h1 class="empty">
+      Zur Zeit keine Messetermine.
+    </h1>
+  <% end %>
 </div>
 

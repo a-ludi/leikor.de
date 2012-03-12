@@ -58,6 +58,13 @@ textarea { font-family: 'Overlock', sans-serif; font-size: small; }
   margin: 0.18em 0em;
 }
 
+h1.empty {
+  font-size: 200%;
+  color: <%=p :mid_gray %>;
+  text-align: center;
+  font-weight: bold;
+  margin: 0.72em 0em;
+}
 
 span.mail_to { font-weight: bold; }
 

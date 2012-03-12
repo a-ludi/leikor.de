@@ -1,4 +1,4 @@
-<div id="categories">
+<div id="categories"<%= ' class="empty"' if @categories.empty? %>>
   <h1 style="display: none;">Kategorien-Browser</h1>
   <ul id="categories_list" class="navigation">
     <% for category in @categories %>
@@ -46,9 +46,6 @@
       :handle => 'handle') %>
   <% end %>
 <% end %>
-<div id="content">
-  <%= yield %>
-</div>
 <% javascript_tag do %>
   if(document.viewport.getWidth() <= 470) {
     target = '<%= @scroll_target %>';
@@ -58,3 +55,7 @@
     Effect.ScrollTo(target, {duration: 1.0, offset: -8});
   }
 <% end if @scroll_target %>
+<div id="content"<%= ' class="empty"' if @categories.empty? %>>
+  <%= yield %>
+</div>
+
