@@ -65,7 +65,12 @@
  */
 
 @media (max-width:470px) {
+  #body {
+    margin: 0.54em 0em;
+  }
+  
   #message_window {
-    width: 100%;
+    display: block;
+    min-width: 0em;
   }
 }
