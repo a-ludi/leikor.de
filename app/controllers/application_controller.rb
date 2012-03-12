@@ -68,7 +68,9 @@ protected
   end
   
   def logout_user
-    session[:user_id] = @current_user = nil
+    was_user_logged_in? = user_logged_in?
+    
+    session[:user_id] = @current_user = nil and return was_user_logged_in?
   end
   
   def fetch_categories
