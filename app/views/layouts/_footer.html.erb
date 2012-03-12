@@ -3,6 +3,9 @@
     <%= static_link_to :kontakt %> |
     <%= static_link_to :impressum %> |
     <%= static_link_to :AGB %> |
+    <% if RAILS_ENV == 'development' %>
+      <%= static_link_to :colors, {}, {:class => 'last'} %>
+    <% end %>
     <% unless user_logged_in? %>
       <%= link_to 'Anmelden', new_session_path %>
     <% else %>
