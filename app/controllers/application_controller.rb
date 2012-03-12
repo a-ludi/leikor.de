@@ -19,9 +19,18 @@ protected
     @updated_at = @updated_at.localtime("+01:00")
   end
   
-  def logon_user(user)
+  def logon_user(user, message=nil)
+    flash[:message] = message
     session[:user_id] = user.id
     session[:login] = user.login
+  end
+  
+  def logout_user(message=nil)
+    if user_logged_in?
+      flash[:message] = message
+    end
+    
+    session[:user_id] = @current_user = nil
   end
   
   def fetch_logged_in_user
@@ -65,12 +74,6 @@ protected
     end
     
     return false
-  end
-  
-  def logout_user
-    was_user_logged_in = user_logged_in?
-    
-    session[:user_id] = @current_user = nil and return was_user_logged_in
   end
   
   def fetch_categories

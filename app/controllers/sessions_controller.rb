@@ -14,11 +14,8 @@ class SessionsController < ApplicationController
 
   def create
     if @current_user = User.find_by_login(params[:login]) and @current_user.password == params[:password]
-      logon_user @current_user
-      flash[:message] = {
-        :class => 'success',
-        :title => 'Wilkommen!',
-        :text => "Hallo, #{@current_user.name}."}
+      logon_user @current_user, :class => 'success', :title => 'Wilkommen!',
+          :text => "Hallo, #{@current_user.name}."
       redirect_to (params[:referer] || '/')
     else
       flash[:wrong_login_or_password] = true
@@ -27,12 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout_user
-    
-    flash[:message] = {
-      :class => 'info',
-      :title => 'Bis bald!',
-      :text => "… und auf Wiedersehen."}
+    logout_user :class => 'info', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
     redirect_to (request.referer.blank? ? '/' : request.referer)
   end
 end
