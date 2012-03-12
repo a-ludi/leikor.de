@@ -5,6 +5,7 @@
   <%= content_tag(
     :span, '*',
     :class => 'annotation_mark',
-    :title => "#{user.class.human_name} muss noch bestätigt werden."
+    :title => "#{user.class.human_name} muss noch bestätigt werden.",
+    :onclick => "copyToClipboard('#{confirm_registration_url(user)}'); return false;"
   ) unless user.registration_confirmed? %>
 </li>

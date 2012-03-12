@@ -30,7 +30,8 @@
       <p>
         <%= link_to(
           t('secure_user_request.confirm_registration'),
-          edit_secure_user_request_path(@confirm_registration.external_id)
+          confirm_registration_url(@user),
+          :onclick => 'copyToClipboard(this.href); return false;'
         ) %>
       </p>
     </div>

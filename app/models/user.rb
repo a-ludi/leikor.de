@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   def registration_confirmed?
     return self.secure_user_requests.find_by_action(:confirm_registration).nil?
   end
-
+  
 protected
   
   def save_password_length(password)
