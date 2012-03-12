@@ -60,6 +60,7 @@
   font-weight: bold;
 }
 
+<<<<<<< HEAD
 @media (max-width:470px) {
   #body {
     margin: 0.54em 0em;
@@ -68,5 +69,14 @@
   #message_window {
     display: block;
     min-width: 0em;
+=======
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  #message_window {
+    width: 100%;
+>>>>>>> master
   }
 }
