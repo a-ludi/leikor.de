@@ -14,15 +14,15 @@
           </span>
         <% else %>
           <%= link_to 'Anmelden', new_session_path %> |
-        <% end %> 
+        <% end %>
         <% if employee_logged_in? %>
           <span class="nobreak">
             <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %>
-          <span> |
+          </span> |
         <% end %> 
         <% if user_logged_in? %>
           <%= link_to 'Profil', my_profile_path %> |
-        <% end %> 
+        <% end %>
         <%= static_link_to :kontakt %> |
         <%= static_link_to :impressum %> |
         <%= static_link_to :AGB %>

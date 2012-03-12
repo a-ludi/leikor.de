@@ -135,7 +135,7 @@ div.clear {
 
 #important_links { text-align: right; }
 #important_links .logged_in_user {
-  padding: 0em 1.5em;
+  padding-right: 1.5em;
 }
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
@@ -281,6 +281,8 @@ a.toolbutton:hover img {
     font-size: 18px;
   }
 
+  #important_links { text-align: left; }
+  
   #logo_container .medium_logo { display: inline; }
   #logo_container .original_logo { display: none; }
 
