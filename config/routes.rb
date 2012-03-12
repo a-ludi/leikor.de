@@ -104,8 +104,9 @@ ActionController::Routing::Routes.draw do |map|
     :conditions => {:method => :put})
   map.resources :profiles, :as => 'profile'
   
-  map.resource(:session, :as => 'sitzung', :path_names => {:new => 'anmelden'}) do |session|
-    session.destroy 'abmelden', :controller => 'sessions', :action => 'destroy'
+  map.resource(:session, :as => 'sitzung',
+      :collection => {:destroy => :get},
+      :path_names => {:new => 'anmelden', :destroy => 'abmelden'}) do |session|
   end
   
   map.stylesheet(
