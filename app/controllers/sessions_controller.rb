@@ -13,9 +13,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if @current_user = User.find_by_login(params[:login]) and @current_user.password == params[:password]
-      login_user! @current_user, :class => 'success', :title => 'Wilkommen!',
-          :text => "Hallo, #{@current_user.name}."
+    if user = User.find_by_login(params[:login]) and user.password == params[:password]
+      login_user! user, :class => 'success', :title => 'Wilkommen!',
+          :text => "Hallo, #{user.name}."
       redirect_to (params[:referer] || '/')
     else
       flash[:wrong_login_or_password] = true
