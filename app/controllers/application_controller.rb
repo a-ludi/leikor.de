@@ -36,7 +36,9 @@ protected
   end
   
   def prepare_flash_message(message=nil)
-    return unless flash.include? :message or not message.nil?
+    logger.debug "[debug] preparing flash message"
+    
+    return unless flash.include?(:message) or not message.nil?
     
     flash[:message] = message unless message.nil?
     flash[:message] = {:text => flash[:message]} if flash[:message].is_a? String
@@ -45,6 +47,9 @@ protected
       when 'success' then 'Erfolg'
       else 'Hinweis'
     end
+    
+    logger.debug "[debug] message = <#{message.inspect}>"
+    logger.debug "[debug] flash[:message] = <#{flash[:message].inspect}>"
   end
   
   def fetch_logged_in_user

@@ -2,7 +2,7 @@
 
 class SecureUserRequestsController < ApplicationController
   before_filter :get_and_set_secure_user_request, :destroy_if_expired, :except => [:new, :create]
-  after_filter :force_user_logout
+  before_filter :force_user_logout, :except => [:new, :create]
   
   def new
     action = params[:request_action].to_sym
@@ -139,7 +139,7 @@ private
   
   def force_user_logout
     logout_user! :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da
-        Sie eine #{SecureUserRequest.human_name} gestartet haben.".squish
+        eine #{SecureUserRequest.human_name} bearbeitet wird.".squish
   end
   
   def destroy_if_expired
