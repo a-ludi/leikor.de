@@ -42,6 +42,7 @@ class SecureUserRequestsController < ApplicationController
     @secure_user_request.destroy
     flash[:message] = {
       :class => 'error',
+      :title => 'Achtung',
       :text => "#{t "secure_user_request.#{@secure_user_request.action}"} abgebrochen."
     }
     redirect_to :root
@@ -61,9 +62,10 @@ private
     @user = User.find_by_login params[:login]
     if @user
       @secure_user_request = @user.secure_user_requests.create :action => :reset_password
-      success = true
+      # TODO deliver email
+      success = true # TODO remove
     end
-    flash[:message] = {
+    flash[:message] = { # TODO remove :class and link from message
         :class => success ? 'success' : 'error',
         :text => "<p>Bitte überprüfen Sie nun ihr Postfach.</p><p>Sollten Sie keine E-Mail erhalten
           haben, versuchen Sie es <b>nochmals</b> und überprüfen Sie ihren Benutzernamen auf
