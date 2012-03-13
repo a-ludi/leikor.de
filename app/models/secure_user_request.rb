@@ -1,25 +1,18 @@
+# -*- encoding : utf-8 -*-
+
 class SecureUserRequest < ActiveRecord::Base
   include Digest
   
-  REGISTERED_ACTIONS = {
-    :confirm_registration => {:lifetime => 7.days},
-    :reset_password => {:lifetime => 3.days}
-  }
-  MANDATORY_ARGUMENTS = [:action, :user_id]
-
-  serialize :action, Symbol
-  serialize :memo, Hash
   belongs_to :user
 
-  validates_presence_of :action, :user_id
-  validates_inclusion_of :action, :in => REGISTERED_ACTIONS.keys
+  validates_presence_of :type, :user_id
   
   def lifetime
-    REGISTERED_ACTIONS[self.action][:lifetime]
+    self.class::LIFETIME
   end
   
   def expired?
-    self.created_at.since(lifetime).past?
+    self.updated_at.since(lifetime).past?
   end
   
   def after_validation_on_create
@@ -30,7 +23,7 @@ private
   
   def generate_external_id
     randomness_parameters = [
-      self.action,
+      self.class,
       self.user_id,
       self.memo,
       ActiveSupport::SecureRandom.base64(32)]

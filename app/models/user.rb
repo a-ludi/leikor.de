@@ -5,7 +5,12 @@ class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
   
-  has_many :secure_user_requests
+  has_one :reset_password_request,
+      :class_name => 'SecureUserRequest::ResetPassword',
+      :dependent => :delete
+  has_one :confirm_registration_request,
+      :class_name => 'SecureUserRequest::ConfirmRegistration',
+      :dependent => :delete
   
   validates_presence_of :login, :password, :name, :type
   validates_length_of :login, :in => 4..32

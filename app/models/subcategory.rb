@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class Subcategory < Category
   belongs_to :category
   has_many :articles, :order => 'ord ASC'

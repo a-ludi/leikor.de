@@ -5,36 +5,34 @@ class SecureUserRequestsController < ApplicationController
   before_filter :force_user_logout, :except => [:new, :create]
   
   def new
-    action = params[:request_action].to_sym
-    case action
-      when :reset_password then new_reset_password
-      else unknown_action action
+    type = get_type_from_params
+    case type
+      when SecureUserRequest::ResetPassword then new_reset_password
+      else unknown_type type
     end
   end
   
   def create
-    action = params[:secure_user_request][:action].to_sym
-    case action
-      when :reset_password then create_reset_password
-      else unknown_action action
+    type = get_type_from_params
+    case type
+      when SecureUserRequest::ResetPassword then create_reset_password
+      else unknown_type type
     end
   end
   
   def edit
-    action = @secure_user_request.action
-    case action
-      when :confirm_registration then edit_confirm_registration
-      when :reset_password then edit_reset_password
-      else unknown_action action
+    case @secure_user_request
+      when SecureUserRequest::ConfirmRegistration then edit_confirm_registration
+      when SecureUserRequest::ResetPassword then edit_reset_password
+      else unknown_type @secure_user_request
     end
   end
 
   def update
-    action = @secure_user_request.action
-    case action
-      when :confirm_registration then update_confirm_registration
-      when :reset_password then update_reset_password
-      else unknown_action action
+    case @secure_user_request
+      when SecureUserRequest::ConfirmRegistration then update_confirm_registration
+      when SecureUserRequest::ResetPassword then update_reset_password
+      else unknown_type @secure_user_request
     end
   end
   
@@ -43,7 +41,7 @@ class SecureUserRequestsController < ApplicationController
     flash[:message] = {
       :class => 'error',
       :title => 'Achtung',
-      :text => "#{t "secure_user_request.#{@secure_user_request.action}"} abgebrochen."
+      :text => "#{@secure_user_request.class.human_name} abgebrochen."
     }
     redirect_to :root
   end
@@ -51,9 +49,9 @@ class SecureUserRequestsController < ApplicationController
 private
 
   def new_reset_password
-    @secure_user_request = SecureUserRequest.new :action => :reset_password
+    @secure_user_request = SecureUserRequest::ResetPassword.new
     @stylesheets = ['message', 'sessions']
-    @title = t('secure_user_request.reset_password')
+    @title = @secure_user_request.class.human_name
     
     render :action => 'reset_password/new'
   end
@@ -61,9 +59,9 @@ private
   def create_reset_password
     @user = User.find_by_login params[:login]
     if @user
-      @secure_user_request = @user.secure_user_requests.create :action => :reset_password
+      @secure_user_request = @user.reset_password_request || @user.create_reset_password_request
+      success = @secure_user_request.touch
       # TODO deliver email
-      success = true # TODO remove
     end
     flash[:message] = { # TODO remove :class and link from message
         :class => success ? 'success' : 'error',
@@ -146,8 +144,12 @@ private
     @secure_user_request.destroy and missing_secure_user_request if @secure_user_request.expired?
   end
   
-  def unknown_action(action)
-    not_found t('errors.controller.secure_user_requests.unknown_action', :action => action,
-          :known_actions => SecureUserRequest::REGISTERED_ACTIONS.inspect), :log => true
+  def unknown_type(type)
+    not_found t('errors.controller.secure_user_requests.unknown_type', :type => type),
+        :log => true
+  end
+  
+  def get_type_from_params
+    params[:type].constantize.new
   end
 end

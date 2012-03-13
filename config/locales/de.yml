@@ -219,7 +219,7 @@ de:
       body: &errors_body "Bitte überprüfen Sie die folgenden Felder:"
     controller:
       secure_user_requests:
-        unknown_action: "Unbekannte Aktion <%{action}> in sicherer Benutzeranfrage. Sollte eine von <%{known_actions}> sein"
+        unknown_type: "Sichere Benutzeranfrage hat unbekannten Typ <%{type}>"
   body: *errors_body
 
   activerecord:
@@ -243,6 +243,8 @@ de:
       customer: Kunde
       fair_date: Messetermin
       secure_user_request: Sichere Benutzeranfrage
+      secure_user_request/reset_password: Passwort zurücksetzen
+      secure_user_request/confirm_registration: Registrierung bestätigen
       
     attributes:
       article:
@@ -271,7 +273,5 @@ de:
         action: Aktion
         memo: Notiz
   secure_user_request:
-    reset_password: Passwort zurücksetzen
-    confirm_registration: Registrierung bestätigen
     password: Passwort
     confirm_password: Passwort bestätigen

@@ -1,6 +1,6 @@
 <div id="message_window">
-  <% form_for @secure_user_request do |f| %>
-    <%= f.hidden_field :action %>
+  <% form_for @secure_user_request, :url => secure_user_requests_path do |f| %>
+    <%= hidden_field_tag :type, @secure_user_request.type %>
     <div class="message" >
       <p>
         Bitte geben Sie ihren Benutzernamen an. Wir werden Ihnen eine E-Mail mit weiteren Anweisungen an die

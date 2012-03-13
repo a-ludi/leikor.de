@@ -5,4 +5,4 @@ en:
   errors:
     controller:
       secure_user_requests:
-        unknown_action: "Unknown secure user request action <%{action}>. Should be one of <%{known_actions}>"
+        unknown_type: "Secure user request has unknown type <%{type}>"

@@ -109,7 +109,7 @@ ActionController::Routing::Routes.draw do |map|
       'passwort-zuruecksetzen',
       :controller => 'secure_user_requests',
       :action => 'new',
-      :request_action => 'reset_password',
+      :type => 'SecureUserRequest::ResetPassword',
       :conditions => {:mehotd => :get})
   map.resource(:session, :as => 'sitzung',
       :collection => {:destroy => :get},
