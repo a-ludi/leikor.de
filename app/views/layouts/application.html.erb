@@ -7,7 +7,7 @@
     <%= render :partial => 'layouts/message' %>
     <div id="header">
       <div id="important_links">
-        <% if user_logged_in? %>
+        <% if logged_in? %>
           <span class="logged_in_user">
             <span class="name"><%= @current_user.name %></span>
             (<%= link_to 'abmelden', destroy_session_path %>)
@@ -15,12 +15,12 @@
         <% else %>
           <%= link_to 'Anmelden', new_session_path %> |
         <% end %>
-        <% if employee_logged_in? %>
+        <% if logged_in? Employee %>
           <span class="nobreak">
             <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %>
           </span> |
         <% end %> 
-        <% if user_logged_in? %>
+        <% if logged_in? %>
           <%= link_to 'Profil', my_profile_path %> |
         <% end %>
         <%= static_link_to :kontakt %> |
@@ -54,7 +54,7 @@
           <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
           <!--a>Angebote</a-->
           <li><%= link_to 'Messetermine', fair_dates_path %></li>
-          <% unless employee_logged_in? %>
+          <% unless logged_in? Employee %>
             <li><%= static_link_to :ueber_uns, :class => 'last' %></li>
           <% else %>
             <li><%= static_link_to :ueber_uns %></li>

@@ -10,13 +10,13 @@
       <%= f.label :name %><br>
       <%= f.text_field :name, :class => 'value name' %>
     </h1>
-    <% if employee_logged_in? %>
+    <% if logged_in? Employee %>
       <div class="profile login">
         <%= f.label :login %><br>
         <%= f.text_field :login, :class => 'value login' %>
       </div>
     <% end %>
-    <% if employee_logged_in? %>
+    <% if logged_in? Employee %>
       <div class="profile">
         <%= f.label :notes %>
         <div class="infobox notes value">

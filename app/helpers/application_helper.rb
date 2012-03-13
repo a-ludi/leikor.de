@@ -67,7 +67,7 @@ module ApplicationHelper
   end
   
   def handle_if_superuser(options={})
-    if (employee_logged_in? and (options.empty? or options[:and])) or options[:or]
+    if (logged_in? Employee and (options.empty? or options[:and])) or options[:or]
       '<div class="handle">&nbsp;</div>'
     else
       ''

@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
+  helper_method :logged_in?
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
   filter_parameter_logging :password
 
@@ -27,9 +28,7 @@ protected
   end
   
   def logout_user(message=nil)
-    if user_logged_in?
-      prepare_flash_message message
-    end
+    prepare_flash_message(message) if logged_in?
     
     session[:user_id] = @current_user = nil
   end
@@ -51,17 +50,12 @@ protected
     @current_user = nil
   end
   
-  def user_logged_in?
-    not @current_user.nil?
+  def logged_in?(klass=User)
+    not @current_user.nil? and @current_user.is_a? klass
   end
-  
-  def employee_logged_in?
-    user_logged_in? and @current_user.is_a? Employee
-  end
-  helper_method :user_logged_in?, :employee_logged_in?
   
   def user_required
-    return true if user_logged_in?
+    return true if logged_in?
     
     flash[:referer] = request.referer if flash[:referer].blank?
     prepare_flash_message :class => 'error', :text => 'Bitte melden Sie sich an.'
@@ -74,7 +68,7 @@ protected
   end
   
   def employee_required
-    return true if employee_logged_in?
+    return true if logged_in? Employee
     
     prepare_flash_message :class => 'error', :text => 'Dazu haben Sie keine Erlaubnis.'
     respond_to do |format|

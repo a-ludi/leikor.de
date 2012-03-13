@@ -6,7 +6,7 @@
         subcategory_path(category.url_hash) :
         category_path(category.url_hash)
     ) %>
-    <% if employee_logged_in? %>
+    <% if logged_in? Employee %>
       <%= link_to_remote(
         image_tag('pictogram/small/edit.png'),
         :url => edit_category_path(category.id),

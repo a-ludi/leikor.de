@@ -38,7 +38,7 @@
       </p>
     </div>
   <% end %>
-  <% if employee_logged_in? and not @user.notes.blank? %>
+  <% if logged_in? Employee and not @user.notes.blank? %>
     <div class="profile">
       <div class="infobox notes value">
         <%= parse_formatted_text @user.notes %>

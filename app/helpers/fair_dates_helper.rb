@@ -1,10 +1,10 @@
 module FairDatesHelper
   def unless_su(string)
-    employee_logged_in? ? '' : string
+    logged_in?(Employee) ? '' : string
   end
   
   def num_rows
-    (employee_logged_in? ? @fair_dates.count + 2 : @fair_dates.count + 1) + (@fair_dates.count == 0 ? 1 : 0)
+    (logged_in?(Employee) ? @fair_dates.count + 2 : @fair_dates.count + 1) + (@fair_dates.count == 0 ? 1 : 0)
   end
   
   def nice_url(raw_url)
