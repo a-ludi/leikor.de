@@ -97,6 +97,6 @@ private
   
   def unknown_action(action)
     not_found t('errors.controller.secure_user_requests.unknown_action', :action => action,
-          :known_actions => SecureUserRequest::REGISTERED_ACTIONS.inspect), true
+          :known_actions => SecureUserRequest::REGISTERED_ACTIONS.inspect), :log => true
   end
 end

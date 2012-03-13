@@ -100,8 +100,9 @@ protected
     render options
   end
   
-  def not_found(message, log=false)
-    logger.warn message if log
+  def not_found(message, options={})
+    options = {:log => false}.merge options
+    logger.warn message if options[:log]
     raise ActionController::RoutingError.new(message || 'Not found')
   end
   
