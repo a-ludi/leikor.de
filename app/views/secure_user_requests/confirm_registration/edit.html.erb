@@ -1,4 +1,4 @@
-<div id="message_window" style="max-width: 15em;">
+<div id="message_window">
   <% form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do %>
     <%= hidden_field_tag :id, @secure_user_request.external_id %>
     <div class="message">
