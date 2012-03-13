@@ -21,7 +21,7 @@ protected
     @updated_at = @updated_at.localtime("+01:00")
   end
   
-  def logon_user(user, message=nil)
+  def login_user!(user, message=nil)
     prepare_flash_message message
     session[:user_id] = user.id
     session[:login] = user.login

@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 
   def create
     if @current_user = User.find_by_login(params[:login]) and @current_user.password == params[:password]
-      logon_user @current_user, :class => 'success', :title => 'Wilkommen!',
+      login_user! @current_user, :class => 'success', :title => 'Wilkommen!',
           :text => "Hallo, #{@current_user.name}."
       redirect_to (params[:referer] || '/')
     else

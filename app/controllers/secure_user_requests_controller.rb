@@ -56,7 +56,7 @@ private
       }
       
       @secure_user_request.destroy
-      logon_user user, :class => 'success', :title => 'Glückwunsch!', :text => render_to_string(
+      login_user! user, :class => 'success', :title => 'Glückwunsch!', :text => render_to_string(
           :partial => 'secure_user_requests/confirm_registration/welcome',
           :locals => {:user => user})
       
