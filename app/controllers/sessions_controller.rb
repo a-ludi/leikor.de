@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout_user :class => 'info', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
+    logout_user! :class => 'info', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
     redirect_to (request.referer.blank? ? '/' : request.referer)
   end
 end

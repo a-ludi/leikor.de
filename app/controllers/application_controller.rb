@@ -27,7 +27,7 @@ protected
     session[:login] = user.login
   end
   
-  def logout_user(message=nil)
+  def logout_user!(message=nil)
     prepare_flash_message(message) if logged_in?
     
     session[:user_id] = @current_user = nil

@@ -85,7 +85,7 @@ private
   end
   
   def force_user_logout
-    logout_user :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da " +
+    logout_user! :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da " +
         "Sie eine #{SecureUserRequest.human_name} gestartet haben."
   end
   
