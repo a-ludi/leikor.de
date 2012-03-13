@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   before_filter :fetch_logged_in_user, :fetch_updated_at
   after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] unless RAILS_ENV == 'production'
   after_filter :prepare_flash_message
-  after_filter :fetch_logged_in_user, :only => :login_user!
 
 protected
   def save_updated_at
@@ -26,6 +25,8 @@ protected
     prepare_flash_message message
     session[:user_id] = user.id
     session[:login] = user.login
+    
+    fetch_logged_in_user
   end
   
   def logout_user!(message=nil)
