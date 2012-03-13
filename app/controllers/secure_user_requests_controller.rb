@@ -16,6 +16,7 @@ class SecureUserRequestsController < ApplicationController
     type = get_type_from_params
     case type
       when SecureUserRequest::ResetPassword then create_reset_password
+      when SecureUserRequest::ConfirmRegistration then create_confirm_registration
       else unknown_type type
     end
   end
@@ -96,6 +97,28 @@ private
       user.errors.add :password, :confirmation unless passwords_match
       edit_reset_password
     end
+  end
+  
+  def create_confirm_registration
+    if @user = User.find_by_login(params[:login])
+      @secure_user_request = @user.confirm_registration_request ||
+          @user.create_confirm_registration_request
+      @secure_user_request.touch
+      
+      flash[:message] = {
+          :class => 'success',
+          :text => "Der neue
+              #{t('activerecord.models.secure_user_request/confirm_registration')}-Link wurde
+              erstellt".squish}
+    else
+      flash[:message] = {
+          :class => 'error',
+          :title => 'Interner Fehler',
+          :text => 'Der Benutzer konnte nicht gefunden werden. Bitte versuchen Sie es
+              nochmals.'.squish}
+    end
+    
+    redirect_to profile_path(@user.login)
   end
   
   def edit_confirm_registration

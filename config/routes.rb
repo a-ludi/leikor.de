@@ -110,7 +110,13 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'secure_user_requests',
       :action => 'new',
       :type => 'SecureUserRequest::ResetPassword',
-      :conditions => {:mehotd => :get})
+      :conditions => {:method => :get})
+  map.confirm_registration_request(
+      'registrierung-bestaetigen',
+      :controller => 'secure_user_requests',
+      :action => 'create',
+      :type => 'SecureUserRequest::ConfirmRegistration',
+      :conditions => {:method => :post})
   map.resource(:session, :as => 'sitzung',
       :collection => {:destroy => :get},
       :path_names => {:new => 'anmelden', :destroy => 'abmelden'}) do |session|

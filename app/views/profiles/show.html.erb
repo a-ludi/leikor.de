@@ -23,18 +23,29 @@
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', static_path(:fehlt) if @my_profile %>
   </div>
-  <% unless @confirm_registration.nil? %>
+  <% if not @user.registration_confirmed? %>
     <div class="error message">
       <p>
         Dieser Benutzer muss noch bestätigt werden.<br>
         Bitte den folgenden Link an den Benutzer schicken:
       </p>
       <p>
-        <%= link_to(
+        <%= a_button_to(
           t('activerecord.models.secure_user_request/confirm_registration'),
           confirm_registration_url(@user),
           :onclick => 'copyToClipboard(this.href); return false;'
         ) %>
+      </p>
+    </div>
+  <% elsif logged_in? Employee %><!-- TODO ...and if marked -->
+    <div class="error message">
+      <p>
+        <% form_tag confirm_registration_request_path, :method => :post do %>
+          <%= hidden_field_tag :login, @user.login %>
+          <%= submit_tag "Neuen
+              #{t('activerecord.models.secure_user_request/confirm_registration')}-Link
+              erstellen".squish %>
+        <% end %>
       </p>
     </div>
   <% end %>

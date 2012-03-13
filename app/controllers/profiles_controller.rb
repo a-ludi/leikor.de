@@ -127,7 +127,6 @@ private
   def show_profile
     @stylesheets = ['message', 'profile']
     @title = "#{@user.name}s Profil"
-    @confirm_registration = @user.confirm_registration_request
     
     render :show
   end
