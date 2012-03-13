@@ -1,11 +1,23 @@
 # -*- encoding : utf-8 -*-
 
 module ApplicationHelper
-  def a_button_to(label, href, html_options={})
-    attributes = []
-    html_options.each{|key, value| attributes << "#{key}=\"#{value}\""}
-    tabindex = "tabindex=\"#{html_options[:tabindex]}\"" unless html_options[:tabindex].blank?
-    "<a href=\"#{href}\" #{attributes.join ' '}><input type=\"button\" value=\"#{label}\"#{tabindex} /></a>"
+  def new_a_button_to(name, options={}, html_options=nil)
+    
+    button_options = {:type => 'button', :value => name}
+    [:tabindex].each do |key|
+      unless html_options[key].blank?
+        button_options[key] = html_options[key]
+        html_options.delete key
+      end
+    end unless html_options.nil?
+    
+    logger.debug("[debug] name = <#{name.inspect}>")
+    logger.debug("[debug] options = <#{options.inspect}>")
+    logger.debug("[debug] html_options = <#{html_options.inspect}>")
+    logger.debug("[debug] button_options = <#{button_options.inspect}>")
+    
+    button = tag :input, button_options, false    
+    link_to button, options, html_options
   end
   
   def positional_class(*args)

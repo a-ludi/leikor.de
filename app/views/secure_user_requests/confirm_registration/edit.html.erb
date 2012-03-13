@@ -18,15 +18,15 @@
     <div class="message">
       <p>
         <%= label_tag :password, t('secure_user_request.password') %><br />
-        <%= password_field_tag :password %>
+        <%= password_field_tag :password, nil, :class => 'value' %>
       </p>
       <p>
         <%= label_tag :confirm_password, t('secure_user_request.confirm_password') %><br />
-        <%= password_field_tag :confirm_password %>
+        <%= password_field_tag :confirm_password, nil, :class => 'value' %>
       </p>
     </div>
     <div class="response">
-      <%= a_button_to(
+      <%= new_a_button_to(
         'Anfrage abbrechen',
         destroy_secure_user_request_path(@secure_user_request.external_id),
         :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?'
