@@ -37,11 +37,14 @@ class SecureUserRequestsController < ApplicationController
   end
   
   def destroy
-    @secure_user_request.destroy
+    case @secure_user_request.destroy
+      when SecureUserRequest::ConfirmRegistration then mark_user_unconfirmed
+      else unknown_type @secure_user_request
+    end
+    
     flash[:message] = {
-      :class => 'error',
-      :title => 'Achtung',
-      :text => "#{@secure_user_request.class.human_name} abgebrochen."
+      :class => 'success',
+      :text => "#{@secure_user_request.class.human_name} wurde abgebrochen."
     }
     redirect_to :root
   end
@@ -75,7 +78,7 @@ private
   
   def edit_reset_password
     @stylesheets = ['message', 'sessions']
-    @title = t('secure_user_request.reset_password')
+    @title = t('activerecord.models.secure_user_request/reset_password')
     
     render :action => 'reset_password/edit'
   end
@@ -97,7 +100,7 @@ private
   
   def edit_confirm_registration
     @stylesheets = ['message', 'sessions']
-    @title = t('secure_user_request.confirm_registration')
+    @title = t('activerecord.models.secure_user_request/confirm_registration')
     
     render :action => 'confirm_registration/edit'
   end
@@ -116,6 +119,11 @@ private
       user.errors.add :password, :confirmation unless passwords_match
       edit_confirm_registration
     end
+  end
+  
+  def mark_user_unconfirmed
+    # TODO needs implementation
+    logger.warn "[warning] SecureUserRequestsController.mark_user_unconfirmed needs implementation"
   end
   
   def get_and_set_secure_user_request

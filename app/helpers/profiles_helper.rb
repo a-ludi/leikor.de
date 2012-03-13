@@ -1,6 +1,5 @@
 module ProfilesHelper
   def confirm_registration_url(user)
-    request = user.secure_user_requests.find_by_action(:confirm_registration)
-    edit_secure_user_request_url(request.external_id)
+    edit_secure_user_request_url(user.confirm_registration_request.external_id)
   end
 end

@@ -10,14 +10,14 @@
     <div class="message">
       <p>
         <%= label_tag :login, t('activerecord.attributes.user.login') %>
-        <%= text_field_tag :login, @login, :class => 'value' %>
+        <%= text_field_tag :login, @login, :class => 'value', :tabindex => 1 %>
       </p>
       <p>
         <%= label_tag :password, t('activerecord.attributes.user.password') %>
         <small>
-          <%= link_to '(vergessen?)', new_reset_password_request_path %>
+          <%= link_to '(vergessen?)', new_reset_password_request_path, :tabindex => 3 %>
         </small>
-        <%= password_field_tag :password, nil, :class => 'value' %>
+        <%= password_field_tag :password, nil, :class => 'value', :tabindex => 2 %>
       </p>
     </div>
     <div class="response">

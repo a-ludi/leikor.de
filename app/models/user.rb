@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
   
   def registration_confirmed?
-    return self.secure_user_requests.find_by_action(:confirm_registration).nil?
+    self.confirm_registration_request.nil?
   end
   
 protected
