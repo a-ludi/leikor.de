@@ -93,5 +93,6 @@ private
     return if @secure_user_request.nil?
     
     @secure_user_request.destroy if @secure_user_request.expired?
+    @secure_user_request = nil
   end
 end
