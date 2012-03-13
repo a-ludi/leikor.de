@@ -8,7 +8,7 @@
     <em>endgültig</em> löschen?
   </div>
   <div class="response">
-    <%= new_a_button_to(
+    <%= a_button_to(
       'Nein, lieber nicht.',
       @category.is_a?(Subcategory) ?
         category_path(@category.category.url_hash(:anchor => @category.html_id)) :

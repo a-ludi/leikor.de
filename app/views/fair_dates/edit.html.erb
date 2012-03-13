@@ -28,7 +28,7 @@
       </p>
     </div>
     <div class="response">
-      <%= new_a_button_to 'Abbrechen.', fair_dates_path, :onclick => 'closeAfter(0); return false;', :class => 'button', :tabindex => 8 %>
+      <%= a_button_to 'Abbrechen.', fair_dates_path, :onclick => 'closeAfter(0); return false;', :class => 'button', :tabindex => 8 %>
       <%= submit_tag 'Speichern!', :class => 'button', :tabindex => 7 %>
     </div>
   <% end %>

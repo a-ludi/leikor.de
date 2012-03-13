@@ -2,7 +2,7 @@
   <% form_for :profile, @user, :url => @show_path, :html => {:method => @method} do |f| %>
     <%= f.hidden_field :type %>
     <div class="administration">
-      <%= new_a_button_to 'Abbrechen', @show_path %>
+      <%= a_button_to 'Abbrechen', @show_path %>
       <%= submit_tag 'Speichern!' %>
     </div>
     <%= make_if_error_messages_for @user  %>
