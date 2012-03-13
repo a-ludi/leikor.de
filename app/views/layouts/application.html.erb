@@ -55,9 +55,9 @@
           <!--a>Angebote</a-->
           <li><%= link_to 'Messetermine', fair_dates_path %></li>
           <% unless logged_in? Employee %>
-            <li><%= static_link_to :ueber_uns, :class => 'last' %></li>
+            <li><%= static_link_to :'ueber-uns', :class => 'last' %></li>
           <% else %>
-            <li><%= static_link_to :ueber_uns %></li>
+            <li><%= static_link_to :'ueber-uns' %></li>
             <li><%= link_to 'Profile', profiles_path, :class => 'last' %></li>
           <% end %>
         </ul>

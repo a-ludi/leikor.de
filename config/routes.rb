@@ -38,48 +38,48 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   map.categories(
-    'sortiment/',
-    :controller => 'categories',
-    :action => 'index')
+      'sortiment/',
+      :controller => 'categories',
+      :action => 'index')
   map.category(
-    'sortiment/:category',
-    :controller => 'categories',
-    :action => 'subindex')
+      'sortiment/:category',
+      :controller => 'categories',
+      :action => 'subindex')
   map.ask_destroy_category(
-    'kategorie/:category/loeschen',
-    :controller => 'categories',
-    :action => 'ask_destroy',
-    :conditions => {:method => :get})
+      'kategorie/:category/loeschen',
+      :controller => 'categories',
+      :action => 'ask_destroy',
+      :conditions => {:method => :get})
   map.subcategory(
-    'sortiment/:category/:subcategory',
-    :controller => 'articles',
-    :action => 'index')
+      'sortiment/:category/:subcategory',
+      :controller => 'articles',
+      :action => 'index')
   map.ask_destroy_subcategory(
-    'kategorie/:category/:subcategory/loeschen',
-    :controller => 'categories',
-    :action => 'ask_destroy',
-    :conditions => {:method => :get})
+      'kategorie/:category/:subcategory/loeschen',
+      :controller => 'categories',
+      :action => 'ask_destroy',
+      :conditions => {:method => :get})
   map.resources :categories, :as => 'kategorie'
   map.reorder_categories(
-    'kategorie/sortieren',
-    :controller => 'categories',
-    :action => 'reorder')
+      'kategorie/sortieren',
+      :controller => 'categories',
+      :action => 'reorder')
   
   map.edit_articles_order(
-    'sortiment/:category/:subcategory/umsortieren',
-    :controller => 'articles',
-    :action => 'edit_order',
-    :conditions => {:method => :get})
+      'sortiment/:category/:subcategory/umsortieren',
+      :controller => 'articles',
+      :action => 'edit_order',
+      :conditions => {:method => :get})
   map.reorder_articles(
-    'sortiment/:category/:subcategory/sortieren',
-    :controller => 'articles',
-    :action => 'reorder',
-    :conditions => {:method => :put})
+      'sortiment/:category/:subcategory/sortieren',
+      :controller => 'articles',
+      :action => 'reorder',
+      :conditions => {:method => :put})
   map.ask_destroy_article(
-    'sortiment/:category/:subcategory/:article/loeschen',
-    :controller => 'articles',
-    :action => 'ask_destroy',
-    :article => Article::ARTICLE_NUMBER_FORMAT)
+      'sortiment/:category/:subcategory/:article/loeschen',
+      :controller => 'articles',
+      :action => 'ask_destroy',
+      :article => Article::ARTICLE_NUMBER_FORMAT)
   map.resources :articles, :as => 'artikel' do |articles|
     articles.resource :picture, :as => 'bild', :controller => 'picture' do |picture|
       picture.download 'download/:style.:extension', :action => 'pictures', :controller => 'picture'
@@ -89,46 +89,51 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :fair_dates, :as => 'messetermine'
   map.my_profile(
-    'profil',
-    :controller => 'profiles',
-    :action => 'show_mine',
-    :conditions => {:method => :get})
+      'profil',
+      :controller => 'profiles',
+      :action => 'show_mine',
+      :conditions => {:method => :get})
   map.edit_my_profile(
-    'profil/bearbeiten',
-    :controller => 'profiles',
-    :action => 'edit_mine',
-    :conditions => {:method => :get})
+      'profil/bearbeiten',
+      :controller => 'profiles',
+      :action => 'edit_mine',
+      :conditions => {:method => :get})
   map.update_my_profile(
-    'profil',
-    :controller => 'profiles',
-    :action => 'update_mine',
-    :conditions => {:method => :put})
+      'profil',
+      :controller => 'profiles',
+      :action => 'update_mine',
+      :conditions => {:method => :put})
   map.resources :profiles, :as => 'profile'
   
+  map.new_reset_password_request(
+      'passwort-zuruecksetzen',
+      :controller => 'secure_user_requests',
+      :action => 'new',
+      :request_action => 'reset_password',
+      :conditions => {:mehotd => :get})
   map.resource(:session, :as => 'sitzung',
       :collection => {:destroy => :get},
       :path_names => {:new => 'anmelden', :destroy => 'abmelden'}) do |session|
-    session.resources(
+  end
+  map.resources(
       :secure_user_requests,
-      :as => 'sichere_benutzeranfrage',
+      :as => 'sichere-benutzeranfrage',
       :member => {:destroy => :get}, # FIXME shouldn't use GET on destroy action
-      :only => [:create, :edit, :update, :destroy],
+      :except => [:index, :show, :new],
       :path_names => {:destroy => 'abbrechen'},
-      :name_prefix => nil)
+      :name_prefix => nil) do |request|
   end
   
   map.stylesheet(
-    'stylesheets/*path',
-    :controller => 'static',
-    :action => 'stylesheet',
-    :conditions => {:method => :get}
-  )
+      'stylesheets/*path',
+      :controller => 'static',
+      :action => 'stylesheet',
+      :conditions => {:method => :get})
   
-  map.root :path => 'ueber_uns', :controller => 'static', :action => 'show', :welcome => true
+  map.root :path => 'ueber-uns', :controller => 'static', :action => 'show', :welcome => true
   map.static(
-    '*path',
-    :controller => 'static',
-    :action => 'show',
-    :conditions => {:method => :get}
-  )
+      '*path',
+      :controller => 'static',
+      :action => 'show',
+      :conditions => {:method => :get})
 end

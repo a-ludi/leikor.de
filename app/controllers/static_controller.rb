@@ -3,12 +3,11 @@ class StaticController < ApplicationController
   caches_page :page, :stylesheet
   
   REGISTERED_PAGES = {
-    :ueber_uns => {:name => 'Über uns', :stylesheets => ['static']},
+    :'ueber-uns' => {:name => 'Über uns', :stylesheets => ['static']},
     :kontakt => {:name => 'Kontakt', :stylesheets => ['message', 'static/kontakt']},
     :impressum => {:name => 'Impressum', :stylesheets => ['message', 'static', 'static/kontakt']},
     :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']},
-    :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => ['message']},
-    :profil_edit =>  {:name => 'Profil', :stylesheets => ['static', 'message', 'profile']}
+    :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => ['message']}
   }
   REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => ['static']} if RAILS_ENV == 'development'
   
