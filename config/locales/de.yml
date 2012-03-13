@@ -217,6 +217,9 @@ de:
         one:    "Konnte %{model} nicht speichern: ein Fehler."
         other:  "Konnte %{model} nicht speichern: %{count} Fehler."
       body: &errors_body "Bitte überprüfen Sie die folgenden Felder:"
+    controller:
+      secure_user_requests:
+        unknown_action: "Unbekannte Aktion <%{action}> in sicherer Benutzeranfrage. Sollte eine von <%{known_actions}> sein"
   body: *errors_body
 
   activerecord:

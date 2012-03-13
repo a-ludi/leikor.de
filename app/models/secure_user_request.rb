@@ -3,7 +3,7 @@ class SecureUserRequest < ActiveRecord::Base
   
   REGISTERED_ACTIONS = {
     :confirm_registration => {:lifetime => 7.days},
-    :set_new_password => {:lifetime => 3.days}
+    :reset_password => {:lifetime => 3.days}
   }
   MANDATORY_ARGUMENTS = [:action, :user_id]
 

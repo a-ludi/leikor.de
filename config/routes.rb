@@ -111,8 +111,8 @@ ActionController::Routing::Routes.draw do |map|
     session.resources(
       :secure_user_requests,
       :as => 'sichere_benutzeranfrage',
-      :member => {:destroy => :get},
-      :only => [:edit, :update, :destroy],
+      :member => {:destroy => :get}, # FIXME shouldn't use GET on destroy action
+      :only => [:create, :edit, :update, :destroy],
       :path_names => {:destroy => 'abbrechen'},
       :name_prefix => nil)
   end

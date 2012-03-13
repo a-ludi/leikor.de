@@ -1,35 +1,34 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
-  before_filter :get_and_set_secure_user_request, :destroy_if_expired
+  before_filter :get_and_set_secure_user_request, :destroy_if_expired, :except => [:create]
   after_filter :force_user_logout
   
+  def create
+    action = params[:secure_user_request][:action]
+    case action
+      when :reset_password then create_reset_password
+      else unknown_action action
+    end
+  end
+  
   def edit
-    return if @secure_user_request.nil?
-    
-    case @secure_user_request.action
-      when :confirm_registration
-        edit_confirm_registration
-      else
-        not_found("SecureUserRequest action <#{@secure_user_request.action.inspect}> not known. " +
-            "Should be one of <#{SecureUserRequest::REGISTERED_ACTIONS.inspect}>", true)
+    action = @secure_user_request.action
+    case action
+      when :confirm_registration then edit_confirm_registration
+      else unknown_action action
     end
   end
 
   def update
-    return if @secure_user_request.nil?
-    
-    case @secure_user_request.action
-      when :confirm_registration
-        update_confirm_registration
-      else
-        not_found
+    action = @secure_user_request.action
+    case action
+      when :confirm_registration then update_confirm_registration
+      else unknown_action action
     end
   end
   
   def destroy
-    return if @secure_user_request.nil?
-    
     @secure_user_request.destroy
     flash[:message] = {
       :class => 'error',
@@ -39,6 +38,9 @@ class SecureUserRequestsController < ApplicationController
   end
 
 private
+
+  def create_reset_password
+  end
   
   def edit_confirm_registration
     @stylesheets = ['message']
@@ -90,9 +92,11 @@ private
   end
   
   def destroy_if_expired
-    return if @secure_user_request.nil?
-    
-    @secure_user_request.destroy if @secure_user_request.expired?
-    @secure_user_request = nil
+    @secure_user_request.destroy and missing_secure_user_request if @secure_user_request.expired?
+  end
+  
+  def unknown_action(action)
+    not_found t('errors.controller.secure_user_requests.unknown_action', :action => action,
+          :known_actions => SecureUserRequest::REGISTERED_ACTIONS.inspect), true
   end
 end
