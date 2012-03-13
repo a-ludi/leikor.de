@@ -1,0 +1,26 @@
+<div id="message_window">
+  <% form_for @secure_user_request do |f| %>
+    <%= f.hidden_field :action %>
+    <div class="message" >
+      <p>
+        Bitte geben Sie ihren Benutzernamen an. Wir werden Ihnen eine E-Mail mit weiteren Anweisungen an die
+        in ihrem Profil angegebene E-Mail-Adresse schicken.
+      </p>
+    </div>
+    <%= make_if_error_messages_for @secure_user_request  %>
+    <div class="message">
+      <p>
+        <%= label_tag :login, t('activerecord.attributes.user.login') %><br />
+        <%= text_field_tag :login, nil, :class => 'value' %>
+      </p>
+    </div>
+    <div class="response">
+      <%= a_button_to(
+        'Abbrechen.',
+        static_path(:fehlt)
+      ) %>
+      <%= submit_tag 'Absenden!' %>
+    </div>
+  <% end %>
+  <%= set_focus_to :login %>
+</div>

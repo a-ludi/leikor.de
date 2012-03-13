@@ -9,19 +9,22 @@
     <% end %>
     <div class="message">
       <p>
-        <%= label_tag :login, t('activerecord.attributes.user.login') %><br />
+        <%= label_tag :login, t('activerecord.attributes.user.login') %>
         <%= text_field_tag :login, @login, :class => 'value' %>
       </p>
       <p>
-        <%= label_tag :password, t('activerecord.attributes.user.password') %><br />
+        <%= label_tag :password, t('activerecord.attributes.user.password') %>
+        <small>
+          <%= link_to '(vergessen?)', new_reset_password_request_path %>
+        </small>
         <%= password_field_tag :password, nil, :class => 'value' %>
       </p>
     </div>
     <div class="response">
       <%= submit_tag 'Anmelden!' %>
       <p style="font-size: 75%;">
-        Sie haben noch kein Login, sind aber bereits Kunde von uns? Dann
-        <%= link_to 'melden Sie sich', static_path(:kontakt) %> bei uns.
+        Sind Sie bereits Kunde von uns? Dann <%= link_to 'melden Sie sich', static_path(:kontakt) %>
+        bei uns.
       </p>
     </div>
   <% end %>

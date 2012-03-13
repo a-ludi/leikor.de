@@ -19,7 +19,7 @@
     <%= @user.name %>
   </h1>
   <div class="profile login">
-    <span class="label">Login:</span>
+    <span class="label"><%= t('activerecord.attributes.user.login') %>:</span>
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', static_path(:fehlt) if @my_profile %>
   </div>

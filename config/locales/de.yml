@@ -271,6 +271,7 @@ de:
         action: Aktion
         memo: Notiz
   secure_user_request:
+    reset_password: Passwort zurücksetzen
     confirm_registration: Registrierung bestätigen
     password: Passwort
     confirm_password: Passwort bestätigen

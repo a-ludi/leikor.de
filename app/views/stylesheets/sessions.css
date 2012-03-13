@@ -1,8 +1,9 @@
 #message_window {
-  width: 11em;
+  width: 16em;
 }
 
 #message_window input.value {
+  display: block;
   width: 100%;
   text-align: center;
 }

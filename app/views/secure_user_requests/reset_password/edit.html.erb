@@ -1,17 +1,9 @@
-<div id="message_window" style="max-width: 15em;">
+<div id="message_window">
   <% form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do %>
-    <%= hidden_field_tag :id, @secure_user_request.external_id %>
+    <%= hidden_field_tag :id, @secure_user_request.external_id %><!-- FIXME muss das sein? -->
     <div class="message">
       <p>
-        Sie wurden bei LEIKOR als neuer <%= @secure_user_request.user.class.human_name %>
-        registriert.
-      </p>
-      <p>
-        Bitte bestätigen Sie die Registrierung mit der Vergabe eines Passworts. Das Passwort muss
-        <b>mindestens 6 Zeichen</b> lang sein und darf <b>beliebige Zeichen</b> enthalten.
-      </p>
-      <p>
-        Ihr Login lautet: <b><%= @secure_user_request.user.login %></b>
+        Sie haben ein neues Passwort angefordet? Dann geben Sie bitte Ihr neues Passwort ein.
       </p>
     </div>
     <%= make_if_error_messages_for @secure_user_request.user  %>
