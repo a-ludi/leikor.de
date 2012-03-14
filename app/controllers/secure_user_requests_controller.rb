@@ -63,17 +63,21 @@ private
   def create_reset_password
     @user = User.find_by_login params[:login]
     if @user
-      @secure_user_request = @user.reset_password_request || @user.create_reset_password_request
-      success = @secure_user_request.touch
-      # TODO deliver email
+      if @user.confirm_registration_request.nil?
+        @secure_user_request = @user.reset_password_request || @user.create_reset_password_request
+        success = @secure_user_request.touch
+        # TODO deliver email
+        flash[:message] = { # TODO remove :class and link from message
+            :class => success ? 'success' : 'error',
+            :text => render_to_string(:partial => 'secure_user_requests/reset_password/success',
+                :locals => {:external_id => @secure_user_request.external_id})}
+      else
+        flash[:message] = { # TODO remove :class and link from message
+            :class => success ? 'success' : 'error',
+            :text => render_to_string(:partial =>
+                'secure_user_requests/reset_password/not_confirmed')}
+      end
     end
-    flash[:message] = { # TODO remove :class and link from message
-        :class => success ? 'success' : 'error',
-        :text => "<p>Bitte überprüfen Sie nun ihr Postfach.</p><p>Sollten Sie keine E-Mail erhalten
-          haben, versuchen Sie es <b>nochmals</b> und überprüfen Sie ihren Benutzernamen auf
-          <b>Tippfehler</b>.</p><p><a href='#{edit_secure_user_request_url(
-          @secure_user_request.external_id)}'>Reset</a></p>".squish}
-    
     redirect_to :root
   end
   
