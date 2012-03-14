@@ -1,5 +1,4 @@
 # -*- encoding : utf-8 -*-
-#include ActionController::Translation
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
@@ -35,6 +34,24 @@ protected
     session[:user_id] = @current_user = nil
   end
   
+  def logged_in?(object=User)
+    return false if @current_user.nil?
+    
+    if object.is_a? Class
+      @current_user.is_a? object
+    elsif object.is_a? User
+      @current_user == object
+    else
+      logger.warn "[warning] checked logged_in? on an unknown object <#{object.inspect}>"
+      return false
+    end
+  end
+  
+  def fetch_logged_in_user
+    return if @current_user = User.find_by_id(session[:user_id])
+    @current_user = nil
+  end
+  
   def prepare_flash_message(message=nil)
     logger.debug "[debug] preparing flash message"
     
@@ -50,15 +67,6 @@ protected
     
     logger.debug "[debug] message = <#{message.inspect}>"
     logger.debug "[debug] flash[:message] = <#{flash[:message].inspect}>"
-  end
-  
-  def fetch_logged_in_user
-    return if @current_user = User.find_by_id(session[:user_id])
-    @current_user = nil
-  end
-  
-  def logged_in?(klass=User)
-    not @current_user.nil? and @current_user.is_a? klass
   end
   
   def user_required
