@@ -28,6 +28,33 @@ class ProfilesController < ApplicationController
     update_profile
   end
   
+  def edit_password
+    @user = @current_user
+    @stylesheets = ['message', 'sessions']
+    @title = 'Passwort ändern'
+  end
+  
+  def update_password
+    @user = @current_user
+    
+    if @user.password == params[:password]
+      if params[:new_password] == params[:confirm_new_password]
+        @user.password = params[:new_password]
+        
+        redirect_to my_profile_path and return if @user.save
+      else
+        @user.errors.add :new_password, :confirmation
+      end      
+    else
+      @user.errors.add :password, :incorrect
+    end
+    
+    @stylesheets = ['message', 'sessions']
+    @title = 'Passwort ändern'
+    
+    render :action => :edit_password
+  end
+  
   def show
     @user = User.find_by_login params[:id]
     set_paths

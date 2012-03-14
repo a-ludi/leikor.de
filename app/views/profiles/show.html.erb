@@ -21,7 +21,7 @@
   <div class="profile login">
     <span class="label"><%= t('activerecord.attributes.user.login') %>:</span>
     <span class="value"><%= @user.login %></span>&emsp;
-    <%= link_to '(Passwort ändern)', static_path(:fehlt) if @my_profile %>
+    <%= link_to '(Passwort ändern)', edit_password_path if @my_profile %>
   </div>
   <% if not @user.registration_confirmed? %>
     <div class="error message">

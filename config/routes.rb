@@ -103,6 +103,16 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'profiles',
       :action => 'update_mine',
       :conditions => {:method => :put})
+  map.edit_password(
+      'profil/passwort/bearbeiten',
+      :controller => 'profiles',
+      :action => 'edit_password',
+      :conditions => {:method => :get})
+  map.password(
+      'profil/passwort',
+      :controller => 'profiles',
+      :action => 'update_password',
+      :conditions => {:method => :put})
   map.resources :profiles, :as => 'profile'
   
   map.new_reset_password_request(

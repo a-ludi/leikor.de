@@ -3,6 +3,9 @@
 
 en:
   errors:
+    messages:
+      incorrect: "is incorrect"
     controller:
       secure_user_requests:
         unknown_type: "Secure user request has unknown type <%{type}>"
+

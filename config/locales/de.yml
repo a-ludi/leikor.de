@@ -190,6 +190,7 @@ de:
     format: "%{attribute} %{message}"
 
     messages: &errors_messages
+      incorrect: "ist falsch"
       inclusion: "ist kein gültiger Wert"
       exclusion: "ist nicht verfügbar"
       invalid: "ist nicht gültig"
@@ -259,6 +260,8 @@ de:
       user:
         login: Benutzername
         password: Passwort
+        new_password: Neues Passwort
+        confirm_new_password: Neues Passwort bestätigen
         name: Name
         notes: Notizen
       fair_date:
