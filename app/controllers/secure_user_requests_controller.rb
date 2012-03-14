@@ -40,11 +40,13 @@ class SecureUserRequestsController < ApplicationController
   def destroy
     case @secure_user_request.destroy
       when SecureUserRequest::ConfirmRegistration then mark_user_unconfirmed
+      when SecureUserRequest::ResetPassword then nil
       else unknown_type @secure_user_request
     end
     
     flash[:message] = {
       :class => 'success',
+      :title => 'Hinweis',
       :text => "#{@secure_user_request.class.human_name} wurde abgebrochen."
     }
     redirect_to :root
