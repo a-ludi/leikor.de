@@ -12,6 +12,22 @@ class ProfilesController < ApplicationController
     show_profile
   end
   
+  def edit_mine
+    @user = @current_user
+    @my_profile = true
+    set_my_paths
+    
+    edit_profile
+  end
+  
+  def update_mine
+    @user = @current_user
+    @my_profile = true
+    set_my_paths
+    
+    update_profile
+  end
+  
   def show
     @user = User.find_by_login params[:id]
     set_paths
@@ -27,27 +43,11 @@ class ProfilesController < ApplicationController
     @title = "Profile"
   end
   
-  def edit_mine
-    @user = @current_user
-    @my_profile = true
-    set_my_paths
-    
-    edit_profile
-  end
-  
   def edit
     @user = User.find_by_login params[:id]
     set_paths
     
     edit_profile
-  end
-  
-  def update_mine
-    @user = @current_user
-    @my_profile = true
-    set_my_paths
-    
-    update_profile
   end
   
   def update
