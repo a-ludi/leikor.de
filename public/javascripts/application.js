@@ -15,22 +15,21 @@ function copyToClipboard(text) {
   window.prompt ("Zum kopieren [Strg+C] drücken. Danach mit [Enter] den Dialog beenden.", text);
 }
 
-recreatePositionalClasses = function(element) {
-  elements = element.parentNode.childElements()
-  for(var i=0; i < elements.length; i++) {
-    container = elements[i].firstDescendant()
-    if(container.hasClassName('last'))
-      container.removeClassName('last');
-    if(container.hasClassName('first'))
-      container.removeClassName('first');
-    if(i == 0)
-      container.addClassName('first');
-    else if(i == elements.length - 1)
-      container.addClassName('last');
-  }
-}
-
 var MyUtils = {
+  recreatePositionalClasses: function(element) {
+    elements = element.parentNode.childElements()
+    for(var i=0; i < elements.length; i++) {
+      container = elements[i].firstDescendant()
+      if(container.hasClassName('last'))
+        container.removeClassName('last');
+      if(container.hasClassName('first'))
+        container.removeClassName('first');
+      if(i == 0)
+        container.addClassName('first');
+      else if(i == elements.length - 1)
+        container.addClassName('last');
+    }
+  },
   replaceSurroundedImage: function(root, new_src, width, height) {
     if(root.childNodes) {
       for(var i = 0; i < root.childNodes.length; i++) {

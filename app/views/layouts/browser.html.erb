@@ -42,7 +42,7 @@
     <%= sortable_element(
       html_id,
       :url => reorder_categories_path,
-      :onChange => 'recreatePositionalClasses',
+      :onChange => 'MyUtils.recreatePositionalClasses',
       :handle => 'handle') %>
   <% end %>
 <% end %>
