@@ -117,7 +117,7 @@ class ProfilesController < ApplicationController
     
     if @user.save
       @user.create_confirm_registration_request
-      flash[:message] = {:text => 'Profil wurde erstellt.'}
+      flash[:message] = {:class => 'success', :text => 'Profil wurde erstellt.'}
       
       redirect_to profile_path(@user.login)
     else
