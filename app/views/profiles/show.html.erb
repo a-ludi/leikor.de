@@ -39,14 +39,12 @@
     </div>
   <% elsif logged_in? Employee %><!-- TODO ...and if marked -->
     <div class="error message">
-      <p>
-        <% form_tag confirm_registration_request_path, :method => :post do %>
+      <% form_tag confirm_registration_request_path, :method => :post do %>
+        <p>
           <%= hidden_field_tag :login, @user.login %>
-          <%= submit_tag "Neuen
-              #{t('activerecord.models.secure_user_request/confirm_registration')}-Link
-              erstellen".squish %>
-        <% end %>
-      </p>
+          <%= submit_tag t('activerecord.models.secure_user_request/confirm_registration') %>
+        </p>
+      <% end %>
     </div>
   <% end %>
   <% if logged_in? Employee and not @user.notes.blank? %>
