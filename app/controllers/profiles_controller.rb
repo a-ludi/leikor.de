@@ -168,7 +168,7 @@ private
   
   def update_profile
     if @user.update_attributes params[:profile]
-      flash[:message] = {:text => 'Profil wurde aktualisiert.'}
+      flash[:message] = {:class => 'success', :text => 'Profil wurde aktualisiert.'}
       
       show_profile
     else
