@@ -10,11 +10,11 @@
     <div class="message">
       <p>
         <%= label_tag :password, t('secure_user_request.password') %><br />
-        <%= password_field_tag :password %>
+        <%= password_field_tag :password, nil, :class => 'value' %>
       </p>
       <p>
         <%= label_tag :confirm_password, t('secure_user_request.confirm_password') %><br />
-        <%= password_field_tag :confirm_password %>
+        <%= password_field_tag :confirm_password, nil, :class => 'value' %>
       </p>
     </div>
     <div class="response">
