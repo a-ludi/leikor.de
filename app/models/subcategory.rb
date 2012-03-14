@@ -2,7 +2,7 @@
 
 class Subcategory < Category
   belongs_to :category
-  has_many :articles, :order => 'ord ASC'
+  has_many :articles, :order => 'ord ASC', :dependent => :destroy
 
   validates_presence_of :category_id, :message => 'activerecord.errors.messages.internal_error'
   

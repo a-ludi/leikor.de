@@ -2,7 +2,7 @@
 class Category < ActiveRecord::Base
   URL_TRANSSCRIPTION = {'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss', '&' => 'und'}
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
-  has_many :subcategories, :order => 'ord ASC'
+  has_many :subcategories, :order => 'ord ASC', :dependent => :destroy
   has_many :articles, :through => :subcategories, :order => 'ord ASC'
   
   validates_presence_of :name
