@@ -9,11 +9,11 @@
     <%= make_if_error_messages_for @secure_user_request.user  %>
     <div class="message">
       <p>
-        <%= label_tag :password, t('secure_user_request.password') %><br />
+        <%= label_tag :password, t('activerecord.attributes.user.new_password') %><br />
         <%= password_field_tag :password, nil, :class => 'value' %>
       </p>
       <p>
-        <%= label_tag :confirm_password, t('secure_user_request.confirm_password') %><br />
+        <%= label_tag :confirm_password, t('activerecord.attributes.user.confirm_new_password') %><br />
         <%= password_field_tag :confirm_password, nil, :class => 'value' %>
       </p>
     </div>

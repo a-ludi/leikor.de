@@ -275,6 +275,3 @@ de:
         external_id: Externe ID
         action: Aktion
         memo: Notiz
-  secure_user_request:
-    password: Passwort
-    confirm_password: Passwort bestätigen
