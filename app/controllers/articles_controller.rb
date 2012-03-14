@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find params[:id]
     @article.destroy
-    flash[:message] = {:text => "Artikel „#{@article.name}“ wurde gelöscht."}
+    flash[:message] = {:class => 'success', :text => "Artikel „#{@article.name}“ wurde gelöscht."}
     
     redirect_to subcategory_url(@article.subcategory.url_hash)
   end

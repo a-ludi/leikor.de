@@ -25,6 +25,7 @@ class FairDatesController < ApplicationController
     @fair_date = FairDate.create params[:fair_date]
     @stylesheets = ['message']
     flash[:message] = {
+      :class => 'success'
       :title => 'Messetermin gespeichert',
       :text => "Der neue Messetermin „#{@fair_date.name}“ wurde erfolgreich gespeichert"}
     
@@ -44,6 +45,7 @@ class FairDatesController < ApplicationController
     @fair_date = FairDate.find params[:id]
     @fair_date.update_attributes params[:fair_date]
     flash[:message] = {
+      :class => 'success'
       :title => 'Messetermin gespeichert',
       :text => "Änderungen an „#{@fair_date.name}“ wurden erfolgreich gespeichert"}
     
@@ -53,7 +55,9 @@ class FairDatesController < ApplicationController
   def destroy
     @fair_date = FairDate.find params[:id]
     @fair_date.destroy
-    flash[:message] = {:text => "Messetermin „#{@fair_date.name}“ wurde gelöscht."}
+    flash[:message] = {
+      :class => 'success',
+      :text => "Messetermin „#{@fair_date.name}“ wurde gelöscht."}
     
     redirect_to fair_dates_path
   end
