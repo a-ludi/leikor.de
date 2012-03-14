@@ -8,8 +8,12 @@
     <%= make_if_error_messages_for @user  %>
     <% unless logged_in? Employee %>
       <h1 class="profile user">
-        <%= f.label :name %><br>
-        <%= f.text_field :name, :class => 'value name' %>
+        <div>
+          <%= f.label :name %>
+        </div>
+        <div>
+          <%= f.text_field :name, :class => 'value name' %>
+        </div>
       </h1>
     <% else %>
       <h1 class="profile user">
@@ -22,6 +26,10 @@
         <%= f.text_field :login, :class => 'value login' %>
       </div>
     <% end %>
+    <div class="profile primary_email_address">
+      <div class="label"><%= f.label :primary_email_address %></div>
+      <div class="value"><%= f.text_field :primary_email_address, :class => 'value' %></div>
+    </div>
     <% if logged_in? Employee %>
       <div class="profile">
         <%= f.label :notes %>

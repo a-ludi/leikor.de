@@ -39,6 +39,10 @@ ul.profile {
   font-weight: bold;
 }
 
+.primary_email_address .value {
+  font-weight: bold;
+}
+
 .email_address .label, .phone_number .label {
   color: <%=p :dark_gray %>;
 }

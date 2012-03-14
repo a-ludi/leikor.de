@@ -18,10 +18,18 @@
   <h1>
     <%= @user.name %>
   </h1>
+  <div class="password">
+    <div class="value">
+      <%= link_to 'Passwort ändern', edit_password_path if @my_profile %>
+    </div>
+  </div>
   <div class="profile login">
-    <span class="label"><%= t('activerecord.attributes.user.login') %>:</span>
-    <span class="value"><%= @user.login %></span>&emsp;
-    <%= link_to '(Passwort ändern)', edit_password_path if @my_profile %>
+    <div class="label"><%= t('activerecord.attributes.user.login') %>:</div>
+    <div class="value"><%= @user.login %></div>
+  </div>
+  <div class="profile primary_email_address">
+    <div class="label"><%= t('activerecord.attributes.user.primary_email_address') %>:</div>
+    <div class="value"><%= @user.primary_email_address %></div>
   </div>
   <% if not @user.registration? :confirmed %>
     <div class="error message">

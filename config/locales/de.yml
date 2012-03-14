@@ -264,6 +264,7 @@ de:
         confirm_new_password: Neues Passwort bestätigen
         name: Name
         notes: Notizen
+        primary_email_address: Primäre E-Mail-Adresse
       fair_date:
         from_date: Vom
         to_date: Bis zum

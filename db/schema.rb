@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314114356) do
+ActiveRecord::Schema.define(:version => 20120314172756) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20120314114356) do
     t.datetime "updated_at"
     t.string   "type"
     t.text     "notes"
+    t.string   "primary_email_address"
   end
 
   add_index "users", ["login"], :name => "by_login", :unique => true
