@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313134017) do
+ActiveRecord::Schema.define(:version => 20120314114356) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20120313134017) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "app_datas", ["name"], :name => "by_name", :unique => true
 
   create_table "articles", :force => true do |t|
     t.string   "article_number"
@@ -37,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20120313134017) do
     t.integer  "ord"
   end
 
+  add_index "articles", ["article_number"], :name => "by_article_number", :unique => true
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -52,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20120313134017) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "colors", ["label"], :name => "by_label", :unique => true
 
   create_table "fair_dates", :force => true do |t|
     t.date     "from_date"
@@ -72,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20120313134017) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "secure_user_requests", ["external_id"], :name => "by_external_id", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -99,5 +107,7 @@ ActiveRecord::Schema.define(:version => 20120313134017) do
     t.string   "type"
     t.text     "notes"
   end
+
+  add_index "users", ["login"], :name => "by_login", :unique => true
 
 end
