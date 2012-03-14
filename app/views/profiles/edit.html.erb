@@ -6,11 +6,17 @@
       <%= submit_tag 'Speichern!' %>
     </div>
     <%= make_if_error_messages_for @user  %>
-    <h1 class="profile user">
-      <%= f.label :name %><br>
-      <%= f.text_field :name, :class => 'value name' %>
-    </h1>
-    <% if logged_in? Employee %>
+    <% unless logged_in? Employee %>
+      <h1 class="profile user">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, :class => 'value name' %>
+      </h1>
+    <% else %>
+      <h1 class="profile user">
+        <%= f.label :name %><br>
+        <%= f.text_field :name, :class => 'value name',
+            :onkeyup => '$(this).copyAsLogin("profile_login");' %>
+      </h1>
       <div class="profile login">
         <%= f.label :login %><br>
         <%= f.text_field :login, :class => 'value login' %>
