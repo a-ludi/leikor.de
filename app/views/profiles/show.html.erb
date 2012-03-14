@@ -42,7 +42,8 @@
       <% form_tag confirm_registration_request_path, :method => :post do %>
         <p>
           <%= hidden_field_tag :login, @user.login %>
-          <%= submit_tag t('activerecord.models.secure_user_request/confirm_registration') %>
+          <%= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')}
+              wiederholen".squish %>
         </p>
       <% end %>
     </div>

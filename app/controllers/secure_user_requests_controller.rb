@@ -145,7 +145,7 @@ private
       
       redirect_to my_profile_path
     else
-      user.errors.add :password, :confirmation unless passwords_match
+      user.errors.add :new_password, :confirmation unless passwords_match
       edit_confirm_registration
     end
   end
