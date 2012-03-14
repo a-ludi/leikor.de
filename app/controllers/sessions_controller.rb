@@ -13,10 +13,18 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.find_by_login(params[:login]) and user.password == params[:password]
+    user = User.find_by_login(params[:login])
+    password_correct = user.password == params[:password]
+    
+    if user and not user.registration_confirmed?
+      flash[:message] = {
+          :class => 'error',
+          :text => render_to_string(:partial => 'sessions/not_confirmed')}
+      redirect_to (params[:referer] || :root)
+    elsif user and password_correct
       login_user! user, :class => 'success', :title => 'Wilkommen!',
           :text => "Hallo, #{user.name}."
-      redirect_to (params[:referer] || '/')
+      redirect_to (params[:referer] || :root)
     else
       flash[:wrong_login_or_password] = true
       redirect_to new_session_path(:referer => params[:referer], :login => params[:login])
@@ -24,7 +32,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout_user! :class => 'info', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
+    logout_user! :class => 'success', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
     redirect_to (request.referer.blank? ? '/' : request.referer)
   end
 end

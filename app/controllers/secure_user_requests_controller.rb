@@ -76,8 +76,7 @@ private
       else
         flash[:message] = { # TODO remove :class and link from message
             :class => success ? 'success' : 'error',
-            :text => render_to_string(:partial =>
-                'secure_user_requests/reset_password/not_confirmed')}
+            :text => render_to_string(:partial => 'sessions/not_confirmed')}
       end
     end
     redirect_to :root
