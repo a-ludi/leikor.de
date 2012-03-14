@@ -2,10 +2,19 @@
   <% link_to profile_path(user.login), :title => 'Profil anzeigen' do %>
     <%= user.name %> (<%= user.login %>)
   <% end %>
-  <%= content_tag(
-    :span, '*',
-    :class => 'annotation_mark',
-    :title => "#{user.class.human_name} muss noch bestätigt werden.",
-    :onclick => "copyToClipboard('#{confirm_registration_url(user)}'); return false;"
-  ) unless user.registration_confirmed? %>
+  <% if not user.registration? :confirmed %>
+    <%= content_tag(
+      :span, '*',
+      :class => 'annotation_mark',
+      :title => "#{user.class.human_name} muss noch bestätigt werden.",
+      :onclick => "copyToClipboard('#{confirm_registration_url(user)}')"
+    ) %>
+  <% elsif user.registration? :denied %>
+    <%= content_tag(
+      :span, '<sup>&dagger;</sup>',
+      :class => 'annotation_mark',
+      :title => "#{user.class.human_name} hat die Bestätigung abgelehnt.",
+      :onclick => "alert('#{user.class.human_name} hat die Bestätigung abgelehnt.')"
+    ) %>
+  <% end %>
 </li>

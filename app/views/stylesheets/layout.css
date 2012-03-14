@@ -45,7 +45,7 @@ label, .label {
 .annotation_mark {
   font-weight: bold;
   color: <%=p :mid_red %>;
-  cursor: pointer;
+  cursor: help;
 }
 
 textarea { font-family: 'Overlock', sans-serif; font-size: small; }

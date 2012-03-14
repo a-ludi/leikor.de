@@ -39,7 +39,9 @@ class SecureUserRequestsController < ApplicationController
   
   def destroy
     case @secure_user_request.destroy
-      when SecureUserRequest::ConfirmRegistration then mark_user_unconfirmed
+      when SecureUserRequest::ConfirmRegistration
+        @secure_user_request.user.mark_list << 'ConfirmRegistration'
+        @secure_user_request.user.save
       when SecureUserRequest::ResetPassword then nil
       else unknown_type @secure_user_request
     end
@@ -147,11 +149,6 @@ private
       user.errors.add :new_password, :confirmation unless passwords_match
       edit_confirm_registration
     end
-  end
-  
-  def mark_user_unconfirmed
-    # TODO needs implementation
-    logger.warn "[warning] SecureUserRequestsController.mark_user_unconfirmed needs implementation"
   end
   
   def get_and_set_secure_user_request

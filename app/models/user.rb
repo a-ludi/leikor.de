@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
   
+  acts_as_taggable_on :marks
   has_one :reset_password_request,
       :class_name => 'SecureUserRequest::ResetPassword',
       :dependent => :delete
@@ -34,8 +35,12 @@ class User < ActiveRecord::Base
     self.password = ActiveSupport::SecureRandom.base64(32)
   end
   
-  def registration_confirmed?
-    self.confirm_registration_request.nil?
+  def registration?(state)
+    case state
+      when :confirmed then self.confirm_registration_request.nil?
+      when :denied then self.mark_list.include? 'ConfirmRegistration'
+      else throw ArgumentError.new "Unknown state <#{state.inspect}> in User.registration?"
+    end
   end
   
 protected

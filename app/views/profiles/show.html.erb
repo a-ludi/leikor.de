@@ -23,7 +23,7 @@
     <span class="value"><%= @user.login %></span>&emsp;
     <%= link_to '(Passwort ändern)', edit_password_path if @my_profile %>
   </div>
-  <% if not @user.registration_confirmed? %>
+  <% if not @user.registration? :confirmed %>
     <div class="error message">
       <p>
         Dieser Benutzer muss noch bestätigt werden.<br>
@@ -37,7 +37,7 @@
         ) %>
       </p>
     </div>
-  <% elsif logged_in? Employee %><!-- TODO ...and if marked -->
+  <% elsif logged_in? Employee and @user.registration?(:denied) %>
     <div class="error message">
       <% form_tag confirm_registration_request_path, :method => :post do %>
         <p>

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     user = User.find_by_login(params[:login])
     password_correct = user.password == params[:password]
     
-    if user and not user.registration_confirmed?
+    if user and not user.registration?(:confirmed)
       flash[:message] = {
           :class => 'error',
           :text => render_to_string(:partial => 'sessions/not_confirmed')}
