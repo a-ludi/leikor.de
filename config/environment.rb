@@ -7,6 +7,7 @@ RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'string_blank_patch'
+require 'smtp_authentication'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -25,6 +26,7 @@ Rails::Initializer.run do |config|
   config.gem 'paperclip', :version => '~> 2.4.5'
   config.gem 'bcrypt-ruby', :lib => 'bcrypt', :version => '~> 3.0.1'
   config.gem 'ssl_requirement', :version => '~> 0.1.0'
+  config.gem 'exception_notification', :version => '~> 2.3.3.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -52,4 +54,6 @@ Rails::Initializer.run do |config|
   }
 end
 
+ActionMailer::Base.delivery_method = :smtp
+SmtpAuthentication.setup
 
