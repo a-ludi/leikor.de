@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   config.gem 'bcrypt-ruby', :lib => 'bcrypt', :version => '~> 3.0.1'
   config.gem 'ssl_requirement', :version => '~> 0.1.0'
   config.gem 'acts-as-taggable-on', :version => '~> 2.1.0'
+  config.gem 'exception_notification', :version => '~> 2.3.3.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -57,4 +58,3 @@ ActionMailer::Base.delivery_method = :smtp
 SmtpAuthentication.setup
 
 require 'translate_duration_patch'
-

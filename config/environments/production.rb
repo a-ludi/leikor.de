@@ -26,5 +26,8 @@ config.action_view.cache_template_loading            = true
 # config.action_mailer.raise_delivery_errors = false
 config.action_mailer.default_url_options = { :host => "leikor.de" }
 
+ExceptionNotification::Notifier.exception_recipients = ['webmaster@leikor.de']
+ExceptionNotification::Notifier.sender_address = 'errors@leikor.de'
+
 # Enable threaded mode
 # config.threadsafe!
