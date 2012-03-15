@@ -13,6 +13,7 @@ GEM
     activesupport (2.3.14)
     bcrypt-ruby (3.0.1)
     cocaine (0.2.0)
+    exception_notification (2.3.3.0)
     ffi (1.0.11)
     guard (0.8.8)
       thor (~> 0.14.6)
@@ -46,6 +47,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (~> 3.0.1)
+  exception_notification (~> 2.3.3.0)
   guard-minitest
   libnotify
   paperclip (~> 2.4.5)
