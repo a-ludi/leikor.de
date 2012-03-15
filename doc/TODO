@@ -1,13 +1,7 @@
 Allgemein
 =========
 
-* E-Mails versenden [pending]
-  * mit Passwort-Link versenden [done]
-  * manuell ConfirmRegistration [done]
-  * Fehlermeldungen
 * HAML
-* [javascript] name_as_login [done]
-* User << E-Mail-Adresse [done]
 
 Bugs
 ====
