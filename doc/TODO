@@ -1,0 +1,29 @@
+Allgemein
+=========
+
+* E-Mails versenden [pending]
+  * mit Passwort-Link versenden [done]
+  * manuell ConfirmRegistration
+  * Fehlermeldungen
+* HAML
+* [javascript] name_as_login [done]
+* User << E-Mail-Adresse [done]
+
+Bugs
+====
+
+
+Refactoring
+===========
+
+* flash[:message] gibt einen Hash als :text an render_to_string weiter und nimmt das Ergebnis als Text
+* class FlashMessage
+* There is no extra mobile view for fair dates
+* Anpassen von filter_parameter_logging
+* Routes
+
+Daueraufgaben
+=============
+
+* Tests
+* Unterstützte Browser

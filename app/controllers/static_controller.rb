@@ -18,11 +18,14 @@ class StaticController < ApplicationController
   
   def show
     path = File.join(params[:path]).to_sym unless params[:path].nil?
+    
     if REGISTERED_PAGES[path]
       @stylesheets = REGISTERED_PAGES[path][:stylesheets] || []
       @title = REGISTERED_PAGES[path][:name] unless params[:welcome]
       @page = REGISTERED_PAGES[path]
       render :action => path.to_s
+    elsif RAILS_ENV == 'development' and path == :mail
+      preview_email_layout
     else
       raise ActionController::RoutingError, "No route matches <#{path.inspect}> with {:method => :get}"
     end
@@ -41,5 +44,9 @@ private
   
   def stylesheet_exists? path
     File.exists? File.join(STYLESHEETS_PATH, path)
+  end
+  
+  def preview_email_layout
+    render :text => params[:text] || '[CONTENT]', :layout => 'mail'
   end
 end

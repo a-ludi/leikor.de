@@ -4,11 +4,7 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
-  unless RAILS_ENV == 'development'
-    EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
-  else
-    EMAIL_FORMAT = /^[A-Z0-9._%+-]+@localhost$/i
-  end
+  EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
   acts_as_taggable_on :marks
   has_one :reset_password_request,
@@ -47,6 +43,24 @@ class User < ActiveRecord::Base
       when :denied then self.mark_list.include? 'ConfirmRegistration'
       else throw ArgumentError.new "Unknown state <#{state.inspect}> in User.registration?"
     end
+  end
+  
+  def registration=(state)
+    case state
+      when :denied then self.mark_list << 'ConfirmRegistration'
+      else throw ArgumentError.new "Unknown state <#{state.inspect}> in User.registration="
+    end
+  end
+  
+  def email_address_with_name(id=:primary)
+    if id == :primary
+      @email_address = self.primary_email_address
+      @name = self.name
+    else
+      logger.warn "[warning] not implemented <User.email_address_with_name>"
+    end
+    
+    %Q("#{@name}" <#{@email_address}>)
   end
   
 protected

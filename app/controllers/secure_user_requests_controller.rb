@@ -40,7 +40,7 @@ class SecureUserRequestsController < ApplicationController
   def destroy
     case @secure_user_request.destroy
       when SecureUserRequest::ConfirmRegistration
-        @secure_user_request.user.mark_list << 'ConfirmRegistration'
+        @secure_user_request.user.registration = :denied
         @secure_user_request.user.save
       when SecureUserRequest::ResetPassword then nil
       else unknown_type @secure_user_request
@@ -69,15 +69,15 @@ private
     if @user
       if @user.confirm_registration_request.nil?
         @secure_user_request = @user.reset_password_request || @user.create_reset_password_request
-        success = @secure_user_request.touch
-        # TODO deliver email
-        flash[:message] = { # TODO remove :class and link from message
-            :class => success ? 'success' : 'error',
-            :text => render_to_string(:partial => 'secure_user_requests/reset_password/success',
-                :locals => {:external_id => @secure_user_request.external_id})}
+        @secure_user_request.touch
+        Notifier.deliver_reset_password_request @user
+        
+        flash[:message] = {
+            :class => 'success',
+            :text => render_to_string(:partial => 'secure_user_requests/reset_password/success')}
       else
-        flash[:message] = { # TODO remove :class and link from message
-            :class => success ? 'success' : 'error',
+        flash[:message] = {
+            :class => 'error',
             :text => render_to_string(:partial => 'sessions/not_confirmed')}
       end
     end
@@ -112,11 +112,18 @@ private
           @user.create_confirm_registration_request
       @secure_user_request.touch
       
-      flash[:message] = {
-          :class => 'success',
-          :text => "Der neue
-              #{t('activerecord.models.secure_user_request/confirm_registration')}-Link wurde
-              erstellt".squish}
+      if params[:sendmail]
+        Notifier.deliver_confirm_registration_request @user
+        flash[:message] = {
+            :class => 'success',
+            :text => "Die E-Mail wurde versandt"}
+      else
+        flash[:message] = {
+            :class => 'success',
+            :text => "Die Anfrage \"
+                #{t('activerecord.models.secure_user_request/confirm_registration')}\" wurde
+                erstellt".squish}
+      end
     else
       flash[:message] = {
           :class => 'error',

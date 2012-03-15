@@ -34,19 +34,31 @@
   <% if not @user.registration? :confirmed %>
     <div class="error message">
       <p>
-        Dieser Benutzer muss noch bestätigt werden.<br>
-        Bitte den folgenden Link an den Benutzer schicken:
+        Dieser Benutzer muss noch bestätigt werden.
       </p>
       <p>
         <%= a_button_to(
-          t('activerecord.models.secure_user_request/confirm_registration'),
+          'Bestätigungslink kopieren',
           confirm_registration_url(@user),
           :onclick => 'copyToClipboard(this.href); return false;'
+        ) %>
+      </p>
+      <h2 class="center">&mdash; oder &mdash;</h2>
+      <p>
+        <%= button_to_remote(
+          'Bestätigungsmail versenden', {
+              :url => confirm_registration_request_path(:login => @user.login, :sendmail => true),
+              :method => :post,
+              :confirm => "Es wird eine E-Mail an\n\n#{@user.email_address_with_name}\n\nversandt. Fortfahren?"},
+          :href => confirm_registration_request_path(:user => @user.login, :sendmail => true)
         ) %>
       </p>
     </div>
   <% elsif logged_in? Employee and @user.registration?(:denied) %>
     <div class="error message">
+      <p>
+        Dieser Benutzer ist nicht bestätigt.
+      </p>
       <% form_tag confirm_registration_request_path, :method => :post do %>
         <p>
           <%= hidden_field_tag :login, @user.login %>
