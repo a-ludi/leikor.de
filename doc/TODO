@@ -3,7 +3,7 @@ Allgemein
 
 * E-Mails versenden [pending]
   * mit Passwort-Link versenden [done]
-  * manuell ConfirmRegistration
+  * manuell ConfirmRegistration [done]
   * Fehlermeldungen
 * HAML
 * [javascript] name_as_login [done]

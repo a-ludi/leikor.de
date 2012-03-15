@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :logged_in?
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  protect_from_forgery
   filter_parameter_logging :password
 
   before_filter :fetch_logged_in_user, :fetch_updated_at
