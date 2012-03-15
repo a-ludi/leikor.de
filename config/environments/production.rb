@@ -25,5 +25,8 @@ config.action_view.cache_template_loading            = true
 # Disable delivery errors, bad email addresses will be ignored
 # config.action_mailer.raise_delivery_errors = false
 
+ExceptionNotification::Notifier.exception_recipients = ['webmaster@leikor.de']
+ExceptionNotification::Notifier.sender_address = 'errors@leikor.de'
+
 # Enable threaded mode
 # config.threadsafe!
