@@ -55,7 +55,7 @@ private
 
   def new_reset_password
     @secure_user_request = SecureUserRequest::ResetPassword.new
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = @secure_user_request.class.human_name
     
     render :action => 'reset_password/new'
@@ -78,7 +78,7 @@ private
   end
   
   def edit_reset_password
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = t('activerecord.models.secure_user_request/reset_password')
     
     render :action => 'reset_password/edit'
@@ -123,7 +123,7 @@ private
   end
   
   def edit_confirm_registration
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = t('activerecord.models.secure_user_request/confirm_registration')
     
     render :action => 'confirm_registration/edit'

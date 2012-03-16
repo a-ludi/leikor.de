@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   
   def edit_password
     @user = @current_user
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = 'Passwort ändern'
   end
   
@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
     @user.errors.add :password, :incorrect  unless password_correct
     @user.errors.add :new_password, :confirmation  unless new_passwords_match
     
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = 'Passwort ändern'
     
     render :action => :edit_password

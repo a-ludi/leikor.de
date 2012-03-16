@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   before_filter :user_required, :only => [:destroy]
   
   def new
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = ['message']
     @title = 'Anmeldung'
     @login = flash[:login] || session[:login]
     @referer = flash[:referer] || request.referer
