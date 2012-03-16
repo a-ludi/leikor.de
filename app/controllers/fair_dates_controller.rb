@@ -24,10 +24,9 @@ class FairDatesController < ApplicationController
   def create
     @fair_date = FairDate.create params[:fair_date]
     @stylesheets = ['message']
-    flash[:message] = {
-      :class => 'success'
-      :title => 'Messetermin gespeichert',
-      :text => "Der neue Messetermin „#{@fair_date.name}“ wurde erfolgreich gespeichert"}
+    
+    flash[:message].success "Der neue Messetermin „#{@fair_date.name}“ wurde erfolgreich
+        gespeichert".squish
     
     try_save_and_render_response
   end
@@ -44,10 +43,8 @@ class FairDatesController < ApplicationController
   def update
     @fair_date = FairDate.find params[:id]
     @fair_date.update_attributes params[:fair_date]
-    flash[:message] = {
-      :class => 'success'
-      :title => 'Messetermin gespeichert',
-      :text => "Änderungen an „#{@fair_date.name}“ wurden erfolgreich gespeichert"}
+    
+    flash[:message].success "Änderungen an „#{@fair_date.name}“ wurden erfolgreich gespeichert"
     
     try_save_and_render_response
   end
@@ -55,9 +52,8 @@ class FairDatesController < ApplicationController
   def destroy
     @fair_date = FairDate.find params[:id]
     @fair_date.destroy
-    flash[:message] = {
-      :class => 'success',
-      :text => "Messetermin „#{@fair_date.name}“ wurde gelöscht."}
+    
+    flash[:message].success "Messetermin „#{@fair_date.name}“ wurde gelöscht."
     
     redirect_to fair_dates_path
   end
@@ -68,7 +64,7 @@ private
     @stylesheets = ['message']
     @popup = params[:popup]
     if @fair_date.save
-      @title ||= flash[:message][:title]
+      @title ||= flash[:message].title
       if @popup
         render :action => 'success', :layout => 'popup'
       else

@@ -299,3 +299,8 @@ de:
         external_id: Externe ID
         action: Aktion
         memo: Notiz
+  flash_message:
+    title:
+      error: Fehler
+      success: Erfolg
+      default: Hinweis

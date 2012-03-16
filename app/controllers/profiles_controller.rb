@@ -41,7 +41,11 @@ class ProfilesController < ApplicationController
       if params[:new_password] == params[:confirm_new_password]
         @user.password = params[:new_password]
         
-        redirect_to my_profile_path and return if @user.save
+        if @user.save
+          flash[:message].success "Passwort erfolgreich geändert!"
+          
+          redirect_to my_profile_path and return
+        end
       else
         @user.errors.add :new_password, :confirmation
       end      
@@ -117,7 +121,7 @@ class ProfilesController < ApplicationController
     
     if @user.save
       @user.create_confirm_registration_request
-      flash[:message] = {:class => 'success', :text => 'Profil wurde erstellt.'}
+      flash[:message].success 'Profil wurde erstellt.'
       
       redirect_to profile_path(@user.login)
     else
@@ -128,15 +132,10 @@ class ProfilesController < ApplicationController
   def destroy
     if @user = User.find_by_login(params[:id])
       @user.destroy
-      flash[:message] = {
-        :class => 'success',
-        :text => "Das Profil von <b>#{@user.name}</b> wurde gelöscht."
-      }
+      flash[:message].success "Das Profil von <b>#{@user.name}</b> wurde gelöscht."
     else
-      flash[:message] = {
-        :class => 'error',
-        :text => "Der #{User.human_name} <b>#{params[:id]}</b> konnte nicht gefunden werden."
-      }
+      flash[:message].error "Der #{User.human_name} <b>#{params[:id]}</b> konnte nicht gefunden
+          werden.".squish
     end
     
     redirect_to profiles_path
@@ -168,7 +167,7 @@ private
   
   def update_profile
     if @user.update_attributes params[:profile]
-      flash[:message] = {:class => 'success', :text => 'Profil wurde aktualisiert.'}
+      flash[:message].success 'Profil wurde aktualisiert.'
       
       show_profile
     else

@@ -1,12 +1,9 @@
-<% if flash.include? :message %>
-  <% message = flash[:message] %>
-  <div id="message" class="<%= message[:class] %>">
+<% if flash.include? :message and not flash[:message].empty? %>
+  <div id="message" class="<%= flash[:message].klass %>">
     <h1>
-      <%= message[:title] %>
+      <%= flash[:message].title %>
     </h1>
-    <p>
-      <%= message[:text] %>
-    </p>
+    <%= flash[:message].text %>
     <h1 class="close">
       <%= link_to(
         'schließen',

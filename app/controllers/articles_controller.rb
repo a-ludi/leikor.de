@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find params[:id]
     @article.destroy
-    flash[:message] = {:class => 'success', :text => "Artikel „#{@article.name}“ wurde gelöscht."}
+    flash[:message].success "Artikel „#{@article.name}“ wurde gelöscht."
     
     redirect_to subcategory_url(@article.subcategory.url_hash)
   end
@@ -92,14 +92,9 @@ class ArticlesController < ApplicationController
     end
     
     unless errors
-      flash[:message] = {
-        :text => "Reihenfolge aktualisiert.",
-        :class => 'success'}
+      flash[:message].success "Reihenfolge aktualisiert."
     else
-      flash[:message] = {
-        :title => 'Fehler',
-        :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
-        :class => 'error'}
+      flash[:message].error "Speichern der neuen Reihenfolge ist fehlgeschlagen."
     end
     
     render :partial => 'layouts/push_message'

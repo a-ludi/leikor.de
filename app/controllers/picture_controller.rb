@@ -52,7 +52,7 @@ private
     @popup = params[:popup]
     @stylesheets = ['message']
     if @article.save
-      flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?
+      flash[:message].success options[:success] unless options[:success].blank?
       render_response :success
     else
       logger.debug "[PictureController] errors on article: <#{@article.errors.inspect}>"
@@ -65,7 +65,7 @@ private
   def render_response(state=:success)
     case state
       when :success
-        @title ||= flash[:message][:text]
+        @title ||= flash[:message].text
         if @popup
           render :action => 'success', :layout => 'popup'
         else

@@ -17,13 +17,12 @@ class SessionsController < ApplicationController
     password_correct = user.password == params[:password]
     
     if user and not user.registration?(:confirmed)
-      flash[:message] = {
-          :class => 'error',
-          :text => render_to_string(:partial => 'sessions/not_confirmed')}
+      flash[:message].error :partial => 'sessions/not_confirmed'
+      
       redirect_to (params[:referer] || :root)
     elsif user and password_correct
-      login_user! user, :class => 'success', :title => 'Wilkommen!',
-          :text => "Hallo, #{user.name}."
+      flash[:message].success "Hallo, #{user.name}.", 'Wilkommen!'
+      login_user! user
       redirect_to (params[:referer] || :root)
     else
       flash[:wrong_login_or_password] = true
@@ -32,7 +31,8 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout_user! :class => 'success', :title => 'Bis bald!', :text => "… und auf Wiedersehen."
+    flash[:message].success '&hellip; und auf Wiedersehen.', 'Bis bald!'
+    logout_user!
     redirect_to (request.referer.blank? ? '/' : request.referer)
   end
 end

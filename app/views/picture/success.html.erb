@@ -1,8 +1,8 @@
-<div id="message_window" class="<%= flash[:message][:class] %>">
+<div id="message_window" class="<%= flash[:message].klass %>">
   <h1>Änderungen am Bild gespeichert</h1>
   <div class="message">
     <p>
-      <%= flash[:message][:text] %>
+      <%= flash[:message].text %>
     </p>
     <% if @article.picture? %>
       <p>

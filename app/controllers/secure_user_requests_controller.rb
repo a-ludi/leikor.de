@@ -46,11 +46,8 @@ class SecureUserRequestsController < ApplicationController
       else unknown_type @secure_user_request
     end
     
-    flash[:message] = {
-      :class => 'success',
-      :title => 'Hinweis',
-      :text => "#{@secure_user_request.class.human_name} wurde abgebrochen."
-    }
+    flash[:message] << "#{@secure_user_request.class.human_name} wurde abgebrochen."
+    
     redirect_to :root
   end
 
@@ -72,13 +69,9 @@ private
         @secure_user_request.touch
         Notifier.deliver_reset_password_request @user
         
-        flash[:message] = {
-            :class => 'success',
-            :text => render_to_string(:partial => 'secure_user_requests/reset_password/success')}
+        flash[:message].success :partial => 'secure_user_requests/reset_password/success'
       else
-        flash[:message] = {
-            :class => 'error',
-            :text => render_to_string(:partial => 'sessions/not_confirmed')}
+        flash[:message].error :partial => 'sessions/not_confirmed'
       end
     end
     redirect_to :root
@@ -96,8 +89,9 @@ private
     passwords_match = params[:password] == params[:confirm_password]
     if passwords_match and user.update_attributes :password => params[:password]
       @secure_user_request.destroy
-      login_user! user, :class => 'success', :title => 'Glückwunsch!', :text => 'Sie haben nun ein
-          neues Passwort. Merken Sie es sich gut!'.squish
+      flash[:message].success 'Sie haben nun ein neues Passwort. Merken Sie es sich gut!',
+          'Glückwunsch!'
+      login_user! user
       
       redirect_to :root
     else
@@ -114,22 +108,15 @@ private
       
       if params[:sendmail]
         Notifier.deliver_confirm_registration_request @user
-        flash[:message] = {
-            :class => 'success',
-            :text => "Die E-Mail wurde versandt"}
+        flash[:message].success 'Die E-Mail wurde versandt'
       else
-        flash[:message] = {
-            :class => 'success',
-            :text => "Die Anfrage \"
-                #{t('activerecord.models.secure_user_request/confirm_registration')}\" wurde
-                erstellt".squish}
+        flash[:message].success "Die Anfrage \"
+            #{t('activerecord.models.secure_user_request/confirm_registration')}\" wurde
+            erstellt".squish
       end
     else
-      flash[:message] = {
-          :class => 'error',
-          :title => 'Interner Fehler',
-          :text => 'Der Benutzer konnte nicht gefunden werden. Bitte versuchen Sie es
-              nochmals.'.squish}
+      flash[:message].error 'Der Benutzer konnte nicht gefunden werden. Bitte versuchen Sie es
+          nochmals.'.squish, 'Interner Fehler'
     end
     
     redirect_to profile_path(@user.login)
@@ -147,9 +134,10 @@ private
     passwords_match = params[:password] == params[:confirm_password]
     if passwords_match and user.update_attributes :password => params[:password]
       @secure_user_request.destroy
-      login_user! user, :class => 'success', :title => 'Glückwunsch!', :text => render_to_string(
-          :partial => 'secure_user_requests/confirm_registration/welcome',
-          :locals => {:user => user})
+      flash[:message].success :partial => 'secure_user_requests/confirm_registration/welcome',
+          :locals => {:user => user}
+      flash[:message].title = 'Glückwunsch!'
+      login_user! user
       
       redirect_to my_profile_path
     else
@@ -165,19 +153,16 @@ private
   end
   
   def missing_secure_user_request
-    flash[:message] = {
-      :title => 'Fehler',
-      :class => 'error',
-      :text => render_to_string(:partial => 'secure_user_requests/missing',
-          :locals => {:external_id => params[:id]})
-    }
+    flash[:message].error :partial => 'secure_user_requests/missing', :locals => {:external_id =>
+        params[:id]
     
     redirect_to (request.referer || :root) and return false
   end
   
   def force_user_logout
-    logout_user! :class => 'error', :title => 'Bis bald!', :text => "Sie wurden abgemeldet, da
-        eine #{SecureUserRequest.human_name} bearbeitet wird.".squish
+    flash[:message].error "Sie wurden abgemeldet, da eine #{SecureUserRequest.human_name} bearbeitet
+        wird.".squish, 'Bis bald!'
+    logout_user!
   end
   
   def destroy_if_expired

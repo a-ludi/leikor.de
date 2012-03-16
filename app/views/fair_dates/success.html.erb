@@ -1,8 +1,8 @@
-<div id="message_window" class="success">
-  <h1><%= flash[:message][:title] %></h1>
+<div id="message_window" class="<%= flash[:message].klass %>">
+  <h1><%= flash[:message].title %></h1>
   <div class="message">
     <p>
-      <%= flash[:message][:text] %>
+      <%= flash[:message].text %>
     </p>
   </div>
   <div class="response">

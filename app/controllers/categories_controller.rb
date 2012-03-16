@@ -64,9 +64,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find params[:id]
     @category.destroy
-    flash[:message] = {
-        :class => 'success',
-        :text => "#{@category.class.human_name} „#{@category.name}“ wurde gelöscht."}
+    flash[:message].success "#{@category.class.human_name} „#{@category.name}“ wurde gelöscht."
     
     redirect_to @category.class == Subcategory ?
       category_path(@category.category.url_hash) :
@@ -84,14 +82,9 @@ class CategoriesController < ApplicationController
     end
     
     unless errors
-      flash[:message] = {
-          :text => "Reihenfolge aktualisiert.",
-          :class => 'success'}
+      flash[:message].success "Reihenfolge aktualisiert."
     else
-      flash[:message] = {
-          :title => 'Fehler',
-          :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
-          :class => 'error'}
+      flash[:message].error "Speichern der neuen Reihenfolge ist fehlgeschlagen."
     end
     
     render :partial => 'layouts/push_message'
