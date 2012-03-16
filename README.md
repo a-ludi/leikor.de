@@ -11,5 +11,4 @@ leikor.de by [LEIKOR][leikor.de] is licensed under a [Creative Commons BY-NC-SA
 License][cc-license].
 
 [leikor.de]: http://www.leikor.de/
-[cc-license]: http://creativecommons.org/licenses/by-nc-sa/3.0/ (Creative Commons
-  Attribution-NonCommercial-ShareAlike 3.0 Unported License)
+[cc-license]: http://creativecommons.org/licenses/by-nc-sa/3.0/ (Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License)
