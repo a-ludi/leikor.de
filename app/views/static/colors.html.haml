@@ -1,0 +1,29 @@
+:css
+  #colors { overflow: hidden; }
+  
+  #colors .color {
+    display: block;
+    float: left;
+    padding: 2ex 0.5em;
+    text-align: center;
+    border-bottom: 1px solid <%=p :mid_gray %>;
+  }
+  
+  #colors .preview {
+    height: 5em;
+    width: 5em;
+    display: inline-block;
+    border: 2px solid black;
+    #{border_radius '1.5em'}
+  }
+
+#colors
+  - [:dark_red, :mid_red, :light_red, :dark_green, :light_green, :dark_blue, :mid_blue,
+      :light_blue, :dark_gray, :darker_gray, :mid_gray, :lighter_gray, :light_gray].each do |color|
+    .color
+      %b= color.inspect
+      %br
+      .preview{:style => "background: #{p color};"}
+      %br
+      =p color
+
