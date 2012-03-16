@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   helper_method :logged_in?
   protect_from_forgery
-  filter_parameter_logging :password
+  filter_parameter_logging :password, :primary_email_address, :external_id
 
   before_filter :fetch_logged_in_user, :fetch_updated_at, :prepare_flash_message
   after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] unless RAILS_ENV == 'production'
