@@ -4,7 +4,6 @@ class FlashMessage < ActionController::Base
   include ActionController::Translation
   DEFAULTS = {:klass => nil, :title => nil, :text => ''}
   
-  attr_reader :text
   attr_writer :title
   
   def klass; @klass.to_s; end
@@ -16,6 +15,13 @@ class FlashMessage < ActionController::Base
       when :error then t 'flash_message.title.error'
       when :success then t 'flash_message.title.success'
       else t 'flash_message.title.default'
+    end
+  end
+  
+  def render_options
+    case @text
+      when Hash then @text
+      else {:text => @text}
     end
   end
   
@@ -42,7 +48,7 @@ public
   
   def <<(obj)
     case obj
-      when Hash then @text += render_to_string(obj)
+      when Hash then @text = obj
       else @text += "<p>#{obj.to_s}</p>"
     end
   end

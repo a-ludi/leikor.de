@@ -3,7 +3,7 @@
     <h1>
       <%= flash[:message].title %>
     </h1>
-    <%= flash[:message].text %>
+    <%= render flash[:message].render_options %>
     <h1 class="close">
       <%= link_to(
         'schließen',
@@ -13,7 +13,7 @@
       ) %>
     </h1>
   </div>
-  <% flash.discard :message %>
+  <% flash[:message].clear! %>
 <% else %>
   <div id="message" style="display: none;"></div>
 <% end %>

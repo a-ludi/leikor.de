@@ -8,25 +8,27 @@ class SessionsController < ApplicationController
   def new
     @stylesheets = ['message', 'sessions']
     @title = 'Anmeldung'
-    @login = params[:login] || session[:login]
-    @referer = params[:referer] || request.referer
+    @login = flash[:login] || session[:login]
+    @referer = flash[:referer] || request.referer
   end
 
   def create
-    user = User.find_by_login(params[:login])
-    password_correct = user.password == params[:password]
+    user = User.find_by_login params[:login]
     
     if user and not user.registration?(:confirmed)
       flash[:message].error :partial => 'sessions/not_confirmed'
       
       redirect_to (params[:referer] || :root)
-    elsif user and password_correct
+    elsif user and user.password == params[:password]
       flash[:message].success "Hallo, #{user.name}.", 'Wilkommen!'
       login_user! user
       redirect_to (params[:referer] || :root)
     else
-      flash[:wrong_login_or_password] = true
-      redirect_to new_session_path(:referer => params[:referer], :login => params[:login])
+      flash.update(
+          :wrong_login_or_password => true,
+          :referer => params[:referer],
+          :login => params[:login])
+      redirect_to new_session_path
     end
   end
 

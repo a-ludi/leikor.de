@@ -3,7 +3,7 @@
     <%= hidden_field_tag 'referer', @referer %>
     <h1>Anmelden</h1>
     <% if flash[:wrong_login_or_password] %>
-      <div class="message error">
+      <div class="message error" style="text-align: center;">
         Falscher Benutzername oder Passwort.
       </div>
     <% end %>
