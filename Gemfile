@@ -15,3 +15,8 @@ group :test do
   gem 'libnotify'
   gem 'rb-inotify'
 end
+
+group :development do
+  gem 'guard-bundler'
+  gem 'guard-markdown'
+end
