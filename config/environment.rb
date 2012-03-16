@@ -28,6 +28,8 @@ Rails::Initializer.run do |config|
   config.gem 'ssl_requirement', :version => '~> 0.1.0'
   config.gem 'acts-as-taggable-on', :version => '~> 2.1.0'
   config.gem 'exception_notification', :version => '~> 2.3.3.0'
+  config.gem 'haml', :version => '~> 3.1.4'
+  config.gem 'rdiscount', :version => '~> 1.6.8'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
