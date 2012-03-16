@@ -2,6 +2,7 @@ Allgemein
 =========
 
 * HAML
+* rails_xss / erubis
 
 Bugs
 ====
