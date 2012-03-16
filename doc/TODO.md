@@ -27,10 +27,10 @@ Daueraufgaben
 Verlauf
 =======
 
-16. März 2012
+16\. März 2012
 -------------
 * Haml **done**
-* Markdown ***done**
+* Markdown **done**
 * class FlashMessage **done**
 * flash[:message] gibt einen Hash als :text an render_to_string weiter und nimmt das Ergebnis als Text **done**
 * refactor update_password **done**
