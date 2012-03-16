@@ -10,8 +10,8 @@ Bugs
 Refactoring
 ===========
 
-* flash[:message] gibt einen Hash als :text an render_to_string weiter und nimmt das Ergebnis als Text
 * class FlashMessage
+* flash[:message] gibt einen Hash als :text an render_to_string weiter und nimmt das Ergebnis als Text
 * There is no extra mobile view for fair dates
 * Anpassen von filter_parameter_logging
 * Routes

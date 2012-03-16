@@ -13,12 +13,12 @@ class FlashMessage < ActionController::Base
     end
   end
   
-  def self.error(text=nil)
+  def self.error(text=nil, title='')
     FlashMessage << text.to_s
     @class = :error
   end
   
-  def self.success(text=nil)
+  def self.success(text=nil, title='')
     FlashMessage << text.to_s
     flash[:message]
     
