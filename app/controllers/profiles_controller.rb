@@ -37,21 +37,21 @@ class ProfilesController < ApplicationController
   def update_password
     @user = @current_user
     
-    if @user.password == params[:password]
-      if params[:new_password] == params[:confirm_new_password]
-        @user.password = params[:new_password]
+    password_correct = @user.password == params[:password]
+    new_passwords_match = params[:new_password] == params[:confirm_new_password]
+    
+    if password_correct and new_passwords_match
+      @user.password = params[:new_password]
+      
+      if @user.save
+        flash[:message].success "Passwort erfolgreich geändert!"
         
-        if @user.save
-          flash[:message].success "Passwort erfolgreich geändert!"
-          
-          redirect_to my_profile_path and return
-        end
-      else
-        @user.errors.add :new_password, :confirmation
-      end      
-    else
-      @user.errors.add :password, :incorrect
+        redirect_to my_profile_path and return
+      end
     end
+    
+    @user.errors.add :password, :incorrect  unless password_correct
+    @user.errors.add :new_password, :confirmation  unless new_passwords_match
     
     @stylesheets = ['message', 'sessions']
     @title = 'Passwort ändern'
