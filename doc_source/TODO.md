@@ -2,7 +2,9 @@ Allgemein
 =========
 
 * rails_xss / erubis
-* render `FairDate.comment`, `user.notes`, … with Markdown; overwrite default accessor
+* render `user.notes`, … with Markdown; overwrite default accessor
+* add validation for Markdown input
+  * add for `FairDate.comment`
 
 
 Bugs
