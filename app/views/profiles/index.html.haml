@@ -1,0 +1,7 @@
+.index
+  .container
+    = render :partial => 'index', :locals => {:type => :customer, :human_type => 'Kunden', 
+      :users => @customers, :positional_class => 'first'}
+    = render :partial => 'index', :locals => {:type => :employee, :human_type => 'Mitarbeiter',
+      :users => @employees, :positional_class => 'last'}
+    = clear_float

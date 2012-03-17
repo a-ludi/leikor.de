@@ -2,7 +2,7 @@
   <h1>Änderungen am Bild gespeichert</h1>
   <div class="message">
     <p>
-      <%= flash[:message].text %>
+      <%= render flash[:message].render_options %>
     </p>
     <% if @article.picture? %>
       <p>

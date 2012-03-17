@@ -1,3 +1,6 @@
+#body .index { text-align: center; padding: 0.54em 0.8em; }
+#body .index .container { display: inline-block; }
+
 #message_window h1.empty {
   font-size: 100%;
   margin: 0.72em 0em;
@@ -63,5 +66,10 @@ ul.profile {
  */
 
 @media (max-width:470px) {
-  .user_index { float: none; margin: 0em; }
+  #body .index .container { text-align: center; }
+  .user_index {
+    display: inline-block;
+    float: none;
+    margin: 0em;
+  }
 }

@@ -56,6 +56,8 @@ Rails::Initializer.run do |config|
   }
 end
 
+Haml::Template.options[:format] = :html4
+
 ActionMailer::Base.delivery_method = :smtp
 SmtpAuthentication.setup
 

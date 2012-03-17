@@ -2,7 +2,7 @@
   <h1><%= flash[:message].title %></h1>
   <div class="message">
     <p>
-      <%= flash[:message].text %>
+      <%= render flash[:message].render_options %>
     </p>
   </div>
   <div class="response">

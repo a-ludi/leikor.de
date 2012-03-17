@@ -1,0 +1,68 @@
+#message_window
+  .administration
+    = link_to image_tag('pictogram/medium/edit.png'), @edit_path, :class => 'toolbutton',
+      :title => "Profil bearbeiten."
+    - unless @my_profile
+      = link_to image_tag('pictogram/medium/destroy.png'), @show_path, :class => 'toolbutton',
+        :title => "Profil löschen.", :method => :delete,
+        :confirm => "Das Profil von\n\n#{@user.name}\n\nwird dauerhaft gelöscht. Sind Sie sicher?"
+  %h1= @user.name
+  -if @my_profile
+    .password
+      .value
+        = link_to 'Passwort ändern', edit_password_path
+  .profile.login
+    .label= t('activerecord.attributes.user.login') + ':'
+    .value= @user.login
+  .profile.primary_email_address
+    .label= t('activerecord.attributes.user.primary_email_address') + ':'
+    .value= @user.primary_email_address
+  - if not @user.registration? :confirmed
+    .error.message
+      %p Dieser Benutzer muss noch bestätigt werden.
+      %p= a_button_to 'Bestätigungslink kopieren', confirm_registration_url(@user),
+          :onclick => 'copyToClipboard(this.href); return false;'
+      .h2.center &mdash; oder &mdash;
+      %p= button_to_remote 'Bestätigungsmail versenden',
+        {:url => confirm_registration_request_path(:login => @user.login, :sendmail => true),
+        :method => :post,
+        :confirm => "Es wird eine E-Mail an\n\n#{@user.email_address_with_name}\n\nversandt. Fortfahren?"},
+        :href => confirm_registration_request_path(:user => @user.login, :sendmail => true)
+  - elsif logged_in? Employee and @user.registration?(:denied)
+    .error.message
+      %p Dieser Benutzer ist nicht bestätigt.
+      - form_tag confirm_registration_request_path, :method => :post do
+        = hidden_field_tag :login, @user.login
+        %p= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')} wiederholen"
+  - if logged_in? Employee and not @user.notes.blank?
+    .profile
+      .infobox.notes.value= parse_formatted_text @user.notes
+  -#
+    %h2 Kontakt
+    .profile.name
+      %span.value Prof. Dr. Heinz Mustermann
+    .profile.postal_address
+      %span.value
+        Lindenallee 13
+        %br
+        12345 Musterstadt
+        %br
+        Deutschland
+    %ul.profile.email_address
+      %li
+        %span.value= mail_to 'heinz.mustermann@firma.de'
+        &emsp;
+        %span.label geschäftlich
+      %li
+        %span.value= mail_to 'info@firma.de'
+        &emsp;
+        %span.label geschäftlich
+    %ul.profile.phone_number
+      %li
+        %span.value +49 4521 765897
+        &emsp;
+        %span.label geschäftlich
+      %li
+        %span.value +49 1520 17549320
+        &emsp;
+        %span.label mobil
