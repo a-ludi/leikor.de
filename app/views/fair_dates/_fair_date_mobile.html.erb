@@ -16,7 +16,7 @@
         :title => "Messetermin löschen") %>
     </div>
   <% end %>
-  <h2><%= fair_date.name %></h2>
+  <h1><%= fair_date.name %></h1>
   <ul class="info">
     <li class="date">
       <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
@@ -43,9 +43,9 @@
     <% end %>
   </ul>
   <% if fair_date.comment? %>
-    <p class="comment">
-        <%= fair_date.comment %>
-    </p>
+    <div class="comment">
+      <%= fair_date.comment %>
+    </div>
   <% end %>
   <%=clear_float %>
 </li>

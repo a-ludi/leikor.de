@@ -11,7 +11,7 @@
     <% end %>
   </p>
   <% unless @fair_dates.empty? %>
-    <ul>
+    <ul class="fair_dates">
       <% @fair_dates.each do |fd| %>
         <%= render :partial => 'fair_date_mobile', :locals => {
           :fair_date => fd} %>
