@@ -30,6 +30,8 @@ GEM
     haml (3.1.4)
     kramdown (0.13.5)
     libnotify (0.6.0)
+    maruku (0.6.0)
+      syntax (>= 1.0.0)
     mime-types (1.17.2)
     paperclip (2.4.5)
       activerecord (>= 2.3.0)
@@ -47,11 +49,11 @@ GEM
     rake (0.9.2.2)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
-    rdiscount (1.6.8)
     sqlite3 (1.3.5)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
     ssl_requirement (0.1.0)
+    syntax (1.0.0)
     thor (0.14.6)
 
 PLATFORMS
@@ -66,9 +68,9 @@ DEPENDENCIES
   guard-minitest
   haml (~> 3.1.4)
   libnotify
+  maruku (~> 0.6.0)
   paperclip (~> 2.4.5)
   rails (~> 2.3.14)
   rb-inotify
-  rdiscount (~> 1.6.8)
   sqlite3-ruby
   ssl_requirement (~> 0.1.0)
