@@ -154,7 +154,7 @@ private
   
   def missing_secure_user_request
     flash[:message].error :partial => 'secure_user_requests/missing', :locals => {:external_id =>
-        params[:id]
+        params[:id]}
     
     redirect_to (request.referer || :root) and return false
   end

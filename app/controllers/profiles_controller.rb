@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
     @employees = Employee.all :order => 'name ASC'
     @customers = Customer.all :order => 'name ASC'
     
-    @stylesheets = ['message', 'profile']
+    @stylesheets = ['profile']
     @title = "Profile"
   end
   
