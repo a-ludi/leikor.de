@@ -2,7 +2,6 @@ Allgemein
 =========
 
 * rails_xss / erubis
-* Guard TODO.md
 
 
 Bugs
@@ -26,6 +25,10 @@ Daueraufgaben
 
 Verlauf
 =======
+
+17\. März 2012
+--------------
+* Guard TODO.md **done**
 
 16\. März 2012
 -------------
