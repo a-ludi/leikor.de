@@ -10,6 +10,7 @@ de:
       short: "%e. %b"
       short_with_year: "%e. %b %Y"
       long: "%e. %B %Y"
+      long_without_year: "%e. %B"
       only_day: "%e"
 
     day_names:

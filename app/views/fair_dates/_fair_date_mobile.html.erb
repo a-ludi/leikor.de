@@ -19,9 +19,9 @@
   <h1><%= fair_date.name %></h1>
   <ul class="info">
     <li class="date">
-      <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
-      &nbsp;-&nbsp;
-      <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
+      <% from_date = l(fair_date.from_date, :format => :long_without_year) %>
+      <% to_date = l(fair_date.to_date, :format => :long) %>
+      <%= hard_spaced "#{from_date} - #{to_date}" %>
     </li>
     <li class="stand">
       <span class="label">

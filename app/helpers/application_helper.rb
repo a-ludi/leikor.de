@@ -83,4 +83,8 @@ module ApplicationHelper
   def clear_float
     '<div class="clear"></div>'
   end
+  
+  def hard_spaced(text)
+    text.gsub ' ', '&nbsp;'
+  end
 end
