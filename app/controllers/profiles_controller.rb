@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
   
   def edit_password
     @user = @current_user
-    @stylesheets = ['message']
+    @stylesheets = %w(message)
     @title = 'Passwort ändern'
   end
   
@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
     @user.errors.add :password, :incorrect  unless password_correct
     @user.errors.add :new_password, :confirmation  unless new_passwords_match
     
-    @stylesheets = ['message']
+    @stylesheets = %w(message)
     @title = 'Passwort ändern'
     
     render :action => :edit_password
@@ -70,7 +70,7 @@ class ProfilesController < ApplicationController
     @employees = Employee.all :order => 'name ASC'
     @customers = Customer.all :order => 'name ASC'
     
-    @stylesheets = ['profile']
+    @stylesheets = %w(profile)
     @title = "Profile"
   end
   
@@ -101,7 +101,7 @@ class ProfilesController < ApplicationController
     params[:format] = nil
     
     set_new_paths
-    @stylesheets = ['message', 'profile']
+    @stylesheets = %w(message profile)
     @title = "Neues Profil erstellen"
     @method = :post
     
@@ -151,14 +151,14 @@ protected
 private
   
   def show_profile
-    @stylesheets = ['message', 'profile']
+    @stylesheets = %w(message profile Markdown)
     @title = "#{@user.name}s Profil"
     
     render :show
   end
   
   def edit_profile
-    @stylesheets = ['message', 'profile']
+    @stylesheets = %w(message profile)
     @title = "#{@user.name}s Profil bearbeiten"
     @method = :put
     

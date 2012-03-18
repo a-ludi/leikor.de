@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
   after_filter :save_updated_at, :only => [:create, :update, :destroy]
   
   def index
-    @stylesheets = ['category/browser', 'article/index']
+    @stylesheets = %w(category/browser article/index Markdown)
     @title = "#{@subcategory.name} (#{@category.name})"
     @scroll_target = 'content'
     
@@ -28,7 +28,7 @@ class ArticlesController < ApplicationController
   end
   
   def edit_order
-    @stylesheets = ['category/browser', 'article/edit_order']
+    @stylesheets = %w(category/browser article/edit_order)
     @title = "#{@subcategory.name} umsortieren"
     
     render_to_nested_layout :layout => 'browser'
@@ -68,7 +68,7 @@ class ArticlesController < ApplicationController
   end
   
   def ask_destroy
-    @stylesheets = ['message']
+    @stylesheets = %w(message)
     @title = "Artikel löschen?"
     @article = Article.find_by_article_number params[:article]
   end

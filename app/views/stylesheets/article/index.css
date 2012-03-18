@@ -21,9 +21,9 @@
 
 #content .article .body .image {
   display: block;
-  float: left;
+  float: right;
   padding: 0em;
-  margin: 0em 1em 0.54em 0em;
+  margin: 0em 0em 0.54em 1em;
   max-width: 100%;
   text-align: center;
 }
@@ -75,10 +75,11 @@
 #content .article.edit .body .description {
   display: block;
   width: 100%;
+  font-size: 100%;
 }
 
-#content .article.edit .body .price input, #content .article.edit .body
-.dimensions input, #content .article.edit .body .article_number input {
+#content .article.edit .body .price input, #content .article.edit .body .dimensions input, #content
+.article.edit .body .article_number input {
   text-align: right;
   font-size: 100%;
 }
@@ -90,5 +91,8 @@
 @media (max-width:800px) {
   #content .article .body .image {
     float: none;
+  }
+  #content .article.edit .body .image {
+    margin-bottom: 1.08em;
   }
 }
