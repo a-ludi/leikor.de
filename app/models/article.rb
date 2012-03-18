@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
 class Article < ActiveRecord::Base
   include UtilityHelper
-  
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/
+  
+  marked_up_with_maruku :description
   
   belongs_to :subcategory
   has_attached_file(

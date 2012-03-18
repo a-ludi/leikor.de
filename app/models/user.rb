@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z_.-]*$/
   EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
+  marked_up_with_maruku :notes
   acts_as_taggable_on :marks
   has_one :reset_password_request,
       :class_name => 'SecureUserRequest::ResetPassword',
