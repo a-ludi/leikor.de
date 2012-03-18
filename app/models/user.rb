@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
   validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen <tt>._-</tt> bestehen.'
   validates_uniqueness_of :login
   validate :password_longer_than
+  validates_markdown :notes
   
   def password
     @password ||= Password.new(self[:password]) unless self[:password].blank?
