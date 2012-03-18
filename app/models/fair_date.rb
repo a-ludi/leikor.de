@@ -1,7 +1,6 @@
 class FairDate < ActiveRecord::Base
-  validates_presence_of :from_date, :to_date, :name
+  marked_up_with_maruku :comment
   
-  def comment
-    Maruku.new(self[:comment]).to_html_document
-  end
+  validates_presence_of :from_date, :to_date, :name
+  validates_markdown :comment
 end

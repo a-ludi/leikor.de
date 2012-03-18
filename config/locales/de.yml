@@ -235,6 +235,7 @@ de:
       not_saved: 
         one:    "Speichern nicht möglich: ein Fehler."
         other:  "Speichern nicht möglich: %{count} Fehler."
+      invalid_markup: "hat Fehler in der Textauszeichnung"
     template: &errors_template
       header:
         one:    "Konnte %{model} nicht speichern: ein Fehler."

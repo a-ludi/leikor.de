@@ -62,3 +62,6 @@ ActionMailer::Base.delivery_method = :smtp
 SmtpAuthentication.setup
 
 require 'translate_duration_patch'
+require 'validations_helper'
+require 'marked_up_with_maruku_helper'
+
