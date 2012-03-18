@@ -82,12 +82,8 @@
 
 <ul>
   <li>rails_xss / erubis</li>
-  <li>render <code>user.notes</code>, … with Markdown; overwrite default accessor</li>
-  <li>add validation for Markdown input
-    <ul>
-      <li>add for <code>FairDate.comment</code></li>
-    </ul>
-  </li>
+  <li>E-Mail-Addressen-Filter für Texte</li>
+  <li>write help for Markdown <strong>pending</strong></li>
 </ul>
 
 <h1 id="bugs">Bugs</h1>
@@ -95,7 +91,8 @@
 <h1 id="refactoring">Refactoring</h1>
 
 <ul>
-  <li>Change [&lsquo;thing&rsquo;, &lsquo;or&rsquo;, &hellip;] → %w(thing or &hellip;)</li>
+  <li>convert <code>.erb</code> → <code>.haml</code> <strong>pending</strong></li>
+  <li>Change [&lsquo;thing&rsquo;, &lsquo;or&rsquo;, &hellip;] → %w(thing or &hellip;) <strong>pending</strong></li>
   <li>There is no extra mobile view for fair dates</li>
   <li>Anpassen von filter_parameter_logging</li>
   <li>Routes</li>
@@ -110,12 +107,27 @@
 
 <h1 id="verlauf">Verlauf</h1>
 
-<h2 id="mrz-2012">17. März 2012</h2>
+<h2 id="mrz-2012">18. März 2012</h2>
 <ul>
-  <li>Guard TODO.md <strong>done</strong></li>
+  <li>write help for Markdown <strong>pending</strong> (3 Stunden)</li>
+  <li>render <code>user#notes</code>, … with Markdown; overwrite default accessor <strong>done</strong></li>
+  <li>add validation for Markdown input <strong>done</strong>
+    <ul>
+      <li>add for <code>FairDate#comment</code> <strong>done</strong></li>
+      <li>add for <code>User#notes</code> <strong>done</strong></li>
+      <li>add for <code>Article#description</code> <strong>done</strong></li>
+    </ul>
+  </li>
+  <li>Change [&lsquo;thing&rsquo;, &lsquo;or&rsquo;, &hellip;] → %w(thing or &hellip;) <strong>pending</strong></li>
 </ul>
 
-<h2 id="mrz-2012-1">16. März 2012</h2>
+<h2 id="mrz-2012-1">17. März 2012</h2>
+<ul>
+  <li>Guard TODO.md <strong>done</strong></li>
+  <li>convert <code>.erb</code> → <code>.haml</code> <strong>pending</strong> (1 Stunde)</li>
+</ul>
+
+<h2 id="mrz-2012-2">16. März 2012</h2>
 <ul>
   <li>Haml <strong>done</strong></li>
   <li>Markdown <strong>done</strong></li>

@@ -5,13 +5,14 @@ class StaticController < ApplicationController
   caches_page :page, :stylesheet
   
   REGISTERED_PAGES = {
-    :'ueber-uns' => {:name => 'Über uns', :stylesheets => ['static']},
-    :kontakt => {:name => 'Kontakt', :stylesheets => ['message', 'static/kontakt']},
-    :impressum => {:name => 'Impressum', :stylesheets => ['message', 'static', 'static/kontakt']},
-    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']},
-    :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => ['message']}
+    :'ueber-uns' => {:name => 'Über uns', :stylesheets => %w(static)},
+    :kontakt => {:name => 'Kontakt', :stylesheets => %w(message static/kontakt)},
+    :impressum => {:name => 'Impressum', :stylesheets => %w(message static static/kontakt)},
+    :AGB =>  {:name => 'AGB', :stylesheets => %w(static static/kontakt)},
+    :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => %w(message)},
+    :'hilfe/Markdown' => {:name => 'Markdown (Hilfe)', :stylesheets => %w(static Markdown)}
   }
-  REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => ['static']} if RAILS_ENV == 'development'
+  REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => %w(static)} if RAILS_ENV == 'development'
   
   STYLESHEETS_PATH = File.join Rails.root, 'app', 'views', 'stylesheets'
   append_view_path STYLESHEETS_PATH

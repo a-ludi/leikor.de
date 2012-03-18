@@ -1,0 +1,292 @@
+.maruku
+  :maruku
+    {:bsp: .example}
+    
+    **Markdown** wird auf [leikor.de](/) verwendet, um Texte auszuzeichen. Die zur
+    Verfügung stehenden Möglichkeiten der Auszeichnung, werden im folgenden mit Worten und
+    Beispielen beschrieben. Eine ausführliche Beschreibung aller Features, ist auf der
+    [Homepage][Markdown] zu Markdown zu finden.
+    
+    Zur Umwandlung vom Eingabetext zur Ausgabe (HTML) wird [Maruku][Maruku] verwendet. Hierdurch
+    stehen weiterführende Features zur Verfügung, die nicht im original Markdown enhalten sind. Dazu
+    zählen:
+    * [Fußnoten](#Fußnoten)
+    * [Tabellen](#Tabellen)
+    * [Definitionslisten](#Definitionslisten)
+    * [Abkürzungen](#Abkürzungen)
+
+    [Markdown]: http://daringfireball.net/projects/markdown/basics "zur Homepage"
+    [Maruku]: http://maruku.rubyforge.org/maruku.html "zur Homepage"
+    *[HTML]: Hyper Text Markup Language
+    
+    * Inhaltsverzeichnis
+    {:toc}
+
+    Absätze und Zeilenumbrüche
+    ==========================
+    
+    Absätze
+    -------
+    
+    Absätze werden ganz leicht erzeugt, indem (mindestens) eine Leerzeile an der Stelle eingefügt
+    wird, an der ein neuer Absatz anfangen soll.
+    
+        Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
+        tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea
+        commodi consequat. Quis aute iure reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat
+        cupiditat non proident, sunt in culpa qui officia deserunt mollit anim
+        id est laborum.
+        
+        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+        molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+        eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
+        zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum
+        dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+    {:bsp}
+    
+    > Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore
+    > et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    > nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse
+    > cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt
+    > in culpa qui officia deserunt mollit anim id est laborum.
+    > 
+    > Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel
+    > illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui
+    > blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem
+    > ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
+    > laoreet dolore magna aliquam erat volutpat.
+    {:bsp}
+    
+    Zeilenumbrüche
+    --------------
+    
+    Manchmal möchte man nicht einen neuen Absatz anfangen, sondern nur eine neue Zeile. Einfach eine
+    neue Zeile anzufangen reicht nicht aus. Das wird von Maruku einfach ignoriert. Stattdessen ist
+    es nötig eine neue Zeile anzufangen und auf der vorhergehenden Zeile mindestens zwei Leerzeichen
+    einzufügen. Zur Anschauung sind im folgenden Beispiel die Leerzeichen mit einem ␣ dargestellt.
+    
+        Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
+        tempor incidunt ut labore et dolore magna aliqua.␣␣
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in
+        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    {:bsp}
+
+    > Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore
+    > et dolore magna aliqua.  
+    > Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea
+    > commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu
+    > fugiat nulla pariatur.
+    {:bsp}
+    
+    
+    Überschriften
+    =============
+    
+    Überschriften können auf zwei Arten erzeugt werden. Um zu sehen wie die Beispiele später
+    aussehen, könne einfach die Überschriften dieser Seite betrachtet werden. Das folgende Beispiel
+    erzeugt zweimal ein und dieselbe Überschrift.
+    
+        Überschrift
+        ===========
+        
+        # Überschrift #
+    {:bsp}
+    
+    Weiterhin können auch untergeordnete Überschriften erzeugt werden. Auch hier sind beide
+    Schreibweisen im Ergebnis identisch.
+    
+        Untergeordnete Überschrift
+        ==========================
+        
+        ## Untergeordnete Überschrift ##
+    {:bsp}
+    
+    Mithilfe der zweiten Schreibweise lassen sich auch noch weiter untergeordnete Überschriften
+    schreiben
+        
+        ### Überschrift der 3. Stufe ###
+        #### Überschrift der 4. Stufe ####
+        ##### Überschrift der 5. Stufe #####
+        ###### Überschrift der 6. Stufe ######
+    {:bsp}
+    
+    
+    Details
+    -------
+    
+    Die Anzahl der Zeichen `=` bzw. `-` unter den Überschriften ist unerheblich. Es sollten so
+    viele gesetzt werden, dass es wie eine ordentliche Unterstreichung aussieht. Das ist jedoch nur
+    kosmetisch.
+    
+    Die Rauten (`#`) nach den Überschriften sind optional. Sie müssen nicht geschrieben werden und
+    müssen auch nicht mit der Anzahl der Rauten am Beginn der Zeile übereinstimmen. Die Anzahl der
+    Rauten am Beginn der Zeile allerdings, bestimmt die Stufe der Überschrift.
+    
+    
+    Listen
+    ======
+    
+    Nummerierte Listen
+    ------------------
+    
+    Nummerierte Listen können einfach durch ein `1.`, `2.`, `3.`, ... am Anfang der Zeilen erzeugt
+    werden.
+    
+        1. Brot
+        2. Butter
+        3. Käse
+        4. Wurst
+    {:bsp}
+        
+    > 1. Brot
+    > 2. Butter
+    > 3. Käse
+    > 4. Wurst
+    {:bsp}
+    
+    
+    Aufzählungen
+    ------------
+    
+    Als Aufzählungen sind an dieser Stelle nicht-nummerierte Listen gemeint. Sie werden durch ein
+    `*`, `+` oder `-` -- je nach Geschmack -- am Beginn der Zeile erzeugt. Die folgenden Beispiele
+    ergeben alle drei das gleiche.
+    
+        * Schätze
+        * Truhen
+        * Gräber
+        
+        + Schätze
+        + Truhen
+        + Gräber
+        
+        - Schätze
+        - Truhen
+        - Gräber
+    {:bsp}
+    
+    > * Schätze
+    > * Truhen
+    > * Gräber
+    > 
+    > + Schätze
+    > + Truhen
+    > + Gräber
+    > 
+    > - Schätze
+    > - Truhen
+    > - Gräber
+    {:bsp}
+    
+    Definitionslisten
+    -----------------
+    
+    Verschachtelung
+    ---------------
+    
+    Listen können beliebig verschachtelt werden. Dafür werden die Aufzählungspunkte einfach um **4
+    Leerzeichen** oder einen **Tabulator** eingerückt. Dabei können die Listentypen (nummeriert oder
+    nicht) beliebig gemischt werden. Die Leerzeichen sind im folgenden Beispiel durch ein ␣ und die
+    Tabulatoren durch ein ───⇥ dargestellt.
+    
+        * Schätze
+        ␣␣␣␣1. Gold
+        ␣␣␣␣2. Silber
+        * Truhen
+        ␣␣␣␣* Holz-
+        ␣␣␣␣␣␣␣␣1. antik
+        ␣␣␣␣␣␣␣␣2. modern
+        ␣␣␣␣* Stahl-
+        * Gräber
+        ───⇥1. ägyptisch
+        ───⇥───⇥* Pharaonen-
+        ───⇥───⇥* Sklaven-
+        ───⇥2. griechisch
+        ───⇥3. Hühnen-
+    {:bsp}
+    
+    > * Schätze
+    >     1. Gold
+    >     2. Silber
+    > * Truhen
+    >     * Holz-
+    >         1. antik
+    >         2. modern
+    >     * Stahl-
+    > * Gräber
+    > 	1. ägyptisch
+    > 		* Pharaonen-
+    > 		* Sklaven-
+    > 		2. griechisch
+    > 		3. Hühnen-
+    {:bsp}
+    
+    Absätze und Blockzitate
+    -----------------------
+    
+    In Listen können auch mehrere Absätze oder Blockzitate gesetzt werden. Dafür müssen die
+    zusätzlichen Absätze oder Blockzitate eingrückt werden (4 Leerzeichen oder ein Tabulator).
+    
+        *   Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
+            tempor incidunt ut labore et dolore magna aliqua.
+            
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquid ex ea commodi consequat. Quis aute iure
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur.
+        *   Ein Zitat aus der großen Oper "Lorem ipsum":
+            
+            > Lorem ipsum dolor sit amet, consectetur adipisici elit, sed
+            > eiusmod tempor incidunt ut labore et dolore magna aliqua.
+    {:bsp}
+    
+    > *   Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
+    >     tempor incidunt ut labore et dolore magna aliqua.
+    >
+    >     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    >     nisi ut aliquid ex ea commodi consequat. Quis aute iure
+    >     reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    >     pariatur.
+    > *   Ein Zitat aus der großen Oper "Lorem ipsum":
+    >
+    >     > Lorem ipsum dolor sit amet, consectetur adipisici elit, sed
+    >     > eiusmod tempor incidunt ut labore et dolore magna aliqua.
+    {:bsp}
+    
+    
+    Links
+    =====
+    
+    Wörter betonen
+    ==============
+    
+    Bilder
+    ======
+    
+    Zitate
+    ======
+    
+    Sonstige
+    ========
+    Fußnoten
+    --------
+    Tabellen
+    --------
+    Abkürzungen
+    -----------
+    Horizontale Linie
+    -----------------
+    Code(-blöcke)
+    -------------
+    Besondere Zeichen
+    -----------------
+    * Der Gedankenstrich `--`
+    
+    Bei Problemen
+    =============
+    * Backslash Escapes
+

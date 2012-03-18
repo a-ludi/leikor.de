@@ -2,9 +2,8 @@ Allgemein
 =========
 
 * rails_xss / erubis
-* render `user.notes`, … with Markdown; overwrite default accessor
-* add validation for Markdown input
-  * add for `FairDate.comment`
+* E-Mail-Addressen-Filter für Texte
+* write help for Markdown **pending**
 
 
 Bugs
@@ -14,7 +13,8 @@ Bugs
 Refactoring
 ===========
 
-* Change ['thing', 'or', ...] → %w(thing or ...)
+* convert `.erb` → `.haml` **pending**
+* Change ['thing', 'or', ...] → %w(thing or ...) **pending**
 * There is no extra mobile view for fair dates
 * Anpassen von filter_parameter_logging
 * Routes
@@ -29,9 +29,20 @@ Daueraufgaben
 Verlauf
 =======
 
+18\. März 2012
+--------------
+* write help for Markdown **pending** (3 Stunden)
+* render `user#notes`, … with Markdown; overwrite default accessor **done**
+* add validation for Markdown input **done**
+  * add for `FairDate#comment` **done**
+  * add for `User#notes` **done**
+  * add for `Article#description` **done**
+* Change ['thing', 'or', ...] → %w(thing or ...) **pending**
+
 17\. März 2012
 --------------
 * Guard TODO.md **done**
+* convert `.erb` → `.haml` **pending** (1 Stunde)
 
 16\. März 2012
 -------------
