@@ -37,6 +37,11 @@
   margin: 0.18em;
   width: 150px;
   height: 150px;
+  border: 1px solid <%=p :mid_gray %>;
+}
+#content .category_overview .body a:hover {
+  border-color: <%=p :darker_gray %>;
+  <%=box_shadow '0em', '0em', '0.36em', 'rgba(0, 0, 0, 0.5)' %>
 }
 #content .category_overview .body a img { width: 150px; height: 150px;}
 
