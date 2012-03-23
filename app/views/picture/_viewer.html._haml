@@ -1,0 +1,23 @@
+#picture_viewer
+  .background{:onclick => "Effect.Fade('picture_viewer')"} &nbsp;
+  .frame
+    #picture_viewer_toolbar.toolbar
+      - if logged_in? Employee
+        = link_to_remote image_tag('pictogram/medium/reload.png'),
+          :url => article_picture_path(article.id, :no_animations => true), :method => :get,
+          :html => {:href => article_picture_path(article.id), :title => 'Bild neu laden',
+          :class => 'toolbutton'}
+        - onclick = "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/original/in_work.png'}', '600px', '600px') && openPopup(this.href); return false"
+        = link_to image_tag('pictogram/medium/edit.png'), edit_article_picture_path(article.id),
+          :onclick => onclick,
+          :title => 'Bild bearbeiten', :class => 'toolbutton'                                                                                                                         |
+      = link_to image_tag('pictogram/medium/close.png'), '#',
+        :onclick => 'Effect.Fade("picture_viewer"); return false', :title => 'Schließen',
+        :class => 'toolbutton'
+    #picture_viewer_picture
+      = image_tag article.picture.url, :alt => article.name,
+        :style => css_dimensions(article.picture_width, article.picture_height, 'px')
+:javascript
+  $("picture_viewer_toolbar").setStyle({display: "block"});
+  $$("#picture_viewer div.background")[0].setStyle({display: "block"});
+  $("picture_viewer").placeAt(window.pageXOffset, window.pageYOffset);
