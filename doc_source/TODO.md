@@ -14,6 +14,7 @@ Refactoring
 ===========
 
 * convert `.erb` → `.haml` **pending**
+    * picture nacharbeiten *grrr*
 * Change ['thing', 'or', ...] → %w(thing or ...) **pending**
 * There is no extra mobile view for fair dates
 * Anpassen von filter_parameter_logging

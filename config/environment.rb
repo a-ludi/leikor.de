@@ -7,6 +7,9 @@ RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 require 'string_blank_patch'
+require 'translate_duration_patch'
+require 'marked_up_with_maruku_helper'
+require 'validations_helper'
 require 'smtp_authentication'
 
 Rails::Initializer.run do |config|
@@ -60,8 +63,4 @@ Haml::Template.options[:format] = :html4
 
 ActionMailer::Base.delivery_method = :smtp
 SmtpAuthentication.setup
-
-require 'translate_duration_patch'
-require 'validations_helper'
-require 'marked_up_with_maruku_helper'
 

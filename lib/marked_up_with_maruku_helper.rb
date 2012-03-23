@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 require 'maruku'
+require 'active_record'
 
 module MarkedUpWithMarukuHelper
   def self.included(base)

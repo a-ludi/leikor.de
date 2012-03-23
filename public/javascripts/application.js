@@ -19,16 +19,16 @@ var MyUtils = {
   URL_TRANSSCRIPTION: new Hash({
     'ä'  : 'ae',     'ö': 'oe',
     'ü'  : 'ue',     'ß': 'ss',
-    '&'  : '_und_',  '€': 'euro',
-    '@'  : '_at_',   '°': 'grad',
-    '\\+': '_plus_', 'µ': 'my'}),
+    '&'  : ' und ',  '€': 'euro',
+    '@'  : ' at ',   '°': 'grad',
+    '\\+': ' plus ', 'µ': 'my'}),
   
   copyAsLogin: function(self, target) {
     var output = $(self).value.toLowerCase();
     MyUtils.URL_TRANSSCRIPTION.each(function(translation) {
       output = output.gsub(translation.key, translation.value);
     });
-    output = output.gsub(/[^a-zA-Z0-9]+/, '_').gsub(/(^[_]+|[_]+$)/, '');
+    output = output.gsub(/[^a-zA-Z0-9\. ]+/, '-').gsub(/[-]+/, '-').gsub(/[ ]+/, ' ').gsub(/(^[- ]|[- ]$)/, '');
     
     $(target).value = output;
   },
