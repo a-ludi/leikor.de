@@ -27,13 +27,6 @@
   max-width: 100%;
   text-align: center;
 }
-#content .article .body .image a {
-  border: 1px solid <%=p :mid_gray %>;
-}
-#content .article .body .image a:hover {
-  border-color: <%=p :darker_gray %>;
-  <%=box_shadow '0em', '0em', '0.36em', 'rgba(0, 0, 0, 0.5)' %>
-}
 #content .article .body .image img {
   max-width: 100%;
 }
