@@ -1,3 +1,4 @@
-project*
+meta
+.meta_history
 *.sh
 *.log

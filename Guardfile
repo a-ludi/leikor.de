@@ -24,8 +24,7 @@ end
 # Builds Markdown doc as HTML
 guard 'markdown', :convert_on_start => true do
   # Will not convert while :dry_run is true. Once you're happy with your watch statements remove it
-  #watch (/doc_source\/(.+\/)*(.+\.)(md|markdown)/i) { |m| "doc_source/#{m[1]}#{m[2]}#{m[3]}|doc/#{m[1]}#{m[2]}html"}
-  watch (/doc_source\/(.+\/)*(.+\.)(md|markdown)/i) { |m| "doc_source/#{m[1]}#{m[2]}#{m[3]}|doc/#{m[1]}#{m[2]}html|doc_source/.template.html.erb"}
+  watch (/(.+\/)*doc_source\/(.+\/)*(.+\.)(md|markdown)/i) { |m| "#{m[1]}doc_source/#{m[2]}#{m[3]}#{m[4]}|#{m[1]}doc/#{m[2]}#{m[3]}html|#{m[1]}doc_source/.template.html.erb"}
 end
 
 # Runs bundler
