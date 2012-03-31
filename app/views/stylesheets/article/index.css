@@ -29,6 +29,8 @@
 }
 #content .article .body .image img {
   max-width: 100%;
+  border: 1px solid <%=p :mid_gray %>;
+  <%=border_radius  %>
 }
 
 #content .article.edit .body .image img {
@@ -88,6 +90,10 @@
  */
 
 @media (max-width:800px) {
+  #content .article .body .image {
+    margin: 0em;
+  }
+  
   #content .article .body .image {
     float: none;
   }
