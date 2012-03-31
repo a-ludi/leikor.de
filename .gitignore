@@ -1,4 +1,5 @@
-project*
+meta*
+.meta*
 *.sh
 *.sqlite3
 *.log
