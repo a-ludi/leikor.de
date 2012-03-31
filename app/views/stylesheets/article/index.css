@@ -29,6 +29,12 @@
 }
 #content .article .body .image img {
   max-width: 100%;
+  border: 1px solid <%=p :mid_gray %>;
+  <%=border_radius  %>
+}
+#content .article .body .image img:hover {
+  border-color: <%=p :darker_gray %>;
+  <%=box_shadow '0em', '0em', '0.36em', 'rgba(0, 0, 0, 0.5)' %>
 }
 
 #content .article.edit .body .image img {
@@ -89,6 +95,10 @@
  */
 
 @media (max-width:800px) {
+  #content .article .body .image {
+    margin: 0em;
+  }
+  
   #content .article .body .image {
     float: none;
   }
