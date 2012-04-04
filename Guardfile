@@ -19,3 +19,13 @@ guard 'minitest' do
   # helpers
   watch(%r|^app/helpers/(.*)_helper.rb|) {|m| "test/functional/#{m[1]}_controller_test.rb"}
 end
+
+# Builds Markdown doc as HTML
+guard 'markdown', :convert_on_start => true do
+  watch (/(.+\/)*doc_source\/(.+\/)*(.+\.)(md|markdown)/i) { |m| "#{m[1]}doc_source/#{m[2]}#{m[3]}#{m[4]}|#{m[1]}doc/#{m[2]}#{m[3]}html|#{m[1]}doc_source/.template.html.erb"}
+end
+
+# Runs bundler
+guard 'bundler' do
+  watch('Gemfile')
+end
