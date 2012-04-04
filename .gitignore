@@ -1,4 +1,4 @@
-meta
-.meta_history
+meta*
+.meta*
 *.sh
 *.log
