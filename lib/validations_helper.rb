@@ -20,7 +20,7 @@ module ValidationsHelper
       validates_each attrs do |record, attr, value|
         begin
           Maruku.new(value).to_html
-        catch MaRuKu::Exception
+        rescue MaRuKu::Exception
           record.errors.add attr, :invalid_markup
         end
       end
