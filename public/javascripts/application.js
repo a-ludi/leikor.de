@@ -28,7 +28,7 @@ var MyUtils = {
     MyUtils.URL_TRANSSCRIPTION.each(function(translation) {
       output = output.gsub(translation.key, translation.value);
     });
-    output = output.gsub(/[^a-zA-Z0-9\. ]+/, '-').gsub(/[-]+/, '-').gsub(/[ ]+/, ' ').gsub(/(^[- ]|[- ]$)/, '');
+    output = output.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/[-]+/, '-').gsub(/(^[-]|[-]$)/, '');
     
     $(target).value = output;
   },
