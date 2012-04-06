@@ -3,7 +3,7 @@ require 'bcrypt'
 
 class User < ActiveRecord::Base
   include BCrypt
-  LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z .-]*$/
+  LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z-]*$/
   EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
   marked_up_with_maruku :notes
@@ -16,9 +16,12 @@ class User < ActiveRecord::Base
       :dependent => :delete
   
   validates_presence_of :login, :password, :name, :type, :primary_email_address
-  validates_format_of :primary_email_address, :with => User::EMAIL_FORMAT, :message => 'hat ein falsches Format.'
+  validates_format_of :primary_email_address, :with => User::EMAIL_FORMAT, :message => 'hat ein
+      falsches Format.'.squish
   validates_length_of :login, :in => 4..32
-  validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen <tt>._-</tt> bestehen.'
+  validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem
+      Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen
+      <tt>.-</tt> bestehen.'.squish
   validates_uniqueness_of :login
   validate :password_longer_than
   validates_markdown :notes
@@ -76,6 +79,6 @@ protected
   end
 
   def password_longer_than
-    errors.add :password, :'too_short', :count => 6 unless @password_length.nil? or  @password_length >= 6
+    errors.add :password, :'too_short', :count => 6 unless @password_length.nil? or @password_length >= 6
   end
 end
