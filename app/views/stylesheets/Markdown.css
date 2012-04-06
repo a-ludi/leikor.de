@@ -1,18 +1,47 @@
 .maruku h1 {}
+
 .maruku h2 {}
+
 .maruku p {}
+
+.maruku pre, .maruku blockquote {
+  margin: 12pt 0em 12pt 20pt;
+  padding-left: 4pt;
+  border-left: 3px solid <%=p :mid_gray %>;
+}
+
+.maruku pre {
+  color: <%=p :darker_gray %>;
+}
+
+.maruku pre.example, .maruku blockquote.example {
+  background: <%=p :white %>;
+  padding: 0.54em 1.2em;
+  border: 1px solid #ccc;
+  <%=border_radius '0.5em' %>
+  margin: 0.18em 0em;
+}
+
 .maruku strong {}
+
 .maruku a {}
+
 .maruku em {}
+
 .maruku ul {}
+
 .maruku ol {}
+
 .maruku li {}
+
 .maruku hr {}
-.maruku maruku_toc ul {}
-.maruku maruku_toc li {}
-.maruku maruku_toc li a {}
+
 .maruku footnotes hr {}
+
 .maruku footnotes ol {}
+
 .maruku footnotes li {}
+
 .maruku footnotes li p {}
+
 .maruku footnotes li a {}
