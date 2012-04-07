@@ -4,7 +4,7 @@
   margin: 0em;
 }
 
-#fair_dates li.fair_date {
+#fair_dates .fair_date {
   display: inline-block;
   width: 20em;
   margin: 0.54em 0.25em;
@@ -59,7 +59,7 @@
  */
 
 @media (max-width:600px) {
-  #fair_dates li {
+  #fair_dates .fair_date {
     float: none;
     width: auto;
     margin-left: 0em;

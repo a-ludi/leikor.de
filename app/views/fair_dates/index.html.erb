@@ -10,9 +10,7 @@
 </div>
 <% unless @fair_dates.empty? %>
   <ul id="fair_dates">
-    <% @fair_dates.each do |fair_date| %>
-      <%= render :partial => 'fair_date', :locals => {:fair_date => fair_date} %>
-    <% end %>
+    <%= render :partial => 'fair_date', :collection => @fair_dates %>
   </ul>
   <%=clear_float %>
 <% else %>

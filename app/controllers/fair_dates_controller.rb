@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
+
 class FairDatesController < ApplicationController
-  after_filter :save_updated_at, :only => [:update]
+  after_filter :save_updated_at, :only => [:update, :create]
+  before_filter :login_required, :except => [:index]
   
   def index
     @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
