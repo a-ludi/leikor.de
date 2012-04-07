@@ -4,7 +4,7 @@ namespace :db do
   desc 'Create some records for test purposes'
   task :init_records => %w(environment db:schema:load) do
     do_process 'Creating webmaster account' do
-      Employee.create! do |wm|
+      User.create! do |wm|
         wm.login = 'webmaster'
         wm.password = 'wertzu'
         wm.name = 'Hans Meyer'
