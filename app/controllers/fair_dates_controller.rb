@@ -4,7 +4,7 @@ class FairDatesController < ApplicationController
   
   def index
     @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
-    @stylesheets = ['static', 'fair_dates/index']
+    @stylesheets = %w(fair_dates)
     @title = 'Messetermine'
   end
   
@@ -13,16 +13,14 @@ class FairDatesController < ApplicationController
       fd.from_date = Date.today
       fd.to_date = fd.from_date >> 1
     end
-    @stylesheets = ['message', 'fair_dates/edit']
+    @stylesheets = %w(message form fair_dates)
     @title = 'Neuer Messetermin'
-    @popup = params[:popup]
     
-    render :action => 'edit', :layout => (@popup ? 'popup' : true)
+    render :action => 'edit'
   end
   
   def create
     @fair_date = FairDate.create params[:fair_date]
-    @stylesheets = ['message']
     flash[:message] = {
       :title => 'Messetermin gespeichert',
       :text => "Der neue Messetermin „#{@fair_date.name}“ wurde erfolgreich gespeichert"}
@@ -32,11 +30,8 @@ class FairDatesController < ApplicationController
   
   def edit
     @fair_date = FairDate.find params[:id]
-    @stylesheets = ['message', 'fair_dates/edit']
+    @stylesheets = %w(message form fair_dates)
     @title = 'Messetermin bearbeiten'
-    @popup = params[:popup]
-    
-    render :layout => 'popup' if @popup
   end
   
   def update
@@ -60,18 +55,13 @@ class FairDatesController < ApplicationController
 private
   
   def try_save_and_render_response(options={})
-    @stylesheets = ['message']
-    @popup = params[:popup]
     if @fair_date.save
       @title ||= flash[:message][:title]
-      if @popup
-        render :action => 'success', :layout => 'popup'
-      else
-        redirect_to fair_dates_path
-      end
+      @stylesheets = %w(fair_dates)
+      redirect_to fair_dates_path
     else
-      @stylesheets << 'fair_dates/edit'
-      render :action => 'edit', :layout => @popup ? 'popup' : true
+      @stylesheets = %w(message form fair_dates)
+      render :action => 'edit'
     end
   end
 end

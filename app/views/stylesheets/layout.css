@@ -38,11 +38,25 @@ img {
   margin: 0em;
 }
 
+p, table {
+  padding: 0em;
+  margin: 0.54em 0em;
+}
+
 label, .label {
   font-variant: small-caps;
 }
 
-textarea { font-family: 'Overlock', sans-serif; font-size: small; }
+.center { text-align: center; }
+
+.infobox {
+  display: block;
+  background: <%=p :white %>;
+  padding: 0.54em 1.2em;
+  border: 1px solid #ccc;
+  <%=border_radius '0.5em' %>
+  margin: 0.18em 0em;
+}
 
 .no_padding { padding: 0em !important; }
 .no_margin { margin: 0em !important; }
@@ -55,6 +69,14 @@ form.button-to div { display: inline; }
 h1, h2 { padding: 0em; color: <%=p :dark_green %>; }
 h1 { font-size: 150%; margin: 1.07em 0em 1.07em 0em }
 h2 { font-size: 110%; margin: 1.07em 0em 0.36em 0em }
+
+h1.empty {
+  color: <%=p :darker_gray %>;
+  text-align: center;
+  font-weight: bold;
+}
+
+#body .administration { text-align: right; }
 
 th {
   font-variant: small-caps;
@@ -165,7 +187,7 @@ ul.navigation {
 
 #body {
   background: <%=p :light_gray %>;
-  padding: 0em;
+  padding: 0.54em 1.2em;
   border: 1px solid <%=p :mid_gray %>;
   <%=border_radius '0.7em' %>
   margin: 0.54em 0em;

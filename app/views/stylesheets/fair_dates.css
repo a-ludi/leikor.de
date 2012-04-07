@@ -1,0 +1,68 @@
+#fair_dates {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+#fair_dates li.fair_date {
+  display: inline-block;
+  width: 20em;
+  margin: 0.54em 0.25em;
+  text-align: left;
+  vertical-align: top;
+}
+
+#fair_dates h2 {
+  margin: 0em 0em 0em 0em;
+  font-size: 150%;
+  color: <%=p :dark_green %>;
+}
+
+#fair_dates h2 a, #fair_dates h2 {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+#fair_dates .info {
+  list-style: none;
+  margin: 0em;
+  padding: 0ex 1em;
+  font-size: 90%;
+}
+
+#fair_dates .info .date { font-weight: bold; }
+#fair_dates .info .comment { margin-top: 0.45em; }
+
+.form .field.date { text-align: center; }
+
+.form .field.date label.header {
+  display: block;
+  width: 100%;
+}
+
+.form .field.date label {
+  display: inline;
+  width: auto;
+}
+
+.form .field.date .from, .form .field.date .to {
+  min-width: 5em;
+  width: 40%;
+}
+
+.form .field.date .from { display: block; float: left; }
+.form .field.date .to { display: block; float: right; }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:600px) {
+  #fair_dates li {
+    float: none;
+    width: auto;
+    margin-left: 0em;
+    margin-right: 0em;
+  }
+}
