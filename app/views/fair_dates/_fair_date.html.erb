@@ -1,36 +1,11 @@
-<tr class="<%= pos_class %>">
-  <td class="<%= 'date from first ' + pos_class %>">
-    <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
-  </td>
-  <td class="<%= 'dash ' + pos_class %>">&nbsp;-&nbsp;</td>
-  <td class="<%= 'date to ' + pos_class %>">
-    <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
-  </td>
-  <td class="<%= 'fair ' + pos_class %>">
-    <%= link_to_if fair_date.homepage?, fair_date.name, fair_date.homepage, :class => 'external' %>
-  </td>
-  <td class="<%= 'stand ' + pos_class %>">
-    <% if fair_date.stand? %>
-      <%= fair_date.stand %>
-    <% else %>
-      <span class="not_present">Noch unbekannt</span>
-    <% end %>
-  </td>
-  <td class="<%= 'comment ' + pos_class + unless_su(' last') %>">
-    <% if fair_date.comment? %>
-      <%= fair_date.comment %>
-    <% else %>
-      <span class="not_present">Kein Kommentar</span>
-    <% end %>
-  </td>
-  <% if logged_in? Employee %>
-    <td class="<%= 'last administration ' + pos_class %>">
+<li class="fair_date infobox">
+  <% if superuser_logged_in? %>
+    <div class="administration">
       <%= link_to(
         image_tag('pictogram/small/edit.png'),
         edit_fair_date_path(fair_date),
         :class => 'toolbutton',
-        :title => "Messetermin bearbeiten",
-        :onclick => open_popup) %>
+        :title => "Messetermin bearbeiten") %>
       <%= link_to(
         image_tag('pictogram/small/destroy.png'),
         fair_date_path(fair_date),
@@ -38,7 +13,37 @@
         :confirm => "Soll der Messetermin „#{fair_date.name}“ wirklich gelöscht werden?",
         :class => 'toolbutton',
         :title => "Messetermin löschen") %>
-    </td>
+    </div>
   <% end %>
-</tr>
+  <h2><%= fair_date.name %></h2>
+  <ul class="info">
+    <li class="date">
+      <%= l(fair_date.from_date, :format => :short).gsub ' ', '&nbsp;' %>
+      &nbsp;-&nbsp;
+      <%= l(fair_date.to_date, :format => :short_with_year).gsub ' ', '&nbsp;' %>
+    </li>
+    <li class="stand">
+      <span class="label">Stand:</span>
+      <% if fair_date.stand? %>
+        <%= fair_date.stand %>
+      <% else %>
+        <span class="not_present">noch unbekannt</span>
+      <% end %>
+    </li>
+    <% if fair_date.homepage? %>
+      <li class="website">
+        <span class="label">
+          Website:
+        </span>
+        <%= link_to nice_url(fair_date.homepage), fair_date.homepage %>
+      </li>
+    <% end %>
+  </ul>
+  <% if fair_date.comment? %>
+    <p class="comment">
+        <%= fair_date.comment %>
+    </p>
+  <% end %>
+  <%=clear_float %>
+</li>
 

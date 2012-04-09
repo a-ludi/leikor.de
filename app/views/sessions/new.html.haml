@@ -1,17 +1,17 @@
-#message_window
+#message_window.form
   - form_tag session_path do
     = hidden_field_tag 'referer', @referer
     %h1 Anmelden
     - if flash[:wrong_login_or_password]
       .message.error.center Falscher Benutzername oder Passwort.
     .message
-      %p
+      %p.field
         = label_tag :login, t('activerecord.attributes.user.login')
-        = text_field_tag :login, @login, :class => 'value', :tabindex => 1
-      %p
+        = text_field_tag :login, @login, :tabindex => 1
+      %p.field
         = label_tag :password, t('activerecord.attributes.user.password')
         %small= link_to '(vergessen?)', new_reset_password_request_path, :tabindex => 3
-        = password_field_tag :password, nil, :class => 'value', :tabindex => 2
+        = password_field_tag :password, nil, :tabindex => 2
     .response
       = submit_tag 'Anmelden!'
       %p

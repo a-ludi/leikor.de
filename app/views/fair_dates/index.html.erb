@@ -1,27 +1,21 @@
-<div id="fair_dates_mobile">
-  <p id="new_fair_date" class="administration">
-    <% if logged_in? Employee %>
-      <%= link_to(
-        image_tag('pictogram/medium/new.png'),
-        new_fair_date_path,
-        :onclick => open_popup,
-        :class => 'toolbutton',
-        :title => 'Neuen Messetermin erstellen'
-      ) %>
-    <% end %>
-  </p>
-  <% unless @fair_dates.empty? %>
-    <ul class="fair_dates">
-      <% @fair_dates.each do |fd| %>
-        <%= render :partial => 'fair_date_mobile', :locals => {
-          :fair_date => fd} %>
-      <% end %>
-    </ul>
-    <%=clear_float %>
-  <% else %>
-    <h1 class="empty">
-      Zur Zeit keine Messetermine.
-    </h1>
+<div class="administration">
+  <% if logged_in? Employee %>
+    <%= link_to(
+      image_tag('pictogram/medium/new.png'),
+      new_fair_date_path,
+      :class => 'toolbutton',
+      :title => 'Neuen Messetermin erstellen'
+    ) %>
   <% end %>
 </div>
+<% unless @fair_dates.empty? %>
+  <ul id="fair_dates">
+    <%= render :partial => 'fair_date', :collection => @fair_dates %>
+  </ul>
+  <%=clear_float %>
+<% else %>
+  <h1 class="empty">
+    Zur Zeit keine Messetermine.
+  </h1>
+<% end %>
 

@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
+
 class FairDatesController < ApplicationController
+  after_filter :save_updated_at, :only => [:update, :create]
   before_filter :employee_required, :except => [:index]
-  after_filter :save_updated_at, :only => [:update]
   
   def index
     @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
-    @stylesheets = %w(static fair_dates/index Markdown)
+    @stylesheets = %w(fair_dates Markdown)
     @title = 'Messetermine'
   end
   
@@ -14,11 +15,10 @@ class FairDatesController < ApplicationController
       fd.from_date = Date.today
       fd.to_date = fd.from_date >> 1
     end
-    @stylesheets = %w(message fair_dates/edit)
+    @stylesheets = %w(message form fair_dates)
     @title = 'Neuer Messetermin'
-    @popup = params[:popup]
     
-    render :action => 'edit', :layout => (@popup ? 'popup' : true)
+    render :action => 'edit'
   end
   
   def create
@@ -33,11 +33,8 @@ class FairDatesController < ApplicationController
   
   def edit
     @fair_date = FairDate.find params[:id]
-    @stylesheets = %w(message fair_dates/edit)
+    @stylesheets = %w(message form fair_dates)
     @title = 'Messetermin bearbeiten'
-    @popup = params[:popup]
-    
-    render :layout => 'popup' if @popup
   end
   
   def update
@@ -61,18 +58,15 @@ class FairDatesController < ApplicationController
 private
   
   def try_save_and_render_response(options={})
-    @stylesheets = %w(message)
-    @popup = params[:popup]
     if @fair_date.save
-      @title ||= flash[:message].title
-      if @popup
-        render :action => 'success', :layout => 'popup'
-      else
-        redirect_to fair_dates_path
-      end
+      @title ||= flash[:message][:title]
+      @stylesheets = %w(fair_dates)
+      
+      redirect_to fair_dates_path
     else
-      @stylesheets << 'fair_dates/edit'
-      render :action => 'edit', :layout => @popup ? 'popup' : true
+      @stylesheets = %w(message form fair_dates)
+      
+      render :action => 'edit'
     end
   end
 end

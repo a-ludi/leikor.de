@@ -50,9 +50,7 @@
       <div id="top_navigation">
         <h1 style="display: none;">Navigation</h1>
         <ul class="navigation">
-          <!--a>News</a-->
           <li><%= link_to 'Sortiment', :categories, :class => 'first' %></li>
-          <!--a>Angebote</a-->
           <li><%= link_to 'Messetermine', fair_dates_path %></li>
           <% unless logged_in? Employee %>
             <li><%= static_link_to :'ueber-uns', :class => 'last' %></li>
