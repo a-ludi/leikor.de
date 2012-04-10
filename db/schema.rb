@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314172756) do
+ActiveRecord::Schema.define(:version => 20120409095432) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(:version => 20120314172756) do
   end
 
   add_index "articles", ["article_number"], :name => "by_article_number", :unique => true
+
+  create_table "blog_posts", :force => true do |t|
+    t.string   "public_id"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "editor_id"
+    t.string   "groups"
+    t.boolean  "is_mailed"
+    t.boolean  "is_published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
