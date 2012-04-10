@@ -7,11 +7,23 @@
   width: 100%;
 }
 
-.form .field input, .form .field textarea {
+.form .field input, .form .field textarea, .form .field .check_box {
   display: block;
   width: 100%;
   font-family: 'Overlock', sans-serif;
   font-size: 100%;
+}
+
+.form .field .check_box { text-align: left; }
+
+.form .field .check_box input, .form .field .check_box label {
+  display: inline;
+  width: auto;
+}
+
+.form ul.field {
+  padding: 0em;
+  list-style: none;
 }
 
 .form input[type=button], .form input[type=submit], .form input[type=reset] {

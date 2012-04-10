@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # German translations for Ruby on Rails
 # by Clemens Kofler (clemens@railway.at)
 # contributors:
@@ -271,6 +273,7 @@ de:
       secure_user_request/reset_password: Passwort zurücksetzen
       secure_user_request/confirm_registration: Registrierung bestätigen
       notifier: Benachrichtiger
+      blog_post: Blogbeitrag
       
     attributes:
       article:
@@ -301,6 +304,15 @@ de:
         external_id: Externe ID
         action: Aktion
         memo: Notiz
+      blog_post:
+        public_id: Öffentliche ID
+        title: Titel
+        body: Textkörper
+        author: Author
+        editor: Bearbeiter
+        groups: Gruppen
+        is_mailed: wurde gemailt
+        is_published: wurde veröffentlicht
   flash_message:
     title:
       error: Fehler

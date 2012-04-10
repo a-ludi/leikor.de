@@ -15,7 +15,7 @@ function copyToClipboard(text) {
   window.prompt ("Zum kopieren [Strg+C] drücken. Danach mit [Enter] den Dialog beenden.", text);
 }
 
-var MyUtils = {
+var StringUrlSafeExtension = {
   URL_TRANSSCRIPTION: new Hash({
     'ä'  : 'ae',     'ö': 'oe',
     'ü'  : 'ue',     'ß': 'ss',
@@ -23,15 +23,25 @@ var MyUtils = {
     '@'  : ' at ',   '°': 'grad',
     '\\+': ' plus ', 'µ': 'my'}),
   
-  copyAsLogin: function(self, target) {
-    var output = $(self).value.toLowerCase();
-    MyUtils.URL_TRANSSCRIPTION.each(function(translation) {
+  urlSafe: function() {
+    var output = this.toLowerCase();
+    StringUrlSafeExtension.URL_TRANSSCRIPTION.each(function(translation) {
       output = output.gsub(translation.key, translation.value);
     });
-    output = output.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/[-]+/, '-').gsub(/(^[-]|[-]$)/, '');
+    output = output.gsub(/[^a-zA-Z0-9]+/, '-');
+    output = output.gsub(/[-]+/, '-');
+    output = output.gsub(/(^[-]|[-]$)/, '');
     
-    $(target).value = output;
+    return output;
+  }
+}
+Object.extend(String.prototype, StringUrlSafeExtension);
+
+var MyUtils = {
+  copyUrlSafe: function(self, target) {
+    $(target).value = $(self).value.urlSafe();
   },
+  
   recreatePositionalClasses: function(element) {
     elements = element.parentNode.childElements()
     for(var i=0; i < elements.length; i++) {

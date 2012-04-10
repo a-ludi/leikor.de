@@ -9,8 +9,9 @@
         = label_tag :login, t('activerecord.attributes.user.login')
         = text_field_tag :login, @login, :tabindex => 1
       %p.field
-        = label_tag :password, t('activerecord.attributes.user.password')
-        %small= link_to '(vergessen?)', new_reset_password_request_path, :tabindex => 3
+        %span.label{:style => 'font-variant: normal;'}
+          = label_tag :password, t('activerecord.attributes.user.password'), :style => 'display: inline;'
+          %small= link_to '(vergessen?)', new_reset_password_request_path, :tabindex => 3
         = password_field_tag :password, nil, :tabindex => 2
     .response
       = submit_tag 'Anmelden!'

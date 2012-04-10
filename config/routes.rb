@@ -129,16 +129,25 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :post})
   map.resource(:session, :as => 'sitzung',
       :collection => {:destroy => :get},
-      :path_names => {:new => 'anmelden', :destroy => 'abmelden'}) do |session|
-  end
+      :path_names => {:new => 'anmelden', :destroy => 'abmelden'})
+
   map.resources(
       :secure_user_requests,
       :as => 'sichere-benutzeranfrage',
       :member => {:destroy => :get}, # FIXME shouldn't use GET on destroy action
       :except => [:index, :show, :new],
       :path_names => {:destroy => 'abbrechen'},
-      :name_prefix => nil) do |request|
-  end
+      :name_prefix => nil)
+  
+  map.resources(
+      :blog_posts,
+      :controller => 'Blog',
+      :except => [:index])
+  map.blog(
+      'blog',
+      :controller => 'Blog',
+      :action => 'index',
+      :conditions => {:method => :get})
   
   map.stylesheet(
       'stylesheets/*path',
@@ -146,7 +155,7 @@ ActionController::Routing::Routes.draw do |map|
       :action => 'stylesheet',
       :conditions => {:method => :get})
   
-  map.root :path => 'ueber-uns', :controller => 'static', :action => 'show', :welcome => true
+  map.root :controller => 'blog'
   map.static(
       '*path',
       :controller => 'static',
