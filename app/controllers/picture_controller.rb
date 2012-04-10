@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class PictureController < ApplicationController
   include Paperclip::Storage::Database::ControllerClassMethods
   

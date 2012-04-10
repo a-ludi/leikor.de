@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class Article < ActiveRecord::Base
   include UtilityHelper
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/

@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class ArticlesController < ApplicationController
   before_filter :employee_required, :except => [:index]
   before_filter :fetch_categories, :only => [:index, :edit_order]

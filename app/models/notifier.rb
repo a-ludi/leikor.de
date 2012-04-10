@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 class Notifier < ActionMailer::Base
   include ActionController::Layout
   include ActionController::Translation

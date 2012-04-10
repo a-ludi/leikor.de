@@ -59,9 +59,6 @@ private
   
   def try_save_and_render_response(options={})
     if @fair_date.save
-      @title ||= flash[:message][:title]
-      @stylesheets = %w(fair_dates)
-      
       redirect_to fair_dates_path
     else
       @stylesheets = %w(message form fair_dates)

@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class CategoriesController < ApplicationController
   before_filter :employee_required, :except => [:index, :subindex]
   before_filter :fetch_categories, :only => [:index, :subindex]

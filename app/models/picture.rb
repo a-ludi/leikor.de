@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 class Picture < ActiveRecord::Base
   belongs_to :article
   has_attached_file(

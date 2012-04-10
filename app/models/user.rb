@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 require 'bcrypt'
 
 class User < ActiveRecord::Base
@@ -14,6 +15,8 @@ class User < ActiveRecord::Base
   has_one :confirm_registration_request,
       :class_name => 'SecureUserRequest::ConfirmRegistration',
       :dependent => :delete
+  has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id'
+  has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id'
   
   validates_presence_of :login, :password, :name, :type, :primary_email_address
   validates_format_of :primary_email_address, :with => User::EMAIL_FORMAT, :message => 'hat ein
