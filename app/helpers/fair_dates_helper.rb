@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 module FairDatesHelper
   def unless_su(string)
     logged_in?(Employee) ? '' : string

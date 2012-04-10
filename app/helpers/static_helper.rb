@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+
 module StaticHelper
   def static_link_to(path, options={}, html_options=nil)
     if StaticController::REGISTERED_PAGES[path]
