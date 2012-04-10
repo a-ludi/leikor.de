@@ -63,17 +63,19 @@ private
   
   def create_reset_password
     @user = User.find_by_login params[:login]
+    
+    flash[:message].success :partial => 'secure_user_requests/reset_password/success'
+    
     if @user
       if @user.confirm_registration_request.nil?
         @secure_user_request = @user.reset_password_request || @user.create_reset_password_request
         @secure_user_request.touch
         Notifier.deliver_reset_password_request @user
-        
-        flash[:message].success :partial => 'secure_user_requests/reset_password/success'
       else
         flash[:message].error :partial => 'sessions/not_confirmed'
       end
     end
+    
     redirect_to :root
   end
   
