@@ -1,0 +1,19 @@
+#message_window.form
+  = make_if_error_messages_for @blog_post
+  - form_for @blog_post do |f|
+    %h1.field.message
+      = f.label :title
+      = f.text_field :title
+    %p.field= f.text_area :body
+    -#%p.field
+      = f.label :groups
+      = f.text_field :groups
+    %ul.field
+      %li.check_box
+        = f.check_box :is_mailed
+        = f.label :is_mailed
+      %li.check_box
+        = f.check_box :is_published
+        = f.label :is_published
+    %p.response= submit_tag 'Speichern!'
+      

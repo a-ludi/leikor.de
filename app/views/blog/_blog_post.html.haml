@@ -1,0 +1,19 @@
+%li.blog_post.infobox
+  .info
+    .created_at= l(blog_post.created_at.to_date, :format => :long)
+    - if logged_in? Employee
+      .author von #{blog_post.author.name}
+  %h1
+    = link_to blog_post.title, blog_post_path(blog_post), :class => 'title'
+    = link_to image_tag('pictogram/medium/edit.png'), edit_blog_post_path(blog_post),
+      :class => 'toolbutton', :title => 'Blogbeitrag bearbeiten'
+    = link_to image_tag('pictogram/medium/destroy.png'), '#',
+      :class => 'toolbutton', :title => 'Blogbeitrag löschen'
+  = clear_float
+  %p=blog_post.body
+  - if blog_post.created_at != blog_post.updated_at
+    %p.edited
+      %span.edited_at Zuletzt bearbeitet am #{l(blog_post.updated_at)}
+      - if logged_in? Employee and blog_post.editor != blog_post.author
+        %span.editor von #{blog_post.editor.name}
+    = clear_float

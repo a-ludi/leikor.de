@@ -1,0 +1,38 @@
+#blog_posts {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+#blog_posts .blog_post {
+  margin: 0.54em 0em;
+}
+
+#blog_posts h1 {
+  margin-top: 0em;
+}
+
+#blog_posts h1 .title {
+  margin-right: 1em;
+}
+
+#blog_posts .blog_post .info {
+  float: right;
+  text-align: right;
+}
+
+#blog_posts .created_at {
+  font-size: 150%;
+  color: <%=p :mid_gray %>;
+}
+
+#blog_posts .author { color: <%=p :darker_gray %>; }
+
+#blog_posts .edited {
+  float: right;
+  margin-top: 1.08em;
+  padding: 0.54em 1em 0em 1em;
+  border-top: 1px solid <%=p :mid_gray %>;
+  color: <%=p :mid_gray %>;
+  font-size: 80%;
+}

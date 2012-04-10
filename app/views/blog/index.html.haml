@@ -1,0 +1,8 @@
+.administration
+  - if logged_in? Employee
+    = link_to image_tag('pictogram/medium/new.png'), new_blog_post_path, :class => 'toolbutton',
+      :title => 'Neuen Beitrag schreiben'
+- unless @blog_posts.empty?
+  %ul#blog_posts= render :partial => 'blog_post', :collection => @blog_posts
+- else
+  %h1.empty Noch keine Beiträge vorhanden.
