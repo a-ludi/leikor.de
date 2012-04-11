@@ -59,6 +59,7 @@ textarea { font-family: 'Overlock', sans-serif; font-size: small; }
 .no_margin { margin: 0em !important; }
 .no_break { white-space: nowrap; }
 .center { text-align: center; }
+.error { color: <%=p :mid_red %>; }
 
 .infobox {
   display: block;

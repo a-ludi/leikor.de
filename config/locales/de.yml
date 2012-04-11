@@ -318,3 +318,19 @@ de:
       error: Fehler
       success: Erfolg
       default: Hinweis
+  views:
+    notifier:
+      blog_post:
+        title: "Neuigkeiten: %{title}"
+    labels:
+      blog_post:
+        mail?: mailen?
+        publish?: veröffentlichen?
+        already_mailed: wurde bereits gemailt
+        mailed?:
+          'true': wurde gemailt
+          'false': wurde nicht gemailt
+        published?:
+          'true': wurde veröffentlicht
+          'false': wurde nicht veröffentlicht
+

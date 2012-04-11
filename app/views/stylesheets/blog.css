@@ -18,7 +18,10 @@
 
 #blog_posts .blog_post .info {
   float: right;
-  text-align: right;
+}
+
+#blog_posts .blog_post .flags {
+  margin: 0em 0em;
 }
 
 #blog_posts .created_at {

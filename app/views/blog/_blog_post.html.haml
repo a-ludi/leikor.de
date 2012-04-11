@@ -3,6 +3,13 @@
     .created_at= l(blog_post.created_at.to_date, :format => :long)
     - if logged_in? Employee
       .author von #{blog_post.author.name}
+  - if logged_in? Employee
+    .flags
+      = image_tag("pictogram/medium/public_#{blog_post.is_published}.png",
+        :class => 'annotation_mark',
+        :title => t(blog_post.is_published?, :scope => 'views.labels.blog_post.published?'))
+      = image_tag("pictogram/medium/mail_#{blog_post.is_mailed}.png", :class => 'annotation_mark',
+        :title => t(blog_post.is_mailed?, :scope => 'views.labels.blog_post.mailed?'))
   %h1
     = link_to blog_post.title, blog_post_path(blog_post), :class => 'title'
     - if logged_in? Employee

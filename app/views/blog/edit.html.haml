@@ -10,10 +10,13 @@
       = f.text_field :groups
     %ul.field
       %li.check_box
-        = f.check_box :is_mailed
-        = f.label :is_mailed
+        = check_box_tag :mail?, 'yes'
+        = label_tag :mail?, t('mail?', :scope => 'views.labels.blog_post')
+        - if @blog_post.is_mailed?
+          %span.error
+            (#{t 'views.labels.blog_post.already_mailed'})  
       %li.check_box
         = f.check_box :is_published
-        = f.label :is_published
+        = f.label :is_published, t('publish?', :scope => 'views.labels.blog_post')
     %p.response= submit_tag 'Speichern!'
       
