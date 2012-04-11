@@ -22,7 +22,7 @@ private
   
   def custom_or_default_title
     begin
-      t! @klass.to_s, :scope => 'flash_message.title'
+      I18n.t! @klass.to_s, :scope => 'flash_message.title'
     rescue I18n::MissingTranslationData
       t 'flash_message.title.default'
     end
