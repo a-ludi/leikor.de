@@ -57,7 +57,7 @@ protected
     @current_user = nil
   end
   
-  def prepare_flash_message(message=nil)
+  def prepare_flash_message
     flash[:message] = FlashMessage.new  unless flash.include? :message
   end
   
@@ -65,7 +65,7 @@ protected
     return true if logged_in?
     
     flash[:referer] = request.referer  if flash[:referer].blank?
-    prepare_flash_message :class => 'error', :text => 'Bitte melden Sie sich an.'
+    flash[:message].error 'Bitte melden Sie sich an.'
     respond_to do |format|
       format.html { redirect_to new_session_path }
       format.js { render :partial => 'layouts/push_message' }
@@ -77,7 +77,7 @@ protected
   def employee_required
     return true  if logged_in? Employee
     
-    prepare_flash_message :class => 'error', :text => 'Dazu haben Sie keine Erlaubnis.'
+    flash[:message].error 'Dazu haben Sie keine Erlaubnis.'
     respond_to do |format|
       format.html { redirect_to (request.referer || :root) }
       format.js { render :partial => 'layouts/push_message' }
