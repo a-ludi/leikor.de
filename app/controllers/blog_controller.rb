@@ -57,6 +57,12 @@ class BlogController < ApplicationController
   end
 
   def destroy
+    @blog_post = BlogPost.find params[:id]
+    @blog_post.destroy
+    
+    flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gelöscht."
+    
+    redirect_to blog_posts_path
   end
 
 end

@@ -8,7 +8,9 @@
     - if logged_in? Employee
       = link_to image_tag('pictogram/medium/edit.png'), edit_blog_post_path(blog_post),
         :class => 'toolbutton', :title => 'Blogbeitrag bearbeiten'
-      = link_to image_tag('pictogram/medium/destroy.png'), '#',
+      = link_to image_tag('pictogram/medium/destroy.png'), blog_post_path(blog_post),
+        :method => :delete,
+        :confirm => "Soll der Blogbeitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
         :class => 'toolbutton', :title => 'Blogbeitrag löschen'
   = clear_float
   %p=blog_post.body
