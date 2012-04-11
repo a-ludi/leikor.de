@@ -2,15 +2,20 @@
 
 class BlogController < ApplicationController
   before_filter :employee_required, :except => [:index, :show]
+  before_filter :set_select_conditions
+  after_filter :mail_blog_post, :only => [:create, :update]
   
   def index
-    @blog_posts = BlogPost.all :order => 'created_at DESC', :limit => 20
+    @blog_posts = BlogPost.all(
+        :order => 'created_at DESC',
+        :limit => 20,
+        :conditions => @select_conditions)
     @title = "Blog"
     @stylesheets = %w(blog)
   end
   
   def show
-    @blog_post = BlogPost.find params[:id]
+    @blog_post = BlogPost.find params[:id], :conditions => @select_conditions
     @title = "#{@blog_post.title} (Blog)"
     @stylesheets = %w(blog)
   end
@@ -65,4 +70,21 @@ class BlogController < ApplicationController
     redirect_to blog_posts_path
   end
 
+protected
+  
+  def set_select_conditions
+    @select_conditions = if logged_in? Employee
+      nil
+    else
+      {:is_published => true}
+    end
+  end
+  
+  def mail_blog_post
+    if params[:mail?] == 'yes'
+      User.all.each { |user| Notifier.deliver_blog_post user, @blog_post }
+      @blog_post.is_mailed = true
+      @blog_post.save
+    end
+  end
 end
