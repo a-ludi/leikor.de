@@ -141,13 +141,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources(
       :blog_posts,
-      :controller => 'Blog',
-      :except => [:index])
-  map.blog(
-      'blog',
-      :controller => 'Blog',
-      :action => 'index',
-      :conditions => {:method => :get})
+      :as => 'blog',
+      :controller => 'Blog')
   
   map.stylesheet(
       'stylesheets/*path',
@@ -155,7 +150,7 @@ ActionController::Routing::Routes.draw do |map|
       :action => 'stylesheet',
       :conditions => {:method => :get})
   
-  map.root :controller => 'blog'
+  map.root :blog_posts
   map.static(
       '*path',
       :controller => 'static',
