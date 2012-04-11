@@ -1,12 +1,18 @@
 # -*- encoding : utf-8 -*-
 
 class BlogController < ApplicationController
-  before_filter :employee_required, :except => [:index]
+  before_filter :employee_required, :except => [:index, :show]
   
   def index
+    @blog_posts = BlogPost.all :order => 'created_at DESC', :limit => 20
     @title = "Blog"
     @stylesheets = %w(blog)
-    @blog_posts = BlogPost.all
+  end
+  
+  def show
+    @blog_post = BlogPost.find params[:id]
+    @title = "#{@blog_post.title} (Blog)"
+    @stylesheets = %w(blog)
   end
 
   def new

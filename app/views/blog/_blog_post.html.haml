@@ -5,10 +5,11 @@
       .author von #{blog_post.author.name}
   %h1
     = link_to blog_post.title, blog_post_path(blog_post), :class => 'title'
-    = link_to image_tag('pictogram/medium/edit.png'), edit_blog_post_path(blog_post),
-      :class => 'toolbutton', :title => 'Blogbeitrag bearbeiten'
-    = link_to image_tag('pictogram/medium/destroy.png'), '#',
-      :class => 'toolbutton', :title => 'Blogbeitrag löschen'
+    - if logged_in? Employee
+      = link_to image_tag('pictogram/medium/edit.png'), edit_blog_post_path(blog_post),
+        :class => 'toolbutton', :title => 'Blogbeitrag bearbeiten'
+      = link_to image_tag('pictogram/medium/destroy.png'), '#',
+        :class => 'toolbutton', :title => 'Blogbeitrag löschen'
   = clear_float
   %p=blog_post.body
   - if blog_post.created_at != blog_post.updated_at
