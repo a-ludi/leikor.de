@@ -142,6 +142,13 @@ ActionController::Routing::Routes.draw do |map|
   map.resources(
       :blog_posts,
       :as => 'blog',
+      :member => {
+          :mail => :post,
+          :publish => :post},
+      :path_names => {
+          :new => 'schreiben',
+          :mail => 'mailen',
+          :publish => 'veroeffentlichen'},
       :controller => 'Blog')
   
   map.stylesheet(
