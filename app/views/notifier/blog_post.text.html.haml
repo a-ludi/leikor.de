@@ -1,0 +1,8 @@
+%p
+  Hallo #{@user.name},
+%p
+  es gibt Neuigkeiten von LEIKOR!
+%blockquote
+  = @blog_post.body
+  %p{:style => 'text-align: right;'}
+    %a{:href => blog_post_url(@blog_post)} (weiterlesen ...)
