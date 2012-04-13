@@ -76,8 +76,8 @@ module ApplicationHelper
     end
   end
   
-  def clear_float
-    '<div class="clear"></div>'
+  def clear_float tag_name=:div
+    content_tag tag_name, nil, :class => 'clear'
   end
   
   def hard_spaced(text)
