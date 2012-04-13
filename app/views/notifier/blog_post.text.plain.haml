@@ -1,8 +1,8 @@
 :plain
   Hallo #{@user.name},
-
-  es gibt Neuigkeiten von LEIKOR! 
-
-  #{@blog_post[:body]}
   
-  Mehr auf <#{blog_post_url @blog_post}>
+  es gibt Neuigkeiten von LEIKOR! Den folgenden Beitrag können Sie auch jederzeit [auf unserer Wesite nachlesen](#{blog_post_url(@blog_post)}).
+
+  ---
+  
+  #{@blog_post[:body]}

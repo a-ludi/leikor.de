@@ -2,7 +2,7 @@
 
 class BlogController < ApplicationController
   before_filter :employee_required, :except => [:index, :show]
-  before_filter :set_select_conditions
+  before_filter :set_select_conditions, :only => [:index, :show]
   after_filter :mail_blog_post, :only => [:create, :update, :mail]
   
   def index
@@ -99,6 +99,7 @@ protected
     respond_to do |format|
       format.js do
         flash[:message].clear!
+        @no_message = true
         render :partial => 'flags', :locals => {:blog_post => @blog_post}
       end
       
@@ -118,11 +119,11 @@ protected
   
   def mail_blog_post
     if params[:mail?] == 'yes'
-      User.all.each { |user| Notifier.deliver_blog_post user, @blog_post }
+      [User.first].each { |user| Notifier.deliver_blog_post user, @blog_post }
       @blog_post.is_mailed = true
       @blog_post.save!
       
-      flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gemailt."
+      flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gemailt." unless @no_message
     end
   end
 end

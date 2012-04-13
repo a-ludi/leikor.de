@@ -1,8 +1,8 @@
-%p
+:maruku
   Hallo #{@user.name},
-%p
-  es gibt Neuigkeiten von LEIKOR!
-%blockquote
-  = @blog_post.body
-  %p{:style => 'text-align: right;'}
-    %a{:href => blog_post_url(@blog_post)} (weiterlesen ...)
+  
+  es gibt Neuigkeiten von LEIKOR! Den folgenden Beitrag können Sie auch jederzeit [auf unserer Wesite nachlesen](#{blog_post_url(@blog_post)}).
+  
+  ---
+
+= @blog_post.body
