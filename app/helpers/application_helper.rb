@@ -32,10 +32,6 @@ module ApplicationHelper
     return classes.join ' '
   end
   
-  def parse_formatted_text(input_text)
-    output_text = input_text.gsub /[\n\r]+/, '<br>'
-  end
-  
   def index_based_positional_class(index, length, user_class='')
     classes = user_class.blank? ? [] : [user_class]
     classes << 'first' if index == 0
@@ -86,5 +82,28 @@ module ApplicationHelper
   
   def hard_spaced(text)
     text.gsub ' ', '&nbsp;'
+  end
+  
+  def loading_animation(options={})
+    options = {
+      :size => :medium,
+      :class => 'loading_animation'
+    }.merge options
+    
+    options[:size] = case options[:size].to_sym
+      when :small
+        options[:path] = 'small'
+        "24x24"
+      when :medium
+        options[:path] = 'medium'
+        "32x32"
+      else
+        options[:size]
+    end
+    
+    width, height = options[:size].split('x').map{|s| s.to_i}
+    options[:style] ||= css_dimensions(width, height, 'px')
+    
+    image_tag "pictogram/#{options[:path]}/loading.gif", options
   end
 end
