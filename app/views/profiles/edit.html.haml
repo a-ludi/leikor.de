@@ -24,6 +24,9 @@
       .value= f.text_field :primary_email_address, :class => 'value'
     - if logged_in? Employee
       .profile
+        = f.label :groups
+        .infobox.groups.value= f.text_area :group_list
+      .profile
         = f.label :notes
         .infobox.notes.value= f.text_area :notes
     -#

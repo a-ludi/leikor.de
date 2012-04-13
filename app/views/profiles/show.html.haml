@@ -12,10 +12,10 @@
       .value
         = link_to 'Passwort ändern', edit_password_path
   .profile.login
-    .label= t('activerecord.attributes.user.login') + ':'
+    .label= t('activerecord.attributes.user.login')
     .value= @user.login
   .profile.primary_email_address
-    .label= t('activerecord.attributes.user.primary_email_address') + ':'
+    .label= t('activerecord.attributes.user.primary_email_address')
     .value= @user.primary_email_address
   - if not @user.registration? :confirmed
     .error.message
@@ -34,9 +34,21 @@
       - form_tag confirm_registration_request_path, :method => :post do
         = hidden_field_tag :login, @user.login
         %p= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')} wiederholen"
-  - if logged_in? Employee and not @user.notes.blank?
+  - if logged_in? Employee
     .profile
-      .infobox.notes.value= parse_formatted_text @user.notes
+      .label= t('activerecord.attributes.user.groups')
+      - unless @user.group_list.blank?
+        .infobox.groups.value.tags
+          %ul
+            = render :partial => 'tag', :collection => @user.groups, :locals => {:user => @user}
+          = clear_float
+      - else
+        .infobox.groups.value.tags
+          %h1.empty Keine Gruppen
+    - unless @user.notes.blank?
+      .label= t('activerecord.attributes.user.notes')
+      .profile
+        .infobox.notes.value= @user.notes
   -#
     %h2 Kontakt
     .profile.name

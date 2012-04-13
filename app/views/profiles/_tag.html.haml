@@ -1,0 +1,6 @@
+- content_tag_for :li, user, tag, :class => 'tag' do
+  %span.name= tag
+  :javascript
+    var item = $('#{dom_id user, tag}');
+    item.insert("#{escape_javascript link_to_remote('&times;', :url => '#', :html => {:class => 'remove'})}");
+  

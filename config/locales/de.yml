@@ -291,6 +291,7 @@ de:
         new_password: Neues Passwort
         confirm_new_password: Neues Passwort bestätigen
         name: Name
+        groups: Gruppen
         notes: Notizen
         primary_email_address: Primäre E-Mail-Adresse
       fair_date:

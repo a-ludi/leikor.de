@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
   marked_up_with_maruku :notes
-  acts_as_taggable_on :marks
+  acts_as_taggable_on :marks, :groups
   has_one :reset_password_request,
       :class_name => 'SecureUserRequest::ResetPassword',
       :dependent => :delete
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
       @email_address = self.primary_email_address
       @name = self.name
     else
-      logger.warn "[warning] not implemented <User.email_address_with_name>"
+      logger.warn "[warning] not implemented <User#email_address_with_name> with <#{id}> given"
     end
     
     %Q("#{@name}" <#{@email_address}>)

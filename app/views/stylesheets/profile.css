@@ -61,6 +61,33 @@ ul.profile {
 .user_index h2 .toolbutton { display: block; float: right; }
 .user_index ul { margin-top: 0.54em; list-style: none; }
 
+.tags ul {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+.tags { padding: 0.405em 1.065em; }
+
+.tags .tag {
+  display: block;
+  float: left;
+  color: <%=p :dark_green %>;
+  border: 1px solid <%=p :dark_green %>;
+  background: <%=p :light_green %>;
+  <%= border_radius '1.08em' %>
+  padding: 0.135em 0.54em;
+  margin: 0.135em;
+}
+
+.tags .tag .remove {
+  position: relative;
+  bottom: 0.5em;
+  font-size: 80%;
+  height: 0.6em;
+  color: <%=p :dark_red %>;
+}
+
 /**
  * Mobile (small) Version
  */

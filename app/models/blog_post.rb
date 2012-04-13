@@ -12,6 +12,15 @@ class BlogPost < ActiveRecord::Base
   validates_markdown :body
   
   before_validation_on_create :set_public_id
+  
+#  def readers
+#    @readers = nil
+#    instructions = parse_groups
+#    # => [[:group, 'Holz'], [:group, 'Stoff'], [:junctor, :nur], [:group, 'Spiele']]
+#    instructions.each do |type, name|
+#      @readers = 
+#    end
+#  end
 
 private
   

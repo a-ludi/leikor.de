@@ -104,6 +104,10 @@ th {
 div.clear {
   clear: both !important;
   display: block !important;
+  height: 0px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
 }
 
 #message {
