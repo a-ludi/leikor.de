@@ -1,24 +1,25 @@
 <% content_tag_for :div, blog_post, :flags do %>
   <%= link_to_remote(
-    image_tag("pictogram/medium/public_#{blog_post.is_published}.png"),
+    image_tag(
+        "pictogram/medium/public_#{blog_post.is_published}.png",
+        :size => '32x32',
+        :style => 'width: 32px; height: 32px;'),
     :url => publish_blog_post_path(blog_post),
-    :confirm => (blog_post.is_published? ?
-        t('views.messages.blog_post.really_unpublish?', :title => blog_post.title) :
-        t('views.messages.blog_post.really_publish?', :title => blog_post.title)),
     :update => dom_id(blog_post, :flags),
-    :after => "this.replace('#{image_tag("pictogram/medium/loading.gif")}')",
+    :after => "this.replace('#{loading_animation}')",
     :html => {
         :href => publish_blog_post_path(blog_post),
         :title => t(blog_post.is_published?, :scope => 'views.labels.blog_post.published?')}
   )%>
   <%= link_to_remote(
-    image_tag("pictogram/medium/mail_#{blog_post.is_mailed}.png"),
+    image_tag(
+        "pictogram/medium/mail_#{blog_post.is_mailed}.png",
+        :size => '32x32',
+        :style => 'width: 32px; height: 32px;'),
     :url => mail_blog_post_path(blog_post),
     :confirm => t('views.messages.blog_post.really_mail?', :title => blog_post.title),
     :update => dom_id(blog_post, :flags),
-    :after => "this.replace('#{image_tag(
-        "pictogram/medium/loading.gif",
-        :title => 'E-Mails werden verschickt ...')}')",
+    :after => "this.replace('#{loading_animation :title => 'E-Mails werden verschickt ...'}')",
     :html => {
         :href => mail_blog_post_path(blog_post),
         :title => t(blog_post.is_mailed?, :scope => 'views.labels.blog_post.mailed?')}

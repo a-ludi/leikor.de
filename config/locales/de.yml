@@ -322,8 +322,6 @@ de:
     messages:
       blog_post:
         really_mail?: "Soll der Beitrag\n\n„%{title}“\n\nwirklich gemailt werden?"
-        really_publish?: "Soll der Beitrag\n\n„%{title}“\n\nwirklich veröffentlicht werden?"
-        really_unpublish?: "Soll die Veröffentlichung des Beitrag\n\n„%{title}“\n\nwirklich zurückgezogen werden?"
     notifier:
       blog_post:
         title: "Neuigkeiten: %{title}"
