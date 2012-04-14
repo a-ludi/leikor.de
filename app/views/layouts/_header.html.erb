@@ -1,0 +1,58 @@
+<div id="header">
+  <div id="important_links">
+    <% if logged_in? %>
+      <span class="logged_in_user">
+        <span class="name"><%= @current_user.name %></span>
+        (<%= link_to 'abmelden', destroy_session_path %>)
+      </span>
+    <% else %>
+      <%= link_to 'Anmelden', new_session_path %> |
+    <% end %>
+    <% if logged_in? Employee %>
+      <span class="nobreak">
+        <%= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de' %>
+      </span> |
+    <% end %> 
+    <% if logged_in? %>
+      <%= link_to 'Profil', my_profile_path %> |
+    <% end %>
+    <%= static_link_to :kontakt %> |
+    <%= static_link_to :impressum %> |
+    <%= static_link_to :AGB %>
+  </div>
+  <div id="logo_container">
+    <%= link_to(
+      image_tag(
+        'logo/original.png',
+        :alt => 'LEIKOR-Logo',
+        :title => 'Zurück zur Startseite'
+      ),
+      :root,
+      :class => 'original_logo medium_logo'
+    ) %>
+    <!--%= link_to(
+      image_tag(
+        'logo/medium.png',
+        :alt => 'LEIKOR-Logo',
+        :title => 'Zurück zur Startseite'
+      ),
+      :root,
+      :class => 'medium_logo'
+    ) %-->
+  </div>
+  <div id="top_navigation">
+    <h1 style="display: none;">Navigation</h1>
+    <ul class="navigation">
+      <li><%= link_to 'Blog', :blog_posts, :class => 'first' %></li>
+      <li><%= link_to 'Sortiment', :categories %></li>
+      <li><%= link_to 'Messetermine', fair_dates_path %></li>
+      <% unless logged_in? Employee %>
+        <li><%= static_link_to :'ueber-uns', :class => 'last' %></li>
+      <% else %>
+        <li><%= static_link_to :'ueber-uns' %></li>
+        <li><%= link_to 'Profile', profiles_path, :class => 'last' %></li>
+      <% end %>
+    </ul>
+    <%= clear_float %>
+  </div>
+</div>
