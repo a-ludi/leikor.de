@@ -1,6 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class BlogController < ApplicationController
+  include ReadersFromGroupsHelper
+  
   before_filter :employee_required, :except => [:index, :show]
   before_filter :set_select_conditions, :only => [:index, :show]
   after_filter :mail_blog_post, :only => [:create, :update, :mail]
@@ -45,6 +47,7 @@ class BlogController < ApplicationController
     @title = "Blogbeitrag bearbeiten"
     @stylesheets = %w(message form blog)
     @blog_post = flash[:blog_post] || BlogPost.find(params[:id])
+    @readers = @blog_post.readers
   end
 
   def update
@@ -87,6 +90,12 @@ class BlogController < ApplicationController
     flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gelöscht."
     
     redirect_to blog_posts_path
+  end
+  
+  def readers
+    @readers = readers_from_groups params[:groups]
+    
+    render :layout => false
   end
 
 protected

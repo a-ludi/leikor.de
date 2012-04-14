@@ -145,11 +145,14 @@ ActionController::Routing::Routes.draw do |map|
       :member => {
           :mail => :post,
           :publish => :post},
+      :collection => {
+          :readers => :get},
       :path_names => {
           :new => 'schreiben',
           :mail => 'mailen',
-          :publish => 'veroeffentlichen'},
-      :controller => 'Blog')
+          :publish => 'veroeffentlichen',
+          :readers => 'leser'},
+      :controller => 'blog')
   
   map.stylesheet(
       'stylesheets/*path',

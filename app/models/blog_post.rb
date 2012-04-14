@@ -2,7 +2,6 @@
 
 class BlogPost < ActiveRecord::Base
   set_primary_key :public_id
-  
   marked_up_with_maruku :body
   belongs_to :author, :class_name => 'User'
   belongs_to :editor, :class_name => 'User'
@@ -13,14 +12,7 @@ class BlogPost < ActiveRecord::Base
   
   before_validation_on_create :set_public_id
   
-#  def readers
-#    @readers = nil
-#    instructions = parse_groups
-#    # => [[:group, 'Holz'], [:group, 'Stoff'], [:junctor, :nur], [:group, 'Spiele']]
-#    instructions.each do |type, name|
-#      @readers = 
-#    end
-#  end
+  include ReadersFromGroupsHelper::InstanceMethods
 
 private
   

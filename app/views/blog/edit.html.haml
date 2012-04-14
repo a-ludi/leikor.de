@@ -5,9 +5,16 @@
       = f.label :title
       = f.text_field :title
     %p.field= f.text_area :body
-    -#%p.field
+    %p.field
       = f.label :groups
-      = f.text_field :groups
+      = f.text_field :groups, :id => dom_id(@blog_post, :groups),
+        :onkeyup => 'update_readers_from_groups.deploy(0.6)',
+        :onfocus => "$('readers').show()", :onblur => "$('readers').hide()"
+    %div#readers.preview{:style => 'display: hidden;'}= render :template => 'blog/readers'
+    :javascript
+      update_readers_from_groups = new DelayedFunction(function () {
+        #{update_readers_from_groups}
+      });
     %ul.field
       %li.check_box
         = check_box_tag :mail?, 'yes'

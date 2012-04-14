@@ -1,3 +1,23 @@
+var DelayedFunction = Class.create({
+  initialize: function(func) {
+    this.func = func;
+    this.call_id = 0;
+  },
+  
+  deploy: function(delay_in_seconds) {
+    this.call_id++;
+    return this.deployCall.bind(this).delay(delay_in_seconds, this.call_id);
+  },
+  
+  deployCall: function(call_id) {
+    if(this.call_id > call_id)
+      return undefined;
+    
+    this.call_id = 0;
+    return this.func();
+  }
+});
+
 function openPopup (href) {
   if(href.search(/\?/) == -1)
     href += '?popup=1';
