@@ -39,15 +39,15 @@ protected
     session[:user_id] = @current_user = nil
   end
   
-  def logged_in?(object=User)
+  def logged_in?(class_or_user=User)
     return false if @current_user.nil?
     
-    if object.is_a? Class
-      @current_user.is_a? object
-    elsif object.is_a? User
-      @current_user == object
+    if class_or_user.is_a? Class
+      @current_user.is_a? class_or_user
+    elsif class_or_user.is_a? User
+      @current_user == class_or_user
     else
-      logger.warn "[warning] checked logged_in? on an unknown object <#{object.inspect}>"
+      logger.warn "[warning] checked logged_in? on an unknown object <#{class_or_user.inspect}>"
       return false
     end
   end

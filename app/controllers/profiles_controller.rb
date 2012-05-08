@@ -148,8 +148,6 @@ protected
   end
   helper_method :type_as_param
   
-private
-  
   def show_profile
     @stylesheets = %w(message profile Markdown)
     @title = "#{@user.name}s Profil"

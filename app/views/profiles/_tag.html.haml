@@ -2,5 +2,25 @@
   %span.name= tag
   :javascript
     var item = $('#{dom_id user, tag}');
-    item.insert("#{escape_javascript link_to_remote('&times;', :url => '#', :html => {:class => 'remove'})}");
-  
+    item.insert("#{escape_javascript link_to_remote('&times;', :url => group_path(@user, tag),
+      :method => :delete,
+      :html => {:href => group_path(@user, tag), :class => 'remove'},
+      :success => "$('#{dom_id user, tag}').fade();",
+      :failure => "new Effect.Highlight('#{dom_id user, tag}', {startcolor: '#{p :dark_red}', endcolor: '#{p :light_green}'})"
+      )}");
+    new Ajax.InPlaceEditor(item.down('.name'), "#{escape_javascript group_path(@user, tag)}", {
+      okControl: 'button',
+      cancelControl: 'button',
+      cancelText: "Abbrechen",
+      highlightColor: '#{p :white}',
+      highlightEndColor: '#{p :light_green}',
+      savingText: "speichern ...",
+      submitOnBlur: true,
+      ajaxOptions: #{options_for_ajax :method => :put},
+      callback: function(form, value) {
+        return Object.toQueryString({
+          new_groups: value,
+          #{request_forgery_protection_token}: '#{escape_javascript form_authenticity_token}'
+        });
+      }
+    });

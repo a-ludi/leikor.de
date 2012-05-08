@@ -91,7 +91,8 @@ class CategoriesController < ApplicationController
     render :partial => 'layouts/push_message'
   end
 
-private
+protected
+
   def set_random_html_id_or_take_from_param
     @html_id = params[:html_id] ? params[:html_id] : "new_category_#{Time.now.usec.to_s}"
   end

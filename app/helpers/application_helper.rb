@@ -51,8 +51,8 @@ module ApplicationHelper
     ) unless record.errors.empty?
   end
   
-  def set_focus_to(id)
-    javascript_tag "$('#{id}').focus()"
+  def set_focus_to(html_id)
+    javascript_tag "$('#{html_id}').focus()"
   end
   
   def css_dimensions(width, height, unit=nil)

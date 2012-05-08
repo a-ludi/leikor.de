@@ -38,11 +38,11 @@ class Article < ActiveRecord::Base
     subcategory.url_hash(hash)
   end
   
-  def format(target)
-    if target === :price
+  def format(attribute)
+    if attribute === :price
       ('%.2f' % price).sub '.', ','
     else
-      read_attribute(target)
+      read_attribute(attribute)
     end
   end
   

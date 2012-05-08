@@ -37,14 +37,16 @@
   - if logged_in? Employee
     .profile
       .label= t('activerecord.attributes.user.groups')
-      - unless @user.group_list.blank?
-        .infobox.groups.value.tags
-          %ul
-            = render :partial => 'tag', :collection => @user.groups, :locals => {:user => @user}
-          = clear_float
-      - else
-        .infobox.groups.value.tags
-          %h1.empty Keine Gruppen
+      .infobox.groups.value.tags
+        %ul#groups
+          = render :partial => 'tag', :collection => @user.groups, :locals => {:user => @user}
+          :javascript
+            $('groups').insert(new Element('li', {'class': 'new tag'}));
+            item = $('groups').childElements().last();
+            item.insert("#{escape_javascript link_to_remote('+',
+              :url => profile_groups_path(@user.login, :id=>'Add'), :update => 'groups',
+              :html => {:href => profile_groups_path(@user)})}")
+        = clear_float
     - unless @user.notes.blank?
       .label= t('activerecord.attributes.user.notes')
       .profile

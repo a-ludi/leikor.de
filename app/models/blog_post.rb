@@ -14,7 +14,7 @@ class BlogPost < ActiveRecord::Base
   
   include ReadersFromGroupsHelper::InstanceMethods
 
-private
+protected
   
   def set_public_id
     self[:public_id] ||= title.url_safe

@@ -4,11 +4,6 @@ class FlashMessage < ActionController::Base
   include ActionController::Translation
   DEFAULTS = {:klass => nil, :title => nil, :text => ''}
   
-  attr_writer :title
-  
-  # Returns <tt>@klass.to_s</tt>.
-  def klass; @klass.to_s; end
-  
   # Returns the title of this message. If not explicitly set <tt>FlashMessage</tt> will try to guess
   # an apropriate title like <tt>translate @klass.to_s, :scope => 'flash_message.title'<tt>. If none
   # is found <tt>flash_message.title.default</tt> will be used.
@@ -18,6 +13,15 @@ class FlashMessage < ActionController::Base
     custom_or_default_title
   end
 
+  attr_writer :title
+  
+  # Returns <tt>@klass.to_s</tt>.
+  def klass; @klass.to_s; end
+  
+protected
+
+  attr_writer :klass
+  
 private
   
   def custom_or_default_title
@@ -41,10 +45,6 @@ public
       else {:text => @text}
     end
   end
-  
-protected
-
-  attr_writer :klass
   
 public
   

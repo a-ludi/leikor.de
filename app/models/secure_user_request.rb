@@ -7,6 +7,8 @@ class SecureUserRequest < ActiveRecord::Base
 
   validates_presence_of :type, :user_id
   
+  after_validation_on_create :generate_external_id
+
   def lifetime
     self.class::LIFETIME
   end
@@ -14,12 +16,8 @@ class SecureUserRequest < ActiveRecord::Base
   def expired?
     self.updated_at.since(lifetime).past?
   end
-  
-  def after_validation_on_create
-    generate_external_id
-  end
 
-private
+protected
   
   def generate_external_id
     randomness_parameters = [

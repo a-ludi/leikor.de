@@ -6,7 +6,6 @@ class Category < ActiveRecord::Base
   has_many :articles, :through => :subcategories, :order => 'ord ASC'
   
   validates_presence_of :name
-  validates_uniqueness_of :name
   validates_numericality_of :ord, :greater_than_or_equal_to => 0, :only_integer => true
   
   def self.human_name

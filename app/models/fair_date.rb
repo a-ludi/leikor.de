@@ -17,7 +17,7 @@ class FairDate < ActiveRecord::Base
     set_date_on :to_date, value, Date.today + 1.month
   end
   
-private
+protected
   
   def set_date_on attr, value, default_value
     catch :format_error do

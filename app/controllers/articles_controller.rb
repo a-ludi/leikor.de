@@ -101,7 +101,7 @@ class ArticlesController < ApplicationController
     render :partial => 'layouts/push_message'
   end
 
-private
+protected
 
   def generated_article_number
     ('%06i' % Time.now.usec)[0...6].insert(-2, '.')

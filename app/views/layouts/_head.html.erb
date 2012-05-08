@@ -21,7 +21,7 @@
 <% @stylesheets.each do |s| %>
   <%= stylesheet_link_tag s %>
 <% end unless @stylesheets.nil? %>
-<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :all, :cache => true %>
 <!--[if lt IE 9]>
 	<%= javascript_include_tag 'respond.min.js' %>
 <![endif]-->

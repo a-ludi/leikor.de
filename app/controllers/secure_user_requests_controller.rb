@@ -51,7 +51,7 @@ class SecureUserRequestsController < ApplicationController
     redirect_to :root
   end
 
-private
+protected
 
   def new_reset_password
     @secure_user_request = SecureUserRequest::ResetPassword.new

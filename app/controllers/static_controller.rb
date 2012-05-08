@@ -41,13 +41,9 @@ class StaticController < ApplicationController
     end
   end
   
-private
+protected
   
   def stylesheet_exists? path
     File.exists? File.join(STYLESHEETS_PATH, path)
-  end
-  
-  def preview_email_layout
-    render :text => params[:text] || '[CONTENT]', :layout => 'mail'
   end
 end

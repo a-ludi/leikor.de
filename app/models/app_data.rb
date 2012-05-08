@@ -17,7 +17,8 @@ class AppData < ActiveRecord::Base
     record.save!
   end
 
-private
+protected
+
   def self.type_casted(record)
     case record.data_type
       when 'String'

@@ -55,7 +55,7 @@ class FairDatesController < ApplicationController
     redirect_to fair_dates_path
   end
   
-private
+protected
   
   def try_save_and_render_response(options={})
     if @fair_date.save

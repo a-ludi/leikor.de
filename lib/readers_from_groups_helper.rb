@@ -9,6 +9,8 @@ module ReadersFromGroupsHelper
   JUNCTOR_OPTIONS_HASH = {:except => {:exclude => true}, :only => {:any => true}}
 
   module InstanceMethods
+    include ReadersFromGroupsHelper
+    
     def readers
       return @readers[:users]  if not @readers.nil? and @readers[:groups] == groups
       
@@ -28,7 +30,7 @@ module ReadersFromGroupsHelper
 private
 
   def self.parse groups
-    parts = extract_parts groups || []
+    parts = extract_parts(groups || '')
     
     instructions = parts.map do |part|
       if part =~ JUNCTOR_EXCEPT_PATTERN

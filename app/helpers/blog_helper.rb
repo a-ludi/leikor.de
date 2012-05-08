@@ -2,12 +2,13 @@
 
 module BlogHelper
   def update_readers_from_groups
-    pass_groups = "Object.toQueryString({groups: $('#{dom_id(@blog_post, :groups)}').value})"
+    input_dom_id = dom_id(@blog_post, :groups)
+    pass_groups = "Object.toQueryString({groups: $('#{input_dom_id}').value})"
     remote_function(
       :url => readers_blog_posts_path,
       :with => pass_groups,
       :method => :get,
-      :update => 'readers',
-      :after => "$('readers').update('<div class=\"field\">#{loading_animation}</div>')")
+      :after => "$('#{input_dom_id}').updatePreview('<div class=\"field\">#{loading_animation}</div>')",
+      :complete => "$('#{input_dom_id}').updatePreview(request.responseText)")
   end
 end

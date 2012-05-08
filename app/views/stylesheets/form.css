@@ -33,17 +33,18 @@
 
 .form div.fieldWithErrors { display: block; text-align: left; }
 
-.form .preview { position: relative; }
-.form .preview .field {
-  position: absolute;
-  border: 1px solid <%=p :dark_green %>;
-  background: <%=p :light_green %>;
+.form .preview {
+  border: 1px solid <%=p :dark_blue %>;
+  background: <%=p :light_blue %>;
   <%= border_radius '0.5em' %>
   padding: 0.54em 1.2em;
-  color: <%=p :dark_green %>;
+  color: <%=p :dark_blue %>;
 }
 
-.form .preview .field h1.empty { color: <%=p :dark_green %>; }
+.form .preview .field span.empty {
+  color: <%=p :dark_blue %>;
+  margin: 0em;
+}
 
 
 /**

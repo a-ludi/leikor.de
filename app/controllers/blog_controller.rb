@@ -47,7 +47,6 @@ class BlogController < ApplicationController
     @title = "Blogbeitrag bearbeiten"
     @stylesheets = %w(message form blog)
     @blog_post = flash[:blog_post] || BlogPost.find(params[:id])
-    @readers = @blog_post.readers
   end
 
   def update
@@ -95,7 +94,7 @@ class BlogController < ApplicationController
   def readers
     @readers = readers_from_groups params[:groups]
     
-    render :layout => false
+    render :partial => 'readers', :object => @readers
   end
 
 protected
