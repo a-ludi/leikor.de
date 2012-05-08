@@ -239,6 +239,7 @@ de:
         one:    "Speichern nicht möglich: ein Fehler."
         other:  "Speichern nicht möglich: %{count} Fehler."
       invalid_markup: "hat Fehler in der Textauszeichnung"
+      invalid_format: "hat ein ungültiges Format. Gültig ist: %{valid_format}"
     template: &errors_template
       header:
         one:    "Konnte %{model} nicht speichern: ein Fehler."
