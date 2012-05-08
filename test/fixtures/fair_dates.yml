@@ -1,10 +1,12 @@
+# TODO: update to current DB
+
 one:
   from_date: 2012-01-15
   to_date: 2012-01-18
   name: Dekor-Messe
   homepage: 'http://www.example.com/'
   stand: Halle 5, Block A, Abschnitt 3
-  comment: Unsere Dekor-Artikel werden im Vordergrund stehen.
+  comment: "Unsere **Dekor-Artikel** werden im Vordergrund stehen."
 
 two:
   from_date: 2012-01-28

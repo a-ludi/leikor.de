@@ -1,11 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
 one:
-  external_id: MyString
-  action: MyString
-  memo: MyText
+  external_id: "6466a73419aa2d29e8f42457d0898f41"
+  type: SecureUserRequest::ConfirmRegistration
+  memo: Has some unused text.
+  user: max
 
 two:
-  external_id: MyString
-  action: MyString
-  memo: MyText
+  external_id: "f7740d3057569e542d15ade48afb03fa"
+  type: SecureUserRequest::ResetPassword
+  memo: This is never used. Maybe I should delete it.
+  user: john

@@ -1,11 +1,37 @@
+# TODO: add groups to users
+
 john:
   login: john
   # password = sekret
   password: $2a$10$Xb00In6pGvg9UF68CdTQdOJ7aEB9wmUR1ikUwB35g0Ij5fpSHTQom
   name: John Doe
+  type: Employee
+  notes: ""
+  primary_email_address: "john@doe.com"
 
 max:
   login: Max
   # password = geheim
   password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
   name: Max Müller
+  type: Employee
+  notes: ""
+  primary_email_address: "max@mueller.com"
+
+moritz:
+  login: moritz
+  # password = geheim
+  password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
+  name: Moritz Bleibtreu
+  type: Customer
+  notes: "Moritz bleibt **immer** treu."
+  primary_email_address: "moritz@bleibtreu.com"
+
+meyer:
+  login: meyer-und-co
+  # password = geheim
+  password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
+  name: "Meyer & Co."
+  type: Customer
+  notes: ""
+  primary_email_address: "moritz@bleibtreu.com"

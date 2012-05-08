@@ -1,21 +1,21 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  public_id: MyString
-  title: MyString
-  body: MyText
-  author_id: 1
-  editor_id: 1
-  groups: MyString
-  is_mailed: false
+mailed_post:
+  public_id: mailed-post
+  title: Mailed Post
+  body: "This has lots of **marked up** and _fancy_ text. You should know."
+  author: max
+  editor: max
+  groups: Holz bis auf Spielzeug
+  # users = [john]
+  is_mailed: true
   is_published: false
 
-two:
-  public_id: MyString
-  title: MyString
-  body: MyText
-  author_id: 1
-  editor_id: 1
-  groups: MyString
+public_post:
+  public_id: public-post
+  title: Public Post
+  body: "Lorem ipsum."
+  author: max
+  editor: john
+  groups: Alle
+  # users = [max, john]
   is_mailed: false
-  is_published: false
+  is_published: true

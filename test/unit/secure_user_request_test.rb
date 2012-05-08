@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SecureUserRequestTest < ActiveSupport::TestCase
   # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  test "with errors" do
+    assert false
   end
 end

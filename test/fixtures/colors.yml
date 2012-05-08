@@ -1,9 +1,11 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+red:
+  label: red
+  hex: "#ff0000"
 
-one:
-  label: MyString
-  hex: MyString
+green:
+  label: green
+  hex: "#00ff00"
 
-two:
-  label: MyString
-  hex: MyString
+blue:
+  label: blue
+  hex: "#0000ff"
