@@ -2,36 +2,32 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-  test "should have a subcategory" do
-    articles.each {|a| assert_equal categories(:sub1), a.subcategory}
-  end
-  
-  test "record invalid without name" do
+  test "should have a name" do
     articles(:one).name = ''
     assert_errors_on articles(:one), :on => :name
   end
   
-  test "record invalid without price" do
+  test "should have a price" do
     articles(:one).price = ''
     assert_errors_on articles(:one), :on => :price
   end
   
-  test "record invalid without article number" do
+  test "should have a article number" do
     articles(:one).article_number = ''
     assert_errors_on articles(:one), :on => :article_number
   end
   
-  test "record invalid without subcategory" do
+  test "should have a subcategory" do
     articles(:one).subcategory = nil
     assert_errors_on articles(:one), :on => :subcategory
   end
   
-  test "record invalid with non-numeric price" do
+  test "should have a numeric price" do
     articles(:one).price = 'Five Dollars Fiveteen'
     assert_errors_on articles(:one), :on => :price
   end
   
-  test "record invalid with low price" do
+  test "should have a positive price" do
     articles(:one).price = 0.0
     assert_errors_on articles(:one), :on => :price
     
@@ -39,12 +35,12 @@ class ArticleTest < ActiveSupport::TestCase
     assert_errors_on articles(:one), :on => :price
   end
   
-  test "record invalid with non-unique article number" do
+  test "should have a unique article number" do
     articles(:one).article_number = articles(:two).article_number
     assert_errors_on articles(:one), :on => :article_number
   end
   
-  test "record invalid with malformatted article number" do
+  test "should have a well-formatted article number" do
     for mf_number in ['123456.1', '12345.123', 'a2345.1', '1234.12', '12345,1']
       articles(:one).article_number = mf_number
       assert_errors_on articles(:one), :on => :article_number, :message => "article number #{mf_number} is invalid"
@@ -82,8 +78,13 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal :custom_value, url_hash[:custom_key]
   end
   
-  test "format price has correct format" do
+  test "format :price has correct format" do
     articles(:one).price = 24.57
     assert_equal '24,57', articles(:one).format(:price)
+  end
+  
+  test "description should be marked up with maruku" do
+    assert_equal articles(:one).description,
+      "<p>This <em>is a</em> <strong>marked up</strong> description!</p>"
   end
 end

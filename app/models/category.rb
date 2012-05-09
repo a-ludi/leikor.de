@@ -2,6 +2,7 @@
 
 class Category < ActiveRecord::Base
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
+  OVERVIEW_COUNT = 4
   has_many :subcategories, :order => 'ord ASC', :dependent => :destroy
   has_many :articles, :through => :subcategories, :order => 'ord ASC'
   
@@ -29,10 +30,16 @@ class Category < ActiveRecord::Base
   end
   
   def overview
-    articles.find(:all, :limit => 4, :order => 'ord ASC, RANDOM()')
+    articles.find(:all, :limit => Category::OVERVIEW_COUNT, :order => 'ord ASC, RANDOM()')
   end
   
-protected
+  def next_subcategory_ord
+    if subcategory = subcategories.last(:order => 'ord ASC')
+      subcategory.ord + 1
+    else
+      0
+    end
+  end
   
   def self.next_ord
     if category = Category.last(:order => 'ord ASC')

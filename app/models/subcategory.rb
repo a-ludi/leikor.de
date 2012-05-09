@@ -14,12 +14,10 @@ class Subcategory < Category
     hash = {:subcategory => to_param}.merge(options)
     category.url_hash(hash)
   end
-  
-protected
-  
-  def self.next_ord(category_id)
-    if subcategory = Subcategory.first(:order => 'ord DESC', :conditions => ["category_id = ?", category_id])
-      subcategory.ord + 1
+
+  def next_article_ord
+    if article = articles.last(:order => 'ord ASC')
+      article.ord + 1
     else
       0
     end

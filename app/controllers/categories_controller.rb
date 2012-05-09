@@ -98,8 +98,15 @@ protected
   end
   
   def create_sub_or_category_from_params
-    if_category = Proc.new {@category = Category.create params[:category].merge(:ord => Category.next_ord)}
-    if_subcategory = Proc.new {@category = Subcategory.create params[:subcategory].merge(:ord => Subcategory.next_ord(params[:subcategory][:category_id]))}
+    if_category = Proc.new {
+        @category = Category.create params[:category].merge(
+            :ord => Category.next_ord)}
+    
+    if_subcategory = Proc.new {
+        category = Category.find params[:subcategory][:category_id]
+        @category = Subcategory.create params[:subcategory].merge(
+            :ord => category.next_subcategory_ord)}
+    
     do_for_sub_or_category if_category, if_subcategory
   end
   

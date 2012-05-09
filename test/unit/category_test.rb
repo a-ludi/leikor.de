@@ -19,45 +19,37 @@ class Categorytest < ActiveSupport::TestCase
     assert_equal 5, categories(:super).articles.length
   end
   
-  test "articles should be ordered alphabetically" do
-    assert_equal(articles(:one, :three, :two, :five, :four),
+  test "articles should be ordered by ord" do
+    assert_equal(articles(:one, :five, :four, :three, :two),
       categories(:super).articles)
   end
   
-  test "record invalid without name" do
+  test "should have a name" do
     categories(:super).name = ''
     assert_errors_on categories(:super), :on => :name
   end
   
-  test "record invalid with non-unique name" do
-    categories(:super).name = categories(:sub1).name
-    assert_errors_on categories(:super), :on => :name
-    
-    categories(:sub1).name = categories(:sub2).name
-    assert_errors_on categories(:sub1), :on => :name
-  end
-  
-  test "record invalid without ord" do
+  test "should have a ord" do
     categories(:super).ord = nil
     assert_errors_on categories(:super), :on => :ord
   end
   
-  test "record invalid with non-numeric ord" do
+  test "should have a numerical ord" do
     categories(:super).ord = 'first'
     assert_errors_on categories(:super), :on => :ord
   end
   
-  test "record invalid with ord lower than 0" do
+  test "should have a ord >= 0" do
     categories(:super).ord = -1
     assert_errors_on categories(:super), :on => :ord
   end
   
-  test "record invalid with non-integral ord" do
+  test "should have a integral ord" do
     categories(:super).ord = 1.5
     assert_errors_on categories(:super), :on => :ord
   end
   
-  test "human_name returns String" do
+  test "human_name should be a string" do
     assert_instance_of String, Category.human_name
   end
   
@@ -72,7 +64,7 @@ class Categorytest < ActiveSupport::TestCase
       c.to_param)
   end
   
-  test "self.from_param returns correct record" do
+  test "::from_param returns correct record" do
     assert_equal(categories(:super),
       Category.from_param(categories(:super).to_param))
     assert_equal(categories(:sub1),
@@ -112,5 +104,14 @@ class Categorytest < ActiveSupport::TestCase
   test "overview returns no duplicates" do
     c = categories(:sub1)
     assert_items_unique c.overview, :not_empty => true
+  end
+  
+  test "::next_ord should return highest_ord + 1" do
+    assert_equal Category.next_ord, 3
+  end
+  
+  test "next_subcategory_ord should return highest_ord + 1" do
+    assert_equal categories(:super).next_subcategory_ord, 3
+    assert_equal categories(:super_fst).next_subcategory_ord, 0
   end
 end
