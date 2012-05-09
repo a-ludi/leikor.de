@@ -21,6 +21,8 @@ module MarkedUpWithMarukuHelper
     #       Maruku.new(self[:text]).to_html
     #     end
     #   end
+    #
+    # TODO: implicitly create a validation
     def marked_up_with_maruku(*attrs)
       attrs.each do |attr|
         send :define_method, attr.to_sym do
