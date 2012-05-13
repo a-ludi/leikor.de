@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
   marked_up_with_maruku :notes
+  # TODO untested `acts_as_taggable_on :marks, :groups`; how to?
   acts_as_taggable_on :marks, :groups
   has_one :reset_password_request,
       :class_name => 'SecureUserRequest::ResetPassword',
@@ -18,15 +19,18 @@ class User < ActiveRecord::Base
   has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id'
   has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id'
   
-  validates_presence_of :login, :password, :name, :type, :primary_email_address
+  validates_presence_of :name, :login, :password, :type, :primary_email_address
+  # TODO replace message with translated version
   validates_format_of :primary_email_address, :with => User::EMAIL_FORMAT, :message => 'hat ein
       falsches Format.'.squish
   validates_length_of :login, :in => 4..32
+  # TODO replace message with translated version
   validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem
       Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen
       <tt>.-</tt> bestehen.'.squish
   validates_uniqueness_of :login
   validate :password_longer_than
+  # TODO test `validates_markdown :notes`; how to? 
   validates_markdown :notes
   
   def password
@@ -34,6 +38,8 @@ class User < ActiveRecord::Base
   end
 
   def password=(new_password)
+    save_password_length new_password
+    
     return if new_password.blank?
     
     save_password_length new_password
@@ -49,23 +55,29 @@ class User < ActiveRecord::Base
     case state
       when :confirmed then self.confirm_registration_request.nil?
       when :denied then self.mark_list.include? 'ConfirmRegistration'
-      else throw ArgumentError.new "Unknown state <#{state.inspect}> in User.registration?"
+      else raise ArgumentError.new "Unknown state <#{state.inspect}> in User.registration?"
     end
   end
   
   def registration=(state)
     case state
-      when :denied then self.mark_list << 'ConfirmRegistration'
-      else throw ArgumentError.new "Unknown state <#{state.inspect}> in User.registration="
+      when :denied
+        unless self.registration? :confirmed
+          self.mark_list << 'ConfirmRegistration'
+        else
+          raise "must not deny already confirmed registrations; user id=#{id}"
+        end
+      else raise ArgumentError.new "Unknown state <#{state.inspect}> in User.registration="
     end
   end
   
   def email_address_with_name(id=:primary)
-    if id == :primary
-      @email_address = self.primary_email_address
-      @name = self.name
-    else
-      logger.warn "[warning] not implemented <User#email_address_with_name> with <#{id}> given"
+    case id
+      when :primary
+        @email_address = self.primary_email_address
+        @name = self.name
+      else
+        logger.warn "[warning] not implemented <User#email_address_with_name> with <#{id}> given"
     end
     
     %Q("#{@name}" <#{@email_address}>)
