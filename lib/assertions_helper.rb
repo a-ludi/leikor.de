@@ -41,13 +41,6 @@ module AssertionsHelper
     assert record_class.create(options).save, message
   end
   
-  def assert_includes(collection, *objs)
-    includes_all = true
-    objs.each{|obj| includes_all &= collection.include? obj}
-    message = "#{collection.inspect} does not include all of #{objs.inspect}"
-    assert includes_all, message
-  end
-  
   def assert_exact_match(pattern, string, options={})
     options[:message] = "#{string} does not exactly match #{pattern}" unless options[:message]
     assert string =~ UtilityHelper::delimited(pattern), options[:message]

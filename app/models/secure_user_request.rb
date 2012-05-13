@@ -20,13 +20,7 @@ class SecureUserRequest < ActiveRecord::Base
 protected
   
   def generate_external_id
-    randomness_parameters = [
-      self.class,
-      self.user_id,
-      self.memo,
-      ActiveSupport::SecureRandom.base64(32)]
-    
-    self.external_id = Digest::MD5.hexdigest randomness_parameters.join
+    self.external_id = Digest::MD5.hexdigest(ActiveSupport::SecureRandom.base64(32))
     
     generate_external_id unless SecureUserRequest.find_by_external_id(self.external_id).nil?
   end

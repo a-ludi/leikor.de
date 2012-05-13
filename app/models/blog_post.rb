@@ -7,7 +7,8 @@ class BlogPost < ActiveRecord::Base
   belongs_to :editor, :class_name => 'User'
   
   validates_presence_of :public_id, :title, :body, :author, :editor
-  validates_format_of :public_id, :with => /[a-z0-9-]+/
+  validates_format_of :public_id, :with => /^[a-z0-9-]+$/
+  # TODO untested, but how to?
   validates_markdown :body
   
   before_validation_on_create :set_public_id
