@@ -1,7 +1,7 @@
 <% content_tag_for :div, blog_post, :flags do %>
   <%= link_to_remote(
     image_tag(
-        "pictogram/medium/public_#{blog_post.is_published}.png",
+        "pictogram/medium/public_#{blog_post.is_published?}.png",
         :size => '32x32',
         :style => 'width: 32px; height: 32px;'),
     :url => publish_blog_post_path(blog_post),
@@ -13,7 +13,7 @@
   )%>
   <%= link_to_remote(
     image_tag(
-        "pictogram/medium/mail_#{blog_post.is_mailed}.png",
+        "pictogram/medium/mail_#{blog_post.is_mailed?}.png",
         :size => '32x32',
         :style => 'width: 32px; height: 32px;'),
     :url => mail_blog_post_path(blog_post),
