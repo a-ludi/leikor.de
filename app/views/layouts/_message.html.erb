@@ -1,7 +1,7 @@
 <% if flash.include? :message and not flash[:message].empty? %>
   <div id="message" class="<%= flash[:message].klass %>">
     <h1>
-      <%= flash[:message].title %>
+      <%= flash_message_title %>
     </h1>
     <%= render flash[:message].render_options %>
     <h1 class="close">

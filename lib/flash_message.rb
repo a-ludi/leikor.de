@@ -1,19 +1,30 @@
 # encoding: utf-8
 
-class FlashMessage < ActionController::Base
-  include ActionController::Translation
+class FlashMessage
   DEFAULTS = {:klass => nil, :title => nil, :text => ''}
   
-  # Returns the title of this message. If not explicitly set <tt>FlashMessage</tt> will try to guess
-  # an apropriate title like <tt>translate @klass.to_s, :scope => 'flash_message.title'<tt>. If none
-  # is found <tt>flash_message.title.default</tt> will be used.
+  # Returns the title or translation string of this message. If not explicitly
+  # set <tt>FlashMessage</tt> will try to guess an apropriate title like
+  # <tt>translate @klass.to_s, :scope => 'flash_message.title'<tt>. If none is
+  # found <tt>flash_message.title.default</tt> will be used.
   def title
-    return @title  unless @title.blank?
-    
-    custom_or_default_title
+    unless @title.blank?
+      @title
+    else
+      @title = custom_or_default_title
+    end
   end
 
   attr_writer :title
+  
+  # Returns <tt>true</tt> if the return value of title should be fed into
+  # <tt>translate</tt>.
+  def translate_title?
+    title
+    @translate_title
+  end
+  
+  attr_writer :translate_title
   
   # Returns <tt>@klass.to_s</tt>.
   def klass; @klass.to_s; end
@@ -25,11 +36,10 @@ protected
 private
   
   def custom_or_default_title
-    begin
-      I18n.t! @klass.to_s, :scope => 'flash_message.title'
-    rescue I18n::MissingTranslationData
-      t 'flash_message.title.default'
-    end
+    translate_title = true
+    translate_klass = @klass.to_s
+    translate_klass = 'default' if translate_klass.blank?
+    "flash_message.title.#{translate_klass}"
   end
 
 public
@@ -53,6 +63,7 @@ public
     @klass = options[:klass]
     @title = options[:title]
     @text = options[:text]
+    @translate_title = false
   end
   
   # Just pass a text and optionally a title of the error message. If no title is given it will be
@@ -89,8 +100,8 @@ public
 private
 
   def set_message(options)
-    self.klass = options[:klass]
-    self.title = options[:title]
+    klass = options[:klass]
+    title = options[:title]
     self << options[:text]
   end
 end
