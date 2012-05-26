@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class ApplicationController < ActionController::Base
+  include SslRequirement
   include ExceptionNotification::Notifiable
   
   helper :all # include all helpers, all the time
@@ -9,8 +10,10 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :primary_email_address, :external_id
 
   before_filter :fetch_logged_in_user, :fetch_updated_at, :prepare_flash_message
-  after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures] unless RAILS_ENV == 'production'
-  after_filter :log_flash_message, :except => [:stylesheet, :pictures] if RAILS_ENV == 'development'
+  after_filter :log_if_title_not_set, :except =>
+      [:stylesheet, :pictures] unless RAILS_ENV == 'production'
+  after_filter :log_flash_message, :except =>
+      [:stylesheet, :pictures] if RAILS_ENV == 'development'
 
 protected
   def log_flash_message
@@ -22,7 +25,8 @@ protected
   end
   
   def fetch_updated_at
-    @updated_at = AppData['updated_at'] || Time::mktime(2011, 11, 11, 11, 11, 11, 111)
+    @updated_at = AppData['updated_at'] || Time::mktime(2011, 11, 11, 11, 11,
+        11, 111)
     @updated_at = @updated_at.localtime("+01:00")
   end
   
@@ -47,7 +51,8 @@ protected
     elsif class_or_user.is_a? User
       @current_user == class_or_user
     else
-      logger.warn "[warning] checked logged_in? on an unknown object <#{class_or_user.inspect}>"
+      logger.warn "[warning] checked logged_in? on an unknown object
+          <#{class_or_user.inspect}>".squish
       return false
     end
   end
@@ -87,7 +92,8 @@ protected
   end
   
   def fetch_categories
-    @categories = Category.find(:all, :conditions => {:type => nil}, :order => 'ord ASC')
+    @categories = Category.find(:all, :conditions => {:type => nil},
+        :order => 'ord ASC')
     
     if params[:category] and not params[:subcategory]
       @category = Category.from_param params[:category]
@@ -115,7 +121,8 @@ protected
   
   def log_if_title_not_set
     if @title.nil? and not params[:welcome]
-      logger.warn "[warning] action <#{action_name}> in controller <#{controller_name}> does not set @title"
+      logger.warn "[warning] action <#{action_name}> in controller
+          <#{controller_name}> does not set @title".squish
     end
     
     return true

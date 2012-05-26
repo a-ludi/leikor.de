@@ -65,6 +65,26 @@ module AssertionsHelper
     assert ! collection.empty?, options[:message]
   end
   
+  def assert_skips_before_filter(filter_name)
+    begin
+      find_matching_before_filter filter_name
+    rescue StandardError
+      pass
+    else
+      flunk "before filter '#{filter_name}' not skipped"
+    end
+  end
+  
+  def assert_skips_after_filter(filter_name)
+    begin
+      find_matching_after_filter filter_name
+    rescue StandardError
+      pass
+    else
+      flunk "after filter '#{filter_name}' not skipped"
+    end
+  end
+  
   def assert_before_filter_applied(filter_name, action=nil)
     filter = find_matching_before_filter filter_name
     assert_filter_applied filter, action, :message => "before filter '#{filter_name}' not set for '#{action or 'all actions'}'"
@@ -122,9 +142,11 @@ private
     elsif filter.options.empty?
       assert ! options[:not], options[:message]
     elsif ! filter.options[:except].nil?
-      assert options[:not] ^ ! filter.options[:except].include?(action.to_s), options[:message] + 'appers not in :except'
+      assert options[:not] ^ ! filter.options[:except].include?(action.to_s),
+          options[:message] + 'appears not in :except'
     elsif ! filter.options[:only].nil?
-      assert options[:not] ^ filter.options[:only].include?(action.to_s), options[:message] + 'appers in :only'
+      assert options[:not] ^ filter.options[:only].include?(action.to_s),
+          options[:message] + 'appears in :only'
     else
       flunk 'unkown state of options occured; please investigate'
     end
