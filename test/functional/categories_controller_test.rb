@@ -37,7 +37,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "new action" do
     get 'new', {}, with_user
     
-    assert_equal Category, assigns(:category).class
+    assert_kind_of Category, assigns(:category)
     assert_includes assigns(:category).name, Category.human_name
     assert_kind_of String, assigns(:html_id)
   end
