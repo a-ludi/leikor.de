@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 
 class FairDatesController < ApplicationController
-  after_filter :save_updated_at, :only => [:update, :create]
+  after_filter :save_updated_at, :only => [:update, :create, :destroy]
   before_filter :employee_required, :except => [:index]
   
   def index
+    # TODO default ordering 'from_date ASC, to_date ASC' for FairDate
     @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
     @stylesheets = %w(fair_dates Markdown)
     @title = 'Messetermine'
