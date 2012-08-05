@@ -13,6 +13,8 @@ class CreateBlogPosts < ActiveRecord::Migration
       t.timestamps
       t.primary_key :public_id
     end
+    
+    remove_column(:blog_posts, :id)
   end
 
   def self.down

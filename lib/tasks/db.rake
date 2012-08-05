@@ -13,9 +13,9 @@ namespace :db do
       end
       
       Employee.create! do |wm|
-        wm.login = 'ano'
+        wm.login = 'anon'
         wm.password = 'wertzu'
-        wm.name = 'Ano Nymus'
+        wm.name = 'Anon Ymus'
         wm.primary_email_address = 'webmaster@leikor.de'
         wm.notes = "* Bilder einpflegen\n* Neue Artikelbeschreibungen schreiben"
       end
@@ -23,7 +23,7 @@ namespace :db do
     
     do_process 'Creating customers' do
       Customer.create! do |wm|
-        wm.login = 'meyer_und_co'
+        wm.login = 'meyer-und-co'
         wm.password = 'wertzu'
         wm.name = 'Meyer & Co.'
         wm.primary_email_address = 'webmaster@leikor.de'
@@ -57,7 +57,7 @@ namespace :db do
     end
     
     do_process 'Creating blog posts' do
-      Employee.first.blog_posts.create! do |bp|
+      Employee.first.owned_blog_posts.create! do |bp|
         bp.title = 'Hello World!'
         bp.body = 'Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor
           incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud

@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20120409095432) do
 
   add_index "articles", ["article_number"], :name => "by_article_number", :unique => true
 
-  create_table "blog_posts", :force => true do |t|
+  create_table "blog_posts", :id => false, :force => true do |t|
     t.string   "public_id"
     t.string   "title"
     t.text     "body"
