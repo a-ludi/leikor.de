@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_filter :login_required, :only => [:destroy]
   
   def new
-    @stylesheets = ['message', 'sessions']
+    @stylesheets = %w(message form)
     @title = 'Anmeldung'
     @login = session[:login] || params[:login]
     @referer = params[:referer] || request.referer

@@ -19,8 +19,8 @@ class Categorytest < ActiveSupport::TestCase
     assert_equal 5, categories(:super).articles.length
   end
   
-  test "articles should be ordered alphabetically" do
-    assert_equal(articles(:one, :three, :two, :five, :four),
+  test "articles should be ordered by ord" do
+    assert_equal(articles(:one, :two, :three, :four, :five),
       categories(:super).articles)
   end
   
