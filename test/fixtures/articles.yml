@@ -4,6 +4,7 @@ one:
   price: 1.0
   article_number: 12345.1
   subcategory: sub1
+  ord: 1
 
 two:
   name: Chiwawa
@@ -11,6 +12,7 @@ two:
   price: 1.0
   article_number: 12345.2
   subcategory: sub1
+  ord: 2
 
 three:
   name: Beluga
@@ -18,6 +20,7 @@ three:
   price: 1.0
   article_number: 12345.3
   subcategory: sub1
+  ord: 3
 
 four:
   name: Möwe
@@ -25,6 +28,7 @@ four:
   price: 1.0
   article_number: 12345.4
   subcategory: sub1
+  ord: 4
 
 five:
   name: Entenerpel
@@ -32,3 +36,4 @@ five:
   price: 1.0
   article_number: 12345.5
   subcategory: sub1
+  ord: 5
