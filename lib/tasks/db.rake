@@ -2,7 +2,7 @@
 
 namespace :db do
   desc 'Create some records for test purposes'
-  task :init_records => %w(environment db:schema:load) do
+  task :init_records => %w(environment db:abort_if_pending_migrations) do
     do_process 'Creating employees' do
       Employee.create! do |wm|
         wm.login = 'webmaster'
