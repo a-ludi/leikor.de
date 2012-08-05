@@ -63,6 +63,7 @@ protected
       redirect_to fair_dates_path
     else
       @stylesheets = %w(message form fair_dates)
+      flash[:message].clear!
       
       render :action => 'edit'
     end

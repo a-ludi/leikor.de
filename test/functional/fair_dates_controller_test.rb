@@ -31,12 +31,15 @@ class FairDatesControllerTest < ActionController::TestCase
     assert_kind_of FairDate, assigns(:fair_date)
     assert_respond_to assigns(:stylesheets), :each
     assert_non_empty_kind_of String, assigns(:title)
+    assert_template :edit
   end
   
   test "create action" do
     create_fair_date
     
     assert_kind_of FairDate, assigns(:fair_date)
+    assert_respond_to assigns(:stylesheets), :each
+    refute_empty flash[:message]
     assert_redirected_to fair_dates_path
   end
   
@@ -44,6 +47,7 @@ class FairDatesControllerTest < ActionController::TestCase
     create_fair_date :with => :errors
     
     assert_respond_to assigns(:stylesheets), :each
+    assert_empty flash[:message]
     assert_template 'edit'
   end
   
@@ -59,6 +63,7 @@ class FairDatesControllerTest < ActionController::TestCase
     update_fair_date
     
     assert_equal @fair_date[:name], assigns(:fair_date).name
+    refute_empty flash[:message]
     assert_redirected_to fair_dates_path
   end
 
@@ -66,6 +71,7 @@ class FairDatesControllerTest < ActionController::TestCase
     update_fair_date :with => :errors
     
     assert_respond_to assigns(:stylesheets), :each
+    assert_empty flash[:message]
     assert_template 'edit'
   end
   
@@ -74,6 +80,7 @@ class FairDatesControllerTest < ActionController::TestCase
     delete :destroy, {:id => @fair_date.to_param}, with_user
     
     assert_nil FairDate.find_by_id(@fair_date.id)
+    refute_empty flash[:message]
     assert_redirected_to fair_dates_path
   end
   
