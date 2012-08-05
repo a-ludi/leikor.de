@@ -63,7 +63,9 @@ class ArticleTest < ActiveSupport::TestCase
   end
   
   test "url_hash includes neccessary fields" do
-    assert_includes articles(:one).url_hash, :category, :subcategory, :article
+  	[:category, :subcategory, :article].each do |field|
+    	assert_includes articles(:one).url_hash, field
+    end
   end
   
   test "url_hash includes correct values" do
