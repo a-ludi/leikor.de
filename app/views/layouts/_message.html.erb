@@ -13,7 +13,8 @@
       ) %>
     </h1>
   </div>
-  <% flash[:message].clear! %>
+  <% log_flash_message unless RAILS_ENV == 'production' %>
+  <% flash.discard(:message) %>
 <% else %>
   <div id="message" style="display: none;"></div>
 <% end %>

@@ -8,4 +8,8 @@ module FlashMessageHelper
       flash[:message].title
     end
   end
+
+  def log_flash_message
+    logger.debug "[debug] flash[:message] = <#{flash[:message].inspect}>"
+  end
 end

@@ -11,7 +11,7 @@ class FlashMessage
     unless @title.blank?
       @title
     else
-      @title = custom_or_default_title
+      @title = klass_or_default_title
     end
   end
 
@@ -35,8 +35,8 @@ protected
   
 private
   
-  def custom_or_default_title
-    translate_title = true
+  def klass_or_default_title
+    self.translate_title = true
     translate_klass = @klass.to_s
     translate_klass = 'default' if translate_klass.blank?
     "flash_message.title.#{translate_klass}"
@@ -100,8 +100,8 @@ public
 private
 
   def set_message(options)
-    klass = options[:klass]
-    title = options[:title]
+    @klass = options[:klass]
+    @title = options[:title]
     self << options[:text]
   end
 end

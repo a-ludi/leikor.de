@@ -10,16 +10,11 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :primary_email_address, :external_id
 
   before_filter :fetch_logged_in_user, :fetch_updated_at, :prepare_flash_message
-  after_filter :log_if_title_not_set, :except =>
-      [:stylesheet, :pictures] unless RAILS_ENV == 'production'
-  after_filter :log_flash_message, :except =>
-      [:stylesheet, :pictures] if RAILS_ENV == 'development'
+  unless RAILS_ENV == 'production'
+    after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
+  end
 
 protected
-  def log_flash_message
-    logger.debug "[debug] flash[:message] = <#{flash[:message].inspect}>"
-  end
-  
   def save_updated_at
     AppData['updated_at'] = Time.now.getutc
   end
