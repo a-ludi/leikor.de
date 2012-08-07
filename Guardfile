@@ -1,7 +1,19 @@
 require 'active_support/inflector'
 
+# Restart test-server
+guard 'spork' do
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch(%r{^config/environments/.+\.rb$})
+  watch(%r{^config/initializers/.+\.rb$})
+  watch('Gemfile')
+  watch('Gemfile.lock')
+  watch('test/test_helper.rb') { :test_unit }
+  watch(%r{lib/(utility|assertions|tests)_helper.rb})
+end
+
 # Runs all tests
-guard 'minitest' do
+guard 'minitest', :drb => true do
   # tests
   watch(%r|^test/(.*)_test\.rb|)
   

@@ -1,15 +1,25 @@
 # -*- encoding : utf-8 -*-
-ENV["RAILS_ENV"] = "test"
-require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
-require 'test_help'
+require 'rubygems'
+require 'spork'
+#uncomment the following line to use spork with the debugger
+#require 'spork/ext/ruby-debug'
 
-class ActiveSupport::TestCase
-  self.use_transactional_fixtures = true
-  self.use_instantiated_fixtures  = false
-  
-  fixtures :all
+Spork.prefork do
+  ENV["RAILS_ENV"] = "test"
+  require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+  require 'test_help'
 
-  include UtilityHelper
-  include AssertionsHelper
-  include TestsHelper
+  class ActiveSupport::TestCase
+    self.use_transactional_fixtures = true
+    self.use_instantiated_fixtures  = false
+    
+    fixtures :all
+
+    include UtilityHelper
+    include AssertionsHelper
+    include TestsHelper
+  end
+end
+
+Spork.each_run do
 end

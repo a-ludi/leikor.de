@@ -27,6 +27,9 @@ GEM
       kramdown (~> 0.13.3)
     guard-minitest (0.4.0)
       guard (~> 0.4)
+    guard-spork (0.4.1)
+      guard (>= 0.8.4)
+      spork (>= 0.8.4)
     haml (3.1.4)
     kramdown (0.13.5)
     libnotify (0.6.0)
@@ -50,6 +53,9 @@ GEM
     rake (0.9.2.2)
     rb-inotify (0.8.8)
       ffi (>= 0.5.0)
+    spork (0.8.5)
+    spork-testunit (0.0.8)
+      spork (>= 0.6.0)
     ssl_requirement (0.1.0)
     syntax (1.0.0)
     thor (0.14.6)
@@ -64,6 +70,7 @@ DEPENDENCIES
   guard-bundler
   guard-markdown
   guard-minitest
+  guard-spork
   haml (~> 3.1.4)
   libnotify
   maruku (~> 0.6.0)
@@ -71,4 +78,6 @@ DEPENDENCIES
   pg (~> 0.14.0)
   rails (~> 2.3.14)
   rb-inotify
+  spork (~> 0.8.5)
+  spork-testunit (~> 0.0.8)
   ssl_requirement (~> 0.1.0)

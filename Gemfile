@@ -10,13 +10,13 @@ gem 'exception_notification', '~> 2.3.3.0'
 gem 'haml', '~> 3.1.4'
 gem 'maruku', '~> 0.6.0'
 
-group :test do
-  gem 'guard-minitest'
+group :development do
   gem 'libnotify'
   gem 'rb-inotify'
-end
-
-group :development do
+  gem 'guard-minitest'
   gem 'guard-bundler'
   gem 'guard-markdown'
+  gem 'guard-spork'
+  gem 'spork', '~> 0.8.5'
+  gem 'spork-testunit', '~> 0.0.8'
 end
