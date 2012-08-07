@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: leikor.de
+  database: leikor_de
   pool: 5
   username: leikor.de
   password: leikor.de
@@ -14,7 +14,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: leikor.de_test
+  database: leikor_de_test
   pool: 5
   username: leikor.de
   password: leikor.de
