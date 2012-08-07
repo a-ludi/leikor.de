@@ -169,4 +169,10 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'static',
       :action => 'show',
       :conditions => {:method => :get})
+  if RAILS_ENV == 'test'
+    map.test_method(
+        'test_method',
+        :controller => 'application',
+        :action => 'test_method')
+  end
 end

@@ -9,7 +9,7 @@ guard 'spork' do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('test/test_helper.rb') { :test_unit }
-  watch(%r{lib/(utility|assertions|tests)_helper.rb})
+  watch(%r{lib/(utility|assertions)_helper.rb})
 end
 
 # Runs all tests

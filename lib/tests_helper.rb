@@ -6,6 +6,15 @@ module TestsHelper
     session.merge(:user_id => user.id)
   end
   
+  def call_method(method, params=nil, options={})
+    flash = options[:flash] || {}
+    flash.merge :params => params unless params.nil?
+    
+    get 'test_method', {:method => method, :inline => options[:inline]}, flash
+    
+    @result = assigns(:result)
+  end
+  
   def self.included(base)
     base.extend ClassMethods
   end

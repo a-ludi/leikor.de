@@ -13,7 +13,15 @@ class ApplicationController < ActionController::Base
   unless RAILS_ENV == 'production'
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
   end
-
+  
+  if RAILS_ENV == 'test'
+    def test_method
+      @result = self.send params[:method].to_sym, *flash[:params]
+      
+      render :inline => params[:inline].to_s, :layout => false
+    end
+  end
+  
 protected
   def save_updated_at
     AppData['updated_at'] = Time.now.getutc
