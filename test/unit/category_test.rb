@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class Categorytest < ActiveSupport::TestCase
+  test_tested_files_checksum '8cb2054191fd5aa02c46dc229edb744c'
+
   test "type should be nil" do
     assert_nil categories(:super)[:type]
   end

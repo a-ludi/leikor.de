@@ -2,6 +2,8 @@
 require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
+  test_tested_files_checksum '10823def32af451bd91bc65c29e57c7b'
+  
   test "new edit_order create edit update ask_destroy destroy reorder actions should require
       employee" do
     [:new, :create, :edit_order, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|

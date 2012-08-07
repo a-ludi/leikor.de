@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class BlogPostTest < ActiveSupport::TestCase
+  test_tested_files_checksum '5df40e362144b1211e4c20288849a7b4'
+
   test "body should be marked up with maruku" do
     assert_equal blog_posts(:mailed_post).body, "<p>This has lots of <strong>marked up</strong> and <em>fancy</em> text. You should know.</p>"
   end

@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-TESTED_FILE_MD5 = 'ef9db708ad0bed28a0c79a361f4c6bee'
 require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
+  test_tested_files_checksum 'aaa429a6d6f20937d808577d5caca33b'
+  
   test "login required for new create edit update ask_destroy destroy reorder" do
     [:new, :create, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
       assert_before_filter_applied :employee_required, action

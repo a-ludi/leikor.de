@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-
 require 'test_helper'
 
 class NotifierTest < ActionMailer::TestCase
   tests Notifier
+  test_tested_files_checksum '966f564ee91903df8ecc29a2abc51019'
   
   test "reset password request" do
     user = users(:john)

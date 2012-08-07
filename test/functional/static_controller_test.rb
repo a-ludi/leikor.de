@@ -1,4 +1,5 @@
 # -*- encoding : utf-8 -*-
+TESTED_FILE_MD5 = '3b066dbf834d96376eeef92e16a55037'
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase

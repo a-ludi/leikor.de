@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
+  test_tested_files_checksum 'cface0e17da4a8585268e8e107431052'
+
   test "should have a name" do
     articles(:one).name = ''
     assert_errors_on articles(:one), :on => :name

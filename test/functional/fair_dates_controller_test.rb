@@ -1,3 +1,5 @@
+# -*- encdoing : utf-8 -*-
+TESTED_FILE_MD5 = '88e896c36999436e88ba64807eb8e57c'
 require 'test_helper'
 
 class FairDatesControllerTest < ActionController::TestCase

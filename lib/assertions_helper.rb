@@ -8,7 +8,7 @@ module AssertionsHelper
         if layout.nil?
           rendered.blank?
         else
-          rendered.to_s.match(layout)
+          rendered.to_s.match(layout.to_s)
         end
       end
     end
@@ -32,7 +32,8 @@ module AssertionsHelper
       assert ! obj.errors.on(options[:on]), options[:message]
     else
       options[:message] = "expected no errors on <#{obj}>" unless options[:message]
-      assert obj.valid?, options[:message]
+      obj.valid?
+      assert_empty obj.errors, options[:message]
     end
   end
   

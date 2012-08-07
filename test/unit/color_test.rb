@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class ColorTest < ActiveSupport::TestCase
+  test_tested_files_checksum 'e6f1779ffe82fed16356710d48164019'
+  
   test "should have a unique label" do
     colors(:green).label = 'red'
     assert_errors_on colors(:green), :on => :label

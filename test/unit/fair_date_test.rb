@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class FairDateTest < ActiveSupport::TestCase
+  test_tested_files_checksum '3d125d42fb80370e46f49a691af60765'
+  
   test "should have a from_date" do
     fair_dates(:one).from_date = nil
     assert_errors_on fair_dates(:one), :on => :from_date

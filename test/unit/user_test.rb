@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  test_tested_files_checksum '8e65f9f62c81c3fd39848c51ddd77529'
+
   test "notes should be marked up with maruku" do
     assert_equal users(:moritz).notes,
         "<p>Moritz bleibt <strong>immer</strong> treu.</p>"

@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-
 require 'test_helper'
 
 class Subcategorytest < ActiveSupport::TestCase
+  test_tested_files_checksum 'ce2f040793f7a60a9ce2e69ce22d19b6'
+
   test "should have a type" do
     assert_equal 'Subcategory', categories(:sub1)[:type]
   end
