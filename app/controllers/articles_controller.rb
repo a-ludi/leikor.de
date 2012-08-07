@@ -3,7 +3,7 @@
 class ArticlesController < ApplicationController
   before_filter :employee_required, :except => [:index]
   before_filter :fetch_categories, :only => [:index, :edit_order]
-  after_filter :save_updated_at, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy, :reorder]
   
   def index
     @stylesheets = %w(category/browser article/index Markdown)
@@ -18,9 +18,10 @@ class ArticlesController < ApplicationController
       @article = Article.new do |a|
         a.name = 'Neuer Artikel'
         a.description = 'Hier die Beschreibung einfügen …'
-        a.price = 0.99
+        a.price = 0.01
         a.article_number = generated_article_number
         a.subcategory_id = params[:subcategory].to_i
+        a.ord = 0
       end
     else
       @cancel = true

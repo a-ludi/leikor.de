@@ -63,7 +63,8 @@ ActionController::Routing::Routes.draw do |map|
   map.reorder_categories(
       'kategorie/sortieren',
       :controller => 'categories',
-      :action => 'reorder')
+      :action => 'reorder',
+      :conditions => {:method => :post})
   
   map.edit_articles_order(
       'sortiment/:category/:subcategory/umsortieren',
@@ -74,7 +75,7 @@ ActionController::Routing::Routes.draw do |map|
       'sortiment/:category/:subcategory/sortieren',
       :controller => 'articles',
       :action => 'reorder',
-      :conditions => {:method => :put})
+      :conditions => {:method => :post})
   map.ask_destroy_article(
       'sortiment/:category/:subcategory/:article/loeschen',
       :controller => 'articles',

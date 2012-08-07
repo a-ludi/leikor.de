@@ -3,7 +3,7 @@
 class CategoriesController < ApplicationController
   before_filter :employee_required, :except => [:index, :subindex]
   before_filter :fetch_categories, :only => [:index, :subindex]
-  after_filter :save_updated_at, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy, :reorder]
 
   def index
     @stylesheets = ['category/browser', 'category/index']
@@ -27,17 +27,13 @@ class CategoriesController < ApplicationController
       Category.new
     @category.name = "Neue #{@category.class.human_name}"
     set_random_html_id_or_take_from_param
-    @cancel = true unless params[:cancel].blank?
+    @cancel = (not params[:cancel].blank?)
   end
   
   def create
     create_sub_or_category_from_params
     @html_id = params[:html_id]
-    if @category.save
-      @partial = 'category'
-    else
-      @partial = 'form'
-    end
+    @partial = (@category.save ? 'category' : 'form')
     render :action => 'edit'
   end
   
