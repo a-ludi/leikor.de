@@ -171,8 +171,12 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :get})
   if RAILS_ENV == 'test'
     map.test_method(
-        'test_method',
+        'test/test_method',
         :controller => 'application',
         :action => 'test_method')
+    map.set_title(
+        'test/set_title',
+        :controller => 'application',
+        :action => 'set_title')
   end
 end

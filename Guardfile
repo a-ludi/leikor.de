@@ -1,7 +1,7 @@
 require 'active_support/inflector'
 
 # Restart test-server
-guard 'spork' do
+guard 'spork', :wait => 60 do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch(%r{^config/environments/.+\.rb$})
@@ -9,7 +9,7 @@ guard 'spork' do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('test/test_helper.rb') { :test_unit }
-  watch(%r{lib/(utility|assertions)_helper.rb})
+  watch(%r{lib/(assertions|utility|tests)_helper.rb})
 end
 
 # Runs all tests

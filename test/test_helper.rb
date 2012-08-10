@@ -15,13 +15,13 @@ Spork.prefork do
     
     fixtures :all
 
-    include UtilityHelper
     include AssertionsHelper
+    include TestsHelper
+    include UtilityHelper
   end
 end
 
 Spork.each_run do
   class ActiveSupport::TestCase
-    include TestsHelper
   end
 end

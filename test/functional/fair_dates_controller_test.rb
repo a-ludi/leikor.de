@@ -3,6 +3,8 @@ TESTED_FILE_MD5 = '88e896c36999436e88ba64807eb8e57c'
 require 'test_helper'
 
 class FairDatesControllerTest < ActionController::TestCase
+  test_tested_files_checksum '88e896c36999436e88ba64807eb8e57c'
+
   test "new create edit update destroy actions should require employee" do
     [:new, :create, :edit, :update, :destroy].each do |action|
       assert_before_filter_applied :employee_required, action

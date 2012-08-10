@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   filter_parameter_logging :password, :primary_email_address, :external_id
 
-  before_filter :fetch_logged_in_user, :fetch_updated_at, :prepare_flash_message
+  before_filter :fetch_current_user, :fetch_updated_at, :prepare_flash_message
   unless RAILS_ENV == 'production'
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
   end
@@ -18,7 +18,13 @@ class ApplicationController < ActionController::Base
     def test_method
       @result = self.send params[:method].to_sym, *flash[:params]
       
-      render :inline => params[:inline].to_s, :layout => false
+      render :inline => params[:render].to_s, :layout => false  if params[:render] != false
+    end
+    
+    def set_title
+      @title = params[:title] || 'This is a test case'
+      
+      render :inline => '', :layout => false
     end
   end
   
@@ -33,93 +39,66 @@ protected
     @updated_at = @updated_at.localtime("+01:00")
   end
   
+  def prepare_flash_message
+    flash[:message] = FlashMessage.new  unless flash.include? :message
+  end
+  
   def login_user!(user)
     session[:user_id] = user.id
     session[:login] = user.login
     
-    fetch_logged_in_user
+    fetch_current_user
   end
   
   def logout_user!
-    flash[:message].clear!  unless logged_in?
+    flash[:message].clear!  unless logged_in? # why did i do this?
     
     session[:user_id] = @current_user = nil
   end
   
   def logged_in?(class_or_user=User)
-    return false if @current_user.nil?
-    
-    if class_or_user.is_a? Class
-      @current_user.is_a? class_or_user
-    elsif class_or_user.is_a? User
-      @current_user == class_or_user
-    else
-      logger.warn "[warning] checked logged_in? on an unknown object
-          <#{class_or_user.inspect}>".squish
-      return false
-    end
+    class_or_user === @current_user
   end
   
-  def fetch_logged_in_user
+  def fetch_current_user
     return if @current_user = User.find_by_id(session[:user_id])
     @current_user = nil
   end
-  
-  def prepare_flash_message
-    flash[:message] = FlashMessage.new  unless flash.include? :message
-  end
-  
+
   def user_required
-    return true if logged_in?
-    
-    flash[:referer] = request.referer  if flash[:referer].blank?
-    flash[:message].error 'Bitte melden Sie sich an.'
-    respond_to do |format|
-      format.html { redirect_to new_session_path }
-      format.js { render :partial => 'layouts/push_message' }
-    end
-    
-    return false
+    logged_in? or set_up_user_required_message
   end
   
   def employee_required
-    return true  if logged_in? Employee
-    
-    flash[:message].error 'Dazu haben Sie keine Erlaubnis.'
-    respond_to do |format|
-      format.html { redirect_to (request.referer || :root) }
-      format.js { render :partial => 'layouts/push_message' }
-    end
-    
-    return false
+    logged_in? Employee or set_up_user_required_message 'Dazu haben Sie keine Erlaubnis.'
   end
   
   def fetch_categories
-    @categories = Category.find(:all, :conditions => {:type => nil},
-        :order => 'ord ASC')
+    @categories = Category.find_all_by_type nil, :order => 'ord ASC'
     
-    if params[:category] and not params[:subcategory]
-      @category = Category.from_param params[:category]
-    elsif params[:subcategory]
+    if params[:subcategory]
       @subcategory = Subcategory.from_param params[:subcategory]
       @category = @subcategory.category
+    elsif params[:category]
+      @category = Category.from_param params[:category]
     end
     
     return true
   end
   
+  def not_found(message=nil, options={})
+    options = {:log => false}.merge options
+    logger.warn message if options[:log]
+    raise ActionController::RoutingError.new(message || 'Not found')
+  end
+
   def render_to_nested_layout(options={})
+    logger.warn "[warning] method render_to_nested_layout is deprecated"
     options[:outer_layout] = 'application' if options[:outer_layout].nil?
     
     options[:text] = render_to_string options
     options[:layout] = options[:outer_layout]
     render options
-  end
-  
-  def not_found(message, options={})
-    options = {:log => false}.merge options
-    logger.warn message if options[:log]
-    raise ActionController::RoutingError.new(message || 'Not found')
   end
   
   def log_if_title_not_set
@@ -129,5 +108,19 @@ protected
     end
     
     return true
+  end
+
+private
+
+  #TODO user translation for message
+  def set_up_user_required_message(message='Bitte melden Sie sich an.')
+    flash[:referer] = request.referer  if flash[:referer].blank?
+    flash[:message].error message
+    respond_to do |format|
+      format.html { redirect_to new_session_path }
+      format.js { render :partial => 'layouts/push_message' }
+    end
+    
+    return false
   end
 end

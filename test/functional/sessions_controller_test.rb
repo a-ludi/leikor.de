@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
-TESTED_FILE_MD5 = '9dfa13ecb27ae99dd7c27d13231533d9'
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
+  test_tested_files_checksum '9dfa13ecb27ae99dd7c27d13231533d9'
+
   test "login required for logout" do
     assert_before_filter_applied :user_required, :destroy
   end

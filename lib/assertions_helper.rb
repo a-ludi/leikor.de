@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 module AssertionsHelper
+  def refute_blank(object, message=nil)
+    refute object.blank?, (message || "expected non-blank object")
+  end
+  
   def assert_layout(layout, message=nil)
     clean_backtrace do
       rendered = @response.layout.to_s
@@ -111,14 +115,25 @@ module AssertionsHelper
     assert_not_empty object
   end
 
-  def assert_logs(&proc)
-    @controller.logger = MockLogger.new @controller.logger
-    yield
-    assert @controller.logger.logged?, "no message logged"
-    @controller.logger = @controller.logger.original_logger
+  def assert_logs(msg=nil, &proc)
+    assertion_method = Proc.new {|logged, msg| assert logged, msg}
+    test_logs assertion_method, (msg || "no message logged"), &proc
+  end
+
+  def refute_logs(msg=nil, &proc)
+    assertion_method = Proc.new {|logged, msg| refute logged, msg}
+    test_logs assertion_method, (msg || "message logged"), &proc
   end
 
 private
+  def test_logs(assertion_method, msg, &proc)
+    @controller.logger = MockLogger.new @controller.logger
+    yield
+    logged = @controller.logger.logged?
+    @controller.logger = @controller.logger.original_logger
+    assertion_method.call logged, msg
+  end
+  
   class MockLogger
     def initialize(logger)
       @original_logger = logger

@@ -3,14 +3,22 @@
 module TestsHelper
   def with_user(user=:john, session={})
     user = users(user) if user.is_a? Symbol
+    @user = user
     session.merge(:user_id => user.id)
   end
   
-  def call_method(method, params=nil, options={})
+  def call_method(method, params=[], options={})
+    req_params = options[:params] || {}
+    req_params.merge! :method => method, :render => options[:render]
+    session = options[:session] || {}
     flash = options[:flash] || {}
-    flash.merge :params => params unless params.nil?
+    flash[:params] = params
     
-    get 'test_method', {:method => method, :inline => options[:inline]}, flash
+    unless options[:xhr]
+      get 'test_method', req_params, session, flash
+    else
+      xhr :get, 'test_method', req_params, session, flash
+    end
     
     @result = assigns(:result)
   end
