@@ -10,7 +10,7 @@ class ArticlesController < ApplicationController
     @title = "#{@subcategory.name} (#{@category.name})"
     @scroll_target = 'content'
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def new
@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
     @stylesheets = %w(category/browser article/edit_order)
     @title = "#{@subcategory.name} umsortieren"
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def create

@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @title = 'Sortiment'
     @scroll_target = 'categories'
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def subindex
@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
     @title = @category.name
     @scroll_target = 'categoryBrowser_' + @category.id.to_s
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def new

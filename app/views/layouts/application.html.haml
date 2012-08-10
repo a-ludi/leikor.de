@@ -5,7 +5,7 @@
     = render :partial => 'layouts/message'
     = render :partial => 'layouts/header'
     #body
-      = yield
+      = yield :body or yield
       = clear_float
     = render :partial => 'layouts/footer'
     #picture_viewer
