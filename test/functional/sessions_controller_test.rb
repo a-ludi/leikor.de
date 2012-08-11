@@ -89,9 +89,4 @@ private
       delete 'destroy'
     end
   end
-  
-  def with_referer(referer='/from_here_on')
-    @referer = referer
-    @request.env['HTTP_REFERER'] = '/from_here_on'
-  end
 end

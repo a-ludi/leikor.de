@@ -2,18 +2,18 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  test_tested_files_checksum '857b2ae6bd2949c7c1de135edb4610f8'
+  test_tested_files_checksum '4b8d0cabab5aff005fc721eefd165a10'
 
   test "before filters active" do
     [:fetch_current_user, :fetch_updated_at, :prepare_flash_message].each do |filter|
-      assert_before_filter_applied filter, @controller
+      assert_before_filter_applied filter
     end
   end
   
   test "after filters active" do
-    [:log_if_title_not_set].each do |filter|
-      assert_after_filter_applied filter, @controller
-    end
+    assert_after_filter_applied :log_if_title_not_set, :test_method
+    assert_after_filter_not_applied :log_if_title_not_set, :stylesheet
+    assert_after_filter_not_applied :log_if_title_not_set, :pictures
   end
   
   test "save_updated_at" do

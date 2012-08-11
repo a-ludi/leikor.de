@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
-  test_tested_files_checksum '10823def32af451bd91bc65c29e57c7b'
+  test_tested_files_checksum '8964002b761e81fc942dea3e4867161b'
   
   test "new edit_order create edit update ask_destroy destroy reorder actions should require
       employee" do
@@ -122,7 +122,7 @@ class ArticlesControllerTest < ActionController::TestCase
     delete 'destroy', {:id => @article.to_param}, with_user
     
     assert_equal @article, assigns(:article)
-    assert assigns(:article).frozen?
+    assert assigns(:article).destroyed?
     refute Article.exists?(@article.id)
     refute_empty flash[:message]
     assert_redirected_to subcategory_url(@article.subcategory.url_hash)

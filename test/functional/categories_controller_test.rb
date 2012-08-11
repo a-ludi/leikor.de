@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'aaa429a6d6f20937d808577d5caca33b'
+  test_tested_files_checksum 'fe5334fbfda3223856f903b6f353b02d'
   
   test "login required for new create edit update ask_destroy destroy reorder" do
     [:new, :create, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
@@ -129,7 +129,7 @@ class CategoriesControllerTest < ActionController::TestCase
     destroy_category
     
     assert_kind_of Category, assigns(:category)
-    assert assigns(:category).frozen?
+    assert assigns(:category).destroyed?
     refute Category.exists?(@category.id)
     refute_empty flash[:message]
     assert_redirected_to categories_path

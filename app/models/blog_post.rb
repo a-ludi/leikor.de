@@ -2,6 +2,8 @@
 
 class BlogPost < ActiveRecord::Base
   set_primary_key :public_id
+  default_scope :order => 'created_at DESC' #FIXME untested
+  
   marked_up_with_maruku :body
   belongs_to :author, :class_name => 'User'
   belongs_to :editor, :class_name => 'User'

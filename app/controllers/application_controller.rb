@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
   
   if RAILS_ENV == 'test'
     def test_method
-      @result = self.send params[:method].to_sym, *flash[:params]
+      unless flash.include? :block
+        @result = self.send params[:method].to_sym, *flash[:params]
+      else
+        @result = self.send params[:method].to_sym, *flash[:params], &flash[:block]
+      end
       
       render :inline => params[:render].to_s, :layout => false  if params[:render] != false
     end

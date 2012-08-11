@@ -6,6 +6,10 @@ module TestsHelper
     @user = user
     session.merge(:user_id => user.id)
   end
+
+  def with_referer(referer='/from/here/on')    
+    @request.env['HTTP_REFERER'] = @referer = referer
+  end
   
   def call_method(method, params=[], options={})
     req_params = options[:params] || {}
