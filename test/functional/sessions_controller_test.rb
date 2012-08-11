@@ -12,7 +12,7 @@ class SessionsControllerTest < ActionController::TestCase
     get 'new', nil, nil, {:login => 'Hans Wurst', :referer => '/from_here_on'}
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_equal '/from_here_on', assigns(:referer)
     assert_equal 'Hans Wurst', assigns(:login)
   end

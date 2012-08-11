@@ -26,16 +26,16 @@ class CategoriesControllerTest < ActionController::TestCase
     get 'index'
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
-    assert_non_empty_kind_of String, assigns(:scroll_target)
+    assert_present assigns(:title)
+    assert_present assigns(:scroll_target)
   end
   
   test "subindex action" do
     get 'subindex', {:category => categories(:super).to_param}
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
-    assert_non_empty_kind_of String, assigns(:scroll_target)
+    assert_present assigns(:title)
+    assert_present assigns(:scroll_target)
   end
   
   test "new action" do
@@ -43,7 +43,7 @@ class CategoriesControllerTest < ActionController::TestCase
     
     assert_kind_of Category, assigns(:category)
     assert_includes assigns(:category).name, Category.human_name
-    assert_non_empty_kind_of String, assigns(:html_id)
+    assert_present assigns(:html_id)
     refute assigns(:cancel)
   end
   
@@ -52,7 +52,7 @@ class CategoriesControllerTest < ActionController::TestCase
     
     assert_equal Subcategory, assigns(:category).class
     assert_includes assigns(:category).name, Subcategory.human_name
-    assert_non_empty_kind_of String, assigns(:html_id)
+    assert_present assigns(:html_id)
     refute assigns(:cancel)
   end
   
@@ -116,7 +116,7 @@ class CategoriesControllerTest < ActionController::TestCase
     
     assert_kind_of Category, assigns(:category)
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
   end
     
   test "ask_destroy action gets subcategory" do

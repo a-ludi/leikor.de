@@ -31,8 +31,8 @@ class ArticlesControllerTest < ActionController::TestCase
     get_index
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
-    assert_non_empty_kind_of String, assigns(:scroll_target)
+    assert_present assigns(:title)
+    assert_present assigns(:scroll_target)
   end
   
   test "new action sets proper article" do
@@ -46,7 +46,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get_new :cancel => true
     
     assert assigns(:cancel)
-    assert_non_empty_kind_of String, assigns(:html_id)
+    assert_present assigns(:html_id)
   end
   
   test "edit_order action" do
@@ -55,7 +55,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get 'edit_order', {:category => @category.to_param, :subcategory => @subcategory.to_param}, with_user
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
   end
   
   test "successful create action" do
@@ -113,7 +113,7 @@ class ArticlesControllerTest < ActionController::TestCase
     get 'ask_destroy', @article.url_hash, with_user
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_equal @article, assigns(:article)
   end
   

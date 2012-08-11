@@ -111,7 +111,7 @@ class ApplicationControllerTest < ActionController::TestCase
     @passed = call_method :user_required, [], :render => false
     
     refute @passed
-    refute_blank flash[:message]
+    assert_present flash[:message]
   end
   
   test "employee_required passes" do
@@ -124,7 +124,7 @@ class ApplicationControllerTest < ActionController::TestCase
     @passed = call_method :employee_required, [], :render => false, :session => with_user(:moritz)
     
     refute @passed
-    refute_blank flash[:message]
+    assert_present flash[:message]
   end
   
   test "fetch_categories without params" do
@@ -213,7 +213,7 @@ class ApplicationControllerTest < ActionController::TestCase
     @passed = call_method :user_required, [], :render => false
     
     refute @passed
-    refute_blank flash[:message]
+    assert_present flash[:message]
     assert_redirected_to new_session_path
   end
   
@@ -221,7 +221,7 @@ class ApplicationControllerTest < ActionController::TestCase
     @passed = call_method :user_required, [], :render => false, :xhr => true
     
     refute @passed
-    refute_blank flash[:message]
+    assert_present flash[:message]
     assert_template :partial => 'layouts/_push_message', :count => 1
   end
   

@@ -41,7 +41,7 @@ class BlogControllerTest < ActionController::TestCase
     get :show, {:id => @blog_post.to_param}
     
     assert_equal @blog_post, assigns(:blog_post)
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
     
     assert_raises ActiveRecord::RecordNotFound do
@@ -55,14 +55,14 @@ class BlogControllerTest < ActionController::TestCase
     get :show, {:id => @blog_post.to_param}, with_user
     
     assert_equal @blog_post, assigns(:blog_post)
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
   end
   
   test "new action" do
     get :new, {}, with_user
     
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
     assert assigns(:blog_post).new_record?, 'expected new record'
   end
@@ -94,7 +94,7 @@ class BlogControllerTest < ActionController::TestCase
     @blog_post = blog_posts(:mailed_post)
     get :edit, {:id => @blog_post.to_param}, with_user
     
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
     assert_equal @blog_post, assigns(:blog_post)
   end

@@ -1,5 +1,4 @@
 # -*- encdoing : utf-8 -*-
-TESTED_FILE_MD5 = '88e896c36999436e88ba64807eb8e57c'
 require 'test_helper'
 
 class FairDatesControllerTest < ActionController::TestCase
@@ -26,7 +25,7 @@ class FairDatesControllerTest < ActionController::TestCase
     
     assert_equal fair_dates(:one, :two, :three), assigns(:fair_dates)
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
   end
   
   test "new action" do
@@ -34,7 +33,7 @@ class FairDatesControllerTest < ActionController::TestCase
     
     assert_kind_of FairDate, assigns(:fair_date)
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_template :edit
   end
   
@@ -60,7 +59,7 @@ class FairDatesControllerTest < ActionController::TestCase
     
     assert_equal assigns(:fair_date), fair_dates(:one)
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
   end
   
   test "update action" do

@@ -31,7 +31,7 @@ class PictureControllerTest < ActionController::TestCase
     get 'show', :format => 'html', :article_id => @article.to_param
     
     assert_equal @article, assigns(:article)
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_template '_viewer'
     assert_layout 'popup'
   end
@@ -50,7 +50,7 @@ class PictureControllerTest < ActionController::TestCase
     
     assert_equal @article, assigns(:article)
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert assigns(:popup)
     assert_template 'edit'
     assert_layout 'popup'
@@ -72,7 +72,7 @@ class PictureControllerTest < ActionController::TestCase
     assert_equal @article, assigns(:article)
     assert_no_errors_on assigns(:article), :on => :picture
     assert_equal 'image/jpg', assigns(:article).picture.content_type
-    assert_not_empty flash[:message]
+    refute_empty flash[:message]
   end
   
   test "update action with png" do
@@ -98,7 +98,7 @@ class PictureControllerTest < ActionController::TestCase
     
     assert_equal @article, assigns(:article)
     assert ! assigns(:article).picture.file?
-    assert_not_empty flash[:message]
+    refute_empty flash[:message]
     assert_template 'success'
     assert_layout 'popup'
   end
@@ -114,7 +114,7 @@ class PictureControllerTest < ActionController::TestCase
     successful_request # gives success message
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_not_empty flash[:message]
+    refute_empty flash[:message]
     assert ! assigns(:article).picture.dirty?
   end
   
@@ -127,7 +127,7 @@ class PictureControllerTest < ActionController::TestCase
   test "render_response with success and popup" do
     successful_request :popup => true
     
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_template 'success'
     assert_layout 'popup'
   end
