@@ -146,8 +146,8 @@ ActionController::Routing::Routes.draw do |map|
       :blog_posts,
       :as => 'blog',
       :member => {
-          :mail => :post,
-          :publish => :post},
+          :mail => [:post, :get],
+          :publish => [:post, :get]},
       :collection => {
           :readers => :get},
       :path_names => {
