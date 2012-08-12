@@ -57,10 +57,10 @@ Rails::Initializer.run do |config|
     :edit => 'bearbeiten',
     :destroy => 'loeschen'
   }
+  
+  config.action_mailer.delivery_method = :smtp
 end
 
 Haml::Template.options[:format] = :html4
-
-ActionMailer::Base.delivery_method = :smtp
 SmtpAuthentication.setup
 
