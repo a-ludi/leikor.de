@@ -74,13 +74,13 @@ class User < ActiveRecord::Base
   def email_address_with_name(id=:primary)
     case id
       when :primary
-        @email_address = self.primary_email_address
-        @name = self.name
+        email_address = self.primary_email_address
+        name = self.name
       else
         logger.warn "[warning] not implemented <User#email_address_with_name> with <#{id}> given"
     end
     
-    %Q("#{@name}" <#{@email_address}>)
+    "\"#{name}\" <#{email_address}>"
   end
   
 protected

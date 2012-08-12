@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test_tested_files_checksum '8e65f9f62c81c3fd39848c51ddd77529'
+  test_tested_files_checksum 'd52037449f65c02148f37cc35e2c2f90'
 
   test "notes should be marked up with maruku" do
     assert_equal users(:moritz).notes,
