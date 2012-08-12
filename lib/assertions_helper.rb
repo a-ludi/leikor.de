@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 module AssertionsHelper
+  include AssertionsHelper::ActionMailerAssertions
   include AssertionsHelper::ActiveRecordAssertions
   include AssertionsHelper::FilterAssertions
   include AssertionsHelper::LoggerAssertions

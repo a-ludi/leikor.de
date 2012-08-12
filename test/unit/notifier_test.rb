@@ -2,41 +2,39 @@
 require 'test_helper'
 
 class NotifierTest < ActionMailer::TestCase
-  tests Notifier
+  tests_mailer Notifier
+  
   test_tested_files_checksum '966f564ee91903df8ecc29a2abc51019'
   
   test "reset password request" do
-    user = users(:john)
+    @user = users(:john)
+    mailer.deliver_reset_password_request(@user)
     
-    email = Notifier.deliver_reset_password_request(user)
-    refute_empty ActionMailer::Base.deliveries
-    
-    assert_equal [user.primary_email_address], email.to
-    assert_equal [Notifier::LEIKOR_MAIL_ADDRESSES[:technical]], email.reply_to
-    assert_match Regexp.new(user.reset_password_request.external_id), email.body
+    assert_mail_sent
+    assert_mailed_to @user.primary_email_address
+    assert_mail_reply_to Notifier::LEIKOR_MAIL_ADDRESSES[:technical]
+    assert_mail_body_match Regexp.new(@user.reset_password_request.external_id)
   end
   
   test "confirm registration request" do
-    user = users(:max)
+    @user = users(:max)
     
-    email = Notifier.deliver_confirm_registration_request(user)
-    refute_empty ActionMailer::Base.deliveries
+    Notifier.deliver_confirm_registration_request(@user)
     
-    assert_equal [user.primary_email_address], email.to
-    assert_equal [Notifier::LEIKOR_MAIL_ADDRESSES[:technical]],
-        email.reply_to
-    assert_match Regexp.new(user.confirm_registration_request.external_id),
-        email.body
+    assert_mail_sent
+    assert_mailed_to @user.primary_email_address
+    assert_mail_reply_to Notifier::LEIKOR_MAIL_ADDRESSES[:technical]
+    assert_mail_body_match Regexp.new(@user.confirm_registration_request.external_id)
   end
   
   test "blog post" do
-    user = users(:max)
+    @user = users(:max)
     blog_post = blog_posts(:mailed_post)
     
-    email = Notifier.deliver_blog_post(user, blog_post)
-    refute_empty ActionMailer::Base.deliveries
+    Notifier.deliver_blog_post(@user, blog_post)
     
-    assert_equal [user.primary_email_address], email.to
-    assert_equal [Notifier::LEIKOR_MAIL_ADDRESSES[:customer]], email.reply_to
+    assert_mail_sent
+    assert_mailed_to @user.primary_email_address
+    assert_mail_reply_to Notifier::LEIKOR_MAIL_ADDRESSES[:customer]
   end
 end

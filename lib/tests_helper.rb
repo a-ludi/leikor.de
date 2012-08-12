@@ -30,6 +30,10 @@ module TestsHelper
   def self.included(base)
     base.extend ClassMethods
   end
+    
+  def mailer
+    self.class.mailer
+  end
   
   module ClassMethods
     def test_tested_files_checksum(files_with_checksum)
@@ -54,6 +58,14 @@ module TestsHelper
           assert_equal expected_checksum, actual_checksum, "checksum error on file <%s>" % filename
         end
       end
+    end
+    
+    def tests_mailer mailer
+      @mailer = mailer
+    end
+    
+    def mailer
+      @mailer || ActionMailer::Base
     end
   end
 end
