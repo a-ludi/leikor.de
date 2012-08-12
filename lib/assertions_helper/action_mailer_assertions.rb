@@ -4,6 +4,10 @@ module AssertionsHelper::ActionMailerAssertions
     assert mail_count >= 1, ('expected staged mails; none found' || msg)
   end
   
+  def refute_mail_sent(msg=nil)
+    assert_empty deliveries, ('expected no staged mails; {mail_count} found' || msg)
+  end
+  
   def assert_mails_sent(count=1, msg=nil)
     assert_equal count, mail_count, ('found #{mail_count} staged mails; expected #{count}' || msg)
   end

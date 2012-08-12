@@ -32,7 +32,7 @@ module TestsHelper
   end
     
   def mailer
-    self.class.mailer
+    self.class.instance_variable_get :@mailer || ActionMailer::Base
   end
   
   module ClassMethods
@@ -61,11 +61,10 @@ module TestsHelper
     end
     
     def tests_mailer mailer
-      @mailer = mailer
-    end
-    
-    def mailer
-      @mailer || ActionMailer::Base
+      setup do
+        mailer.deliveries.clear
+        @mailer = mailer
+      end
     end
   end
 end

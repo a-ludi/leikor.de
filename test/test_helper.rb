@@ -15,8 +15,8 @@ Spork.prefork do
     
     fixtures :all
 
-    include TestsHelper
     include UtilityHelper
+    include TestsHelper
   end
 end
 
