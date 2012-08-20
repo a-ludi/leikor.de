@@ -1,23 +1,21 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
-  before_filter :get_and_set_secure_user_request, :destroy_if_expired, :except => [:new, :create]
-  before_filter :force_user_logout, :except => [:new, :create]
+  before_filter :fetch_secure_user_request
+  before_filter :destroy_if_expired, :force_user_logout, :except => [:new, :create]
   
   def new
-    type = get_type_from_params
-    case type
+    case @secure_user_request
       when SecureUserRequest::ResetPassword then new_reset_password
-      else unknown_type type
+      else unknown_type
     end
   end
   
   def create
-    type = get_type_from_params
-    case type
+    case @secure_user_request
       when SecureUserRequest::ResetPassword then create_reset_password
       when SecureUserRequest::ConfirmRegistration then create_confirm_registration
-      else unknown_type type
+      else unknown_type
     end
   end
   
@@ -25,7 +23,7 @@ class SecureUserRequestsController < ApplicationController
     case @secure_user_request
       when SecureUserRequest::ConfirmRegistration then edit_confirm_registration
       when SecureUserRequest::ResetPassword then edit_reset_password
-      else unknown_type @secure_user_request
+      else unknown_type
     end
   end
 
@@ -33,7 +31,7 @@ class SecureUserRequestsController < ApplicationController
     case @secure_user_request
       when SecureUserRequest::ConfirmRegistration then update_confirm_registration
       when SecureUserRequest::ResetPassword then update_reset_password
-      else unknown_type @secure_user_request
+      else unknown_type
     end
   end
   
@@ -43,7 +41,7 @@ class SecureUserRequestsController < ApplicationController
         @secure_user_request.user.registration = :denied
         @secure_user_request.user.save
       when SecureUserRequest::ResetPassword then nil
-      else unknown_type @secure_user_request
+      else unknown_type
     end
     
     flash[:message] << "#{@secure_user_request.class.human_name} wurde abgebrochen."
@@ -54,7 +52,6 @@ class SecureUserRequestsController < ApplicationController
 protected
 
   def new_reset_password
-    @secure_user_request = SecureUserRequest::ResetPassword.new
     @stylesheets = ['message']
     @title = @secure_user_request.class.human_name
     
@@ -64,6 +61,7 @@ protected
   def create_reset_password
     @user = User.find_by_login params[:login]
     
+    # independed of success this should be displayed to disguise wether or not that user exists
     flash[:message].success :partial => 'secure_user_requests/reset_password/success'
     
     if @user
@@ -87,38 +85,36 @@ protected
   end
   
   def update_reset_password
-    user = @secure_user_request.user
+    @user = @secure_user_request.user
     passwords_match = params[:password] == params[:confirm_password]
-    if passwords_match and user.update_attributes :password => params[:password]
+    if passwords_match and @user.update_attributes :password => params[:password]
       @secure_user_request.destroy
       flash[:message].success 'Sie haben nun ein neues Passwort. Merken Sie es sich gut!',
           'Glückwunsch!'
-      login_user! user
+      login_user! @user
       
       redirect_to :root
     else
-      user.errors.add :password, :confirmation unless passwords_match
+      @user.errors.add :password, :confirmation unless passwords_match
       edit_reset_password
     end
   end
   
   def create_confirm_registration
-    if @user = User.find_by_login(params[:login])
-      @secure_user_request = @user.confirm_registration_request ||
-          @user.create_confirm_registration_request
-      @secure_user_request.touch
-      
-      if params[:sendmail]
-        Notifier.deliver_confirm_registration_request @user
-        flash[:message].success 'Die E-Mail wurde versandt'
-      else
-        flash[:message].success "Die Anfrage \"
-            #{t('activerecord.models.secure_user_request/confirm_registration')}\" wurde
-            erstellt".squish
-      end
+    employee_required or return
+    
+    @user = User.find_by_login! params[:login]
+    @secure_user_request = @user.confirm_registration_request ||
+        @user.create_confirm_registration_request
+    @secure_user_request.touch
+    
+    if params[:sendmail]
+      Notifier.deliver_confirm_registration_request @user
+      flash[:message].success 'Die E-Mail wurde versandt'
     else
-      flash[:message].error 'Der Benutzer konnte nicht gefunden werden. Bitte versuchen Sie es
-          nochmals.'.squish, 'Interner Fehler'
+      flash[:message].success "Die Anfrage „
+          #{t('activerecord.models.secure_user_request/confirm_registration')}“ wurde
+          erstellt".squish
     end
     
     redirect_to profile_path(@user.login)
@@ -132,26 +128,29 @@ protected
   end
   
   def update_confirm_registration
-    user = @secure_user_request.user
+    @user = @secure_user_request.user
     passwords_match = params[:password] == params[:confirm_password]
-    if passwords_match and user.update_attributes :password => params[:password]
+    if passwords_match and @user.update_attributes :password => params[:password]
       @secure_user_request.destroy
       flash[:message].success :partial => 'secure_user_requests/confirm_registration/welcome',
-          :locals => {:user => user}
+          :locals => {:user => @user}
       flash[:message].title = 'Glückwunsch!'
-      login_user! user
+      login_user! @user
       
       redirect_to my_profile_path
     else
-      user.errors.add :new_password, :confirmation unless passwords_match
+      @user.errors.add :new_password, :confirmation unless passwords_match
       edit_confirm_registration
     end
   end
   
-  def get_and_set_secure_user_request
-    external_id = params[:id]
-    @secure_user_request = SecureUserRequest.find_by_external_id(external_id) or
-        missing_secure_user_request
+  #TODO to be continued ...
+  def fetch_secure_user_request
+    @secure_user_request = if params.include? :id
+          SecureUserRequest.find_by_external_id(params[:id]) or missing_secure_user_request
+        else
+          params[:type].constantize.new
+        end
   end
   
   def missing_secure_user_request
@@ -162,6 +161,7 @@ protected
   end
   
   def force_user_logout
+    #TODO use translation
     flash[:message].error "Sie wurden abgemeldet, da eine #{SecureUserRequest.human_name} bearbeitet
         wird.".squish, 'Bis bald!'
     logout_user!
@@ -169,14 +169,5 @@ protected
   
   def destroy_if_expired
     @secure_user_request.destroy and missing_secure_user_request if @secure_user_request.expired?
-  end
-  
-  def unknown_type(type)
-    not_found t('errors.controller.secure_user_requests.unknown_type', :type => type),
-        :log => true
-  end
-  
-  def get_type_from_params
-    params[:type].constantize.new
   end
 end

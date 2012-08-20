@@ -10,7 +10,7 @@ john:
   primary_email_address: "john@doe.com"
 
 max:
-  login: Max
+  login: Maxi
   # password = geheim
   password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
   name: Max Müller
