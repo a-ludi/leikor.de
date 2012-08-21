@@ -15,5 +15,5 @@ expired:
   type: SecureUserRequest::ConfirmRegistration
   memo: Ignored.
   user: meyer
-  updated_at: <%= (Date.today - 1.year).to_time %>
+  updated_at: 1980-01-01 00:00:00
 
