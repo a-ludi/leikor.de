@@ -30,6 +30,10 @@ module AssertionsHelper::ActiveRecordAssertions
   def assert_destroyed(record, msg=nil)
     assert record.destroyed?, (msg || "<#{record}> is not destroyed")
   end
+  
+  def assert_new_record(record, msg=nil)
+    assert record.new_record?, (msg || "<#{record}> is not new")
+  end
 
 private
   
