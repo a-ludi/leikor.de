@@ -55,8 +55,6 @@ protected
   end
   
   def logout_user!
-    flash[:message].clear!  unless logged_in? # why did i do this?
-    
     session[:user_id] = @current_user = nil
   end
   

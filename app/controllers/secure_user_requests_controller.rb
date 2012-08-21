@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
-  before_filter :fetch_secure_user_request
-  before_filter :destroy_if_expired, :force_user_logout, :except => [:new, :create]
+  before_filter :fetch_secure_user_request, :destroy_request_if_expired
+  before_filter :force_user_logout, :except => [:new, :create]
   
   def new
     case @secure_user_request
@@ -144,7 +144,6 @@ protected
     end
   end
   
-  #TODO to be continued ...
   def fetch_secure_user_request
     @secure_user_request = if params.include? :id
           SecureUserRequest.find_by_external_id(params[:id]) or missing_secure_user_request
@@ -163,11 +162,13 @@ protected
   def force_user_logout
     #TODO use translation
     flash[:message].error "Sie wurden abgemeldet, da eine #{SecureUserRequest.human_name} bearbeitet
-        wird.".squish, 'Bis bald!'
+        wird.".squish, 'Bis bald!' if logged_in?
     logout_user!
   end
   
-  def destroy_if_expired
-    @secure_user_request.destroy and missing_secure_user_request if @secure_user_request.expired?
+  def destroy_request_if_expired
+    if not @secure_user_request.new_record? and @secure_user_request.expired?
+      @secure_user_request.destroy and missing_secure_user_request
+    end
   end
 end

@@ -3,16 +3,18 @@ require 'test_helper'
 class SecureUserRequestsControllerTest < ActionController::TestCase
   tests_mailer Notifier
   
-  test "before filters should be applied" do
-    [:destroy_if_expired, :force_user_logout].each do |filter|
-      [:edit, :update, :destroy].each do |action|
-        assert_before_filter_applied filter, action
-      end
+  test "on edit update destroy should force user logout" do
+    [:edit, :update, :destroy].each do |action|
+      assert_before_filter_applied :force_user_logout, action
     end
   end
   
   test "all actions should fetch secure user request" do
     assert_before_filter_applied :fetch_secure_user_request
+  end
+  
+  test "all actions should destroy request if expired" do
+    assert_before_filter_applied :destroy_request_if_expired
   end
   
   test "new reset password action" do
@@ -149,6 +151,70 @@ class SecureUserRequestsControllerTest < ActionController::TestCase
     assert_errors_on assigns(:user), :on => :new_password
     assert_template 'confirm_registration/edit'
   end
+  
+  test 'fetch_secure_user_request with type given' do
+    @secure_user_request = SecureUserRequest::ConfirmRegistration.new
+    call_method :fetch_secure_user_request, [], :params => {:type => @secure_user_request.class.to_s}
+    
+    assert_equal @secure_user_request.hash, assigns(:secure_user_request).hash
+    assert_new_record assigns(:secure_user_request)
+  end
+
+  test 'fetch_secure_user_request with id given' do
+    @secure_user_request = secure_user_requests(:max_confirm)
+    call_method :fetch_secure_user_request, [], :params => {:id => @secure_user_request.external_id}
+    
+    assert_equal @secure_user_request, assigns(:secure_user_request)
+  end
+  
+  test 'missing_secure_user_request without referer' do
+    call_method :missing_secure_user_request, [], :render => false, :params => {
+        :type => 'SecureUserRequest::ConfirmRegistration'}
+    
+    assert_present flash[:message]
+    refute @result
+    assert_redirected_to :root
+  end
+
+  test 'missing_secure_user_request with referer' do
+    with_referer
+    call_method :missing_secure_user_request, [], :render => false, :params => {
+        :type => 'SecureUserRequest::ConfirmRegistration'}
+    
+    assert_redirected_to @referer
+  end
+  
+  test 'force_user_logout with user' do
+    call_method :force_user_logout, [], :params => {:type =>
+        'SecureUserRequest::ConfirmRegistration'}, :session => with_user
+    
+    assert_present flash[:message]
+    refute @controller.send(:logged_in?)
+  end
+
+  test 'force_user_logout without user' do
+    call_method :force_user_logout, [], :params => {:type =>
+        'SecureUserRequest::ConfirmRegistration'}
+    
+    assert_blank flash[:message]
+    refute @controller.send(:logged_in?)
+  end
+  
+  test 'destroy_request_if_expired does not destroy new request' do
+    call_method :destroy_request_if_expired, [], :params => {:type =>
+        'SecureUserRequest::ConfirmRegistration'}
+    
+    assert_new_record assigns(:secure_user_request)
+  end
+  
+  test 'destroy_request_if_expired destroys request' do
+    @secure_user_request = secure_user_requests(:expired)
+    call_method :destroy_request_if_expired, [], :params => {:id =>
+        @secure_user_request.external_id}
+    
+    assert_destroyed assigns(:secure_user_request)
+    assert_redirected_to :root
+  end
 
 private
   
@@ -178,5 +244,5 @@ private
     confirm_password = options.include?(:with_errors) ? 'no_match' : @password
     post :update, {:id => @confirm_registration_request.external_id, :password => @password,
         :confirm_password => confirm_password}
-  end  
+  end
 end

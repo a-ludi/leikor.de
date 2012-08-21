@@ -9,3 +9,11 @@ john_reset:
   type: SecureUserRequest::ResetPassword
   memo: This is never used. Maybe I should delete it.
   user: john
+
+expired:
+  external_id: "d0e5ff48c004275693c94aee39e35431"
+  type: SecureUserRequest::ConfirmRegistration
+  memo: Ignored.
+  user: meyer
+  updated_at: <%= (Date.today - 1.year).to_time %>
+
