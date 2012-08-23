@@ -38,6 +38,11 @@ ul.profile {
 .edit .profile.phone_number .number { width: 5.95em; }
 .edit .profile textarea { height: 12em; }
 
+.type {
+  font-weight: bold;
+  font-size: small;
+}
+
 .login .value {
   font-weight: bold;
 }

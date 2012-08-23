@@ -6,8 +6,11 @@
       = link_to image_tag('pictogram/medium/destroy.png'), @show_path, :class => 'toolbutton',
         :title => "Profil löschen.", :method => :delete,
         :confirm => "Das Profil von\n\n#{@user.name}\n\nwird dauerhaft gelöscht. Sind Sie sicher?"
-  %h1= @user.name
-  -if @my_profile
+  - if logged_in? Employee
+    %p.type &mdash; #{@user.class.human_name} &mdash;
+  %h1
+    = @user.name
+  - if @my_profile
     .password
       .value
         = link_to 'Passwort ändern', edit_password_path
