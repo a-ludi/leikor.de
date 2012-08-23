@@ -37,4 +37,9 @@ module AssertionsHelper
     message += "non-unique items in: #{collection.inspect}"
     assert_equal collection.length, collection.uniq.length, message
   end
+  
+  def assert_stylesheets_and_title
+    assert_respond_to assigns(:stylesheets), :each
+    assert_present assigns(:title)
+  end
 end
