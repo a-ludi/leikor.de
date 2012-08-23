@@ -114,9 +114,21 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'profiles',
       :action => 'update_password',
       :conditions => {:method => :put})
-  map.resources :profiles, :as => 'profile' do |profiles|
+  map.resources :profiles, :as => 'profile', :except => [:new] do |profiles|
     profiles.resources :groups, :as => 'gruppen', :only => [:create, :update, :destroy]
   end
+  map.new_customer_profile(
+      'profile/neu/kunde',
+      :controller => 'profiles',
+      :action => 'new',
+      :type => 'Customer',
+      :conditions => {:method => :get})
+  map.new_employee_profile(
+      'profile/neu/mitarbeiter',
+      :controller => 'profiles',
+      :action => 'new',
+      :type => 'Employee',
+      :conditions => {:method => :get})
   
   map.new_reset_password_request(
       'passwort-zuruecksetzen',

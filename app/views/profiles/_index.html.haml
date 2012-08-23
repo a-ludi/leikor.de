@@ -1,7 +1,7 @@
 %div{:class => "user_index #{positional_class}"}
   %h2
     = human_type
-    = link_to(image_tag('pictogram/small/new.png'), new_profile_path(:type => type_as_param(type)),
+    = link_to(image_tag('pictogram/small/new.png'), new_profile_path(type),
         :class => 'toolbutton', :title => "Neuen #{human_type} eintragen")
   = clear_float
   - unless users.empty?

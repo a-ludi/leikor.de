@@ -1,8 +1,9 @@
 # -*- encoding : utf-8 -*-
 
 class ProfilesController < ApplicationController
-  before_filter :employee_required, :except => [:show_mine, :edit_mine, :update_mine]
   before_filter :user_required
+  before_filter :employee_required, :except => [:show_mine, :edit_mine, :update_mine,
+      :edit_password, :update_password]
   
   def show_mine
     @user = @current_user
@@ -59,6 +60,15 @@ class ProfilesController < ApplicationController
     render :action => :edit_password
   end
   
+  def index
+    #TODO rely on default order
+    @employees = Employee.all :order => 'name ASC'
+    @customers = Customer.all :order => 'name ASC'
+    
+    @stylesheets = %w(profile)
+    @title = "Profile"
+  end
+  
   def show
     @user = User.find_by_login params[:id]
     set_paths
@@ -66,12 +76,32 @@ class ProfilesController < ApplicationController
     show_profile
   end
   
-  def index
-    @employees = Employee.all :order => 'name ASC'
-    @customers = Customer.all :order => 'name ASC'
+  def new
+    @user = flash[:user] || params[:type].constantize.new
+    params[:format] = nil
     
-    @stylesheets = %w(profile)
-    @title = "Profile"
+    set_new_paths
+    @stylesheets = %w(message profile)
+    @title = "Neues Profil erstellen"
+    @method = :post
+    
+    render :edit
+  end
+  
+#TODO from here on ...
+  def create
+    type = params[:profile][:type].constantize
+    @user = type.create(params[:profile])
+    @user.set_random_password
+    
+    if @user.save
+      @user.create_confirm_registration_request
+      flash[:message].success 'Profil wurde erstellt.'
+      
+      redirect_to profile_path(@user.login)
+    else
+      redirect_to new_profile_path, :flash => {:user => @user}
+    end
   end
   
   def edit
@@ -86,47 +116,6 @@ class ProfilesController < ApplicationController
     set_paths
     
     update_profile
-  end
-  
-  def new
-    @user = flash[:user] ||
-      case params[:type]
-        when type_as_param(:employee)
-          @user = Employee.new
-        when type_as_param(:customer)
-          @user = Customer.new
-        else
-          handle_illegal_user_type params[:type] and return
-      end
-    params[:format] = nil
-    
-    set_new_paths
-    @stylesheets = %w(message profile)
-    @title = "Neues Profil erstellen"
-    @method = :post
-    
-    render :edit
-  end
-  
-  def create
-    case params[:profile][:type]
-      when 'Employee'
-        @user = Employee.create(params[:profile])
-      when 'Customer'
-        @user = Customer.create(params[:profile])
-      else
-        handle_illegal_user_type params[:profile][:type] and return
-    end
-    @user.set_random_password
-    
-    if @user.save
-      @user.create_confirm_registration_request
-      flash[:message].success 'Profil wurde erstellt.'
-      
-      redirect_to profile_path(@user.login)
-    else
-      redirect_to new_profile_path, :flash => {:user => @user}
-    end
   end
   
   def destroy
@@ -167,7 +156,7 @@ protected
     if @user.update_attributes params[:profile]
       flash[:message].success 'Profil wurde aktualisiert.'
       
-      show_profile
+      redirect_to my_profile_path
     else
       edit_profile
     end
@@ -185,10 +174,5 @@ protected
   
   def set_new_paths
     @show_path = profiles_path
-  end
-  
-  def handle_illegal_user_type(type)
-    logger.warn "[warning] Attempt to create user of type <#{type.inspect}>"
-    redirect_to profiles_path
   end
 end
