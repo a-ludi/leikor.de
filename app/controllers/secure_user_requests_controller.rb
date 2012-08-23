@@ -7,7 +7,6 @@ class SecureUserRequestsController < ApplicationController
   def new
     case @secure_user_request
       when SecureUserRequest::ResetPassword then new_reset_password
-      else unknown_type
     end
   end
   
@@ -15,7 +14,6 @@ class SecureUserRequestsController < ApplicationController
     case @secure_user_request
       when SecureUserRequest::ResetPassword then create_reset_password
       when SecureUserRequest::ConfirmRegistration then create_confirm_registration
-      else unknown_type
     end
   end
   
@@ -23,7 +21,6 @@ class SecureUserRequestsController < ApplicationController
     case @secure_user_request
       when SecureUserRequest::ConfirmRegistration then edit_confirm_registration
       when SecureUserRequest::ResetPassword then edit_reset_password
-      else unknown_type
     end
   end
 
@@ -31,7 +28,6 @@ class SecureUserRequestsController < ApplicationController
     case @secure_user_request
       when SecureUserRequest::ConfirmRegistration then update_confirm_registration
       when SecureUserRequest::ResetPassword then update_reset_password
-      else unknown_type
     end
   end
   
@@ -41,7 +37,6 @@ class SecureUserRequestsController < ApplicationController
         @secure_user_request.user.registration = :denied
         @secure_user_request.user.save
       when SecureUserRequest::ResetPassword then nil
-      else unknown_type
     end
     
     flash[:message] << "#{@secure_user_request.class.human_name} wurde abgebrochen."
