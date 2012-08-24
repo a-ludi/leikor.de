@@ -88,7 +88,6 @@ class ProfilesController < ApplicationController
     render :edit
   end
   
-#TODO from here on ...
   def create
     type = params[:profile][:type].constantize
     @user = type.create(params[:profile])
@@ -100,7 +99,7 @@ class ProfilesController < ApplicationController
       
       redirect_to profile_path(@user.login)
     else
-      redirect_to new_profile_path, :flash => {:user => @user}
+      redirect_to new_profile_path(type), :flash => {:user => @user}
     end
   end
   
@@ -119,24 +118,26 @@ class ProfilesController < ApplicationController
   end
   
   def destroy
-    if @user = User.find_by_login(params[:id])
-      @user.destroy
-      flash[:message].success "Das Profil von <b>#{@user.name}</b> wurde gelöscht."
-    else
-      flash[:message].error "Der #{User.human_name} <b>#{params[:id]}</b> konnte nicht gefunden
-          werden.".squish
-    end
+    @user = User.find_by_login!(params[:id])
+    @user.destroy
+    flash[:message].success "Das Profil von <b>#{@user.name}</b> wurde gelöscht."
     
     redirect_to profiles_path
   end
 
 protected
   
+#TODO from here on ...
   def type_as_param(type)
     t(type, :scope => [:activerecord, :models]).underscore
   end
   helper_method :type_as_param
   
+  def new_profile_path type
+    send "new_#{type.to_s.underscore}_profile_path".to_sym
+  end
+  helper_method :new_profile_path
+
   def show_profile
     @stylesheets = %w(message profile Markdown)
     @title = "#{@user.name}s Profil"
@@ -156,7 +157,7 @@ protected
     if @user.update_attributes params[:profile]
       flash[:message].success 'Profil wurde aktualisiert.'
       
-      redirect_to my_profile_path
+      redirect_to (@my_profile ? my_profile_path : profile_path(@user.login))
     else
       edit_profile
     end

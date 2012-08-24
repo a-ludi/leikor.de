@@ -2,6 +2,7 @@ require 'test_helper'
 
 class SecureUserRequestsControllerTest < ActionController::TestCase
   tests_mailer Notifier
+  test_tested_files_checksum '6837623ff42481b798fb7a31c96c1a4d'
   
   test "on edit update destroy should force user logout" do
     [:edit, :update, :destroy].each do |action|
