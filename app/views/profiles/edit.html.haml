@@ -1,10 +1,10 @@
 #message_window.edit
-  - form_for :profile, @user, :url => @show_path, :html => {:method => @method} do |f|
+  - form_for :profile, @profile, :url => @show_path, :html => {:method => @method} do |f|
     = f.hidden_field :type
     .administration
       = a_button_to 'Abbrechen', @show_path
       = submit_tag 'Speichern!'
-    = make_if_error_messages_for @user
+    = make_if_error_messages_for @profile
     - unless logged_in? Employee
       %h1.profile.user
         %div= f.label :name
