@@ -4,40 +4,16 @@ class ProfilesController < ApplicationController
   before_filter :user_required
   before_filter :employee_required, :except => [:show_mine, :edit_mine, :update_mine,
       :edit_password, :update_password]
-  
-  def show_mine
-    @profile = @current_user
-    @my_profile = true
-    set_my_paths
-    
-    show_profile
-  end
-  
-  def edit_mine
-    @profile = @current_user
-    @my_profile = true
-    set_my_paths
-    
-    edit_profile
-  end
-  
-  def update_mine
-    @profile = @current_user
-    @my_profile = true
-    set_my_paths
-    
-    update_profile
-  end
+  before_filter :set_my_profile, :only => [:show_mine, :edit_mine, :update_mine, :edit_password,
+      :update_password]
+  before_filter :set_profile, :except => [:index, :new, :create]
   
   def edit_password
-    @profile = @current_user
     @stylesheets = %w(message)
     @title = 'Passwort ändern'
   end
   
   def update_password
-    @profile = @current_user
-    
     password_correct = @profile.password == params[:password]
     new_passwords_match = params[:new_password] == params[:confirm_new_password]
     
@@ -54,10 +30,7 @@ class ProfilesController < ApplicationController
     @profile.errors.add :password, :incorrect  unless password_correct
     @profile.errors.add :new_password, :confirmation  unless new_passwords_match
     
-    @stylesheets = %w(message)
-    @title = 'Passwort ändern'
-    
-    render :action => :edit_password
+    redirect_to edit_password_path, :flash => {:profile => @profile}
   end
   
   def index
@@ -70,17 +43,17 @@ class ProfilesController < ApplicationController
   end
   
   def show
-    @profile = User.find_by_login params[:id]
-    set_paths
+    @stylesheets = %w(message profile Markdown)
+    @title = "#{@profile.name}s Profil"
     
-    show_profile
+    render :show
   end
+  alias :show_mine  :show
   
   def new
     @profile = flash[:profile] || params[:type].constantize.new
     params[:format] = nil
     
-    set_new_paths
     @stylesheets = %w(message profile)
     @title = "Neues Profil erstellen"
     @method = :post
@@ -104,76 +77,64 @@ class ProfilesController < ApplicationController
   end
   
   def edit
-    @profile = User.find_by_login params[:id]
-    set_paths
-    
-    edit_profile
-  end
-  
-  def update
-    @profile = User.find_by_login params[:id]
-    set_paths
-    
-    update_profile
-  end
-  
-  def destroy
-    @profile = User.find_by_login!(params[:id])
-    @profile.destroy
-    flash[:message].success "Das Profil von <b>#{@profile.name}</b> wurde gelöscht."
-    
-    redirect_to profiles_path
-  end
-
-protected
-  
-#TODO from here on ...
-  def type_as_param(type)
-    t(type, :scope => [:activerecord, :models]).underscore
-  end
-  helper_method :type_as_param
-  
-  def new_profile_path type
-    send "new_#{type.to_s.underscore}_profile_path".to_sym
-  end
-  helper_method :new_profile_path
-
-  def show_profile
-    @stylesheets = %w(message profile Markdown)
-    @title = "#{@profile.name}s Profil"
-    
-    render :show
-  end
-  
-  def edit_profile
     @stylesheets = %w(message profile)
     @title = "#{@profile.name}s Profil bearbeiten"
     @method = :put
     
     render :edit
   end
+  alias :edit_mine  :edit
   
-  def update_profile
+  def update
     if @profile.update_attributes params[:profile]
       flash[:message].success 'Profil wurde aktualisiert.'
       
-      redirect_to (@my_profile ? my_profile_path : profile_path(@profile.login))
+      redirect_to show_path
     else
-      edit_profile
+      redirect_to edit_path, :flash => {:profile => @profile}
     end
   end
+  alias :update_mine  :update
+  
+  def destroy
+    @profile.destroy
+    flash[:message].success "Das Profil von <b>#{@profile.name}</b> wurde gelöscht."
+    
+    redirect_to profiles_path
+  end
+  
+protected
+  
+  def new_profile_path type
+    send "new_#{type.to_s.underscore}_profile_path".to_sym
+  end
+  helper_method :new_profile_path
+  
+  def show_path
+    if @profile.new_record?
+      profiles_path
+    elsif @my_profile
+      my_profile_path
+    else
+      profile_path @profile.login
+    end
+  end
+  helper_method :show_path
 
-  def set_my_paths
-    @show_path = my_profile_path
-    @edit_path = edit_my_profile_path
+  def edit_path
+    if @my_profile
+      edit_my_profile_path
+    else
+      edit_profile_path @profile.login
+    end
+  end
+  helper_method :edit_path
+
+  def set_my_profile
+    @my_profile = true
   end
   
-  def set_paths
-    @show_path = profile_path @profile.login
-    @edit_path = edit_profile_path @profile.login
-  end
-  
-  def set_new_paths
-    @show_path = profiles_path
+  def set_profile
+    @profile = flash[:profile] || (@my_profile ? @current_user : User.find_by_login!(params[:id]))
   end
 end

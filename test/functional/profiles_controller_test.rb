@@ -38,7 +38,7 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "update_mine action successful" do
-    post_update_mine
+    put_update_mine
     
     assert_equal @user.login, assigns(:profile).login
     assert assigns(:my_profile), 'not my profile'
@@ -48,12 +48,12 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "update_mine action failed" do
-    post_update_mine :with_errors
+    put_update_mine :with_errors
     
     assert_equal @user.login, assigns(:profile).login
     assert assigns(:my_profile), 'not my profile'
     assert_errors_on assigns(:profile)
-    assert_template :edit
+    assert_redirected_to edit_my_profile_path
   end
   
   test "edit_password action" do
@@ -64,8 +64,8 @@ class ProfilesControllerTest < ActionController::TestCase
     assert_template :edit_password
   end
   
-  test "udpate_password action successful" do
-    post_update_password
+  test "update_password action successful" do
+    put_update_password
     
     assert_equal @user, assigns(:profile)
     assert_equal assigns(:profile).password, @new_password
@@ -73,31 +73,28 @@ class ProfilesControllerTest < ActionController::TestCase
     assert_redirected_to my_profile_path
   end
 
-  test "udpate_password action with wrong password" do
-    post_update_password :with_wrong_password
+  test "update_password action with wrong password" do
+    put_update_password :with_wrong_password
     
     assert_equal @user, assigns(:profile)
     assert_errors_on assigns(:profile), :on => :password
-    assert_stylesheets_and_title
-    assert_template :edit_password
+    assert_redirected_to edit_password_path
   end
 
-  test "udpate_password action with incorrect confirmation" do
-    post_update_password :with_incorrect_confirmation
+  test "update_password action with incorrect confirmation" do
+    put_update_password :with_incorrect_confirmation
     
     assert_equal @user, assigns(:profile)
     assert_errors_on assigns(:profile), :on => :new_password
-    assert_stylesheets_and_title
-    assert_template :edit_password
+    assert_redirected_to edit_password_path
   end
 
-  test "udpate_password action with short password" do
-    post_update_password :with_short_password
+  test "update_password action with short password" do
+    put_update_password :with_short_password
     
     assert_equal @user, assigns(:profile)
     assert_errors_on assigns(:profile), :on => :password
-    assert_stylesheets_and_title
-    assert_template :edit_password
+    assert_redirected_to edit_password_path
   end
   
   test "index action" do
@@ -135,7 +132,7 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "create action successful" do
-    put_create
+    post_create
     
     assert_kind_of @profile.class, assigns(:profile)
     assert_present assigns(:profile).password
@@ -145,7 +142,7 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "create action failed" do
-    put_create :with_errors
+    post_create :with_errors
     
     assert_kind_of @profile.class, assigns(:profile)
     assert_redirected_to @controller.send(:new_profile_path, @profile.class)
@@ -162,7 +159,7 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "update action successful" do
-    post_update
+    put_update
     
     assert_equal @profile.login, assigns(:profile).login
     assert_equal @new_name, assigns(:profile).name
@@ -171,11 +168,11 @@ class ProfilesControllerTest < ActionController::TestCase
   end
   
   test "update action failed" do
-    post_update :with_errors
+    put_update :with_errors
     
     assert_equal @profile.login, assigns(:profile).login
     assert_errors_on assigns(:profile)
-    assert_template :edit
+    assert_redirected_to edit_profile_path(@profile.login)
   end
   
   test "destroy action" do
@@ -200,7 +197,7 @@ class ProfilesControllerTest < ActionController::TestCase
   
 private
 
-  def post_update_mine(*options)
+  def put_update_mine(*options)
     @user = Customer.first
     @new_name = options.include?(:with_errors) ? '' : 'New Name'
     profile = @user.attributes.update 'name' => @new_name
@@ -208,7 +205,7 @@ private
     post :update_mine, {:profile => profile}, with_user(@user)
   end
   
-  def post_update_password(*options)
+  def put_update_password(*options)
     @user = users(:moritz)
     password = options.include?(:with_wrong_password) ? 'wrong_password' : 'geheim'
     @new_password = options.include?(:with_short_password) ? 'short' : 'sekret_passwort'
@@ -220,22 +217,22 @@ private
     post :update_password, params, with_user(@user)
   end
   
-  def put_create(*options)
+  def post_create(*options)
     @profile = Customer.new({
         :login => (options.include?(:with_errors) ? '' : 'neuer-kunde'),
         :name => 'Neuer Kunde',
         :notes => 'Notizen zu neuen Kunden sind toll.',
         :primary_email_address => 'neuer@kunde.de'})
     
-    put :create, {:profile => @profile.attributes}, with_employee
+    post :create, {:profile => @profile.attributes}, with_employee
   end
 
-  def post_update(*options)
+  def put_update(*options)
     @profile = users(:moritz)
     @new_name = options.include?(:with_errors) ? '' : 'New Name'
     profile = @profile.attributes.update 'name' => @new_name
     
-    post :update, {:id => @profile.login, :profile => profile}, with_employee
+    put :update, {:id => @profile.login, :profile => profile}, with_employee
   end
   
   def delete_destroy(*options)

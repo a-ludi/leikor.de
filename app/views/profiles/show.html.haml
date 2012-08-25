@@ -1,9 +1,9 @@
 #message_window
   .administration
-    = link_to image_tag('pictogram/medium/edit.png'), @edit_path, :class => 'toolbutton',
+    = link_to image_tag('pictogram/medium/edit.png'), edit_path, :class => 'toolbutton',
       :title => "Profil bearbeiten."
     - unless @my_profile
-      = link_to image_tag('pictogram/medium/destroy.png'), @show_path, :class => 'toolbutton',
+      = link_to image_tag('pictogram/medium/destroy.png'), show_path, :class => 'toolbutton',
         :title => "Profil löschen.", :method => :delete,
         :confirm => "Das Profil von\n\n#{@profile.name}\n\nwird dauerhaft gelöscht. Sind Sie sicher?"
   - if logged_in? Employee
