@@ -42,7 +42,7 @@
       .label= t('activerecord.attributes.user.groups')
       .infobox.groups.value.tags
         %ul#groups
-          = render :partial => 'tag', :collection => @profile.groups, :locals => {:user => @profile}
+          = render :partial => 'tag', :collection => @profile.groups, :locals => {:profile => @profile}
           :javascript
             $('groups').insert(new Element('li', {'class': 'new tag'}));
             item = $('groups').childElements().last();
