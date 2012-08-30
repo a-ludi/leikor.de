@@ -17,8 +17,7 @@ class Notifier < ActionMailer::Base
     from       leikor_mail_address
     reply_to   leikor_mail_address(:technical)
     subject    t('activerecord.models.secure_user_request/reset_password')
-    body       :user => recipient,
-               :request => recipient.reset_password_request
+    body       :user => recipient, :request => recipient.reset_password_request
   end
   
   def confirm_registration_request(recipient)
@@ -26,18 +25,15 @@ class Notifier < ActionMailer::Base
     from       leikor_mail_address
     reply_to   leikor_mail_address(:technical)
     subject    t('activerecord.models.secure_user_request/confirm_registration')
-    body       :user => recipient,
-               :request => recipient.confirm_registration_request
+    body       :user => recipient, :request => recipient.confirm_registration_request
   end
   
   def blog_post(recipient, blog_post)
-    # TODO use BCC to send multiple mails
     recipients recipient.email_address_with_name
     from       leikor_mail_address
     reply_to   leikor_mail_address(:customer)
     subject    t('views.notifier.blog_post.title', :title => blog_post.title)
-    body       :user => recipient,
-               :blog_post => blog_post
+    body       :user => recipient, :blog_post => blog_post
   end
 
 protected

@@ -4,7 +4,7 @@ require 'test_helper'
 class NotifierTest < ActionMailer::TestCase
   tests_mailer Notifier
   
-  test_tested_files_checksum '966f564ee91903df8ecc29a2abc51019'
+  test_tested_files_checksum '536a87ed45ad316c131e4c8a2da929ca'
   
   test "reset password request" do
     @user = users(:john)
