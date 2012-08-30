@@ -4,10 +4,11 @@ mailed_post:
   body: "This has lots of **marked up** and _fancy_ text. You should know."
   author: max
   editor: max
-  groups: Holz bis auf Spielzeug
+  groups: "Holz bis auf Spielzeug"
   # users = [john]
   is_mailed: true
   is_published: false
+  created_at: <%= 3.weeks.ago.to_s(:db) %>
 
 public_post:
   public_id: public-post
@@ -15,7 +16,8 @@ public_post:
   body: "Lorem ipsum."
   author: max
   editor: john
-  groups: Alle
+  groups: "Holz"
   # users = [max, john]
   is_mailed: false
   is_published: true
+
