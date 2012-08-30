@@ -1,0 +1,27 @@
+#header
+  #important_links
+    - if logged_in?
+      %span.logged_in_user
+        %span.name= @current_user.name
+        (#{link_to 'abmelden', destroy_session_path})
+    - else
+      = link_to 'Anmelden', new_session_path
+    - if logged_in? Employee
+      %span.nobreak= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de'
+      |
+    - if logged_in?
+      #{link_to 'Profil', my_profile_path} |
+    #{static_link_to :kontakt} | #{static_link_to :impressum} | #{static_link_to :AGB}
+  #logo_container= link_to(image_tag('logo/original.png', :alt => 'LEIKOR-Logo', :title => 'Zurück zur Startseite'), :root, :class => 'original_logo medium_logo')
+  #top_navigation
+    %h1{:style => "display: none;"} Navigation
+    %ul.navigation
+      %li= link_to 'Blog', :blog_posts, :class => 'first'
+      %li= link_to 'Sortiment', :categories
+      %li= link_to 'Messetermine', fair_dates_path
+      - unless logged_in? Employee
+        %li= static_link_to :'ueber-uns', :class => 'last'
+      - else
+        %li= static_link_to :'ueber-uns'
+        %li= link_to 'Profile', profiles_path, :class => 'last'
+    = clear_float
