@@ -2,8 +2,18 @@
 require 'test_helper'
 
 class BlogPostTest < ActiveSupport::TestCase
-  test_tested_files_checksum '5df40e362144b1211e4c20288849a7b4'
+  test_tested_files_checksum '9aaa5a2538989be811c2b91a286780d6'
 
+  test "primary key should be public_id" do
+    BlogPost.all.each do |blog_post|
+      assert_equal blog_post.public_id, blog_post.id
+    end
+  end
+  
+  test "default ordering should be created_at DESC" do
+    assert_equal blog_posts(:public_post, :mailed_post), BlogPost.all
+  end
+  
   test "body should be marked up with maruku" do
     assert_equal blog_posts(:mailed_post).body, "<p>This has lots of <strong>marked up</strong> and <em>fancy</em> text. You should know.</p>"
   end
