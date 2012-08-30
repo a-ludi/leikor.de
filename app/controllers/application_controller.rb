@@ -116,7 +116,7 @@ private
 
   #TODO user translation for message
   def set_up_user_required_message(message='Bitte melden Sie sich an.')
-    flash[:referer] = request.referer  if flash[:referer].blank?
+    flash[:referer] = request.path  if flash[:referer].blank?
     flash[:message].error message
     respond_to do |format|
       format.html { redirect_to new_session_path }
