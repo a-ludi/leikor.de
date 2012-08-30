@@ -19,11 +19,11 @@ class BlogPostTest < ActiveSupport::TestCase
   end
   
   test "should belong to author" do
-    assert_equal blog_posts(:mailed_post).author, users(:max)
+    assert_equal blog_posts(:mailed_post).author, users(:maxi)
   end
   
   test "should belong to editor" do
-    assert_equal blog_posts(:mailed_post).editor, users(:max)
+    assert_equal blog_posts(:mailed_post).editor, users(:maxi)
   end
   
   test "should have a public_id" do

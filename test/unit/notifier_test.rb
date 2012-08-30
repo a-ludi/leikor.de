@@ -17,7 +17,7 @@ class NotifierTest < ActionMailer::TestCase
   end
   
   test "confirm registration request" do
-    @user = users(:max)
+    @user = users(:maxi)
     
     Notifier.deliver_confirm_registration_request(@user)
     
@@ -28,7 +28,7 @@ class NotifierTest < ActionMailer::TestCase
   end
   
   test "blog post" do
-    @user = users(:max)
+    @user = users(:maxi)
     blog_post = blog_posts(:mailed_post)
     
     Notifier.deliver_blog_post(@user, blog_post)

@@ -47,7 +47,7 @@ class SecureUserRequestsControllerTest < ActionController::TestCase
   end
   
   test "create reset password action with pending confirm request" do
-    @user = users(:max)
+    @user = users(:maxi)
     post :create, {:login => @user.login, :type => 'SecureUserRequest::ResetPassword'}
     
     assert_nil @user.reload.reset_password_request
@@ -230,7 +230,7 @@ private
   
   def put_create_confirm_registration *options
     session = options.include?(:without_employee) ? {} : with_user
-    @user = options.include?(:request_pending) ? users(:max) : users(:john)
+    @user = options.include?(:request_pending) ? users(:maxi) : users(:john)
     @user = User.new :login => 'unkown_user' if options.include? :unkown_user
     params = {:login => @user.login, :type => 'SecureUserRequest::ConfirmRegistration'}
     params[:sendmail] = options.include? :send_mail

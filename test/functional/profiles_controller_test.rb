@@ -44,7 +44,7 @@ class ProfilesControllerTest < ActionController::TestCase
     assert_respond_to assigns(:employees), :each
     assigns(:employees).each {|user| assert_kind_of Employee, user}
     assert_equal users(:meyer, :moritz), assigns(:customers)
-    assert_equal users(:john, :max), assigns(:employees)
+    assert_equal users(:john, :maxi), assigns(:employees)
     assert_stylesheets_and_title
   end
   

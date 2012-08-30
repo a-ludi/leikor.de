@@ -223,7 +223,7 @@ class BlogControllerTest < ActionController::TestCase
   
 private
   def post_create(options={})
-    @author = users(:max)
+    @author = users(:maxi)
     @before_owned_blog_post_count = @author.owned_blog_posts.count
     @blog_post = {
         :public_id => 'new-test-post',

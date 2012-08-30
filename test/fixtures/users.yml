@@ -8,15 +8,17 @@ john:
   type: Employee
   notes: ""
   primary_email_address: "john@doe.com"
+  #groups: 'Holz, Lampen'
 
-max:
+maxi:
   login: Maxi
   # password = geheim
   password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
-  name: Max Müller
+  name: Maxi Müller
   type: Employee
   notes: ""
-  primary_email_address: "max@mueller.com"
+  primary_email_address: "maxi@mueller.com"
+  #group_list: 'Holz, Spielzeug'
 
 moritz:
   login: moritz
@@ -26,6 +28,7 @@ moritz:
   type: Customer
   notes: "Moritz bleibt **immer** treu."
   primary_email_address: "moritz@bleibtreu.com"
+  #group_list: 'Spielzeug, Lampen'
 
 meyer:
   login: meyer-und-co
@@ -35,3 +38,4 @@ meyer:
   type: Customer
   notes: ""
   primary_email_address: "moritz@bleibtreu.com"
+  #group_list: ''

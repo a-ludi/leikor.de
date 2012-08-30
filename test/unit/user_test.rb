@@ -23,12 +23,12 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "has a confirm_registration_request" do
-    assert_equal users(:max).confirm_registration_request,
+    assert_equal users(:maxi).confirm_registration_request,
         secure_user_requests(:max_confirm)
   end
   
   test "deletes confirm_registration_request on destroy" do
-    users(:max).destroy
+    users(:maxi).destroy
     
     assert_raises ActiveRecord::RecordNotFound do
       secure_user_requests(:max_confirm)
@@ -36,7 +36,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "has many owned_blog_posts" do
-    assert_equal users(:max).owned_blog_posts,
+    assert_equal users(:maxi).owned_blog_posts,
         blog_posts(:mailed_post, :public_post)
   end
   
@@ -107,7 +107,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "should have a unique login" do
-    users(:john).login = users(:max).login
+    users(:john).login = users(:maxi).login
     assert_errors_on users(:john), :on => :login
   end
   
@@ -152,18 +152,18 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "registration should be unconfirmed" do
-    refute users(:max).registration?(:confirmed)
+    refute users(:maxi).registration?(:confirmed)
   end
   
   test "registration should be denied" do
-    users(:max).registration = :denied
+    users(:maxi).registration = :denied
     
-    assert users(:max).registration?(:denied)
+    assert users(:maxi).registration?(:denied)
   end
   
   test "registration should be undenied" do
     refute users(:john).registration?(:denied)
-    refute users(:max).registration?(:denied)
+    refute users(:maxi).registration?(:denied)
   end
   
   test "should not deny already confirmed registration" do

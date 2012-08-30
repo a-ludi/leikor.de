@@ -1,0 +1,11 @@
+<% {
+  :john => [:holz, :lampen],
+  :maxi => [:holz, :spielzeug],
+  :moritz => [:lampen, :spielzeug]
+}.each do |user, tags|; tags.each do |tag| %>
+<%= user %>-<%= tag%>:
+  taggable_id: <%= Fixtures.identify user %>
+  taggable_type: User
+  tag_id: <%= Fixtures.identify tag %>
+  context: groups
+<% end; end %>
