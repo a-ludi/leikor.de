@@ -8,35 +8,10 @@ class ProfilesController < ApplicationController
       :update_password]
   before_filter :set_profile, :except => [:index, :new, :create]
   
-  def edit_password
-    @stylesheets = %w(message)
-    @title = 'Passwort ändern'
-  end
-  
-  def update_password
-    password_correct = @profile.password == params[:password]
-    new_passwords_match = params[:new_password] == params[:confirm_new_password]
-    
-    if password_correct and new_passwords_match
-      @profile.password = params[:new_password]
-      
-      if @profile.save
-        flash[:message].success "Passwort erfolgreich geändert!"
-        
-        redirect_to my_profile_path and return
-      end
-    end
-    
-    @profile.errors.add :password, :incorrect  unless password_correct
-    @profile.errors.add :new_password, :confirmation  unless new_passwords_match
-    
-    redirect_to edit_password_path, :flash => {:profile => @profile}
-  end
-  
   def index
     #TODO rely on default order
-    @employees = Employee.all :order => 'name ASC'
     @customers = Customer.all :order => 'name ASC'
+    @employees = Employee.all :order => 'name ASC'
     
     @stylesheets = %w(profile)
     @title = "Profile"
@@ -52,11 +27,9 @@ class ProfilesController < ApplicationController
   
   def new
     @profile = flash[:profile] || params[:type].constantize.new
-    params[:format] = nil
     
     @stylesheets = %w(message profile)
     @title = "Neues Profil erstellen"
-    @method = :post
     
     render :edit
   end
@@ -79,7 +52,6 @@ class ProfilesController < ApplicationController
   def edit
     @stylesheets = %w(message profile)
     @title = "#{@profile.name}s Profil bearbeiten"
-    @method = :put
     
     render :edit
   end
@@ -95,6 +67,28 @@ class ProfilesController < ApplicationController
     end
   end
   alias :update_mine  :update
+  
+  def edit_password
+    @stylesheets = %w(message)
+    @title = 'Passwort ändern'
+  end
+  
+  def update_password
+    password_correct = @profile.password == params[:password]
+    new_passwords_match = params[:new_password] == params[:confirm_new_password]
+    @profile.password = params[:new_password]
+    
+    if password_correct and new_passwords_match and @profile.save
+        flash[:message].success "Passwort erfolgreich geändert!"
+        
+        redirect_to my_profile_path
+    else
+      @profile.errors.add :password, :incorrect  unless password_correct
+      @profile.errors.add :new_password, :confirmation  unless new_passwords_match
+      
+      redirect_to edit_password_path, :flash => {:profile => @profile}
+    end
+  end
   
   def destroy
     @profile.destroy
