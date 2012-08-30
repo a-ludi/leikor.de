@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class BlogControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'c76092fd87bdb5a57da9a28fdb69d9a4'
+  tests_mailer Notifier
+
+  #test_tested_files_checksum 'c76092fd87bdb5a57da9a28fdb69d9a4'
   
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
@@ -130,9 +132,9 @@ class BlogControllerTest < ActionController::TestCase
     @blog_post = blog_posts(:public_post)
     get :mail, {:id => @blog_post.to_param}, with_user
     
-    assert @blog_post.reload.is_mailed, 'blog post not mailed'
-    refute_empty flash[:message]
-    skip 'TODO assert mails are sent'
+    assert assigns(:blog_post).is_mailed, 'blog post not mailed'
+    assert_present flash[:message]
+    assert_mails_sent @blog_post.readers.count
   end
   
   test "mail action with js" do
@@ -141,7 +143,7 @@ class BlogControllerTest < ActionController::TestCase
     
     assert @blog_post.reload.is_mailed, 'blog post not mailed'
     assert_empty flash[:message]
-    skip 'TODO assert mails are sent'
+    assert_mails_sent @blog_post.readers.count
   end
   
   test "publish action with html, unpublished post and referer" do
@@ -174,9 +176,11 @@ class BlogControllerTest < ActionController::TestCase
   end
   
   test "readers action" do
-    skip 'TODO assign users to groups in fixtures'
-    @groups = ''
+    @groups = "Holz bis auf Spielzeug"
     get :readers, {:groups => @groups}
+    
+    assert_equal users(:john), assigns(:readers)
+    assert_template :partial => 'readers'
   end
 
   test "update_flag with html without referer" do

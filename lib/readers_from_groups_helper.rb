@@ -46,7 +46,7 @@ private
   end
   
   def self.get_users_from instructions
-    users = User.tagged_with nil
+    users = User.scoped({})
     instructions.reverse!
     
     while instruction = instructions.pop
@@ -97,6 +97,7 @@ private
       end
     end
     
-    compressed_instructions << [:groups, aggregated_groups]
+    compressed_instructions << [:groups, aggregated_groups] unless aggregated_groups.empty?
+    compressed_instructions
   end
 end

@@ -113,7 +113,7 @@ protected
   
   def mail_blog_post
     if params[:mail?] == 'yes'
-      [User.first].each { |user| Notifier.deliver_blog_post user, @blog_post }
+      @blog_post.readers.each { |user| Notifier.deliver_blog_post user, @blog_post }
       @blog_post.is_mailed = true
       @blog_post.save!
       
