@@ -1,7 +1,8 @@
 <% {
   :john => [:holz, :lampen],
   :maxi => [:holz, :spielzeug],
-  :moritz => [:lampen, :spielzeug]
+  :moritz => [:lampen, :spielzeug],
+  :meyer => [:holz, :tiere]
 }.each do |user, tags|; tags.each do |tag| %>
 <%= user %>-<%= tag%>:
   taggable_id: <%= Fixtures.identify user %>
