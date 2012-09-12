@@ -24,6 +24,12 @@ module ReadersFromGroupsHelper
     end
   end
   
+  def readers_from_groups groups
+    ReadersFromGroupsHelper.readers_from_groups groups
+  end
+
+private
+  
   def self.readers_from_groups groups
     instructions = parse groups
     get_users_from instructions
@@ -33,8 +39,6 @@ module ReadersFromGroupsHelper
     instructions = parse groups
     match_with group_list, instructions
   end
-
-private
 
   def self.parse groups
     parts = extract_parts(groups || '')
