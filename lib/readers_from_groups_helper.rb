@@ -20,7 +20,7 @@ module ReadersFromGroupsHelper
     end
     
     def is_reader? user
-      ReadersFromGroupsHelper.match? user.group_list, groups
+      not user.nil? and ReadersFromGroupsHelper.match? user.group_list, groups
     end
   end
   
@@ -94,8 +94,8 @@ private
           type, groups_or_name = instructions.pop
           
           if type == :groups
-            with_options = {:on => :groups}.merge JUNCTOR_OPTIONS_HASH[junctor_name]
-            users = users.tagged_with groups_or_name, with_options
+            options = {:on => :groups}.merge JUNCTOR_OPTIONS_HASH[junctor_name]
+            users = users.tagged_with groups_or_name, options
           else
             # ignore this junctor
             instructions.push [type, groups_or_name]
