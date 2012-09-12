@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   has_one :confirm_registration_request,
       :class_name => 'SecureUserRequest::ConfirmRegistration',
       :dependent => :delete
-  has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id'
-  has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id'
+  has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id', :order => 'created_at DESC'
+  has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id', :order => 'created_at DESC'
   
   validates_presence_of :name, :login, :password, :type, :primary_email_address
   # TODO replace message with translated version

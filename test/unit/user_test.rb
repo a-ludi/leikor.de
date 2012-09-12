@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'd52037449f65c02148f37cc35e2c2f90'
+  test_tested_files_checksum '4cf3b1405c3998402d7225d817aea84b'
 
   test "notes should be marked up with maruku" do
     assert_equal users(:moritz).notes,
@@ -36,12 +36,11 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "has many owned_blog_posts" do
-    assert_equal users(:maxi).owned_blog_posts,
-        blog_posts(:mailed_post, :public_post)
+    assert_equal blog_posts(:public_post, :mailed_post), users(:maxi).owned_blog_posts
   end
   
   test "has many edited_blog_posts" do
-    assert_equal users(:john).edited_blog_posts, [blog_posts(:public_post)]
+    assert_equal [blog_posts(:public_post)], users(:john).edited_blog_posts
   end
   
   test "should have a name" do
