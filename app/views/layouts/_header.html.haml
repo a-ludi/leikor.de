@@ -6,6 +6,7 @@
         (#{link_to 'abmelden', destroy_session_path})
     - else
       = link_to 'Anmelden', new_session_path
+    |
     - if logged_in? Employee
       %span.nobreak= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de'
       |
