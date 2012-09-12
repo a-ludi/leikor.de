@@ -2,7 +2,7 @@ max_confirm:
   external_id: "6466a73419aa2d29e8f42457d0898f41"
   type: SecureUserRequest::ConfirmRegistration
   memo: Has some unused text.
-  user: max
+  user: maxi
 
 john_reset:
   external_id: "f7740d3057569e542d15ade48afb03fa"

@@ -2,8 +2,8 @@ mailed_post:
   public_id: mailed-post
   title: Mailed Post
   body: "This has lots of **marked up** and _fancy_ text. You should know."
-  author: max
-  editor: max
+  author: maxi
+  editor: maxi
   groups: "Holz bis auf Spielzeug"
   # users = [john]
   is_mailed: true
@@ -14,10 +14,10 @@ public_post:
   public_id: public-post
   title: Public Post
   body: "Lorem ipsum."
-  author: max
+  author: maxi
   editor: john
   groups: "Holz"
-  # users = [max, john]
+  # users = [maxi, john]
   is_mailed: false
   is_published: true
 

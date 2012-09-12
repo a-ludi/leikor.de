@@ -11,7 +11,7 @@ john:
   #groups: 'Holz, Lampen'
 
 maxi:
-  login: Maxi
+  login: maxi
   # password = geheim
   password: $2a$10$Kr78UOW0CK8tUFXNRcINAOpXHqPOJiJVAuUR1dPUQy7jlGtZTbTsO
   name: Maxi Müller
