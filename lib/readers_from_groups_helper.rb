@@ -9,22 +9,29 @@ module ReadersFromGroupsHelper
   JUNCTOR_OPTIONS_HASH = {:except => {:exclude => true}, :only => {:any => true}}
 
   module InstanceMethods
-    include ReadersFromGroupsHelper
-    
     def readers
       return @readers[:users]  if not @readers.nil? and @readers[:groups] == groups
       
       @readers = {
-          :users => readers_from_groups(groups),
+          :users => ReadersFromGroupsHelper.readers_from_groups(groups),
           :groups => groups}
       
       @readers[:users]
     end
+    
+    def is_reader? user
+      ReadersFromGroupsHelper.match? user.group_list, groups
+    end
   end
   
-  def readers_from_groups groups
-    instructions = ReadersFromGroupsHelper.parse groups
-    ReadersFromGroupsHelper.get_users_from instructions
+  def self.readers_from_groups groups
+    instructions = parse groups
+    get_users_from instructions
+  end
+  
+  def self.match? group_list, groups
+    instructions = parse groups
+    match_with group_list, instructions
   end
 
 private
@@ -43,6 +50,35 @@ private
     end
     
     compress instructions
+  end
+  
+  def self.extract_parts groups
+    parts = groups.gsub(/\bund\b/, ',').split(',')
+    parts.map! do |tag|
+      sub_parts = tag.partition(JUNCTOR_PATTERN)
+      sub_parts.map {|sub_part| sub_part.strip}
+    end
+    
+    parts.flatten!
+    parts.reject {|tag| tag.blank?}
+  end
+  
+  def self.compress instructions
+    aggregated_groups = []
+    compressed_instructions = []
+    
+    instructions.each do |type, name|
+      if type == :group
+        aggregated_groups << name
+      else
+        compressed_instructions << [:groups, aggregated_groups] unless aggregated_groups.empty?
+        compressed_instructions << [:junctor, name]
+        aggregated_groups = []
+      end
+    end
+    
+    compressed_instructions << [:groups, aggregated_groups] unless aggregated_groups.empty?
+    compressed_instructions
   end
   
   def self.get_users_from instructions
@@ -65,39 +101,43 @@ private
             instructions.push [type, groups_or_name]
           end
         when :groups
-          users = User.tagged_with groups_or_name, :on => :groups, :any => true
+          users = users.tagged_with groups_or_name, :on => :groups, :any => true
       end
     end
     
     return users
-  end
+  end  
   
-  def self.extract_parts groups
-    parts = groups.gsub(/\bund\b/, ',').split(',')
-    parts.map! do |tag|
-      sub_parts = tag.partition(JUNCTOR_PATTERN)
-      sub_parts.map {|sub_part| sub_part.strip}
-    end
+  def self.match_with group_list, instructions
+    match = true
+    instructions.reverse!
     
-    parts.flatten!
-    parts.reject {|tag| tag.blank?}
-  end
-  
-  def self.compress instructions
-    aggregated_groups = []
-    compressed_instructions = []
-    
-    instructions.each do |type, name|
-      if type == :group
-        aggregated_groups << name
-      else
-        compressed_instructions << [:groups, aggregated_groups]
-        compressed_instructions << [:junctor, name]
-        aggregated_groups = []
+    while instruction = instructions.pop
+      type, groups_or_name = instruction
+      
+      case type
+        when :junctor
+          junctor_name = groups_or_name
+          type, groups_or_name = instructions.pop
+          
+          if type == :groups
+            case junctor_name
+              when :except then match &= group_listed(group_list, groups_or_name).none?
+              when :only then match &= group_listed(group_list, groups_or_name).any?
+            end
+          else
+            # ignore this junctor
+            instructions.push [type, groups_or_name]
+          end
+        when :groups
+          match &= group_listed(group_list, groups_or_name).any?
       end
     end
     
-    compressed_instructions << [:groups, aggregated_groups] unless aggregated_groups.empty?
-    compressed_instructions
+    return match
+  end
+  
+  def self.group_listed group_list, groups
+    groups.map{|group| group_list.include? group}
   end
 end
