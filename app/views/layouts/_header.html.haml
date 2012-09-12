@@ -5,13 +5,12 @@
         %span.name= @current_user.name
         (#{link_to 'abmelden', destroy_session_path})
     - else
-      = link_to 'Anmelden', new_session_path
-    |
+      #{link_to 'Anmelden', new_session_path} #{'|'}
     - if logged_in? Employee
       %span.nobreak= link_to 'E-Mail', 'https://mail.google.com/a/leikor.de'
       |
     - if logged_in?
-      #{link_to 'Profil', my_profile_path} |
+      #{link_to 'Profil', my_profile_path} #{'|'}
     #{static_link_to :kontakt} | #{static_link_to :impressum} | #{static_link_to :AGB}
   #logo_container= link_to(image_tag('logo/original.png', :alt => 'LEIKOR-Logo', :title => 'Zurück zur Startseite'), :root, :class => 'original_logo medium_logo')
   #top_navigation
