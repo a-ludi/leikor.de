@@ -3,17 +3,11 @@ require 'test_helper'
 class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
-  #test_tested_files_checksum 'c76092fd87bdb5a57da9a28fdb69d9a4'
+  test_tested_files_checksum 'df7ee4db126bd884161ec9722d190a24'
   
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
       assert_before_filter_applied :employee_required, action
-    end
-  end
-  
-  test "index show should set select_conditions" do
-    [:index, :show].each do |action|
-      assert_before_filter_applied :set_select_conditions, action
     end
   end
   
@@ -177,9 +171,10 @@ class BlogControllerTest < ActionController::TestCase
   
   test "readers action" do
     @groups = "Holz bis auf Spielzeug"
-    get :readers, {:groups => @groups}
+    get :readers, {:groups => @groups}, with_user
     
-    assert_equal users(:john), assigns(:readers)
+    assert_includes assigns(:readers), users(:meyer)
+    assert_includes assigns(:readers), users(:john)
     assert_template :partial => 'readers'
   end
 
@@ -208,19 +203,11 @@ class BlogControllerTest < ActionController::TestCase
     assert assigns(:no_message), 'no_message set to true'
     assert_template :partial => 'flags'
   end
+  
+  test "blog_posts" do
+    skip "TODO"
+  end
 
-  test "set_select_conditions with employee" do
-    get :index, {}, with_user(:john) # calls set_select_conditions
-    
-    assert_nil assigns(:select_conditions)
-  end
-  
-  test "set_select_conditions without employee" do
-    get :index, {}, with_user(:moritz) # calls set_select_conditions
-    
-    assert_kind_of Hash, assigns(:select_conditions)
-  end
-  
 private
   def post_create(options={})
     @author = users(:maxi)

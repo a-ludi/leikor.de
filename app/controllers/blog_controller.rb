@@ -4,17 +4,16 @@ class BlogController < ApplicationController
   include ReadersFromGroupsHelper
   
   before_filter :employee_required, :except => [:index, :show]
-  before_filter :set_select_conditions, :only => [:index, :show]
   after_filter :mail_blog_post, :only => [:create, :update, :mail]
   
   def index
-    @blog_posts = BlogPost.all(:conditions => @select_conditions)
+    @blog_posts = blog_posts
     @title = "Blog"
     @stylesheets = %w(blog)
   end
   
   def show
-    @blog_post = BlogPost.find params[:id], :conditions => @select_conditions
+    @blog_post = blog_posts(params[:id])
     @title = "#{@blog_post.title} (Blog)"
     @stylesheets = %w(blog)
   end
@@ -37,11 +36,11 @@ class BlogController < ApplicationController
   def edit
     @title = "Blogbeitrag bearbeiten"
     @stylesheets = %w(message form blog)
-    @blog_post = flash[:blog_post] || BlogPost.find(params[:id])
+    @blog_post = flash[:blog_post] || blog_posts(params[:id])
   end
 
   def update
-    @blog_post = BlogPost.find params[:id]
+    @blog_post = blog_posts(params[:id])
     @blog_post.update_attributes params[:blog_post]
     @blog_post.editor = @current_user
     
@@ -69,7 +68,7 @@ class BlogController < ApplicationController
   end
 
   def destroy
-    @blog_post = BlogPost.find params[:id]
+    @blog_post = blog_posts(params[:id])
     @blog_post.destroy
     
     flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gelöscht."
@@ -86,7 +85,7 @@ class BlogController < ApplicationController
 protected
   
   def update_flag
-    @blog_post = BlogPost.find params[:id]
+    @blog_post = blog_posts(params[:id])
     
     yield
     
@@ -103,11 +102,25 @@ protected
     end
   end
   
-  def set_select_conditions
-    @select_conditions = if logged_in? Employee
-      nil
+  #TODO untested and untidy. what to do about it?
+  def blog_posts(id=nil)
+    if logged_in? Employee
+      if id.nil?
+        BlogPost.all
+      else
+        BlogPost.find id
+      end
     else
-      {:is_published => true}
+      if id.nil?
+        BlogPost.all.select {|blog_post| blog_post.is_published? or blog_post.is_reader?(@current_user)}
+      else
+        blog_post = BlogPost.find id
+        if blog_post.is_published? or blog_post.is_reader?(@current_user)
+          return blog_post
+        else
+          raise ActiveRecord::RecordNotFound
+        end
+      end
     end
   end
   
