@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PROMPT='Bitte sudo-Passwort eingeben, um den Server zu starten: '
+
+(sudo -p "$PROMPT" echo "=> Booting http server and https server") &&
+(rvmsudo script/server -p 80 & rvmsudo script/ssl_server)
