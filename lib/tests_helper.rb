@@ -48,9 +48,9 @@ module TestsHelper
   end
   
   module ClassMethods
-    def test_tested_files_checksum(files_with_checksum)
-      if files_with_checksum.is_a? String
-        expected_checksum = files_with_checksum
+    def test_tested_files_checksum(*files_with_checksum)
+      if files_with_checksum.first.is_a? String
+        expected_checksum = files_with_checksum.first
         
         basename = self.to_s[0..-5].underscore + '.rb'
         dirname = case self.to_s

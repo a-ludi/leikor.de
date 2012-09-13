@@ -2,7 +2,10 @@
 require 'test_helper'
 
 class BlogPostTest < ActiveSupport::TestCase
-  test_tested_files_checksum '9aaa5a2538989be811c2b91a286780d6'
+  test_tested_files_checksum(
+    ['app/models/blog_post.rb', '9aaa5a2538989be811c2b91a286780d6'],
+    ['lib/readers_from_groups_helper.rb', '1e85d01e250ef8e82c290080b39d12cb']
+  )
 
   test "primary key should be public_id" do
     BlogPost.all.each do |blog_post|
@@ -75,6 +78,6 @@ class BlogPostTest < ActiveSupport::TestCase
   
   test "should include instance methods of ReadersFromGroupsHelper" do
     assert_includes BlogPost.instance_methods, :readers
-    assert_includes BlogPost.instance_methods, :readers_from_groups
+    assert_includes BlogPost.instance_methods, :is_reader?
   end
 end
