@@ -35,6 +35,6 @@ class SessionsController < ApplicationController
   def destroy
     flash[:message].success '&hellip; und auf Wiedersehen.', 'Bis bald!'
     logout_user!
-    redirect_to (request.referer.blank? ? '/' : request.referer)
+    redirect_to :root
   end
 end
