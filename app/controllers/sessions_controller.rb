@@ -1,7 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class SessionsController < ApplicationController
-  ssl_required :new, :create  if RAILS_ENV == 'production'
+  ssl_required :new, :create
+  ssl_allowed :destroy
   before_filter :user_required, :only => [:destroy]
   
   def new

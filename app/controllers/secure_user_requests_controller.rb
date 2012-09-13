@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class SecureUserRequestsController < ApplicationController
+  ssl_required_by_all_actions
   before_filter :fetch_secure_user_request, :destroy_request_if_expired
   before_filter :force_user_logout, :except => [:new, :create]
   

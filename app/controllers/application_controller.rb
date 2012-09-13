@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 class ApplicationController < ActionController::Base
-  include SslRequirement
   include ExceptionNotification::Notifiable
   
   helper :all # include all helpers, all the time
@@ -13,6 +12,11 @@ class ApplicationController < ActionController::Base
   unless RAILS_ENV == 'production'
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
   end
+  
+  include SslRequirement
+  
+  alias orig_ssl_required? ssl_required?
+  def ssl_required?; logged_in? or orig_ssl_required?; end
   
   if RAILS_ENV == 'test'
     def test_method
@@ -95,12 +99,16 @@ protected
   end
 
   def render_to_nested_layout(options={})
-    logger.warn "[warning] method render_to_nested_layout is deprecated"
+    logger.error "[error] method render_to_nested_layout is deprecated"
     options[:outer_layout] = 'application' if options[:outer_layout].nil?
     
     options[:text] = render_to_string options
     options[:layout] = options[:outer_layout]
     render options
+  end
+  
+  def self.ssl_required_by_all_actions
+    class_eval{ def ssl_required?; true; end }
   end
   
   def log_if_title_not_set

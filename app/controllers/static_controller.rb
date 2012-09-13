@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class StaticController < ApplicationController
+  def ssl_allowed?; true; end
   skip_before_filter :prepare_flash_message
   caches_page :page, :stylesheet
   

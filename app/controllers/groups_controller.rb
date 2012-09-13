@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class GroupsController < ApplicationController
-  before_filter :make_groups, :make_user
+  before_filter :employee_required, :make_groups, :make_user
   
   def create
     @user.group_list += @groups
