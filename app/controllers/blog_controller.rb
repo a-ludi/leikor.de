@@ -77,7 +77,8 @@ class BlogController < ApplicationController
   end
   
   def readers
-    @readers = readers_from_groups params[:groups]
+    #TODO test limit and shuffle
+    @readers = readers_from_groups(params[:groups]).all(:limit => 10).shuffle
     
     render :partial => 'readers', :object => @readers
   end
