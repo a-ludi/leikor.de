@@ -1,6 +1,27 @@
 # -*- encoding : utf-8 -*-
 
 module ApplicationHelper
+  # To create a piped menu use:
+  #
+  #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3)
+  #
+  # To use an alternate separator (e.g. '-') use:
+  #
+  #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3), :separator => '-'
+  def text_menu(*collection)
+    separator = '|'
+    if collection.last.is_a? Hash
+      separator ||= collection.last[:separator]
+      collection.pop
+    end
+    
+    collection.compact.join(" #{separator} ")
+  end
+  
+  def brick(name, object=nil)
+    render :partial => "bricks/#{name.to_s}", :object => object
+  end
+  
   def a_button_to(name, options={}, html_options=nil)
     button_options = {:type => 'button', :value => name}
     [:tabindex].each do |key|
