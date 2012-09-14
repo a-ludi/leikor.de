@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 
-require 'bcrypt'
-
 class User < ActiveRecord::Base
   include BCrypt
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z-]*$/

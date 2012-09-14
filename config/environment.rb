@@ -10,6 +10,7 @@ require 'string_blank_patch'
 require 'string_url_safe_extension'
 require 'marked_up_with_maruku_helper'
 require 'validations_helper'
+require 'bcrypt'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
