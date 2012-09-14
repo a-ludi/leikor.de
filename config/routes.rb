@@ -1,42 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
   map.categories(
       'sortiment/',
       :controller => 'categories',
@@ -59,7 +23,7 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'categories',
       :action => 'ask_destroy',
       :conditions => {:method => :get})
-  map.resources :categories, :as => 'kategorie'
+  map.resources :categories, :as => 'kategorie', :except => [:index, :show]
   map.reorder_categories(
       'kategorie/sortieren',
       :controller => 'categories',
@@ -81,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
       :controller => 'articles',
       :action => 'ask_destroy',
       :article => Article::ARTICLE_NUMBER_FORMAT)
-  map.resources :articles, :as => 'artikel' do |articles|
+  map.resources :articles, :as => 'artikel', :except => [:show] do |articles|
     articles.resource :picture, :as => 'bild', :controller => 'picture' do |picture|
       picture.download 'download/:style.:extension', :action => 'pictures', :controller => 'picture'
       picture.download 'download', :action => 'pictures', :controller => 'picture'
@@ -142,9 +106,11 @@ ActionController::Routing::Routes.draw do |map|
       :action => 'create',
       :type => 'SecureUserRequest::ConfirmRegistration',
       :conditions => {:method => :post})
-  map.resource(:session, :as => 'sitzung',
-      :collection => {:destroy => :get},
-      :path_names => {:new => 'anmelden', :destroy => 'abmelden'})
+  map.with_options :controller => 'sessions' do |session|
+    session.destroy_session 'sitzung/abmelden', :action => 'destroy', :conditions => {:method => :get}
+    session.new_session 'sitzung/anmelden', :action => 'new', :conditions => {:method => :get}
+    session.session 'sitzung', :action => 'create', :conditions => {:method => :post}
+  end
 
   map.resources(
       :secure_user_requests,
