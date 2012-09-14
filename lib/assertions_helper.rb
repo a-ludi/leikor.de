@@ -42,4 +42,12 @@ module AssertionsHelper
     assert_respond_to assigns(:stylesheets), :each
     assert_present assigns(:title)
   end
+  
+  def assert_https
+    assert https?, "expected a secure HTTPS request"
+  end
+  
+  def refute_https
+    refute https?, "expected an insecure HTTP request"
+  end
 end
