@@ -1,6 +1,14 @@
 # -*- encoding : utf-8 -*-
 
 module TestsHelper
+  def https!(state=true)
+    if state
+      @request.env['HTTPS'] = 'on'
+    else
+      @request.env['HTTPS'] = nil
+    end
+  end
+  
   def with_employee(session={})
     with_user Employee.first
   end
