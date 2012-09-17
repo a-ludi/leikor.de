@@ -3,8 +3,8 @@ require 'test_helper'
 
 class BlogPostTest < ActiveSupport::TestCase
   test_tested_files_checksum(
-    ['app/models/blog_post.rb', '9aaa5a2538989be811c2b91a286780d6'],
-    ['lib/readers_from_groups_helper.rb', '1e85d01e250ef8e82c290080b39d12cb']
+    ['app/models/blog_post.rb', 'c76e00c6e2bba05110fc4703b2be6235'],
+    ['lib/readers_from_groups_extension.rb', '228a973580fff5164d3cb2dc72b17498']
   )
 
   test "primary key should be public_id" do

@@ -2,7 +2,7 @@
 require 'maruku'
 require 'active_record'
 
-module MarkedUpWithMarukuHelper
+module MarkedUpWithMarukuExtension
   def self.included(base)
     base.extend ClassMethods
   end
@@ -34,5 +34,5 @@ module MarkedUpWithMarukuHelper
 end
 
 class ActiveRecord::Base
-  include MarkedUpWithMarukuHelper
+  include MarkedUpWithMarukuExtension
 end

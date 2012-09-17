@@ -15,7 +15,7 @@ class BlogPost < ActiveRecord::Base
   
   before_validation_on_create :set_public_id
   
-  include ReadersFromGroupsHelper::InstanceMethods
+  include ReadersFromGroupsExtension::ActiveRecordMethods
 
 protected
   

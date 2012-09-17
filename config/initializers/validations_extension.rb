@@ -2,7 +2,7 @@
 require 'maruku'
 require 'active_record'
 
-module ValidationsHelper
+module ValidationsExtension
   def self.included(base)
     base.extend ClassMethods
   end
@@ -29,5 +29,5 @@ module ValidationsHelper
 end
 
 class ActiveRecord::Base
-  include ValidationsHelper
+  include ValidationsExtension
 end

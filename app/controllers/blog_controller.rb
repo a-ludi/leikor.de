@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class BlogController < ApplicationController
-  include ReadersFromGroupsHelper
+  include ReadersFromGroupsExtension::ActionControllerMethods
   
   before_filter :employee_required, :except => [:index, :show]
   after_filter :mail_blog_post, :only => [:create, :update, :mail]

@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-module ReadersFromGroupsHelper
+module ReadersFromGroupsExtension
   # Junctor :except: außer, ausser, aber nicht, nicht, nicht aber, bis auf, aber nur, nur
   # Junctor :only: aber nur, nur
   JUNCTOR_EXCEPT_PATTERN = /\b(außer|ausser|nicht\s+aber|(aber\s+)?nicht|bis\s+auf|ohne|)\b/
@@ -8,24 +8,26 @@ module ReadersFromGroupsHelper
   JUNCTOR_PATTERN = Regexp.union JUNCTOR_EXCEPT_PATTERN, JUNCTOR_ONLY_PATTERN
   JUNCTOR_OPTIONS_HASH = {:except => {:exclude => true}, :only => {:any => true}}
 
-  module InstanceMethods
+  module ActiveRecordMethods
     def readers
       return @readers[:users]  if not @readers.nil? and @readers[:groups] == groups
       
       @readers = {
-          :users => ReadersFromGroupsHelper.readers_from_groups(groups),
+          :users => ReadersFromGroupsExtension.readers_from_groups(groups),
           :groups => groups}
       
       @readers[:users]
     end
     
     def is_reader? user
-      not user.nil? and ReadersFromGroupsHelper.match? user.group_list, groups
+      not user.nil? and ReadersFromGroupsExtension.match? user.group_list, groups
     end
   end
   
-  def readers_from_groups groups
-    ReadersFromGroupsHelper.readers_from_groups groups
+  module ActionControllerMethods
+    def readers_from_groups groups
+      ReadersFromGroupsExtension.readers_from_groups groups
+    end
   end
 
 private
