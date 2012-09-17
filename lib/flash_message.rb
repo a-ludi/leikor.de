@@ -3,6 +3,8 @@
 class FlashMessage
   DEFAULTS = {:klass => nil, :title => nil, :text => ''}
   
+  attr_accessor :text
+  
   # Returns the title or translation string of this message. If not explicitly
   # set <tt>FlashMessage</tt> will try to guess an apropriate title like
   # <tt>translate @klass.to_s, :scope => 'flash_message.title'<tt>. If none is
