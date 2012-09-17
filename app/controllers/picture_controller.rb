@@ -58,6 +58,7 @@ private
       logger.debug "[PictureController] errors on article: <#{@article.errors.inspect}>"
       @article.errors.clear and @article.errors.add(
         :picture, Article::PICTURE_INVALID_MESSAGE)
+      self.class.skip_after_filter :update_picture_dimensions
       render_response :failure
     end
   end
