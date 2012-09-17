@@ -1,7 +1,8 @@
 # -*- encoding : utf-8 -*-
 
 class GroupsController < ApplicationController
-  before_filter :employee_required, :make_groups, :make_user
+  ssl_required_by_all_actions
+  before_filter :employee_required, :make_groups, :fetch_user
   
   def create
     @user.group_list += @groups
@@ -30,7 +31,7 @@ protected
     @groups = groups_from_string params[:id]
   end
   
-  def make_user
+  def fetch_user
     @user = User.find_by_login! params[:profile_id]
   end
   
@@ -39,24 +40,25 @@ protected
       flash[:message].success success_message
       
       respond_to do |format|
+        format.html do
+          redirect_to profile_path(@user)
+        end
+        
         format.js do
           render :text => @groups.join(', ')
         end
-        
-        format.html do
-          redirect_to profile_path(@user)
-        end
       end
     else
+      logger.warn '[warn] statement should not be reached; errors on User record found'
       flash[:message].error make_if_error_messages_for(@user)
       
       respond_to do |format|
-        format.js do
-          render :partial => 'layouts/push_message'
-        end
-        
         format.html do
           redirect_to profile_path(@user)
+        end
+        
+        format.js do
+          render :partial => 'layouts/push_message'
         end
       end
     end
