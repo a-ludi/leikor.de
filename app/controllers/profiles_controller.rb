@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class ProfilesController < ApplicationController
+  ssl_required_by_all_actions
   before_filter :user_required
   before_filter :employee_required, :except => [:show_mine, :edit_mine, :update_mine,
       :edit_password, :update_password]

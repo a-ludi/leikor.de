@@ -2,7 +2,11 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test_tested_files_checksum '9dfa13ecb27ae99dd7c27d13231533d9'
+  test_tested_files_checksum '33f3b35158d73ee4d492603f59cc1252'
+  
+  def setup
+    https! # (nearly) every action requires SSL
+  end
 
   test "login required for logout" do
     assert_before_filter_applied :user_required, :destroy
@@ -53,18 +57,8 @@ class SessionsControllerTest < ActionController::TestCase
     assert_nil session[:user_id]
   end
   
-  test "destroy action with referer" do
-    with_referer
+  test "destroy action" do
     on_logout
-    
-    assert_nil assigns(:current_user)
-    assert_not_nil flash[:message]
-    assert_redirected_to @referer
-  end
-  
-  test "destroy action without referer" do
-    on_logout
-    
     assert_redirected_to '/'
   end
   

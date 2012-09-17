@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  test_tested_files_checksum '4b8d0cabab5aff005fc721eefd165a10'
+  test_tested_files_checksum '0be2352f1f27cda8d9d2a99fa72a2d4e'
 
   test "before filters active" do
     [:fetch_current_user, :fetch_updated_at, :prepare_flash_message].each do |filter|
@@ -59,6 +59,7 @@ class ApplicationControllerTest < ActionController::TestCase
   end
   
   test "logout_user!" do
+    https!
     call_method :logout_user!, [], :session => with_user
     
     assert_empty flash[:message]
@@ -73,6 +74,7 @@ class ApplicationControllerTest < ActionController::TestCase
   end
   
   test "logged_in? employee check" do
+    https!
   	@logged_in_employee = call_method :logged_in?, [Employee], :session => with_user(:john)
   	@logged_in_customer = call_method :logged_in?, [Customer], :session => with_user(:john)
   	
@@ -81,6 +83,7 @@ class ApplicationControllerTest < ActionController::TestCase
   end
   
   test "logged_in? customer check" do
+    https!
   	@logged_in_employee = call_method :logged_in?, [Employee], :session => with_user(:moritz)
   	@logged_in_customer = call_method :logged_in?, [Customer], :session => with_user(:moritz)
   	
@@ -90,18 +93,21 @@ class ApplicationControllerTest < ActionController::TestCase
   
   test "logged_in? user check" do
     session = with_user
+    https!
   	@logged_in = call_method :logged_in?, [@user], :session => session
   	
   	assert @logged_in
   end
   
   test "fetch_current_user" do
+    https!
     call_method :fetch_current_user, [], :session => with_user
     
     assert_equal @user, assigns(:current_user)
   end
   
   test "user_required passes" do
+    https!
     @passed = call_method :user_required, [], :session => with_user
     
     assert @passed
@@ -115,12 +121,14 @@ class ApplicationControllerTest < ActionController::TestCase
   end
   
   test "employee_required passes" do
+    https!
     @passed = call_method :employee_required, [], :session => with_user
     
     assert @passed
   end
   
   test "employee_required fails" do
+    https!
     @passed = call_method :employee_required, [], :render => false, :session => with_user(:moritz)
     
     refute @passed
@@ -233,11 +241,10 @@ class ApplicationControllerTest < ActionController::TestCase
     assert_equal @referer, flash[:referer]
   end
   
-  test "set_up_user_required_message conserves http referer" do
-    @request.env['HTTP_REFERER'] = @referer = '/from/here/on'
+  test "set_up_user_required_message conserves request path" do
     @passed = call_method :user_required, [], :render => false
     
     refute @passed
-    assert_equal @referer, flash[:referer]
+    assert_equal '/test/application/test_method', flash[:referer]
   end
 end

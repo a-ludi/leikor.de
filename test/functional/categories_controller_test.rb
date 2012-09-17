@@ -39,6 +39,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
   
   test "new action" do
+    https!
     get 'new', {}, with_user
     
     assert_kind_of Category, assigns(:category)
@@ -48,6 +49,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
   
   test "new action with subcategory" do
+    https!
     get 'new', {:category_id => categories(:super).to_param}, with_user
     
     assert_equal Subcategory, assigns(:category).class
@@ -84,6 +86,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
   
   test "edit action" do
+    https!
     get 'edit', {:id => categories(:super).to_param}, with_user
     
     assert_kind_of Category, assigns(:category)
@@ -91,6 +94,7 @@ class CategoriesControllerTest < ActionController::TestCase
   end
   
   test "edit action on cancel" do
+    https!
     get 'edit', {:id => categories(:super).to_param, :cancel => true}, with_user
     
     assert_equal 'category', assigns(:partial)
@@ -144,6 +148,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "reorder action categories" do
     @categories_list = categories(:super, :super_fst).collect {|a| a.id}
     
+    https!
     post 'reorder', {:categories_list => @categories_list}, with_user
     
     @new_categories_list = Category.find_all_by_type(nil, :order => "ord ASC").collect {|c| c.id}
@@ -153,6 +158,7 @@ class CategoriesControllerTest < ActionController::TestCase
   test "reorder action subcategories" do
     @subcategories_list = categories(:sub1, :sub2).collect {|a| a.id}
     
+    https!
     post 'reorder', {:subcategories_list => @subcategories_list}, with_user
     
     @new_subcategories_list = Category.find_all_by_type('Subcategory', :order => "ord ASC").collect {|c| c.id}
@@ -161,6 +167,7 @@ class CategoriesControllerTest < ActionController::TestCase
   
   test "set_random_html_id_or_take_from_param passes html_id from params" do
     html_id = 'not_generated'
+    https!
     get 'new', {:html_id => html_id}, with_user
     
     @controller.send(:set_random_html_id_or_take_from_param)
@@ -170,6 +177,7 @@ class CategoriesControllerTest < ActionController::TestCase
   
   test "set_random_html_id_or_take_from_param sets unique html_id" do
     assert_items_unique 1..5 do
+      https!
       get 'new', {}, with_user
       @controller.send(:set_random_html_id_or_take_from_param)
     end
@@ -266,6 +274,8 @@ private
     @category = categories(options[:label] || :super)
     params = {:category => {:name => "New Category Name"}, :id => @category}
     params[:category][:name] = '' if options[:with] == :errors
+    
+    https!
     put 'update', params, with_user
   end
   
@@ -274,22 +284,30 @@ private
     @category = category.first
     @html_id = 'not_generated'
     params = {:html_id => @html_id}.merge category
+    
+    https!
     post 'create', params, with_user
   end
   
   def ask_destroy_category
     @category = categories(:super)
+    
+    https!
     get 'ask_destroy', {:category => @category.to_param}, with_user
   end
   
   def ask_destroy_subcategory
     @category = categories(:sub1)
+    
+    https!
     get('ask_destroy', {:category => @category.category.to_param,
         :subcategory => @category.to_param}, with_user)
   end
   
   def destroy_category(category_label=:super)
     @category = categories(category_label)
+    
+    https!
     delete 'destroy', {:id => @category.to_param}, with_user
   end
   

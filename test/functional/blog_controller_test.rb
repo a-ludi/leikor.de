@@ -3,7 +3,7 @@ require 'test_helper'
 class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
-  test_tested_files_checksum 'df7ee4db126bd884161ec9722d190a24'
+  test_tested_files_checksum 'efbf1a75f3adeef05a3ab2a3fbec3530'
   
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
@@ -27,6 +27,7 @@ class BlogControllerTest < ActionController::TestCase
   end
   
   test "index action with user" do
+    https!
     get :index, {}, with_user
     
     assert_includes assigns(:blog_posts), blog_posts(:mailed_post)
@@ -48,6 +49,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "show action with user" do
     @blog_post = blog_posts(:mailed_post)
+    https!
     get :show, {:id => @blog_post.to_param}, with_user
     
     assert_equal @blog_post, assigns(:blog_post)
@@ -56,6 +58,7 @@ class BlogControllerTest < ActionController::TestCase
   end
   
   test "new action" do
+    https!
     get :new, {}, with_user
     
     assert_present assigns(:title)
@@ -65,6 +68,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "new action uses given blog post" do
     @new_blog_post = BlogPost.new :title => 'My New Post'
+    https!
     get :new, {}, with_user, {:blog_post => @new_blog_post}
     
     assert_equal @new_blog_post, assigns(:blog_post)
@@ -88,6 +92,7 @@ class BlogControllerTest < ActionController::TestCase
 
   test "edit action" do
     @blog_post = blog_posts(:mailed_post)
+    https!
     get :edit, {:id => @blog_post.to_param}, with_user
     
     assert_present assigns(:title)
@@ -98,6 +103,7 @@ class BlogControllerTest < ActionController::TestCase
   test "edit action uses given blog post" do
     @blog_post = blog_posts(:mailed_post)
     @blog_post.title = 'New Title'
+    https!
     get :edit, {:id => @blog_post.to_param}, with_user, {:blog_post => @blog_post}
     
     assert_equal @blog_post, assigns(:blog_post)
@@ -124,6 +130,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "mail action with html" do
     @blog_post = blog_posts(:public_post)
+    https!
     get :mail, {:id => @blog_post.to_param}, with_user
     
     assert assigns(:blog_post).is_mailed, 'blog post not mailed'
@@ -133,6 +140,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "mail action with js" do
     @blog_post = blog_posts(:public_post)
+    https!
     xhr :post, :mail, {:id => @blog_post.to_param}, with_user
     
     assert @blog_post.reload.is_mailed, 'blog post not mailed'
@@ -143,6 +151,7 @@ class BlogControllerTest < ActionController::TestCase
   test "publish action with html, unpublished post and referer" do
     with_referer
     @blog_post = blog_posts(:mailed_post)
+    https!
     get :publish, {:id => @blog_post.to_param}, with_user
     
     assert @blog_post.reload.is_published, 'blog post not published'
@@ -152,6 +161,7 @@ class BlogControllerTest < ActionController::TestCase
     
   test "publish action with html and published post" do
     @blog_post = blog_posts(:public_post)
+    https!
     get :publish, {:id => @blog_post.to_param}, with_user
     
     refute @blog_post.reload.is_published, 'blog post published'
@@ -161,6 +171,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "destroy action" do
     @blog_post = blog_posts(:public_post)
+    https!
     delete :destroy, {:id => @blog_post.to_param}, with_user
     
     assert_equal @blog_post, assigns(:blog_post)
@@ -171,6 +182,7 @@ class BlogControllerTest < ActionController::TestCase
   
   test "readers action" do
     @groups = "Holz bis auf Spielzeug"
+    https!
     get :readers, {:groups => @groups}, with_user
     
     assert_includes assigns(:readers), users(:meyer)
@@ -220,6 +232,7 @@ private
         :is_mailed => false,
         :is_published => false}
     @blog_post[:title] = '' if options[:with] == :errors
+    https!
     post :create, {:blog_post => @blog_post}, with_user(@author)
   end
   
@@ -229,6 +242,7 @@ private
     @blog_post = blog_posts(:mailed_post)
     @changes = {:title => 'Neuer Titel'}
     @changes[:title] = '' if options[:with] == :errors
+    https!
     put :update, {:id => @blog_post.to_param, :blog_post => @changes}, with_user(@editor)
   end
   
@@ -237,6 +251,7 @@ private
     @blog_post = blog_posts(:mailed_post)
     block = Proc.new {flash[:message].success 'Non-empty Message!'; @called = true}
     
+    https!
     call_method :update_flag, [], :params => {:id => @blog_post.to_param},
         :flash => {:block => block}, :session => with_user, :render => false,
         :xhr => (format == :js)

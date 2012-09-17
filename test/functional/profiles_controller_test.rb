@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class ProfilesControllerTest < ActionController::TestCase
-  test_tested_files_checksum '4d61e72e301585a302017620f86750d6'
+  test_tested_files_checksum '6631059b4d566d2269166fa1380567a7'
+  
+  def setup
+    https! # every action requires SSL
+  end
   
   test "all actions should require user" do
     assert_before_filter_applied :user_required

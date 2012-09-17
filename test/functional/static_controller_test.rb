@@ -66,4 +66,20 @@ class StaticControllerTest < ActionController::TestCase
       get 'stylesheet', :path => stylesheet
     end
   end
+  
+  test "ssl allowed on show" do
+    page = StaticController::REGISTERED_PAGES.first
+    https!
+    get 'show', {:path => page[0].to_s}
+    
+    assert_response :success
+  end
+  
+  test "ssl allowed on stylesheet" do
+    stylesheet = 'layout.css'
+    https!
+    get 'stylesheet', :path => stylesheet
+    
+    assert_response :success
+  end
 end

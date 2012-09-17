@@ -52,6 +52,7 @@ class ArticlesControllerTest < ActionController::TestCase
   test "edit_order action" do
     @subcategory = categories(:sub1)
     @category = @subcategory.category
+    https!
     get 'edit_order', {:category => @category.to_param, :subcategory => @subcategory.to_param}, with_user
     
     assert_respond_to assigns(:stylesheets), :each
@@ -110,6 +111,7 @@ class ArticlesControllerTest < ActionController::TestCase
   
   test "ask_destroy action" do
     @article = articles(:one)
+    https!
     get 'ask_destroy', @article.url_hash, with_user
     
     assert_respond_to assigns(:stylesheets), :each
@@ -119,6 +121,7 @@ class ArticlesControllerTest < ActionController::TestCase
   
   test "destroy action" do
     @article = articles(:one)
+    https!
     delete 'destroy', {:id => @article.to_param}, with_user
     
     assert_equal @article, assigns(:article)
@@ -133,6 +136,7 @@ class ArticlesControllerTest < ActionController::TestCase
     @subcategory = categories(:sub1)
     @category = categories(:sub1).category
     
+    https!
     post 'reorder', {:subcategory => @subcategory.to_param,
         :category => @category.to_param, :articles_list => @articles_list}, with_user
     
@@ -159,6 +163,7 @@ private
   def get_index
     @subcategory = categories(:sub1)
     @category = @subcategory.category
+    
     get 'index', {:category => @category.to_param, :subcategory => @subcategory.to_param}
   end
   
@@ -171,6 +176,8 @@ private
     else
       cancel = {}
     end
+    
+    https!
     get 'new', {:category => @category.to_param, :subcategory => @subcategory.to_param}.merge(cancel), with_user
   end
   
@@ -184,12 +191,16 @@ private
       :subcategory_id => @subcategory.id}
     @article[:name] = '' if options[:with] == :errors
     @html_id = articles(:one).html_id
+    
+    https!
     post 'create', {:article => @article, :html_id => @html_id}, with_user
   end
   
   def get_edit(options={})
     @article = articles(:one)
     params = {:id => @article.to_param}.merge(options)
+    
+    https!
     get 'edit', params, with_user
   end
   
@@ -200,6 +211,7 @@ private
     params = {:id => @article.to_param, :article => {:name => @new_name, :price => '11,11'}, :html_id => @html_id}
     params[:article][:name] = '' if options[:with] == :errors
     
+    https!
     put 'update', params, with_user
   end
 end

@@ -29,6 +29,7 @@ class FairDatesControllerTest < ActionController::TestCase
   end
   
   test "new action" do
+    https!
     get :new, {}, with_user
     
     assert_kind_of FairDate, assigns(:fair_date)
@@ -55,6 +56,7 @@ class FairDatesControllerTest < ActionController::TestCase
   end
   
   test "edit action" do
+    https!
     get :edit, {:id => fair_dates(:one).id} , with_user
     
     assert_equal assigns(:fair_date), fair_dates(:one)
@@ -79,6 +81,7 @@ class FairDatesControllerTest < ActionController::TestCase
   end
   
   test "destroy action" do
+    https!
     @fair_date = fair_dates(:one)
     delete :destroy, {:id => @fair_date.to_param}, with_user
     
@@ -104,6 +107,7 @@ protected
     
     params = {:fair_date => @fair_date}
     
+    https!
     post :create, params, with_user
   end
   
@@ -122,6 +126,7 @@ protected
     
     params = {:fair_date => @fair_date, :id => fair_dates(:one).id}
     
+    https!
     put :update, params, with_user
   end
 end
