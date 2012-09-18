@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
     :port => 587,
     :authentication => :plain,
     :domain => 'ludis-laptop',
-    :user_name => 'arne@leikor.de',
-    :password => 'J17/i$8?',
+    :user_name => 'benachrichtigung@leikor.de',
+    :password => 'DnUz4ANu3jO6oydBeV73ev/E9uY39p7dGqRuN3inwiI',
     :enable_starttls_auto => true }
 
