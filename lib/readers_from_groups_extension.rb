@@ -3,7 +3,7 @@
 module ReadersFromGroupsExtension
   # Junctor :except: außer, ausser, aber nicht, nicht, nicht aber, bis auf, aber nur, nur
   # Junctor :only: aber nur, nur
-  JUNCTOR_EXCEPT_PATTERN = /\b(außer|ausser|nicht\s+aber|(aber\s+)?nicht|bis\s+auf|ohne|)\b/
+  JUNCTOR_EXCEPT_PATTERN = /\b(außer|ausser|nicht\s+aber|(aber\s+)?nicht|bis\s+auf|ohne)\b/
   JUNCTOR_ONLY_PATTERN = /\b(aber\s+)?(nur|lediglich)\b/
   JUNCTOR_PATTERN = Regexp.union JUNCTOR_EXCEPT_PATTERN, JUNCTOR_ONLY_PATTERN
   JUNCTOR_OPTIONS_HASH = {:except => {:exclude => true}, :only => {:any => true}}
