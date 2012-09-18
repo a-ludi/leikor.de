@@ -1,8 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 class ApplicationController < ActionController::Base
-  include ExceptionNotification::Notifiable
-  
   helper :all # include all helpers, all the time
   helper_method :logged_in?
   protect_from_forgery
