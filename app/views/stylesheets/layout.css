@@ -1,6 +1,4 @@
-<% if RAILS_ENV != 'development' %>
-  @import url(http://fonts.googleapis.com/css?family=Overlock:400,700&subset=latin,latin-ext);
-<% end %>
+@import url(https://fonts.googleapis.com/css?family=Overlock:400,700&subset=latin,latin-ext);
 
 body {
   font-family: 'Overlock', sans-serif;
