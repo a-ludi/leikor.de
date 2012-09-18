@@ -75,12 +75,14 @@
 
 
 #categories .subcategory .entry.selected a.button {
+  font-weight: bold;
   border-top: 1px solid <%=p :mid_gray %>;
   border-bottom: 1px solid <%=p :mid_gray %>;
   background: <%=p :light_gray %>;
 }
 #categories .subcategory .entry.selected.first a.button { border-top: none; }
 #categories .subcategory .entry.selected.last a.button { border-bottom: none; }
+#categories .subcategory .entry.selected:hover a.button { background: <%=p :lighter_gray %>; }
 
 #categories .subcategory li .handle { margin-top: 0.14em; }
 
