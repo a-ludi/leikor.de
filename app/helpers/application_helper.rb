@@ -108,7 +108,7 @@ module ApplicationHelper
   def loading_animation(options={})
     options = {
       :size => :medium,
-      :class => 'loading_animation'
+      :class => 'loading_animation toolbutton'
     }.merge options
     
     options[:size] = case options[:size].to_sym

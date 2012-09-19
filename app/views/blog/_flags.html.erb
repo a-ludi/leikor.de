@@ -8,6 +8,7 @@
     :update => dom_id(blog_post, :flags),
     :after => "this.replace('#{loading_animation :size => :small}')",
     :html => {
+        :class => 'toolbutton',
         :href => publish_blog_post_path(blog_post),
         :title => t(blog_post.is_published?, :scope => 'views.labels.blog_post.published?')}
   )%>
@@ -21,6 +22,7 @@
     :update => dom_id(blog_post, :flags),
     :after => "this.replace('#{loading_animation :size => :small, :title => 'E-Mails werden verschickt ...'}')",
     :html => {
+        :class => 'toolbutton',
         :href => mail_blog_post_path(blog_post),
         :title => t(blog_post.is_mailed?, :scope => 'views.labels.blog_post.mailed?')}
   )%>
