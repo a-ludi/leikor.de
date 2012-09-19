@@ -4,8 +4,8 @@ class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
   test_tested_files_checksum(
-    ['app/controllers/blog_controller.rb', 'b8b2183f1d3ebe96ca89976c540030e4'],
-    ['lib/readers_from_groups_extension.rb', '228a973580fff5164d3cb2dc72b17498']
+    ['app/controllers/blog_controller.rb', 'e01268a00c3c5c3783f39264568304f1'],
+    ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
   )
 
   test "new create edit update mail publish destroy readers should require employee" do
@@ -43,6 +43,7 @@ class BlogControllerTest < ActionController::TestCase
     assert_equal @blog_post, assigns(:blog_post)
     assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
+    assert assigns(:dont_link_title), '@dont_link_title is not true'
     
     assert_raises ActiveRecord::RecordNotFound do
       @unavailable_blog_post = blog_posts(:mailed_post)
@@ -58,6 +59,7 @@ class BlogControllerTest < ActionController::TestCase
     assert_equal @blog_post, assigns(:blog_post)
     assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
+    assert assigns(:dont_link_title), '@dont_link_title is not true'
   end
   
   test "new action" do

@@ -16,6 +16,7 @@ class BlogController < ApplicationController
     @blog_post = blog_posts(params[:id])
     @title = "#{@blog_post.title} (Blog)"
     @stylesheets = %w(blog)
+    @dont_link_title = true
   end
 
   def new

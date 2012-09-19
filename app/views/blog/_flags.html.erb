@@ -1,4 +1,4 @@
-<% content_tag_for :span, blog_post, :flags do %>
+<% content_tag :span, :id => dom_id(blog_post, :flags) do %>
   <%= link_to_remote(
     image_tag(
         "pictogram/small/public_#{blog_post.is_published?}.png",
