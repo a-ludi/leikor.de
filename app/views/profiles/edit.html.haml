@@ -39,7 +39,9 @@
         = f.label :groups
         .infobox.groups.value= f.text_area :group_list
       .profile
-        = f.label :notes
+        %span.label
+          = f.label :notes
+          = help_button :Markdown
         .infobox.notes.value= f.text_area :notes
     -#
       %h2 Kontakt

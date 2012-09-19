@@ -7,6 +7,11 @@
   width: 100%;
 }
 
+.form .field .label label {
+  display: inline;
+  width: auto;
+}
+
 .form .field input, .form .field textarea, .form .field .check_box {
   display: block;
   width: 100%;

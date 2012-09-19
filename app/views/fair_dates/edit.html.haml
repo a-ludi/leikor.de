@@ -18,7 +18,9 @@
         = f.label :homepage
         = f.text_field :homepage, :size => 30, :tabindex => 5
       .field
-        = f.label :comment
+        %span.label
+          = f.label :comment
+          = help_button :Markdown
         = f.text_area :comment, :cols => 30, :rows => 5, :tabindex => 6
     .response.form= submit_tag 'Speichern!', :tabindex => 7
 = set_focus_to 'fair_date_name'
