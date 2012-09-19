@@ -3,7 +3,7 @@ var AutofillLogin = Class.create({
     this.initializeWithOptions(options);
     this.setupCheckbox();
     this.setupNameInputEventHandler();
-    this.enableAutofill();
+    this.enableAutofill(true);
   },
   
   initializeWithOptions: function(options) {
@@ -32,10 +32,11 @@ var AutofillLogin = Class.create({
      this.nameInputEventHandler.stop();
   },
   
-  enableAutofill: function() {
+  enableAutofill: function(dontTriggerChange) {
     this.loginInput.disable();
     this.nameInputEventHandler.start();
-    this.onNameChange();
+    if(! dontTriggerChange)
+      this.onNameChange();
   },
   
   disableAutofill: function() {
@@ -46,6 +47,6 @@ var AutofillLogin = Class.create({
 
 AutofillLogin.defaultOptions = $H({
   onNameChange: function(event) { this.nameInput.copyUrlSafe(this.loginInput) },
-  checkbox: new Element('input', {type: 'checkbox', checked: true, title: 'automatisch ausfüllen'}),
-  shouldEnableAutofill: function(checkbox) { return checkbox.checked; }
+  checkbox: new Element('input', {type: 'checkbox', checked: false, title: 'manuell ausfüllen'}),
+  shouldEnableAutofill: function(checkbox) { return ! checkbox.checked; }
 });
