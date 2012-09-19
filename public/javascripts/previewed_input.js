@@ -10,6 +10,10 @@ var PreviewedInput = Class.create({
     options = PreviewedInput.defaultOptions.merge(options || {});
     this.input = $(input);
     this.offset = options.get('offset');
+    this.observe = new Object({
+      mouse: options.get('observeMouse'),
+      focus: options.get('observeFocus')
+    });
     this.eventCode = new Object({
       mouseover: options.get('onmouseover'),
       mouseout: options.get('onmouseout'),
@@ -22,7 +26,7 @@ var PreviewedInput = Class.create({
   },
   
   initializeHTML: function() {
-    this.input.wrap('div', {style: 'position: relative;'});
+    Element.wrap(this.input, 'div', {style: 'position: relative;'});
     this.input.insert({after: new Element('div', {'class': 'preview'})});
     this.preview = this.input.next();
     this.preview.hide();
@@ -32,10 +36,14 @@ var PreviewedInput = Class.create({
   
   initializeEventHandlers: function() {
     this.timesShown = 0;
-    this.input.on('mouseover', this.showPreview.bind(this, this.eventCode.mouseover));
-    this.input.on('mouseout', this.hidePreview.bind(this, this.eventCode.mouseout));
-    this.input.on('focus', this.showPreview.bind(this, this.eventCode.focus));
-    this.input.on('blur', this.hidePreview.bind(this, this.eventCode.blur));
+    if(this.observe.mouse) {
+      this.input.on('mouseover', this.showPreview.bind(this, this.eventCode.mouseover));
+      this.input.on('mouseout', this.hidePreview.bind(this, this.eventCode.mouseout));
+    }
+    if(this.observe.focus) {
+      this.input.on('focus', this.showPreview.bind(this, this.eventCode.focus));
+      this.input.on('blur', this.hidePreview.bind(this, this.eventCode.blur));
+    }
   },
   
   extendInput: function() {
@@ -81,8 +89,24 @@ var PreviewedInput = Class.create({
 
 PreviewedInput.defaultOptions = $H({
   offset: 2,
+  observeMouse: true,
+  observeFocus: true,
   onmouseover: '',
   onmouseout: '',
   onfocus: '',
   onblur: ''
+});
+
+var AutocompletedInput = Class.create(PreviewedInput, {
+  initialize: function($super, input, options) {
+    options = AutocompletedInput.defaultOptions.merge(options || {});
+    $super(input, options);
+    this.preview.addClassName('suggestions');
+    this.preview.hide();
+  }
+});
+
+AutocompletedInput.defaultOptions = PreviewedInput.defaultOptions.merge({
+  observeMouse: false,
+  observeFocus: false
 });

@@ -20,35 +20,29 @@
   .profile.primary_email_address
     .label= t('activerecord.attributes.user.primary_email_address')
     .value= @profile.primary_email_address
-  - if not @profile.registration? :confirmed
-    .error.message
-      %p Dieser Benutzer muss noch bestätigt werden.
-      %p= a_button_to 'Bestätigungslink kopieren', confirm_registration_url(@profile),
-          :onclick => 'copyToClipboard(this.href); return false;'
-      .h2.center &mdash; oder &mdash;
-      %p= button_to_remote 'Bestätigungsmail versenden',
-        {:url => confirm_registration_request_path(:login => @profile.login, :sendmail => true),
-        :method => :post,
-        :confirm => "Es wird eine E-Mail an\n\n#{@profile.email_address_with_name}\n\nversandt. Fortfahren?"},
-        :href => confirm_registration_request_path(:user => @profile.login, :sendmail => true)
-  - elsif logged_in? Employee and @profile.registration?(:denied)
-    .error.message
-      %p Dieser Benutzer ist nicht bestätigt.
-      - form_tag confirm_registration_request_path, :method => :post do
-        = hidden_field_tag :login, @profile.login
-        %p= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')} wiederholen"
   - if logged_in? Employee
+    - if not @profile.registration? :confirmed
+      .error.message
+        %p Dieser Benutzer muss noch bestätigt werden.
+        %p= a_button_to 'Bestätigungslink kopieren', confirm_registration_url(@profile),
+            :onclick => 'copyToClipboard(this.href); return false;'
+        .h2.center &mdash; oder &mdash;
+        %p= button_to_remote 'Bestätigungsmail versenden',
+          {:url => confirm_registration_request_path(:login => @profile.login, :sendmail => true),
+          :method => :post,
+          :confirm => "Es wird eine E-Mail an\n\n#{@profile.email_address_with_name}\n\nversandt. Fortfahren?"},
+          :href => confirm_registration_request_path(:user => @profile.login, :sendmail => true)
+    - elsif @profile.registration? :denied
+      .error.message
+        %p Dieser Benutzer ist nicht bestätigt.
+        - form_tag confirm_registration_request_path, :method => :post do
+          = hidden_field_tag :login, @profile.login
+          %p= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')} wiederholen"
     .profile
       .label= t('activerecord.attributes.user.groups')
       .infobox.groups.value.tags
         %ul#groups
           = render :partial => 'tag', :collection => @profile.groups, :locals => {:profile => @profile}
-          :javascript
-            $('groups').insert(new Element('li', {'class': 'new tag'}));
-            item = $('groups').childElements().last();
-            item.insert("#{escape_javascript link_to_remote('+',
-              :url => profile_groups_path(@profile.login, :id=>'Add'), :update => 'groups',
-              :html => {:href => profile_groups_path(@profile)})}")
         = clear_float
     - unless @profile.notes.blank?
       .label= t('activerecord.attributes.user.notes')

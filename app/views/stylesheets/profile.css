@@ -28,6 +28,7 @@ ul.profile {
 }
 
 .edit .profile input, .edit .profile textarea { width: 18em; max-width: 100%; }
+.edit .profile input[type=checkbox] { width: auto; }
 .edit .profile .scope { width: 6em; }
 .edit .profile.user .name { width: 12em; }
 .edit .profile.postal_address .postcode { width: 3em; }
@@ -37,6 +38,7 @@ ul.profile {
 .edit .profile.phone_number .prefix { width: 2.5em; }
 .edit .profile.phone_number .number { width: 5.95em; }
 .edit .profile textarea { height: 12em; }
+.edit .profile .groups textarea { height: 4em; }
 
 .type {
   font-weight: bold;

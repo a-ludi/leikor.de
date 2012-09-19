@@ -113,7 +113,10 @@ protected
           erstellt".squish
     end
     
-    redirect_to profile_path(@user.login)
+    respond_to do |format|
+      format.html { redirect_to profile_path(@user.login) }
+      format.js { render :partial => 'layouts/push_message' }
+    end
   end
   
   def edit_confirm_registration

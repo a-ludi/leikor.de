@@ -1,9 +1,17 @@
 # -*- encoding : utf-8 -*-
 
 module StaticHelper
+  def help_button(subject, options={})
+    options = {:size => :xsmall}.merge options
+    image = image_tag("pictogram/#{options[:size]}/help.png", :alt => 'Hilfe')
+    
+    link_to image, static_path("hilfe/#{subject.to_s}".to_sym),
+        :title => "Hilfe für #{subject} bekommen", :class => 'toolbutton'
+  end
+  
   def static_link_to(path, options={}, html_options=nil)
     if StaticController::REGISTERED_PAGES[path]
-      label = options.delete(:label) {|k| StaticController::REGISTERED_PAGES[path][:name] }
+      label = options[:label] || StaticController::REGISTERED_PAGES[path][:name]
       link_to label, static_path(path, options), html_options
     else
       raise ActionController::RoutingError, "static_link_to failed to generate from <#{path.inspect}> expected one of <#{StaticController::REGISTERED_PAGES.keys.inspect}>"

@@ -81,6 +81,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :profiles, :as => 'profile', :except => [:new] do |profiles|
     profiles.resources :groups, :as => 'gruppen', :only => [:create, :update, :destroy]
   end
+  map.suggest_groups(
+      'gruppen/vorschlaege',
+      :controller => 'groups',
+      :action => 'suggest',
+      :conditions => {:method => :get})
   map.new_customer_profile(
       'profile/neu/kunde',
       :controller => 'profiles',

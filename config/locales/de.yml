@@ -333,9 +333,9 @@ de:
         publish?: veröffentlichen?
         already_mailed: wurde bereits gemailt
         mailed?:
-          'true': wurde gemailt
-          'false': wurde nicht gemailt
+          'true': ist verschickt
+          'false': ist nicht verschickt
         published?:
-          'true': wurde veröffentlicht
-          'false': wurde nicht veröffentlicht
+          'true': ist veröffentlicht
+          'false': ist nicht veröffentlicht
 

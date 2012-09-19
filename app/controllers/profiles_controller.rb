@@ -29,7 +29,7 @@ class ProfilesController < ApplicationController
   def new
     @profile = flash[:profile] || params[:type].constantize.new
     
-    @stylesheets = %w(message profile)
+    @stylesheets = %w(message profile form)
     @title = "Neues Profil erstellen"
     
     render :edit
@@ -51,7 +51,7 @@ class ProfilesController < ApplicationController
   end
   
   def edit
-    @stylesheets = %w(message profile)
+    @stylesheets = %w(message profile form)
     @title = "#{@profile.name}s Profil bearbeiten"
     
     render :edit

@@ -4,7 +4,11 @@
     %h1.field.message
       = f.label :title
       = f.text_field :title
-    %p.field= f.text_area :body
+    %p.field
+      %span.label
+        = f.label :body
+        = help_button :Markdown
+      = f.text_area :body
     %p.field
       = f.label :groups
       = f.text_field :groups, :id => dom_id(@blog_post, :groups)
