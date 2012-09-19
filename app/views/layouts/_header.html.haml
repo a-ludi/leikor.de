@@ -15,7 +15,7 @@
       %li= link_to 'Sortiment', :categories
       %li= link_to 'Messetermine', fair_dates_path
       - unless logged_in? Employee
-        %li= static_link_to :'ueber-uns', :class => 'last'
+        %li= static_link_to :'ueber-uns', {}, :class => 'last'
       - else
         %li= static_link_to :'ueber-uns'
         %li= link_to 'Profile', profiles_path, :class => 'last'
