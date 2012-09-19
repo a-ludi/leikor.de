@@ -39,3 +39,27 @@
   color: <%=p :mid_gray %>;
   font-size: 80%;
 }
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+#blog_posts h1 .title {
+  margin-right: 0em;
+  font-size: smaller;
+  display: block;
+}
+
+#blog_posts .blog_post .info {
+  float: none;
+  font-size: smaller;
+  margin-bottom: 2ex;
+  text-align: right;
+}
+
+#blog_posts .edited {
+  float: none;
+}
+
+}
