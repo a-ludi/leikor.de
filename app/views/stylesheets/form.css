@@ -53,6 +53,31 @@
   margin: 0em;
 }
 
+.form .preview.suggestions { padding: 0em; }
+
+.form .preview.suggestions ul {
+  list-style: none;
+  text-align: left;
+  margin: 0em;
+  padding: 0em;
+}
+
+.form .preview.suggestions li {
+  display: block;
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.2em;
+}
+.form .preview.suggestions li.first { <%= border_radius :top => '0.5em' %> }
+.form .preview.suggestions li.last { <%= border_radius :bottom => '0.5em' %> }
+
+.form .preview.suggestions li.selected {
+  font-weight: bold;
+  background: <%=p :dark_blue %>;
+  color: <%= :white %>;
+}
+
 
 /**
  * Mobile (small) Version

@@ -2,7 +2,8 @@
 
 class GroupsController < ApplicationController
   ssl_required_by_all_actions
-  before_filter :employee_required, :make_groups, :fetch_user
+  before_filter :employee_required
+  before_filter :make_groups, :fetch_user, :only => [:create, :update, :destroy]
   
   def create
     @user.group_list += @groups
@@ -23,6 +24,13 @@ class GroupsController < ApplicationController
     @user.group_list -= @groups
     
     make_response "Gruppe gelöscht"
+  end
+  
+  def suggest
+    pattern = params[:token].gsub('%', '\\%') + '%'
+    @suggestions = User.group_counts(:conditions => ['name ILIKE ?', pattern])
+    
+    render :layout => false
   end
 
 protected

@@ -1,4 +1,4 @@
-#message_window.edit
+#message_window.edit.form
   - form_for :profile, @profile, :url => show_path, :html => {:method => submit_method} do |f|
     = f.hidden_field :type
     .administration
@@ -15,7 +15,8 @@
         %br
         = f.text_field :name, :class => 'value name'
       .profile.login
-        = f.label :login
+        %span.label
+          = f.label :login
         %br
         = f.text_field :login, :class => 'value login'
       :javascript
@@ -37,7 +38,13 @@
     - if logged_in? Employee
       .profile
         = f.label :groups
-        .infobox.groups.value= f.text_area :group_list
+        .infobox.groups.value= f.text_area :group_list, :rows => 5
+      :javascript
+        input = $('profile_group_list');
+        preview_handler = new AutocompletedInput(input);
+        
+        new Ajax.Autocompleter('profile_group_list', preview_handler.preview.identify(), '#{escape_javascript suggest_groups_path}', {paramName: 'token', tokens: ',', parameters: $H({_method: 'get'}).toQueryString()});
+        
       .profile
         %span.label
           = f.label :notes
