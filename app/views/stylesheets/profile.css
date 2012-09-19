@@ -28,6 +28,7 @@ ul.profile {
 }
 
 .edit .profile input, .edit .profile textarea { width: 18em; max-width: 100%; }
+.edit .profile input[type=checkbox] { width: auto; }
 .edit .profile .scope { width: 6em; }
 .edit .profile.user .name { width: 12em; }
 .edit .profile.postal_address .postcode { width: 3em; }

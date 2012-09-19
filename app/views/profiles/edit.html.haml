@@ -13,12 +13,24 @@
       %h1.profile.user
         = f.label :name
         %br
-        = f.text_field :name, :class => 'value name',
-          :onkeyup => '$(this).copyUrlSafe("profile_login");'
+        = f.text_field :name, :class => 'value name'
       .profile.login
         = f.label :login
         %br
         = f.text_field :login, :class => 'value login'
+      :javascript
+        new AutofillLogin({
+          nameInput: $$('.profile.user input')[0],
+          loginInput: $('profile_login'),
+          insertCheckbox: function(checkbox) {
+            loginLabel = $$('.profile.login label')[0];
+            loginLabel.insert({before: checkbox});
+            loginLabel.on('click', function() {
+              this.checked = !this.checked;
+              this.simulate('change');
+            }.bindAsEventListener(checkbox))
+          }
+        });
     .profile.primary_email_address
       .label= f.label :primary_email_address
       .value= f.text_field :primary_email_address, :class => 'value'
