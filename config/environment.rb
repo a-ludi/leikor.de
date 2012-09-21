@@ -58,6 +58,5 @@ Rails::Initializer.run do |config|
 end
 
 Haml::Template.options[:format] = :html4
-ExceptionNotification::Notifier.sender_address = '"Application Error" <errors@leikor.de>'
+ExceptionNotification::Notifier.sender_address = '"Fehlerbericht" <fehler@leikor.de>'
 ExceptionNotification::Notifier.exception_recipients = %w(webmaster@leikor.de)
-

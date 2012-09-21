@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  test_tested_files_checksum '5d9ba0c0b920ec87bb791e569cb76dbd'
+  test_tested_files_checksum '0a59538d2fac83d70eadccc288212a57'
 
   test "before filters active" do
     [:fetch_current_user, :fetch_updated_at, :prepare_flash_message].each do |filter|
