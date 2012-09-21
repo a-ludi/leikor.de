@@ -4,6 +4,10 @@
   border: none;
 }
 
+.administration {
+  margin-bottom: 0.54em;
+}
+
 #blog_posts {
   list-style: none;
   padding: 0em;
