@@ -2,12 +2,11 @@
   %h2
     %span.title= fair_date.name
     - if logged_in? Employee
-      = link_to image_tag('pictogram/small/edit.png'), edit_fair_date_path(fair_date),
-        :class => 'toolbutton', :title => "Messetermin bearbeiten"
-      = link_to image_tag('pictogram/small/destroy.png'), fair_date_path(fair_date),
-        :method => :delete,
+      = toolbutton_to :edit, edit_fair_date_path(fair_date), :size => :small,
+        :title => "Messetermin bearbeiten"
+      = toolbutton_to :destroy, fair_date_path(fair_date), :size => :small, :method => :delete,
         :confirm => "Soll der Messetermin „#{fair_date.name}“ wirklich gelöscht werden?",
-        :class => 'toolbutton', :title => "Messetermin löschen"
+        :title => "Messetermin löschen"
   %ul.info
     %li.date
       = hard_spaced l(fair_date.from_date, :format => :short)

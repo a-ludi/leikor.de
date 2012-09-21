@@ -3,29 +3,26 @@
   <div class="frame">
     <div id="picture_viewer_toolbar" class="toolbar">
       <% if logged_in? Employee %>
-        <%= link_to_remote(
-          image_tag('pictogram/medium/reload.png'),
+        <%= toolbutton_to_remote(
+          :reload,
           :url => article_picture_path(article.id, :no_animations => true),
           :method => :get,
           :html => {
-            :href => article_picture_path(article.id),
-            :title => 'Bild neu laden',
-            :class => 'toolbutton'}
+              :href => article_picture_path(article.id),
+              :title => 'Bild neu laden'}
         ) %>
-        <%= link_to(
-          image_tag('pictogram/medium/edit.png'),
+        <%= toolbutton_to(
+          :edit,
           edit_article_picture_path(article.id),
           :onclick => "$('picture_viewer_picture').replaceSurroundedImage('#{image_path 'picture/original/in_work.png'}', '600px', '600px') && openPopup(this.href); return false",
-          :title => 'Bild bearbeiten',
-          :class => 'toolbutton'
+          :title => 'Bild bearbeiten'
         ) %>
       <% end %>
-      <%= link_to(
-        image_tag('pictogram/medium/close.png'),
+      <%= toolbutton_to(
+        :close,
         '#',
         :onclick => 'Effect.Fade("picture_viewer"); return false',
-        :title => 'Schließen',
-        :class => 'toolbutton'
+        :title => 'Schließen'
       ) %>
     </div>
     <div id="picture_viewer_picture">

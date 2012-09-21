@@ -2,24 +2,25 @@
   <h2>
     <span><%= article.name %></span>
     <% if logged_in? Employee %>
-      <%= link_to(
-        image_tag('pictogram/small/link.png'),
+      <%= toolbutton_to(
+        :link,
         subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),
-        :class => 'toolbutton',
+        :size => :small,
         :title => article.name,
         :onclick => 'copyToClipboard(this.href); return false;'
       ) %>
-      <%= link_to_remote(
-        image_tag('pictogram/small/edit.png'),
+      <%= toolbutton_to_remote(
+        :edit,
+        :size => :small,
         :url => edit_article_path(article),
         :method => :get,
-        :html => {:class => 'toolbutton', :title => "„#{article.name}“ bearbeiten."}
+        :html => {:title => "„#{article.name}“ bearbeiten."}
       ) %>
-      <%= link_to(
-        image_tag('pictogram/small/destroy.png'),
+      <%= toolbutton_to(
+        :destroy,
         ask_destroy_article_url(article.url_hash),
         :method => :get,
-        :class => 'toolbutton',
+        :size => :small,
         :title => "„#{article.name}“ löschen!"
       ) %>
     <% end %>
