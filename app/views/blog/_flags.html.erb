@@ -1,28 +1,24 @@
 <% content_tag :span, :id => dom_id(blog_post, :flags) do %>
-  <%= link_to_remote(
-    image_tag(
-        "pictogram/small/public_#{blog_post.is_published?}.png",
-        :size => '24x24',
-        :style => 'width: 24px; height: 24px;'),
+  <%= toolbutton_to_remote(
+    "public_#{blog_post.is_published?}",
+    :size => :small,
     :url => publish_blog_post_path(blog_post),
     :update => dom_id(blog_post, :flags),
-    :after => "this.replace('#{loading_animation :size => :small}')",
+    :after => "this.replace('#{escape_javascript loading_animation(:size => :small)}')",
     :html => {
-        :class => 'toolbutton',
+        :class => 'blue',
         :href => publish_blog_post_path(blog_post),
         :title => t(blog_post.is_published?, :scope => 'views.labels.blog_post.published?')}
   )%>
-  <%= link_to_remote(
-    image_tag(
-        "pictogram/small/mail_#{blog_post.is_mailed?}.png",
-        :size => '24x24',
-        :style => 'width: 24px; height: 24px;'),
+  <%= toolbutton_to_remote(
+    "mail_#{blog_post.is_mailed?}",
+    :size => :small,
     :url => mail_blog_post_path(blog_post),
     :confirm => t('views.messages.blog_post.really_mail?', :title => blog_post.title),
     :update => dom_id(blog_post, :flags),
     :after => "this.replace('#{loading_animation :size => :small, :title => 'E-Mails werden verschickt ...'}')",
     :html => {
-        :class => 'toolbutton',
+        :class => 'blue',
         :href => mail_blog_post_path(blog_post),
         :title => t(blog_post.is_mailed?, :scope => 'views.labels.blog_post.mailed?')}
   )%>

@@ -10,12 +10,11 @@
       = link_to blog_post.title, blog_post_path(blog_post), :class => 'title'
     - if logged_in? Employee
       = render :partial => 'flags', :locals => {:blog_post => blog_post}
-      = link_to image_tag('pictogram/small/edit.png'), edit_blog_post_path(blog_post),
-        :class => 'toolbutton', :title => 'Blogbeitrag bearbeiten'
-      = link_to image_tag('pictogram/small/destroy.png'), blog_post_path(blog_post),
-        :method => :delete,
+      = toolbutton_to :edit, edit_blog_post_path(blog_post), :size => :small,
+        :title => 'Blogbeitrag bearbeiten'
+      = toolbutton_to :destroy, blog_post_path(blog_post), :size => :small, :method => :delete,
         :confirm => "Soll der Blogbeitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
-        :class => 'toolbutton', :title => 'Blogbeitrag löschen'
+        :title => 'Blogbeitrag löschen'
   = clear_float
   %p=blog_post.body
   - if blog_post.created_at != blog_post.updated_at

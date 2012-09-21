@@ -229,13 +229,22 @@ ul.navigation {
   margin: 0.54em 0em;
 }
 
-a.toolbutton img {
+a.toolbutton {
   padding: 1px;
-  <%=border_radius '22.22%' %>
+  background-repeat: no-repeat;
+  background-position: 1px 1px;
+  display: inline-block;
 }
-a.toolbutton:hover img {
-  background: <%=p :mid_red %>;
-}
+
+a.toolbutton:hover,
+a.toolbutton.red:hover { background-color: <%=p :mid_red %>; }
+a.toolbutton.blue:hover { background-color: <%=p :dark_blue %>; }
+a.toolbutton.green:hover { background-color: <%=p :dark_green %>; }
+a.toolbutton.blank:hover { background-color: transparent; }
+
+a.toolbutton.xsmall { <%=border_radius '4px' %> height: 16px; width: 16px; }
+a.toolbutton.small { <%=border_radius '5.5px' %> height: 24px; width: 24px; }
+a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
 
 #picture_viewer, #picture_viewer div.background {
   top: 0px;

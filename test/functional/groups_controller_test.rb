@@ -1,16 +1,26 @@
 require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'f39f5f0881926e7d1a88b65856c97ae8'
+  test_tested_files_checksum 'bee3f6eb724d2fc30959208d71825317'
   
   def setup
-    https! # all actions require SSL
+    https! # every action require SSL
     @user = users(:john)
   end
   
-  test "all actions should require employee make groups and user" do
-    [:employee_required, :make_groups, :fetch_user].each do |filter|
-      assert_before_filter_applied filter
+  test "all actions should require employee" do
+    assert_before_filter_applied :employee_required
+  end
+  
+  test "create update destroy should fetch user" do
+    [:create, :update, :destroy].each do |action|
+      assert_before_filter_applied :fetch_user, action
+    end
+  end
+  
+  test "create update destroy should make groups" do
+    [:create, :update, :destroy].each do |action|
+      assert_before_filter_applied :make_groups, action
     end
   end
   
@@ -44,6 +54,33 @@ class GroupsControllerTest < ActionController::TestCase
     refute_includes @user.group_list, @groups
   end
   
+  test "suggest action" do
+    @token = 'Ho'
+    get :suggest, {:token => @token}, with_employee
+    
+    assert_equal [User.group_counts.find_by_name('Holz')], assigns(:suggestions)
+    assert_template 'suggest'
+    assert_layout false
+  end
+  
+  test "suggest action returns at least 10 suggestions" do
+    @token = 'Su'
+    generate_15_groups_with_token
+    get :suggest, {:token => @token}, with_employee
+    
+    assert assigns(:suggestions).count <= 10, 'too many suggestions found'
+  end
+  
+  test "suggest action returns matching suggestions" do
+    @token = 'Su'
+    generate_15_groups_with_token
+    get :suggest, {:token => @token}, with_employee
+    
+    assigns(:suggestions).each do |suggestion|
+      assert suggestion.start_with?(*@groups)
+    end
+  end
+  
   test "make_groups" do
     @groups = %w(Lots Of Different Groups)
     post :create, {:profile_id => @user.login, :id => @groups.join(', ')}, with_employee
@@ -74,5 +111,13 @@ private
     else
       assert_redirected_to profile_path(@user)
     end
+  end
+  
+  def generate_15_groups_with_token
+    suffixes = %w(si sanne fle ppe che per ende shi btil ffix izid lfat urfen perb bjekt)
+    @groups = suffixes.map{|suffix| @token + suffix}
+    assert_equal 15, @groups.count
+    
+    users(:john).group_list = @groups.join ','
   end
 end

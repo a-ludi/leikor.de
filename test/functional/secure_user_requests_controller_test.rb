@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SecureUserRequestsControllerTest < ActionController::TestCase
   tests_mailer Notifier
-  test_tested_files_checksum '5bdad6d11534bb4954a8bd9cd5346ff5'
+  test_tested_files_checksum '38bb5fde0fb776370b17913cbce4ecd4'
   
   def setup
     https! # every action requires SSL
@@ -103,6 +103,12 @@ class SecureUserRequestsControllerTest < ActionController::TestCase
     assert_present assigns(:user).confirm_registration_request
     assert_present flash[:message]
     assert_redirected_to profile_path(@user.login)
+  end
+
+  test 'create confirm registration action responds to js' do
+    put_create_confirm_registration :xhr
+    
+    assert_template :partial => 'layouts/_push_message'
   end
 
   test 'create confirm registration action updates request' do
@@ -239,7 +245,11 @@ private
     params = {:login => @user.login, :type => 'SecureUserRequest::ConfirmRegistration'}
     params[:sendmail] = options.include? :send_mail
     
-    put :create, params, session
+    unless options.include? :xhr
+      put :create, params, session
+    else
+      xhr :put, :create, params, session
+    end
   end
   
   def post_update_confirm_registration *options

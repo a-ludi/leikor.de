@@ -1,6 +1,13 @@
 # -*- encoding : utf-8 -*-
 
 module ApplicationHelper
+  def meta_keywords
+    keywords = %w(LEIKOR Großhandel Grosshandel Messe Messetermin Naturmaterialien Teak-Holz
+        Teakholz Baumwolle Seide)
+    keywords << Category.all.map{|c| c.name}
+    keywords.join_present ','
+  end
+  
   # To create a piped menu use:
   #
   #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3)
@@ -9,18 +16,58 @@ module ApplicationHelper
   #
   #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3), :separator => '-'
   def text_menu(*collection)
-    separator = '|'
+    separator = ' | '
     if collection.last.is_a? Hash
       separator ||= collection.last[:separator]
       collection.pop
     end
     
-    collection.compact.join(" #{separator} ")
+    collection.compact.join(separator)
   end
   
   def brick(name, object=nil)
     render :partial => "bricks/#{name.to_s}", :object => object
   end
+  
+  def toolbutton_to(name, path, options={})
+    options = make_options_for_toolbutton name, options
+
+    link_to options.delete(:content), path, options
+  end
+  
+  def toolbutton_to_remote(name, options={}, html_options=nil)
+    toolbutton_options = {:size => options[:size], :content => options[:content]}.merge(options[:html] || {})
+    toolbutton_options = make_options_for_toolbutton name, toolbutton_options
+    content = toolbutton_options.delete(:content)
+    options[:html] = toolbutton_options
+
+    link_to_remote content, options, html_options
+  end
+  
+  private
+  
+  def make_options_for_toolbutton(name, options)
+    if File::extname(name.to_s).blank?
+      title = name.to_s.humanize
+      file_name = name.to_s + '.png'
+    else
+      title = File::basename(name.to_s, File::extname(name.to_s)).humanize
+      file_name = name.to_s
+    end
+    
+    options[:size] ||= :medium
+    options[:title] ||= title
+    options[:class] = ['toolbutton', options[:size], options[:class]].join_present
+    img_path = image_path "pictogram/#{options[:size]}/#{file_name}"
+    toolbutton_style = "background-image: url('#{img_path}');"
+    options[:style] = [options[:style], toolbutton_style].join_present
+    options[:content] ||= ''
+    options.delete(:size)
+    
+    options
+  end
+  
+  public
   
   def a_button_to(name, options={}, html_options=nil)
     button_options = {:type => 'button', :value => name}
@@ -46,21 +93,25 @@ module ApplicationHelper
   end
   
   def collection_based_positional_class(item, collection, user_class='')
-    classes = user_class.blank? ? [] : [user_class]
-    classes << 'first' if item == collection.first
-    classes << 'last' if item == collection.last
+    classes = [
+      user_class,
+      ('first' if item == collection.first),
+      ('last' if item == collection.last)
+    ]
     
-    return classes.join ' '
+    return classes.join_present
   end
   
   def index_based_positional_class(index, length, user_class='')
-    classes = user_class.blank? ? [] : [user_class]
-    classes << 'first' if index == 0
-    classes << 'last' if index == length - 1
+    classes = [
+      user_class,
+      ('first' if index == 0),
+      ('last' if index == length - 1),
+      (index % 2 == 0 ? 'odd' : 'even')
+    ]
     # index 0 is the first line therefore it's odd ... that's odd, ey?
-    classes << (index % 2 == 0 ? 'odd' : 'even')
     
-    return classes.join ' '
+    return classes.join_present
   end
   
   def make_if_error_messages_for(record)
@@ -106,25 +157,9 @@ module ApplicationHelper
   end
   
   def loading_animation(options={})
-    options = {
-      :size => :medium,
-      :class => 'loading_animation toolbutton'
-    }.merge options
+    options[:class] = ['blank', options[:class]].join_present
+    options[:style] = ['cursor: wait;', options[:style]].join_present
     
-    options[:size] = case options[:size].to_sym
-      when :small
-        options[:path] = 'small'
-        "24x24"
-      when :medium
-        options[:path] = 'medium'
-        "32x32"
-      else
-        options[:size]
-    end
-    
-    width, height = options[:size].split('x').map{|s| s.to_i}
-    options[:style] ||= css_dimensions(width, height, 'px')
-    
-    image_tag "pictogram/#{options[:path]}/loading.gif", options
+    toolbutton_to 'loading.gif', '#', options
   end
 end

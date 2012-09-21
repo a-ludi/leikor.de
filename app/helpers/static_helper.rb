@@ -2,11 +2,11 @@
 
 module StaticHelper
   def help_button(subject, options={})
-    options = {:size => :xsmall}.merge options
-    image = image_tag("pictogram/#{options[:size]}/help.png", :alt => 'Hilfe')
+    options = {:size => :xsmall, :title => "Hilfe für #{subject} bekommen"}.merge options
+    options[:style] = ['cursor: help;', options[:style]].join_present
+    options[:class] = ['blue', options[:class]].join_present
     
-    link_to image, static_path("hilfe/#{subject.to_s}".to_sym),
-        :title => "Hilfe für #{subject} bekommen", :class => 'toolbutton'
+    toolbutton_to 'help', static_path("hilfe/#{subject.to_s}".to_sym), options
   end
   
   def static_link_to(path, options={}, html_options=nil)

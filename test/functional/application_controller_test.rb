@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  test_tested_files_checksum '0be2352f1f27cda8d9d2a99fa72a2d4e'
+  test_tested_files_checksum '5d9ba0c0b920ec87bb791e569cb76dbd'
 
   test "before filters active" do
     [:fetch_current_user, :fetch_updated_at, :prepare_flash_message].each do |filter|
@@ -215,6 +215,14 @@ class ApplicationControllerTest < ActionController::TestCase
       @passed = @controller.send :log_if_title_not_set
     end
     assert @passed
+  end
+  
+  test "escape_like_pattern" do
+    @pattern = 'This is a _pattern_ with 0% alcohol'
+    @expected_pattern = 'This is a \\_pattern\\_ with 0\\% alcohol'
+    @escaped_pattern = call_method :escape_like_pattern, [@pattern]
+    
+    assert_equal @expected_pattern, @escaped_pattern
   end
   
   test "set_up_user_required_message with html response" do

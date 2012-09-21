@@ -1,13 +1,23 @@
 # -*- encoding : utf-8 -*-
 
 class ApplicationController < ActionController::Base
+  include ExceptionNotification::Notifiable
+  
+  def rescue_action_locally exception
+    rescue_action_in_public exception
+  end
+  
+  def local_request?
+    false
+  end
+  
   helper :all # include all helpers, all the time
   helper_method :logged_in?
   protect_from_forgery
   filter_parameter_logging :password, :primary_email_address, :external_id
 
   before_filter :fetch_current_user, :fetch_updated_at, :prepare_flash_message
-  unless RAILS_ENV == 'production'
+  unless Rails.env.production?
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
   end
   
@@ -16,7 +26,7 @@ class ApplicationController < ActionController::Base
   alias orig_ssl_required? ssl_required?
   def ssl_required?; logged_in? or orig_ssl_required?; end
   
-  if RAILS_ENV == 'test'
+  if Rails.env.test?
     def test_method
       unless flash.include? :block
         @result = self.send params[:method].to_sym, *flash[:params]
@@ -117,6 +127,11 @@ protected
     
     return true
   end
+
+  def escape_like_pattern pattern
+    pattern.gsub('%', '\\%').gsub('_', '\\_')
+  end
+  helper_method :escape_like_pattern
 
 private
 

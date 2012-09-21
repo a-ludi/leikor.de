@@ -1,7 +1,7 @@
-.administration
-  - if logged_in? Employee
-    = link_to image_tag('pictogram/medium/new.png'), new_blog_post_path, :class => 'toolbutton',
-      :title => 'Neuen Beitrag schreiben'
+- error_is_raised_because_there_no_such_name
+- if logged_in? Employee
+  .administration
+    = toolbutton_to :new, new_blog_post_path, :title => 'Neuen Beitrag schreiben'
 - unless @blog_posts.empty?
   %ul#blog_posts= render :partial => 'blog_post', :collection => @blog_posts
 - else
