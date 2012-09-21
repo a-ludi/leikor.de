@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :primary_email_address, :external_id
 
   before_filter :fetch_current_user, :fetch_updated_at, :prepare_flash_message
-  unless RAILS_ENV == 'production'
+  unless Rails.env.production?
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
   end
   
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   alias orig_ssl_required? ssl_required?
   def ssl_required?; logged_in? or orig_ssl_required?; end
   
-  if RAILS_ENV == 'test'
+  if Rails.env.test?
     def test_method
       unless flash.include? :block
         @result = self.send params[:method].to_sym, *flash[:params]
