@@ -1,6 +1,16 @@
 # -*- encoding : utf-8 -*-
 
 class ApplicationController < ActionController::Base
+  include ExceptionNotification::Notifiable
+  
+  def rescue_action_locally exception
+    rescue_action_in_public exception
+  end
+  
+  def local_request?
+    false
+  end
+  
   helper :all # include all helpers, all the time
   helper_method :logged_in?
   protect_from_forgery
