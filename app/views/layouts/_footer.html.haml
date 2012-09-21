@@ -1,0 +1,12 @@
+#footer
+  - unless defined? no_links and no_links
+    = text_menu(static_link_to(:kontakt),
+                static_link_to(:impressum),
+                static_link_to(:AGB),
+                (static_link_to(:colors) if Rails.env.development?))
+  %br
+  &copy;2011-2012 #{static_link_to :impressum, {:label => 'LEIKOR', :anchor => 'urheberrechte'}, :rel => 'license'}
+  &bull;
+  Stand: #{l @updated_at, :format => :short}
+</div>
+
