@@ -118,6 +118,11 @@ protected
     return true
   end
 
+  def escape_like_pattern pattern
+    pattern.gsub('%', '\\%').gsub('_', '\\_')
+  end
+  helper_method :escape_like_pattern
+
 private
 
   #TODO user translation for message

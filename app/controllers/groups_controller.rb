@@ -27,8 +27,8 @@ class GroupsController < ApplicationController
   end
   
   def suggest
-    pattern = params[:token].gsub('%', '\\%') + '%'
-    @suggestions = User.group_counts(:conditions => ['name ILIKE ?', pattern])
+    pattern = escape_like_pattern(params[:token]) + '%'
+    @suggestions = User.group_counts :conditions => ['name ILIKE ?', pattern], :limit => 10
     
     render :layout => false
   end
