@@ -28,6 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'acts-as-taggable-on', :version => '~> 2.1.0'
   config.gem 'haml', :version => '~> 3.1.4'
   config.gem 'maruku', :version => '~> 0.6.0'
+  config.gem 'exception_notification', :version => '~> 2.3.3.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -57,3 +58,6 @@ Rails::Initializer.run do |config|
 end
 
 Haml::Template.options[:format] = :html4
+ExceptionNotification::Notifier.sender_address = '"Fehlerbericht" <fehler@leikor.de>'
+ExceptionNotification::Notifier.exception_recipients = %w(webmaster@leikor.de)
+
