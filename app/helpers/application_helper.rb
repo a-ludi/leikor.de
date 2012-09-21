@@ -1,6 +1,13 @@
 # -*- encoding : utf-8 -*-
 
 module ApplicationHelper
+  def meta_keywords
+    keywords = %w(LEIKOR Großhandel Grosshandel Messe Messetermin Naturmaterialien Teak-Holz
+        Teakholz Baumwolle Seide)
+    keywords << Category.all.map{|c| c.name}
+    keywords.join_present ','
+  end
+  
   # To create a piped menu use:
   #
   #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3)
