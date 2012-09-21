@@ -13,7 +13,7 @@ guard 'spork', :wait => 60 do
 end
 
 # Runs all tests
-guard 'minitest', :drb => true do
+guard 'minitest', :drb => true, :notify => true do
   # tests
   watch(%r|^test/(.*)_test\.rb|)
   
