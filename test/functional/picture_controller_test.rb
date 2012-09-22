@@ -4,6 +4,26 @@ require 'test_helper'
 class PictureControllerTest < ActionController::TestCase
   test_tested_files_checksum 'ab3ef36a4880bcf4a40fa3e224692088'
   
+  test "ssl requirements" do
+    @article_id = articles(:one).to_param
+    
+    refute_https_allowed { get 'pictures', :article_id => @article_id, :style => 'small',
+        :extension => 'jpg' }
+    refute_https_allowed { get 'pictures', :article_id => @article_id }
+    refute_https_allowed { get 'new', :article_id => @article_id }
+    refute_https_allowed { get 'new', :article_id => @article_id, :format => 'png' }
+    refute_https_allowed { get 'edit', :article_id => @article_id }
+    refute_https_allowed { get 'edit', :article_id => @article_id, :format => 'png' }
+    refute_https_allowed { get 'show', :article_id => @article_id }
+    refute_https_allowed { get 'show', :article_id => @article_id, :format => 'png' }
+    refute_https_allowed { put 'update', :article_id => @article_id }
+    refute_https_allowed { put 'update', :article_id => @article_id, :format => 'png' }
+    refute_https_allowed { delete 'destroy', :article_id => @article_id }
+    refute_https_allowed { delete 'destroy', :article_id => @article_id, :format => 'png' }
+    refute_https_allowed { post 'create', :article_id => @article_id }
+    refute_https_allowed { post 'create', :article_id => @article_id, :format => 'png' }
+  end
+  
   test "login required except show pictures" do
     [:show, :pictures].each do |action|
       assert_before_filter_not_applied :employee_required, action

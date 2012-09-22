@@ -1,13 +1,22 @@
 require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'bee3f6eb724d2fc30959208d71825317'
-  
+  test_tested_files_checksum '452e1667dbe0443a4aa6c76094439a92'
+
   def setup
     https! # every action require SSL
     @user = users(:john)
   end
   
+  test "ssl requirements" do
+    @profile_id = users(:john).login
+    @id = 'Holz'
+    refute_https_allowed { post 'create', :profile_id => @profile_id }
+    refute_https_allowed { put 'update', :profile_id => @profile_id, :id => @id }
+    refute_https_allowed { delete 'destroy', :profile_id => @profile_id, :id => @id }
+    refute_https_allowed { get 'suggest' }
+  end
+    
   test "all actions should require employee" do
     assert_before_filter_applied :employee_required
   end

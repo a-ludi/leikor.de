@@ -1,8 +1,7 @@
 # -*- encoding : utf-8 -*-
 
 class SessionsController < ApplicationController
-  ssl_required :new, :create
-  ssl_allowed :destroy
+  ssl_required_by_all_actions
   before_filter :user_required, :only => [:destroy]
   
   def new

@@ -2,10 +2,16 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test_tested_files_checksum '33f3b35158d73ee4d492603f59cc1252'
+  test_tested_files_checksum '7b75b8b656c562f3753abb06cceb6ecb'
   
   def setup
     https! # (nearly) every action requires SSL
+  end
+  
+  test "ssl requirements" do
+    assert_https_required { get 'new' }
+    assert_https_required { post 'create' }
+    assert_https_required { get 'destroy' }
   end
 
   test "login required for logout" do

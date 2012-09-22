@@ -15,9 +15,6 @@ class ApplicationController < ActionController::Base
   
   include SslRequirement
   
-  alias orig_ssl_required? ssl_required?
-  def ssl_required?; logged_in? or orig_ssl_required?; end
-  
   if Rails.env.test?
     def test_method
       unless flash.include? :block
@@ -37,6 +34,11 @@ class ApplicationController < ActionController::Base
   end
   
 protected
+  alias orig_ssl_required? ssl_required?
+  def ssl_required?
+    logged_in? or orig_ssl_required?
+  end
+  
   def save_updated_at
     AppData['updated_at'] = Time.now.getutc
   end

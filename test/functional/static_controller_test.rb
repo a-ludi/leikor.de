@@ -2,8 +2,15 @@
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'fa21ad5cd438587dd24eb79f1cacdd0b'
-
+  test_tested_files_checksum 'a6d3812e87c29b9f4c19d787b526d744'
+  
+  test "ssl requirements" do
+    assert_https_allowed { get 'show', :path => 'kontakt' }
+    assert_http_allowed { get 'show', :path => 'kontakt' }
+    assert_https_allowed { get 'stylesheet', :path => 'layout.css' }
+    assert_http_allowed { get 'stylesheet', :path => 'layout.css' }
+  end
+  
   test "skips prepare_flash_message" do
     assert_skips_before_filter :prepare_flash_message
   end
@@ -65,21 +72,5 @@ class StaticControllerTest < ActionController::TestCase
     assert_raises ActionController::RoutingError do
       get 'stylesheet', :path => stylesheet
     end
-  end
-  
-  test "ssl allowed on show" do
-    page = StaticController::REGISTERED_PAGES.first
-    https!
-    get 'show', {:path => page[0].to_s}
-    
-    assert_response :success
-  end
-  
-  test "ssl allowed on stylesheet" do
-    stylesheet = 'layout.css'
-    https!
-    get 'stylesheet', :path => stylesheet
-    
-    assert_response :success
   end
 end
