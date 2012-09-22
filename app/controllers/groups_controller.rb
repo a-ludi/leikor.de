@@ -1,7 +1,6 @@
 # -*- encoding : utf-8 -*-
 
 class GroupsController < ApplicationController
-  ssl_required_by_all_actions
   before_filter :employee_required
   before_filter :make_groups, :fetch_user, :only => [:create, :update, :destroy]
   

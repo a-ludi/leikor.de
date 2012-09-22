@@ -8,6 +8,23 @@ class SecureUserRequestsControllerTest < ActionController::TestCase
     https! # every action requires SSL
   end
   
+  test "ssl requirements" do
+    @id = secure_user_requests(:max_confirm).to_param
+    
+    assert_https_required { get 'new', :type => 'SecureUserRequest::ResetPassword' }
+    assert_https_required { post 'create', :type => 'SecureUserRequest::ConfirmRegistration' }
+    assert_https_required { post 'create' }
+    assert_https_required { post 'create', :format => 'js' }
+    assert_https_required { get 'edit', :id => @id }
+    assert_https_required { get 'edit', :id => @id, :format => 'js' }
+    assert_https_required { get 'destroy', :id => @id }
+    assert_https_required { get 'destroy', :id => @id, :format => 'js' }
+    assert_https_required { put 'update', :id => @id }
+    assert_https_required { put 'update', :id => @id, :format => 'js' }
+    assert_https_required { delete 'destroy', :id => @id }
+    assert_https_required { delete 'destroy', :id => @id, :format => 'js' }
+  end
+  
   test "on edit update destroy should force user logout" do
     [:edit, :update, :destroy].each do |action|
       assert_before_filter_applied :force_user_logout, action

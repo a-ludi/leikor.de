@@ -78,7 +78,6 @@ class BlogController < ApplicationController
   end
   
   def readers
-    #TODO test limit and shuffle
     @readers = readers_from_groups(params[:groups]).all(:limit => 10).shuffle
     
     render :partial => 'readers', :object => @readers
@@ -104,7 +103,7 @@ protected
     end
   end
   
-  #TODO untested and untidy. what to do about it?
+  #TODO untidy. what to do about it?
   def blog_posts(id=nil)
     if logged_in? Employee
       if id.nil?
@@ -114,10 +113,10 @@ protected
       end
     else
       if id.nil?
-        BlogPost.all.select {|blog_post| blog_post.is_published? or blog_post.is_reader?(@current_user)}
+        BlogPost.all.select {|blog_post| blog_post.is_published? or blog_post.is_reader? @current_user }
       else
         blog_post = BlogPost.find id
-        if blog_post.is_published? or blog_post.is_reader?(@current_user)
+        if blog_post.is_published? or blog_post.is_reader? @current_user
           return blog_post
         else
           raise ActiveRecord::RecordNotFound

@@ -4,9 +4,36 @@ class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
   test_tested_files_checksum(
-    ['app/controllers/blog_controller.rb', 'e01268a00c3c5c3783f39264568304f1'],
+    ['app/controllers/blog_controller.rb', 'aedf0b479e76defc2628bb74f72f5197'],
     ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
   )
+  
+  test "ssl requirements" do
+    @id = blog_posts(:mailed_post).to_param
+    
+    refute_https_allowed { get 'readers' }
+    refute_https_allowed { get 'readers', :format => 'js' }
+    refute_https_allowed { get 'index' }
+    refute_https_allowed { get 'index', :format => 'js' }
+    refute_https_allowed { post 'create' }
+    refute_https_allowed { post 'create', :format => 'js' }
+    refute_https_allowed { get 'new' }
+    refute_https_allowed { get 'new', :format => 'js' }
+    refute_https_allowed { post 'mail', :id => @id }
+    refute_https_allowed { post 'mail', :id => @id, :format => 'js' }
+    refute_https_allowed { get 'mail', :id => @id }
+    refute_https_allowed { get 'mail', :id => @id, :format => 'js' }
+    refute_https_allowed { post 'publish', :id => @id }
+    refute_https_allowed { post 'publish', :id => @id, :format => 'js' }
+    refute_https_allowed { get 'publish', :id => @id }
+    refute_https_allowed { get 'publish', :id => @id, :format => 'js' }
+    refute_https_allowed { get 'edit', :id => @id }
+    refute_https_allowed { get 'edit', :id => @id, :format => 'js' }
+    refute_https_allowed { put 'update', :id => @id }
+    refute_https_allowed { put 'update', :id => @id, :format => 'js' }
+    refute_https_allowed { delete 'destroy', :id => @id }
+    refute_https_allowed { delete 'destroy', :id => @id, :format => 'js' }
+  end
 
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
@@ -221,8 +248,54 @@ class BlogControllerTest < ActionController::TestCase
     assert_template :partial => 'flags'
   end
   
-  test "blog_posts" do
-    skip "TODO"
+  test "blog_posts without id with employee" do
+    without_employee_required
+    https!
+    @blog_posts = call_method :blog_posts, [], :session => with_employee
+    
+    assert_equal BlogPost.all, @blog_posts
+  end
+
+  test "blog_posts with id with employee" do
+    without_employee_required
+    https!
+    @blog_post = call_method :blog_posts, [blog_posts(:mailed_post).to_param], :session => with_employee
+    
+    assert_equal blog_posts(:mailed_post), @blog_post
+  end
+  
+  test "blog_posts without id with customer" do
+    without_employee_required
+    https!
+    @blog_posts = call_method :blog_posts, [], :session => with_user(:meyer)
+    
+    assert_equal BlogPost.all, @blog_posts
+  end
+
+  test "blog_posts with id with customer" do
+    without_employee_required
+    https!
+    @blog_post = call_method :blog_posts, [blog_posts(:mailed_post).to_param], :session => with_user(:meyer)
+    
+    assert_equal blog_posts(:mailed_post), @blog_post
+  end
+
+  test "blog_posts without id without user" do
+    without_employee_required
+    @blog_posts = call_method :blog_posts, []
+    
+    assert_equal [blog_posts(:public_post)], @blog_posts
+  end
+
+  test "blog_posts with id without user" do
+    without_employee_required
+    @blog_post = call_method :blog_posts, [blog_posts(:public_post).to_param]
+    
+    assert_equal blog_posts(:public_post), @blog_post
+    
+    assert_raises ActiveRecord::RecordNotFound do
+      call_method :blog_posts, [blog_posts(:mailed_post).to_param]
+    end
   end
 
 private
@@ -262,5 +335,9 @@ private
         :xhr => (format == :js)
     
     assert @called, 'not called'
+  end
+  
+  def without_employee_required
+    @controller.class.send :skip_before_filter, :employee_required, :only => [:test_method]
   end
 end

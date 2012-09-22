@@ -4,6 +4,7 @@ module AssertionsHelper
   include AssertionsHelper::ActiveRecordAssertions
   include AssertionsHelper::FilterAssertions
   include AssertionsHelper::LoggerAssertions
+  include AssertionsHelper::SslAssertions
   
   def assert_layout(layout, message=nil)
     clean_backtrace do

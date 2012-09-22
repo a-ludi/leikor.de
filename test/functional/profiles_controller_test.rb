@@ -1,10 +1,34 @@
 require 'test_helper'
 
 class ProfilesControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'e460ddbff34f6010ce0a3ce000925a22'
+  test_tested_files_checksum '24e904ce217d4b53dacecfb4d93a8d07'
   
   def setup
     https! # every action requires SSL
+  end
+  
+  test "ssl requirements" do
+    @id = users(:john).to_param
+    
+    refute_https_allowed { get 'show_mine' }
+    refute_https_allowed { get 'edit_mine' }
+    refute_https_allowed { put 'update_mine' }
+    refute_https_allowed { get 'edit_password' }
+    refute_https_allowed { put 'update_password' }
+    refute_https_allowed { get 'index' }
+    refute_https_allowed { get 'index', :format => 'js' }
+    refute_https_allowed { post 'create' }
+    refute_https_allowed { post 'create', :format => 'js' }
+    refute_https_allowed { get 'edit', :id => @id }
+    refute_https_allowed { get 'edit', :id => @id, :format => 'js' }
+    refute_https_allowed { get 'show', :id => @id }
+    refute_https_allowed { get 'show', :id => @id, :format => 'js' }
+    refute_https_allowed { put 'update', :id => @id }
+    refute_https_allowed { put 'update', :id => @id, :format => 'js' }
+    refute_https_allowed { delete 'destroy', :id => @id }
+    refute_https_allowed { delete 'destroy', :id => @id, :format => 'js' }
+    refute_https_allowed { get 'new', :type => 'Customer' }
+    refute_https_allowed { get 'new', :type => 'Employee' }
   end
   
   test "all actions should require user" do
