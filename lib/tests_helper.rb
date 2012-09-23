@@ -17,10 +17,6 @@ module TestsHelper
     with_user Customer.first
   end
 
-  def with_employee(session={})
-    with_user :john
-  end
-
   def with_user(user=:john, session={})
     user = users(user) if user.is_a? Symbol
     @user = user
