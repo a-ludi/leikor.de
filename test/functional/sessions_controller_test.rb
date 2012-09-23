@@ -8,12 +8,6 @@ class SessionsControllerTest < ActionController::TestCase
     https! # (nearly) every action requires SSL
   end
   
-  test "ssl requirements" do
-    assert_https_required { get 'new' }
-    assert_https_required { post 'create' }
-    assert_https_required { get 'destroy' }
-  end
-
   test "login required for logout" do
     assert_before_filter_applied :user_required, :destroy
   end

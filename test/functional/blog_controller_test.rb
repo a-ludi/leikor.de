@@ -8,33 +8,6 @@ class BlogControllerTest < ActionController::TestCase
     ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
   )
   
-  test "ssl requirements" do
-    @id = blog_posts(:mailed_post).to_param
-    
-    refute_https_allowed { get 'readers' }
-    refute_https_allowed { get 'readers', :format => 'js' }
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { get 'index', :format => 'js' }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { post 'create', :format => 'js' }
-    refute_https_allowed { get 'new' }
-    refute_https_allowed { get 'new', :format => 'js' }
-    refute_https_allowed { post 'mail', :id => @id }
-    refute_https_allowed { post 'mail', :id => @id, :format => 'js' }
-    refute_https_allowed { get 'mail', :id => @id }
-    refute_https_allowed { get 'mail', :id => @id, :format => 'js' }
-    refute_https_allowed { post 'publish', :id => @id }
-    refute_https_allowed { post 'publish', :id => @id, :format => 'js' }
-    refute_https_allowed { get 'publish', :id => @id }
-    refute_https_allowed { get 'publish', :id => @id, :format => 'js' }
-    refute_https_allowed { get 'edit', :id => @id }
-    refute_https_allowed { get 'edit', :id => @id, :format => 'js' }
-    refute_https_allowed { put 'update', :id => @id }
-    refute_https_allowed { put 'update', :id => @id, :format => 'js' }
-    refute_https_allowed { delete 'destroy', :id => @id }
-    refute_https_allowed { delete 'destroy', :id => @id, :format => 'js' }
-  end
-
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
       assert_before_filter_applied :employee_required, action

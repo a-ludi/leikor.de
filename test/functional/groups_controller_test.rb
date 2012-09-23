@@ -8,15 +8,6 @@ class GroupsControllerTest < ActionController::TestCase
     @user = users(:john)
   end
   
-  test "ssl requirements" do
-    @profile_id = users(:john).login
-    @id = 'Holz'
-    refute_https_allowed { post 'create', :profile_id => @profile_id }
-    refute_https_allowed { put 'update', :profile_id => @profile_id, :id => @id }
-    refute_https_allowed { delete 'destroy', :profile_id => @profile_id, :id => @id }
-    refute_https_allowed { get 'suggest' }
-  end
-    
   test "all actions should require employee" do
     assert_before_filter_applied :employee_required
   end

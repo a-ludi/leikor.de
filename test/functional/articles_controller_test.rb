@@ -4,29 +4,6 @@ require 'test_helper'
 class ArticlesControllerTest < ActionController::TestCase
   test_tested_files_checksum '8964002b761e81fc942dea3e4867161b'
   
-  test "ssl requirements" do
-    @article = articles(:one)
-    @subcategory = @article.subcategory
-    @category = @subcategory.category
-    
-    refute_https_allowed { get 'index', @subcategory.url_hash }
-    refute_https_allowed { get 'edit_order', @subcategory.url_hash }
-    refute_https_allowed { post 'reorder', @subcategory.url_hash }
-    refute_https_allowed { get 'ask_destroy', @article.url_hash }
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { get 'index', :format => 'js' }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { post 'create', :format => 'js' }
-    refute_https_allowed { get 'new' }
-    refute_https_allowed { get 'new', :format => 'js' }
-    refute_https_allowed { get 'edit', :id => @article.to_param }
-    refute_https_allowed { get 'edit', :id => @article.to_param, :format => 'js' }
-    refute_https_allowed { put 'update', :id => @article.to_param }
-    refute_https_allowed { put 'update', :id => @article.to_param, :format => 'js' }
-    refute_https_allowed { delete 'destroy', :id => @article.to_param }
-    refute_https_allowed { delete 'destroy', :id => @article.to_param, :format => 'js' }
-  end
-  
   test "new edit_order create edit update ask_destroy destroy reorder actions should require
       employee" do
     [:new, :create, :edit_order, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
