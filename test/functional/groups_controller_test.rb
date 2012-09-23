@@ -11,10 +11,10 @@ class GroupsControllerTest < ActionController::TestCase
   test "ssl requirements" do
     @profile_id = users(:john).login
     @id = 'Holz'
-    refute_https_allowed { post 'create', :profile_id => @profile_id }
-    refute_https_allowed { put 'update', :profile_id => @profile_id, :id => @id }
-    refute_https_allowed { delete 'destroy', :profile_id => @profile_id, :id => @id }
-    refute_https_allowed { get 'suggest' }
+    assert_ssl_denied { post 'create', :profile_id => @profile_id }
+    assert_ssl_denied { put 'update', :profile_id => @profile_id, :id => @id }
+    assert_ssl_denied { delete 'destroy', :profile_id => @profile_id, :id => @id }
+    assert_ssl_denied { get 'suggest' }
   end
     
   test "all actions should require employee" do

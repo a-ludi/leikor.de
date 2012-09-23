@@ -8,23 +8,23 @@ class ArticlesControllerTest < ActionController::TestCase
     @article = articles(:one)
     @subcategory = @article.subcategory
     @category = @subcategory.category
-    
-    refute_https_allowed { get 'index', @subcategory.url_hash }
-    refute_https_allowed { get 'edit_order', @subcategory.url_hash }
-    refute_https_allowed { post 'reorder', @subcategory.url_hash }
-    refute_https_allowed { get 'ask_destroy', @article.url_hash }
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { get 'index', :format => 'js' }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { post 'create', :format => 'js' }
-    refute_https_allowed { get 'new' }
-    refute_https_allowed { get 'new', :format => 'js' }
-    refute_https_allowed { get 'edit', :id => @article.to_param }
-    refute_https_allowed { get 'edit', :id => @article.to_param, :format => 'js' }
-    refute_https_allowed { put 'update', :id => @article.to_param }
-    refute_https_allowed { put 'update', :id => @article.to_param, :format => 'js' }
-    refute_https_allowed { delete 'destroy', :id => @article.to_param }
-    refute_https_allowed { delete 'destroy', :id => @article.to_param, :format => 'js' }
+
+    assert_ssl_denied { get 'index', @subcategory.url_hash }
+    assert_ssl_denied { get 'edit_order', @subcategory.url_hash }
+    assert_ssl_denied { post 'reorder', @subcategory.url_hash }
+    assert_ssl_denied { get 'ask_destroy', @article.url_hash }
+    assert_ssl_denied { get 'index' }
+    assert_ssl_denied { get 'index', :format => 'js' }
+    assert_ssl_denied { post 'create' }
+    assert_ssl_denied { post 'create', :format => 'js' }
+    assert_ssl_denied { get 'new' }
+    assert_ssl_denied { get 'new', :format => 'js' }
+    assert_ssl_denied { get 'edit', :id => @article.to_param }
+    assert_ssl_denied { get 'edit', :id => @article.to_param, :format => 'js' }
+    assert_ssl_denied { put 'update', :id => @article.to_param }
+    assert_ssl_denied { put 'update', :id => @article.to_param, :format => 'js' }
+    assert_ssl_denied { delete 'destroy', :id => @article.to_param }
+    assert_ssl_denied { delete 'destroy', :id => @article.to_param, :format => 'js' }
   end
   
   test "new edit_order create edit update ask_destroy destroy reorder actions should require

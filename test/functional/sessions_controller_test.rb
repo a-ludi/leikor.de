@@ -9,9 +9,9 @@ class SessionsControllerTest < ActionController::TestCase
   end
   
   test "ssl requirements" do
-    assert_https_required { get 'new' }
-    assert_https_required { post 'create' }
-    assert_https_required { get 'destroy' }
+    assert_ssl_required { get 'new' }
+    assert_ssl_required { post 'create' }
+    assert_ssl_required { get 'destroy' }
   end
 
   test "login required for logout" do

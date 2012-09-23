@@ -10,25 +10,25 @@ class ProfilesControllerTest < ActionController::TestCase
   test "ssl requirements" do
     @id = users(:john).to_param
     
-    refute_https_allowed { get 'show_mine' }
-    refute_https_allowed { get 'edit_mine' }
-    refute_https_allowed { put 'update_mine' }
-    refute_https_allowed { get 'edit_password' }
-    refute_https_allowed { put 'update_password' }
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { get 'index', :format => 'js' }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { post 'create', :format => 'js' }
-    refute_https_allowed { get 'edit', :id => @id }
-    refute_https_allowed { get 'edit', :id => @id, :format => 'js' }
-    refute_https_allowed { get 'show', :id => @id }
-    refute_https_allowed { get 'show', :id => @id, :format => 'js' }
-    refute_https_allowed { put 'update', :id => @id }
-    refute_https_allowed { put 'update', :id => @id, :format => 'js' }
-    refute_https_allowed { delete 'destroy', :id => @id }
-    refute_https_allowed { delete 'destroy', :id => @id, :format => 'js' }
-    refute_https_allowed { get 'new', :type => 'Customer' }
-    refute_https_allowed { get 'new', :type => 'Employee' }
+    assert_ssl_denied { get 'show_mine' }
+    assert_ssl_denied { get 'edit_mine' }
+    assert_ssl_denied { put 'update_mine' }
+    assert_ssl_denied { get 'edit_password' }
+    assert_ssl_denied { put 'update_password' }
+    assert_ssl_denied { get 'index' }
+    assert_ssl_denied { get 'index', :format => 'js' }
+    assert_ssl_denied { post 'create' }
+    assert_ssl_denied { post 'create', :format => 'js' }
+    assert_ssl_denied { get 'edit', :id => @id }
+    assert_ssl_denied { get 'edit', :id => @id, :format => 'js' }
+    assert_ssl_denied { get 'show', :id => @id }
+    assert_ssl_denied { get 'show', :id => @id, :format => 'js' }
+    assert_ssl_denied { put 'update', :id => @id }
+    assert_ssl_denied { put 'update', :id => @id, :format => 'js' }
+    assert_ssl_denied { delete 'destroy', :id => @id }
+    assert_ssl_denied { delete 'destroy', :id => @id, :format => 'js' }
+    assert_ssl_denied { get 'new', :type => 'Customer' }
+    assert_ssl_denied { get 'new', :type => 'Employee' }
   end
   
   test "all actions should require user" do

@@ -5,10 +5,10 @@ class StaticControllerTest < ActionController::TestCase
   test_tested_files_checksum 'a6d3812e87c29b9f4c19d787b526d744'
   
   test "ssl requirements" do
-    assert_https_allowed { get 'show', :path => 'kontakt' }
-    assert_http_allowed { get 'show', :path => 'kontakt' }
-    assert_https_allowed { get 'stylesheet', :path => 'layout.css' }
-    assert_http_allowed { get 'stylesheet', :path => 'layout.css' }
+    assert_ssl_allowed { get 'show', :path => 'kontakt' }
+    refute_ssl_required { get 'show', :path => 'kontakt' }
+    assert_ssl_allowed { get 'stylesheet', :path => 'layout.css' }
+    refute_ssl_required { get 'stylesheet', :path => 'layout.css' }
   end
   
   test "skips prepare_flash_message" do

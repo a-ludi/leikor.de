@@ -8,16 +8,16 @@ class CategoriesControllerTest < ActionController::TestCase
     @subcategory = categories(:sub1).to_param
     @category = categories(:sub1).category.to_param
 
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { get 'subindex', :category => @category }
-    refute_https_allowed { get 'ask_destroy', :category => @category }
-    refute_https_allowed { get 'ask_destroy', :category => @category, :subcategory => @subcategory }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { get 'new' }
-    refute_https_allowed { get 'edit', :id => @subcategory }
-    refute_https_allowed { put 'update', :id => @subcategory }
-    refute_https_allowed { delete 'destroy', :id => @subcategory }
-    refute_https_allowed { post 'reorder' }
+    assert_ssl_denied { get 'index' }
+    assert_ssl_denied { get 'subindex', :category => @category }
+    assert_ssl_denied { get 'ask_destroy', :category => @category }
+    assert_ssl_denied { get 'ask_destroy', :category => @category, :subcategory => @subcategory }
+    assert_ssl_denied { post 'create' }
+    assert_ssl_denied { get 'new' }
+    assert_ssl_denied { get 'edit', :id => @subcategory }
+    assert_ssl_denied { put 'update', :id => @subcategory }
+    assert_ssl_denied { delete 'destroy', :id => @subcategory }
+    assert_ssl_denied { post 'reorder' }
   end
   
   test "login required for new create edit update ask_destroy destroy reorder" do

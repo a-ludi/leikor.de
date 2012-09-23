@@ -11,18 +11,18 @@ class SecureUserRequestsControllerTest < ActionController::TestCase
   test "ssl requirements" do
     @id = secure_user_requests(:max_confirm).to_param
     
-    assert_https_required { get 'new', :type => 'SecureUserRequest::ResetPassword' }
-    assert_https_required { post 'create', :type => 'SecureUserRequest::ConfirmRegistration' }
-    assert_https_required { post 'create' }
-    assert_https_required { post 'create', :format => 'js' }
-    assert_https_required { get 'edit', :id => @id }
-    assert_https_required { get 'edit', :id => @id, :format => 'js' }
-    assert_https_required { get 'destroy', :id => @id }
-    assert_https_required { get 'destroy', :id => @id, :format => 'js' }
-    assert_https_required { put 'update', :id => @id }
-    assert_https_required { put 'update', :id => @id, :format => 'js' }
-    assert_https_required { delete 'destroy', :id => @id }
-    assert_https_required { delete 'destroy', :id => @id, :format => 'js' }
+    assert_ssl_required { get 'new', :type => 'SecureUserRequest::ResetPassword' }
+    assert_ssl_required { post 'create', :type => 'SecureUserRequest::ConfirmRegistration' }
+    assert_ssl_required { post 'create' }
+    assert_ssl_required { post 'create', :format => 'js' }
+    assert_ssl_required { get 'edit', :id => @id }
+    assert_ssl_required { get 'edit', :id => @id, :format => 'js' }
+    assert_ssl_required { get 'destroy', :id => @id }
+    assert_ssl_required { get 'destroy', :id => @id, :format => 'js' }
+    assert_ssl_required { put 'update', :id => @id }
+    assert_ssl_required { put 'update', :id => @id, :format => 'js' }
+    assert_ssl_required { delete 'destroy', :id => @id }
+    assert_ssl_required { delete 'destroy', :id => @id, :format => 'js' }
   end
   
   test "on edit update destroy should force user logout" do

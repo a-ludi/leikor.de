@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 module AssertionsHelper::SslAssertions
-  def assert_https_required(msg=nil)
+  def assert_ssl_required(msg=nil)
     with_saved_https_state do
       https! false
       
@@ -22,9 +22,8 @@ module AssertionsHelper::SslAssertions
       end
     end
   end
-  alias :refute_http_allowed :assert_https_required
   
-  def assert_https_allowed(msg=nil)
+  def assert_ssl_allowed(msg=nil)
     with_saved_https_state do
       https!
       
@@ -40,7 +39,7 @@ module AssertionsHelper::SslAssertions
     end
   end
   
-  def refute_https_allowed(msg=nil)
+  def assert_ssl_denied(msg=nil)
     with_saved_https_state do
       https!
       
@@ -60,9 +59,8 @@ module AssertionsHelper::SslAssertions
       end
     end
   end
-  alias :assert_http_required :refute_https_allowed
   
-  def assert_http_allowed(msg=nil)
+  def refute_ssl_required(msg=nil)
     with_saved_https_state do
       https! false
       

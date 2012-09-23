@@ -6,13 +6,13 @@ class FairDatesControllerTest < ActionController::TestCase
 
   test "ssl requirements" do
     @id = fair_dates(:one).to_param
-    refute_https_allowed { get 'index' }
-    refute_https_allowed { post 'create' }
-    refute_https_allowed { get 'new' }
-    refute_https_allowed { get 'edit', :id => @id }
-    refute_https_allowed { get 'show', :id => @id }
-    refute_https_allowed { put 'update', :id => @id }
-    refute_https_allowed { delete 'destroy', :id => @id }
+    assert_ssl_denied { get 'index' }
+    assert_ssl_denied { post 'create' }
+    assert_ssl_denied { get 'new' }
+    assert_ssl_denied { get 'edit', :id => @id }
+    assert_ssl_denied { get 'show', :id => @id }
+    assert_ssl_denied { put 'update', :id => @id }
+    assert_ssl_denied { delete 'destroy', :id => @id }
   end
   
   test "new create edit update destroy actions should require employee" do
