@@ -1,6 +1,6 @@
 - if logged_in? Employee
   .administration
-    = toolbutton_to :new, new_blog_post_path, :title => 'Neuen Beitrag schreiben'
+    = toolbutton_to :new, new_blog_post_path, :title => t('views.labels.blog_post.new')
 - unless @blog_posts.empty?
   %ul#blog_posts= render :partial => 'blog_post', :collection => @blog_posts
 - else

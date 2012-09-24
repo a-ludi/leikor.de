@@ -9,9 +9,13 @@ module StaticHelper
     toolbutton_to 'help', static_path("hilfe/#{subject.to_s}".to_sym), options
   end
   
+  def static_title(path)
+    StaticController::REGISTERED_PAGES[path][:name]
+  end
+  
   def static_link_to(path, options={}, html_options=nil)
     if StaticController::REGISTERED_PAGES[path]
-      label = options[:label] || StaticController::REGISTERED_PAGES[path][:name]
+      label = options[:label] || static_title(path)
       link_to label, static_path(path, options), html_options
     else
       raise ActionController::RoutingError, "static_link_to failed to generate from <#{path.inspect}> expected one of <#{StaticController::REGISTERED_PAGES.keys.inspect}>"

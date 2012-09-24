@@ -8,19 +8,19 @@ class BlogController < ApplicationController
   
   def index
     @blog_posts = blog_posts
-    @title = "Blog"
+    @title = section_name
     @stylesheets = %w(blog)
   end
   
   def show
     @blog_post = blog_posts(params[:id])
-    @title = "#{@blog_post.title} (Blog)"
+    @title = "#{@blog_post.title} (#{section_name})"
     @stylesheets = %w(blog)
     @dont_link_title = true
   end
 
   def new
-    @title = "Neuer Blogbeitrag"
+    @title = "Neuer Beitrag (#{section_name})"
     @stylesheets = %w(message form blog)
     @blog_post = flash[:blog_post] || BlogPost.new
     
@@ -35,7 +35,7 @@ class BlogController < ApplicationController
   end
 
   def edit
-    @title = "Blogbeitrag bearbeiten"
+    @title = "Beitrag bearbeiten (#{section_name})"
     @stylesheets = %w(message form blog)
     @blog_post = flash[:blog_post] || blog_posts(params[:id])
   end
@@ -59,12 +59,8 @@ class BlogController < ApplicationController
       @blog_post.is_published = ! @blog_post.is_published
       @blog_post.save!
       
-      #TODO use translations
-      if @blog_post.is_published
-        flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde veröffentlicht."
-      else
-        flash[:message].success "Die Veröffentlichung vom Blogbeitrag „#{@blog_post.title}“ wurde zurückgezogen."
-      end
+      flash[:message].success flash_message_text("success.published.#{@blog_post.is_published.to_s}",
+          :title => @blog_post.title)
     end
   end
 
@@ -72,7 +68,7 @@ class BlogController < ApplicationController
     @blog_post = blog_posts(params[:id])
     @blog_post.destroy
     
-    flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gelöscht."
+    flash[:message].success flash_message_text(:success, :title => @blog_post.title)
     
     redirect_to blog_posts_path
   end
@@ -84,6 +80,17 @@ class BlogController < ApplicationController
   end
 
 protected
+  
+  def section_name
+    t(self.class.to_s.underscore, :scope => 'views.sections')
+  end
+  
+  def flash_message_text(response, options={})
+    options[:scope] = [:flash_message, :messages, self.class.to_s.underscore, action_name] unless
+        options.include? :scope
+    
+    translate response, options
+  end
   
   def update_flag
     @blog_post = blog_posts(params[:id])
@@ -131,7 +138,8 @@ protected
       @blog_post.is_mailed = true
       @blog_post.save!
       
-      flash[:message].success "Blogbeitrag „#{@blog_post.title}“ wurde gemailt." unless @no_message
+      flash[:message].success flash_message_text(:success, :title => @blog_post.title,
+          :count => @blog_post.readers.count) unless @no_message
     end
   end
   

@@ -5,7 +5,7 @@ module SslRequirements
   class FairDatesControllerTest < ActionController::TestCase
     test_tested_files_checksum(
       ['app/controllers/fair_dates_controller.rb', '88e896c36999436e88ba64807eb8e57c'],
-      ['config/routes.rb', 'a593e4312e018d6a068b0fb01d7ba989']
+      ['config/routes.rb', 'b3b7d3a8d5580deca782cc3f9ba9acca']
     )
     
     def setup

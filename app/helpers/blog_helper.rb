@@ -8,7 +8,7 @@ module BlogHelper
       :url => readers_blog_posts_path,
       :with => pass_groups,
       :method => :get,
-      :after => "$('#{input_dom_id}').updatePreview('<div class=\"field\">#{loading_animation}</div>')",
+      :after => "$('#{input_dom_id}').updatePreview('<div class=\"field\">#{escape_javascript loading_animation}</div>')",
       :complete => "$('#{input_dom_id}').updatePreview(request.responseText)")
   end
 end

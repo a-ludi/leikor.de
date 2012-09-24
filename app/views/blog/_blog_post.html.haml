@@ -11,10 +11,10 @@
     - if logged_in? Employee
       = render :partial => 'flags', :locals => {:blog_post => blog_post}
       = toolbutton_to :edit, edit_blog_post_path(blog_post), :size => :small,
-        :title => 'Blogbeitrag bearbeiten'
+        :title => t('views.labels.blog_post.edit')
       = toolbutton_to :destroy, blog_post_path(blog_post), :size => :small, :method => :delete,
-        :confirm => "Soll der Blogbeitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
-        :title => 'Blogbeitrag löschen'
+        :confirm => "Soll der Beitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
+        :title => t('views.labels.blog_post.destroy')
   = clear_float
   %p=blog_post.body
   - if blog_post.created_at != blog_post.updated_at

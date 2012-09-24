@@ -4,7 +4,7 @@ module SslRequirements
   class SecureUserRequestsControllerTest < ActionController::TestCase
     test_tested_files_checksum(
       ['app/controllers/secure_user_requests_controller.rb', '38bb5fde0fb776370b17913cbce4ecd4'],
-      ['config/routes.rb', 'a593e4312e018d6a068b0fb01d7ba989']
+      ['config/routes.rb', 'b3b7d3a8d5580deca782cc3f9ba9acca']
     )
     
     def setup

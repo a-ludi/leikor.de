@@ -274,7 +274,7 @@ de:
       secure_user_request/reset_password: Passwort zurücksetzen
       secure_user_request/confirm_registration: Registrierung bestätigen
       notifier: Benachrichtiger
-      blog_post: Blogbeitrag
+      blog_post: Beitrag
       
     attributes:
       article:
@@ -320,7 +320,26 @@ de:
       error: Fehler
       success: Erfolg
       default: Hinweis
+    messages:
+      blog_controller:
+        destroy:
+          success: Der Beitrag „%{title}“ wurde gelöscht.
+        mail:
+          success: Der Beitrag „%{title}“ wurde an %{count} Adressen geschickt.
+        publish:
+          success:
+            published:
+              'true': Der Beitrag „%{title}“ wurde veröffentlicht.
+              'false': Die Veröffentlichung vom Beitrag „%{title}“ wurde zurückgezogen.
   views:
+    sections:
+      articles_controller: Sortiment
+      blog_controller: Neuigkeiten
+      categories_controller: Sortiment
+      fair_dates_controller: Messetermine
+      profiles_controller: Profile
+      secure_user_requests_controller: Sichere Benutzeranfragen
+      sessions_controller: Sitzungen
     messages:
       blog_post:
         really_mail?: "Soll der Beitrag\n\n„%{title}“\n\nwirklich gemailt werden?"
@@ -338,4 +357,7 @@ de:
         published?:
           'true': ist veröffentlicht
           'false': ist nicht veröffentlicht
+        new: Beitrag schreiben
+        edit: Beitrag bearbeiten
+        destroy: Beitrag löschen
 

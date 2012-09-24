@@ -15,7 +15,7 @@
     :javascript
       var input = $('#{dom_id(@blog_post, :groups)}');
       new PreviewedInput(input);
-      input.updatePreview("#{escape_javascript render(:partial => 'readers', :object => @blog_post.readers)}");
+      input.updatePreview("#{escape_javascript(render(:partial => 'readers', :object => @blog_post.readers))}");
       
       update_readers_from_groups = new DelayedFunction(function () {
         #{update_readers_from_groups}

@@ -16,13 +16,27 @@ module ApplicationHelper
   #
   #     text_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3), :separator => '-'
   def text_menu(*collection)
-    separator = ' | '
-    if collection.last.is_a? Hash
-      separator ||= collection.last[:separator]
-      collection.pop
-    end
+    options = collection.last.is_a?(Hash) ? collection.pop : {}
+    separator = options[:separator] || ' | '
     
     collection.compact.join(separator)
+  end
+  
+  # To create a list menu use:
+  #
+  #     list_menu (link_to(l1) if c1),(link_to(l2) if c2),(link_to(l3) if c3)
+  def list_menu(*collection)
+    options = collection.last.is_a?(Hash) ? collection.pop : {}
+    tag_name = options[:tag] || :li
+    options.delete(:tag)
+    
+    collection.compact!
+    collection.map! do |item|
+      html_class = positional_class item, collection, options[:class].to_s
+      content_tag tag_name, item, options.merge(:class => html_class)
+    end
+    
+    collection.join
   end
   
   def brick(name, object=nil)
@@ -92,6 +106,8 @@ module ApplicationHelper
     end
   end
   
+  private
+  
   def collection_based_positional_class(item, collection, user_class='')
     classes = [
       user_class,
@@ -113,6 +129,8 @@ module ApplicationHelper
     
     return classes.join_present
   end
+  
+  public
   
   def make_if_error_messages_for(record)
     error_messages_for(

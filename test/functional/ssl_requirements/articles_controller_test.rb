@@ -5,7 +5,7 @@ module SslRequirements
   class ArticlesControllerTest < ActionController::TestCase
     test_tested_files_checksum(
       ['app/controllers/articles_controller.rb', '8964002b761e81fc942dea3e4867161b'],
-      ['config/routes.rb', 'a593e4312e018d6a068b0fb01d7ba989']
+      ['config/routes.rb', 'b3b7d3a8d5580deca782cc3f9ba9acca']
     )
     
     def setup

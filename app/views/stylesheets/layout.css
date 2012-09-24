@@ -211,7 +211,7 @@ ul.navigation {
   font-variant: small-caps;
   color: <%=p :dark_gray %>;
 }
-#top_navigation a.first {
+#top_navigation .first a {
   padding-left: 1.2em;
   <%=border_radius :left => '0.7em' %>
 }

@@ -127,7 +127,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources(
       :blog_posts,
-      :as => 'blog',
+      :as => 'neuigkeiten',
       :member => {
           :mail => [:post, :get],
           :publish => [:post, :get]},
@@ -146,12 +146,18 @@ ActionController::Routing::Routes.draw do |map|
       :action => 'stylesheet',
       :conditions => {:method => :get})
   
-  map.root :blog_posts
+  map.root(
+      :controller => 'static',
+      :action => 'show',
+      :path => 'ueber-uns')
+  
+  # must be of lesser priority than root; otherwise root would be mapped as static with :path=>""
   map.static(
       '*path',
       :controller => 'static',
       :action => 'show',
       :conditions => {:method => :get})
+  
   if RAILS_ENV == 'test'
     map.test_method(
         'test/:controller/test_method',

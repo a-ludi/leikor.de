@@ -4,7 +4,7 @@ class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
   test_tested_files_checksum(
-    ['app/controllers/blog_controller.rb', 'aedf0b479e76defc2628bb74f72f5197'],
+    ['app/controllers/blog_controller.rb', '0d49fab92f3992df746c71d137f59a3b'],
     ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
   )
   
@@ -207,6 +207,13 @@ class BlogControllerTest < ActionController::TestCase
     assert_includes assigns(:readers), users(:meyer)
     assert_includes assigns(:readers), users(:john)
     assert_template :partial => 'readers'
+  end
+  
+  test "section_name" do
+    @controller.class.send :skip_before_filter, :employee_required, :only => [:test_method]
+    @section_name = call_method :section_name
+    
+    assert_present @section_name
   end
 
   test "update_flag with html without referer" do

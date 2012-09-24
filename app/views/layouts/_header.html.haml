@@ -1,9 +1,9 @@
 #header
   #important_links
     = brick :logout if logged_in?
-    = text_menu((link_to 'Anmelden', new_session_path unless logged_in?),
-                (brick :email_link if logged_in? Employee),
-                (link_to 'Profil', my_profile_path if logged_in?),
+    = text_menu((link_to('Anmelden', new_session_path) unless logged_in?),
+                (brick(:email_link) if logged_in? Employee),
+                (link_to('Profil', my_profile_path) if logged_in?),
                 static_link_to(:kontakt),
                 static_link_to(:impressum),
                 static_link_to(:AGB))
@@ -11,12 +11,9 @@
   #top_navigation
     %h1{:style => "display: none;"} Navigation
     %ul.navigation
-      %li= link_to 'Blog', :blog_posts, :class => 'first'
-      %li= link_to 'Sortiment', :categories
-      %li= link_to 'Messetermine', fair_dates_path
-      - unless logged_in? Employee
-        %li= static_link_to :'ueber-uns', {}, :class => 'last'
-      - else
-        %li= static_link_to :'ueber-uns'
-        %li= link_to 'Profile', profiles_path, :class => 'last'
+      = list_menu(static_link_to(:'ueber-uns'),
+                  link_to(t('views.sections.blog_controller'), :blog_posts),
+                  link_to(t('views.sections.categories_controller'), :categories),
+                  link_to(t('views.sections.fair_dates_controller'), fair_dates_path),
+                  (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee))
     = clear_float
