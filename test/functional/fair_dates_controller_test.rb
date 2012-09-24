@@ -4,17 +4,6 @@ require 'test_helper'
 class FairDatesControllerTest < ActionController::TestCase
   test_tested_files_checksum '88e896c36999436e88ba64807eb8e57c'
 
-  test "ssl requirements" do
-    @id = fair_dates(:one).to_param
-    assert_ssl_denied { get 'index' }
-    assert_ssl_denied { post 'create' }
-    assert_ssl_denied { get 'new' }
-    assert_ssl_denied { get 'edit', :id => @id }
-    assert_ssl_denied { get 'show', :id => @id }
-    assert_ssl_denied { put 'update', :id => @id }
-    assert_ssl_denied { delete 'destroy', :id => @id }
-  end
-  
   test "new create edit update destroy actions should require employee" do
     [:new, :create, :edit, :update, :destroy].each do |action|
       assert_before_filter_applied :employee_required, action

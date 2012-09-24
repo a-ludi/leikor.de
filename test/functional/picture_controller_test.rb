@@ -4,26 +4,6 @@ require 'test_helper'
 class PictureControllerTest < ActionController::TestCase
   test_tested_files_checksum 'ab3ef36a4880bcf4a40fa3e224692088'
   
-  test "ssl requirements" do
-    @article_id = articles(:one).to_param
-    
-    assert_ssl_denied { get 'pictures', :article_id => @article_id, :style => 'small',
-        :extension => 'jpg' }
-    assert_ssl_denied { get 'pictures', :article_id => @article_id }
-    assert_ssl_denied { get 'new', :article_id => @article_id }
-    assert_ssl_denied { get 'new', :article_id => @article_id, :format => 'png' }
-    assert_ssl_denied { get 'edit', :article_id => @article_id }
-    assert_ssl_denied { get 'edit', :article_id => @article_id, :format => 'png' }
-    assert_ssl_denied { get 'show', :article_id => @article_id }
-    assert_ssl_denied { get 'show', :article_id => @article_id, :format => 'png' }
-    assert_ssl_denied { put 'update', :article_id => @article_id }
-    assert_ssl_denied { put 'update', :article_id => @article_id, :format => 'png' }
-    assert_ssl_denied { delete 'destroy', :article_id => @article_id }
-    assert_ssl_denied { delete 'destroy', :article_id => @article_id, :format => 'png' }
-    assert_ssl_denied { post 'create', :article_id => @article_id }
-    assert_ssl_denied { post 'create', :article_id => @article_id, :format => 'png' }
-  end
-  
   test "login required except show pictures" do
     [:show, :pictures].each do |action|
       assert_before_filter_not_applied :employee_required, action

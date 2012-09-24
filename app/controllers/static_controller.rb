@@ -7,14 +7,12 @@ class StaticController < ApplicationController
   
   REGISTERED_PAGES = {
     :'ueber-uns' => {:name => 'Über uns', :stylesheets => %w(static)},
-    :kontakt => {:name => 'Kontakt', :stylesheets =>
-        %w(message static/kontakt)},
-    :impressum => {:name => 'Impressum', :stylesheets =>
-        %w(message static static/kontakt)},
+    :kontakt => {:name => 'Kontakt', :stylesheets => %w(message static/kontakt)},
+    :impressum => {:name => 'Impressum', :stylesheets => %w(message static static/kontakt)},
     :AGB =>  {:name => 'AGB', :stylesheets => %w(static static/kontakt)},
     :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => %w(message)},
-    :'hilfe/Markdown' => {:name => 'Markdown (Hilfe)', :stylesheets =>
-        %w(static Markdown)}
+    :'hilfe/Markdown' => {:name => 'Markdown (Hilfe)', :stylesheets => %w(static Markdown)},
+    :'hilfe/FAQ' => {:name => 'Häufig gestellte Fragen (Hilfe)', :stylesheets => %w(static Markdown)}
   }
   REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets =>
       %w(static)} if RAILS_ENV == 'development'

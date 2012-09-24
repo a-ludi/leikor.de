@@ -11,6 +11,8 @@
 <link rel="copyright" title="Urheberrecht" href="<%=static_path :impressum %>" />
 <link rel="start" title="Über Uns" href="<%=root_path %>" />
 <link rel="bookmark" title="leikor.de" href="<%=root_url %>" />
+<%= auto_discovery_link_tag(:rss, blog_posts_url(:format => :rss)) %>
+<%= auto_discovery_link_tag(:atom, blog_posts_url(:format => :atom)) %>
 <meta name="keywords" lang="de" content="<%=meta_keywords %>" />
 <meta name="google-site-verification" content="RCwJrk-MoarXBmm6EtlRhS6aKaJnQu8S1bj-Vn0IAsM" />
 <title>leikor.de - <%= @title || 'Willkommen' %></title>

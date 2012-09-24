@@ -7,30 +7,6 @@ class ProfilesControllerTest < ActionController::TestCase
     https! # every action requires SSL
   end
   
-  test "ssl requirements" do
-    @id = users(:john).to_param
-    
-    assert_ssl_denied { get 'show_mine' }
-    assert_ssl_denied { get 'edit_mine' }
-    assert_ssl_denied { put 'update_mine' }
-    assert_ssl_denied { get 'edit_password' }
-    assert_ssl_denied { put 'update_password' }
-    assert_ssl_denied { get 'index' }
-    assert_ssl_denied { get 'index', :format => 'js' }
-    assert_ssl_denied { post 'create' }
-    assert_ssl_denied { post 'create', :format => 'js' }
-    assert_ssl_denied { get 'edit', :id => @id }
-    assert_ssl_denied { get 'edit', :id => @id, :format => 'js' }
-    assert_ssl_denied { get 'show', :id => @id }
-    assert_ssl_denied { get 'show', :id => @id, :format => 'js' }
-    assert_ssl_denied { put 'update', :id => @id }
-    assert_ssl_denied { put 'update', :id => @id, :format => 'js' }
-    assert_ssl_denied { delete 'destroy', :id => @id }
-    assert_ssl_denied { delete 'destroy', :id => @id, :format => 'js' }
-    assert_ssl_denied { get 'new', :type => 'Customer' }
-    assert_ssl_denied { get 'new', :type => 'Employee' }
-  end
-  
   test "all actions should require user" do
     assert_before_filter_applied :user_required
   end

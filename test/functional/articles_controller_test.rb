@@ -4,29 +4,6 @@ require 'test_helper'
 class ArticlesControllerTest < ActionController::TestCase
   test_tested_files_checksum '8964002b761e81fc942dea3e4867161b'
   
-  test "ssl requirements" do
-    @article = articles(:one)
-    @subcategory = @article.subcategory
-    @category = @subcategory.category
-
-    assert_ssl_denied { get 'index', @subcategory.url_hash }
-    assert_ssl_denied { get 'edit_order', @subcategory.url_hash }
-    assert_ssl_denied { post 'reorder', @subcategory.url_hash }
-    assert_ssl_denied { get 'ask_destroy', @article.url_hash }
-    assert_ssl_denied { get 'index' }
-    assert_ssl_denied { get 'index', :format => 'js' }
-    assert_ssl_denied { post 'create' }
-    assert_ssl_denied { post 'create', :format => 'js' }
-    assert_ssl_denied { get 'new' }
-    assert_ssl_denied { get 'new', :format => 'js' }
-    assert_ssl_denied { get 'edit', :id => @article.to_param }
-    assert_ssl_denied { get 'edit', :id => @article.to_param, :format => 'js' }
-    assert_ssl_denied { put 'update', :id => @article.to_param }
-    assert_ssl_denied { put 'update', :id => @article.to_param, :format => 'js' }
-    assert_ssl_denied { delete 'destroy', :id => @article.to_param }
-    assert_ssl_denied { delete 'destroy', :id => @article.to_param, :format => 'js' }
-  end
-  
   test "new edit_order create edit update ask_destroy destroy reorder actions should require
       employee" do
     [:new, :create, :edit_order, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|

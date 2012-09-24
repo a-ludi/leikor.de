@@ -4,22 +4,6 @@ require 'test_helper'
 class CategoriesControllerTest < ActionController::TestCase
   test_tested_files_checksum 'fe5334fbfda3223856f903b6f353b02d'
 
-  test "ssl requirements" do
-    @subcategory = categories(:sub1).to_param
-    @category = categories(:sub1).category.to_param
-
-    assert_ssl_denied { get 'index' }
-    assert_ssl_denied { get 'subindex', :category => @category }
-    assert_ssl_denied { get 'ask_destroy', :category => @category }
-    assert_ssl_denied { get 'ask_destroy', :category => @category, :subcategory => @subcategory }
-    assert_ssl_denied { post 'create' }
-    assert_ssl_denied { get 'new' }
-    assert_ssl_denied { get 'edit', :id => @subcategory }
-    assert_ssl_denied { put 'update', :id => @subcategory }
-    assert_ssl_denied { delete 'destroy', :id => @subcategory }
-    assert_ssl_denied { post 'reorder' }
-  end
-  
   test "login required for new create edit update ask_destroy destroy reorder" do
     [:new, :create, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
       assert_before_filter_applied :employee_required, action

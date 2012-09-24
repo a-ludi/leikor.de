@@ -8,33 +8,6 @@ class BlogControllerTest < ActionController::TestCase
     ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
   )
   
-  test "ssl requirements" do
-    @id = blog_posts(:mailed_post).to_param
-    
-    assert_ssl_denied { get 'readers' }
-    assert_ssl_denied { get 'readers', :format => 'js' }
-    assert_ssl_denied { get 'index' }
-    assert_ssl_denied { get 'index', :format => 'js' }
-    assert_ssl_denied { post 'create' }
-    assert_ssl_denied { post 'create', :format => 'js' }
-    assert_ssl_denied { get 'new' }
-    assert_ssl_denied { get 'new', :format => 'js' }
-    assert_ssl_denied { post 'mail', :id => @id }
-    assert_ssl_denied { post 'mail', :id => @id, :format => 'js' }
-    assert_ssl_denied { get 'mail', :id => @id }
-    assert_ssl_denied { get 'mail', :id => @id, :format => 'js' }
-    assert_ssl_denied { post 'publish', :id => @id }
-    assert_ssl_denied { post 'publish', :id => @id, :format => 'js' }
-    assert_ssl_denied { get 'publish', :id => @id }
-    assert_ssl_denied { get 'publish', :id => @id, :format => 'js' }
-    assert_ssl_denied { get 'edit', :id => @id }
-    assert_ssl_denied { get 'edit', :id => @id, :format => 'js' }
-    assert_ssl_denied { put 'update', :id => @id }
-    assert_ssl_denied { put 'update', :id => @id, :format => 'js' }
-    assert_ssl_denied { delete 'destroy', :id => @id }
-    assert_ssl_denied { delete 'destroy', :id => @id, :format => 'js' }
-  end
-
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
       assert_before_filter_applied :employee_required, action
