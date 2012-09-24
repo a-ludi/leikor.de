@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class StaticControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'a6d3812e87c29b9f4c19d787b526d744'
+  test_tested_files_checksum '31b036aead20f9021c004cc15c0b10f5'
   
   test "skips prepare_flash_message" do
     assert_skips_before_filter :prepare_flash_message
