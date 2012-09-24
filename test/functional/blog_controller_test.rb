@@ -36,6 +36,20 @@ class BlogControllerTest < ActionController::TestCase
     assert_includes assigns(:blog_posts), blog_posts(:mailed_post)
   end
   
+  test "index action with format rss" do
+    get :index, :format => :rss
+    
+    assert_respond_to assigns(:blog_posts), :each
+    assert_template 'index.rss'
+  end
+  
+  test "index action with format atom" do
+    get :index, :format => :atom
+    
+    assert_respond_to assigns(:blog_posts), :each
+    assert_template 'index.atom'
+  end
+  
   test "show action without user" do
     @blog_post = blog_posts(:public_post)
     get :show, {:id => @blog_post.to_param}
