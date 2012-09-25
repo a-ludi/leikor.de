@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
     @title = 'Anmeldung'
     @login = flash[:login] || session[:login]
     @referer = params[:referer] || flash[:referer] || request.referer
+    
+    redirect_to @referer if logged_in?
   end
 
   def create

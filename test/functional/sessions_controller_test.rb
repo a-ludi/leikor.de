@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test_tested_files_checksum '7b75b8b656c562f3753abb06cceb6ecb'
+  test_tested_files_checksum 'bd25db0a86cdc475ba5dda6ba0daaa13'
   
   def setup
     https! # (nearly) every action requires SSL
@@ -39,6 +39,12 @@ class SessionsControllerTest < ActionController::TestCase
     get 'new'
     
     assert_equal 'Hans Wurst', assigns(:login)
+  end
+  
+  test "new action with logged in user" do
+    get 'new', {:referer => '/from_here_on'}, with_user
+    
+    assert_redirected_to '/from_here_on'
   end
   
   test "create action with valid login" do
