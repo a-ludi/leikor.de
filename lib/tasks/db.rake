@@ -1,6 +1,37 @@
 # -*- encoding : utf-8 -*-
 
 namespace :db do
+  namespace :file do
+    namespace :load do
+      desc 'Load a csv file line-by-line into the database using ActiveRecord. The model is inferred automagically from filename, but you can override this with MODEL.'
+      task :csv, [:filename] => [:environment] do |t, args|
+        require 'csv'
+        
+        model = (ENV['MODEL'] || File::basename(args.filename, '.csv').classify).constantize
+        count = {:created => 0, :skipped => 0}
+        skip_all = false
+        
+        begin
+          CSV.foreach(args.filename, :headers => true) do |row|
+            begin
+              model.create! row.to_hash
+            rescue ActiveRecord::RecordInvalid => invalid
+              count[:skipped] += 1
+              skip_all = handle_error(invalid, row) unless skip_all
+            else
+              count[:created] += 1
+            end
+          end
+        rescue Interrupt => interrupt
+          puts "Quitting service ..." if 'QUIT' == interrupt.to_s
+        ensure
+          puts "Created #{count[:created]} records in model #{model.to_s}."
+          puts "Skipped #{count[:skipped]} rows of input." unless count[:skipped].zero?
+        end
+      end
+    end
+  end
+  
   desc 'Create some records for test purposes'
   task :init_records => %w(environment db:abort_if_pending_migrations) do
     do_process 'Creating employees' do
@@ -72,8 +103,33 @@ namespace :db do
   end
 end
 
-def do_process description
-  print description + ' ... '
-  yield
-  puts 'done.'
-end
+private
+
+  def do_process description
+    print description + ' ... '
+    yield
+    puts 'done.'
+  end
+
+  def handle_error(error, row)
+    puts 'Encountered errors'
+    puts error.record.errors.full_messages.map{|e| '  ' + e}
+    puts 'while processing input line'
+    puts '  ' + row.to_s
+    print 'How do you want to proceed? [SKIP,all,quit] '
+    done = false
+    while not done
+      answer = $stdin.gets.strip.downcase
+      done = true
+      
+      if 'skip'.start_with? answer
+        return false
+      elsif 'all'.start_with? answer
+        return true
+      elsif 'quit'.start_with? answer
+        raise Interrupt, 'QUIT'
+      else
+        done = false
+      end
+    end
+  end
