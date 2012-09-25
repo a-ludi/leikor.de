@@ -1,9 +1,10 @@
+
 # -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class SecureUserRequestTest < ActiveSupport::TestCase
   test_tested_files_checksum(
-    ['app/models/secure_user_request.rb', 'fd622c7fbabbb32fd739875246541c64'],
+    ['app/models/secure_user_request.rb', 'c6aec37429c807392cbbe695ca6a71a6'],
     ['app/models/secure_user_request/confirm_registration.rb', '5007df50220c2999d93fa72bef0d05ea'],
     ['app/models/secure_user_request/reset_password.rb', '73bbe4396bc5f452a476c19dd16ed2b9']
   )

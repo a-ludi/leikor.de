@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SecureUserRequestsControllerTest < ActionController::TestCase
   tests_mailer Notifier
-  test_tested_files_checksum '38bb5fde0fb776370b17913cbce4ecd4'
+  test_tested_files_checksum '0cbda0cf4a90fae952ccdd5316535d97'
   
   def setup
     https! # every action requires SSL
