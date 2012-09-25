@@ -2,9 +2,11 @@
 require 'test_helper'
 
 class PictureControllerTest < ActionController::TestCase
-  test "login required except show" do
+  test_tested_files_checksum 'ab3ef36a4880bcf4a40fa3e224692088'
+  
+  test "login required except show pictures" do
     [:show, :pictures].each do |action|
-      assert_before_filter_not_applied :login_required, action
+      assert_before_filter_not_applied :employee_required, action
     end
   end
   
@@ -16,8 +18,8 @@ class PictureControllerTest < ActionController::TestCase
   
   test "pictures action" do
     @article = articles(:one)
-    picture = fixture_file_upload 'pictures/jpg', 'image/small', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    https!
+    put 'update', {:article_id => @article.to_param, :article => {:picture => image(:jpg)}}, with_user
     
     [:original, :medium, :thumb].each do |style|
       get 'pictures', :article_id => @article.to_param, :style => style
@@ -31,7 +33,7 @@ class PictureControllerTest < ActionController::TestCase
     get 'show', :format => 'html', :article_id => @article.to_param
     
     assert_equal @article, assigns(:article)
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_template '_viewer'
     assert_layout 'popup'
   end
@@ -46,11 +48,11 @@ class PictureControllerTest < ActionController::TestCase
   
   test "edit action with popup" do
     @article = articles(:one)
+    https!
     get 'edit', {:article_id => @article.to_param, :popup => '1'}, with_user
     
     assert_equal @article, assigns(:article)
-    assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_stylesheets_and_title
     assert assigns(:popup)
     assert_template 'edit'
     assert_layout 'popup'
@@ -58,6 +60,7 @@ class PictureControllerTest < ActionController::TestCase
   
   test "edit action without popup" do
     @article = articles(:one)
+    https!
     get 'edit', {:article_id => @article.to_param}, with_user
     
     assert ! assigns(:popup)
@@ -66,19 +69,21 @@ class PictureControllerTest < ActionController::TestCase
   
   test "update action with jpg" do
     @article = articles(:one)
-    picture = fixture_file_upload 'pictures/jpg', 'image/jpg', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    https!
+    put 'update', {:article_id => @article.to_param, :article => {:picture => image(:jpg)}},
+        with_user
     
     assert_equal @article, assigns(:article)
     assert_no_errors_on assigns(:article), :on => :picture
     assert_equal 'image/jpg', assigns(:article).picture.content_type
-    assert_not_empty flash[:message]
+    assert_present flash[:message]
   end
   
   test "update action with png" do
     @article = articles(:one)
-    picture = fixture_file_upload 'pictures/png', 'image/png', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    https!
+    put 'update', {:article_id => @article.to_param, :article => {:picture => image(:png)}},
+        with_user
     
     assert_no_errors_on assigns(:article), :on => :picture
     assert_equal 'image/png', assigns(:article).picture.content_type
@@ -86,25 +91,28 @@ class PictureControllerTest < ActionController::TestCase
   
   test "update action with not image" do
     @article = articles(:one)
-    picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}}, with_user
+    https!
+    put 'update', {:article_id => @article.to_param, :article => {:picture => image(:not_image)}},
+        with_user
     
     assert_errors_on assigns(:article), :on => :picture
   end
   
   test "destroy with popup" do
     @article = articles(:one)
+    https!
     delete 'destroy', {:article_id => @article.to_param, :popup => true}, with_user
     
     assert_equal @article, assigns(:article)
     assert ! assigns(:article).picture.file?
-    assert_not_empty flash[:message]
+    assert_present flash[:message]
     assert_template 'success'
     assert_layout 'popup'
   end
   
   test "destroy without popup" do
     @article = articles(:one)
+    https!
     delete 'destroy', {:article_id => @article.to_param}, with_user
     
     assert_redirected_to subcategory_url(@article.subcategory.url_hash)
@@ -113,8 +121,8 @@ class PictureControllerTest < ActionController::TestCase
   test "try_save_and_render_response with success" do
     successful_request # gives success message
     
-    assert_respond_to assigns(:stylesheets), :each
-    assert_not_empty flash[:message]
+    assert_stylesheets_and_title
+    assert_present flash[:message]
     assert ! assigns(:article).picture.dirty?
   end
   
@@ -127,7 +135,7 @@ class PictureControllerTest < ActionController::TestCase
   test "render_response with success and popup" do
     successful_request :popup => true
     
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_template 'success'
     assert_layout 'popup'
   end
@@ -162,18 +170,23 @@ class PictureControllerTest < ActionController::TestCase
   
 private
   
+  IMAGE_MIME_TYPE = {:jpg => 'image/jpg', :png => 'image/png', :not_image => 'text/plain',
+      :small => 'image/png'}
+  
+  def image(name)
+    fixture_file_upload "pictures/#{name.to_s}", self.class::IMAGE_MIME_TYPE[name], :binary
+  end
+  
   def successful_request(options={})
     @article = articles(:one)
+    https!
     delete 'destroy', {:article_id => @article.to_param, :popup => options[:popup]}, with_user
   end
   
   def failed_request(options={})
     @article = articles(:one)
-    picture = fixture_file_upload 'pictures/not_image', 'text/plain', :binary
-    put 'update', {:article_id => @article.to_param, :article => {:picture => picture}, :popup => options[:popup]}, with_user
-  end
-  
-  def intermediate_request()
-    get 'show', {:article_id => @article.to_param}
+    https!
+    put 'update', {:article_id => @article.to_param, :article => {:picture => image(:not_image)},
+        :popup => options[:popup]}, with_user
   end
 end

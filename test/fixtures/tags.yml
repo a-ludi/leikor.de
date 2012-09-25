@@ -1,0 +1,6 @@
+<% %w(Holz Lampen Spielzeug Tiere).each do |tag| %>
+<%= tag.underscore %>:
+  id: <%= Fixtures.identify tag.underscore.to_sym %>
+  name: <%= tag%>
+<% end %>
+

@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 # German translations for Ruby on Rails
 # by Clemens Kofler (clemens@railway.at)
 # contributors:
@@ -10,6 +12,7 @@ de:
       short: "%e. %b"
       short_with_year: "%e. %b %Y"
       long: "%e. %B %Y"
+      long_without_year: "%e. %B"
       only_day: "%e"
 
     day_names:
@@ -114,6 +117,28 @@ de:
       day: "Tag"
       month: "Monat"
       year: "Jahr"
+    duration:
+      seconds:
+        one: "1 Sekunde"
+        other: "%{count} Sekunden"
+      minutes:
+        one: "1 Minute"
+        other: "%{count} Minuten"
+      hours:
+        one: "1 Stunde"
+        other: "%{count} Stunden"
+      days:
+        one: "1 Tag"
+        other: "%{count} Tage"
+      weeks:
+        one: "1 Woche"
+        other: "%{count} Wochen"
+      months:
+        one: "1 Monat"
+        other: "%{count} Monate"
+      years:
+        one: "1 Jahr"
+        other: "%{count} Jahre"
 
   number:
     format:
@@ -190,6 +215,7 @@ de:
     format: "%{attribute} %{message}"
 
     messages: &errors_messages
+      incorrect: "ist falsch"
       inclusion: "ist kein gültiger Wert"
       exclusion: "ist nicht verfügbar"
       invalid: "ist nicht gültig"
@@ -212,11 +238,16 @@ de:
       not_saved: 
         one:    "Speichern nicht möglich: ein Fehler."
         other:  "Speichern nicht möglich: %{count} Fehler."
+      invalid_markup: "hat Fehler in der Textauszeichnung"
+      invalid_format: "hat ein ungültiges Format. Gültig ist: %{valid_format}"
     template: &errors_template
       header:
         one:    "Konnte %{model} nicht speichern: ein Fehler."
         other:  "Konnte %{model} nicht speichern: %{count} Fehler."
       body: &errors_body "Bitte überprüfen Sie die folgenden Felder:"
+    controller:
+      secure_user_requests:
+        unknown_type: "Sichere Benutzeranfrage hat unbekannten Typ <%{type}>"
   body: *errors_body
 
   activerecord:
@@ -236,7 +267,14 @@ de:
       subcategory: Unterkategorie
       article: Artikel
       user: Benutzer
+      employee: Mitarbeiter
+      customer: Kunde
       fair_date: Messetermin
+      secure_user_request: Sichere Benutzeranfrage
+      secure_user_request/reset_password: Passwort zurücksetzen
+      secure_user_request/confirm_registration: Registrierung bestätigen
+      notifier: Benachrichtiger
+      blog_post: Beitrag
       
     attributes:
       article:
@@ -251,7 +289,12 @@ de:
       user:
         login: Benutzername
         password: Passwort
+        new_password: Neues Passwort
+        confirm_new_password: Neues Passwort bestätigen
         name: Name
+        groups: Gruppen
+        notes: Notizen
+        primary_email_address: Primäre E-Mail-Adresse
       fair_date:
         from_date: Vom
         to_date: Bis zum
@@ -259,3 +302,65 @@ de:
         stand: Stand
         homepage: Website
         comment: Kommentar
+      secure_user_request:
+        external_id: Externe ID
+        action: Aktion
+        memo: Notiz
+      blog_post:
+        public_id: Öffentliche ID
+        title: Titel
+        body: Textkörper
+        author: Author
+        editor: Bearbeiter
+        groups: Gruppen
+        is_mailed: wurde gemailt
+        is_published: wurde veröffentlicht
+  flash_message:
+    title:
+      error: Fehler
+      success: Erfolg
+      default: Hinweis
+    messages:
+      blog_controller:
+        destroy:
+          success: Der Beitrag „%{title}“ wurde gelöscht.
+        mail:
+          success: Der Beitrag „%{title}“ wurde an %{count} Adressen geschickt.
+        publish:
+          success:
+            published:
+              'true': Der Beitrag „%{title}“ wurde veröffentlicht.
+              'false': Die Veröffentlichung vom Beitrag „%{title}“ wurde zurückgezogen.
+  views:
+    sections:
+      articles_controller: Sortiment
+      blog_controller: Aktuelles
+      categories_controller: Sortiment
+      fair_dates_controller: Messetermine
+      profiles_controller: Profile
+      secure_user_requests_controller: Sichere Benutzeranfragen
+      sessions_controller: Sitzungen
+    messages:
+      blog_post:
+        really_mail?: "Soll der Beitrag\n\n„%{title}“\n\nwirklich gemailt werden?"
+    notifier:
+      blog_post:
+        title: "Aktuelles: %{title}"
+    blog:
+      feed:
+        title: Aktuelles von LEIKOR
+    labels:
+      blog_post:
+        mail?: mailen?
+        publish?: veröffentlichen?
+        already_mailed: wurde bereits gemailt
+        mailed?:
+          'true': ist verschickt
+          'false': ist nicht verschickt
+        published?:
+          'true': ist veröffentlicht
+          'false': ist nicht veröffentlicht
+        new: Beitrag schreiben
+        edit: Beitrag bearbeiten
+        destroy: Beitrag löschen
+

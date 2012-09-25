@@ -1,17 +1,15 @@
-<% if superuser_logged_in? %>
+<% if logged_in? Employee %>
   <div id="category_administration" class="administration">
-    <%= link_to(
-      image_tag('pictogram/medium/destroy.png'),
+    <%= toolbutton_to(
+      :destroy,
       ask_destroy_category_path(@category.url_hash),
-      :class => 'toolbutton',
       :title => 'Kategorie löschen'
     ) %>
-    <%= link_to_remote(
-      image_tag('pictogram/medium/new.png'),
+    <%= toolbutton_to_remote(
+      :new,
       :url => new_category_path(:category_id => @category.id),
       :method => :get,
       :html => {
-        :class => 'toolbutton',
         :title => 'Neue Unterkategorie'
       }
     ) %>
@@ -20,5 +18,5 @@
 <% unless @category.subcategories.empty? %>
   <%= render :partial => 'category', :collection => @category.subcategories %>
 <% else %>
-  <div class="empty_category">Keine Unterkategorien in dieser Kategorie.</div>
+  <h1 class="empty">Keine Unterkategorien in dieser Kategorie.</h1>
 <% end %>

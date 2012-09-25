@@ -1,0 +1,19 @@
+:maruku
+  Herzlich willkommen #{@user.name}!
+
+  Um die Registrierung auf unserer Website abzuschließen, besuchen Sie bitte folgende Adresse und wählen Sie ein Passwort für den Login:
+
+  > <#{edit_secure_user_request_url @request.external_id}>
+
+  Durch die Registrierung haben Sie u.a. die folgenden Vorteile:
+  
+  - Sie erhalten detailierte Informationen zu den Artikeln.
+  - Sie bekommen ein eigenes Profil, in dem Sie bspw. Kontakt-, Liefer- und Rechnungsinformationen hinterlegen können.
+  - Unser E-Mail-Newsletter hält Sie über unser Sortiment und unsere Angebote auf dem Laufenden.
+
+  Falls Sie die Registrierung abbrechen wollen, können Sie:
+  
+  - diese E-Mail ignorieren. Die Anfrage ist nur noch #{distance_of_time_in_words @request.lifetime} gültig.
+  - die oben genannte Adresse besuchen und *Anfrage abbrechen* auswählen. Die Anfrage ist dann ab sofort ungültig.
+  
+  Sie werden dann auch keinen Newsletter von uns erhalten.

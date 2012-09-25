@@ -1,6 +1,19 @@
 require 'active_support/inflector'
 
-guard 'minitest' do
+# Restart test-server
+guard 'spork', :wait => 60 do
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch(%r{^config/environments/.+\.rb$})
+  watch(%r{^config/initializers/.+\.rb$})
+  watch('Gemfile')
+  watch('Gemfile.lock')
+  watch('test/test_helper.rb') { :test_unit }
+  watch(%r{lib/(utility|tests|assertions)_helper.rb})
+end
+
+# Runs all tests
+guard 'minitest', :drb => true, :notify => true do
   # tests
   watch(%r|^test/(.*)_test\.rb|)
   
@@ -8,7 +21,7 @@ guard 'minitest' do
   watch(%r|^test/fixtures/(.*).yml|) {|m| "test/unit/#{m[1].singularize}_test.rb"}
   
   # test_helper.rb
-  watch(%r|^test/test_helper\.rb|)    { "test" }
+  watch(%r|^test/test_helper\.rb|) { "test" }
   
   # models
   watch(%r|^app/models/(.*).rb|) {|m| "test/unit/#{m[1]}_test.rb"}

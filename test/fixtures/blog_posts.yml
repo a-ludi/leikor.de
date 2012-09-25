@@ -1,0 +1,23 @@
+mailed_post:
+  public_id: mailed-post
+  title: Mailed Post
+  body: "This has lots of **marked up** and _fancy_ text. You should know."
+  author: maxi
+  editor: maxi
+  groups: "Holz bis auf Spielzeug"
+  # users = [john]
+  is_mailed: true
+  is_published: false
+  created_at: <%= 3.weeks.ago.to_s(:db) %>
+
+public_post:
+  public_id: public-post
+  title: Public Post
+  body: "Lorem ipsum."
+  author: maxi
+  editor: john
+  groups: "Holz"
+  # users = [maxi, john]
+  is_mailed: false
+  is_published: true
+

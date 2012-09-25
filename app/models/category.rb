@@ -1,12 +1,16 @@
 # -*- encoding : utf-8 -*-
+
 class Category < ActiveRecord::Base
-  URL_TRANSSCRIPTION = {'ä' => 'ae', 'ö' => 'oe', 'ü' => 'ue', 'ß' => 'ss', '&' => 'und'}
+  default_scope :order => 'ord ASC'
+  
+  named_scope :is_a_category, :conditions => {:type => nil}
+  
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
-  has_many :subcategories, :order => 'ord ASC'
-  has_many :articles, :through => :subcategories, :order => 'ord ASC'
+  OVERVIEW_COUNT = 4
+  has_many :subcategories, :dependent => :destroy
+  has_many :articles, :through => :subcategories
   
   validates_presence_of :name
-  validates_uniqueness_of :name
   validates_numericality_of :ord, :greater_than_or_equal_to => 0, :only_integer => true
   
   def self.human_name
@@ -14,10 +18,7 @@ class Category < ActiveRecord::Base
   end
   
   def to_param
-    safe_name = name.downcase
-    URL_TRANSSCRIPTION.each { |match, replacement| safe_name.gsub! match, replacement }
-    safe_name = safe_name.gsub(/[^a-zA-Z0-9]+/, '-').gsub(/(^-+|-+$)/, '')
-    "#{id}-#{safe_name}"
+    "#{id}-#{name.url_safe}"
   end
   
   def self.from_param(param)
@@ -33,13 +34,19 @@ class Category < ActiveRecord::Base
   end
   
   def overview
-    articles.find(:all, :limit => 4, :order => 'ord ASC, RANDOM()')
+    articles.find(:all, :limit => Category::OVERVIEW_COUNT, :order => 'ord ASC, RANDOM()')
   end
   
-protected
+  def next_subcategory_ord
+    if subcategory = subcategories.last
+      subcategory.ord + 1
+    else
+      0
+    end
+  end
   
   def self.next_ord
-    if category = Category.last(:order => 'ord ASC')
+    if category = Category.is_a_category.last
       category.ord + 1
     else
       0

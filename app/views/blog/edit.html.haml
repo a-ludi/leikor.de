@@ -1,0 +1,37 @@
+#message_window.form
+  = make_if_error_messages_for @blog_post
+  - form_for @blog_post do |f|
+    %h1.field.message
+      = f.label :title
+      = f.text_field :title
+    %p.field
+      %span.label
+        = f.label :body
+        = help_button :Markdown
+      = f.text_area :body
+    %p.field
+      = f.label :groups
+      = f.text_field :groups, :id => dom_id(@blog_post, :groups)
+    :javascript
+      var input = $('#{dom_id(@blog_post, :groups)}');
+      new PreviewedInput(input);
+      input.updatePreview("#{escape_javascript(render(:partial => 'readers', :object => @blog_post.readers))}");
+      
+      update_readers_from_groups = new DelayedFunction(function () {
+        #{update_readers_from_groups}
+      });
+      input.on('keyup', function() {
+        update_readers_from_groups.deploy(0.5);
+      });
+    %ul.field
+      %li.check_box
+        = check_box_tag :mail?, 'yes'
+        = label_tag :mail?, t('mail?', :scope => 'views.labels.blog_post')
+        - if @blog_post.is_mailed?
+          %span.error
+            (#{t 'views.labels.blog_post.already_mailed'})  
+      %li.check_box
+        = f.check_box :is_published
+        = f.label :is_published, t('publish?', :scope => 'views.labels.blog_post')
+    %p.response= submit_tag 'Speichern!'
+      

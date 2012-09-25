@@ -1,27 +1,35 @@
 # -*- encoding : utf-8 -*-
+
 class StaticController < ApplicationController
+  ssl_allowed :show, :stylesheet
+  skip_before_filter :prepare_flash_message
   caches_page :page, :stylesheet
   
   REGISTERED_PAGES = {
-    :ueber_uns => {:name => 'Über uns', :stylesheets => ['static']},
-    :kontakt => {:name => 'Kontakt', :stylesheets => ['message', 'static/kontakt']},
-    :impressum => {:name => 'Impressum', :stylesheets => ['message', 'static', 'static/kontakt']},
-    :AGB =>  {:name => 'AGB', :stylesheets => ['static', 'static/kontakt']}
+    :'ueber-uns' => {:name => 'Über uns', :stylesheets => %w(static)},
+    :kontakt => {:name => 'Kontakt', :stylesheets => %w(message static/kontakt)},
+    :impressum => {:name => 'Impressum', :stylesheets => %w(message static static/kontakt)},
+    :AGB =>  {:name => 'AGB', :stylesheets => %w(static static/kontakt)},
+    :fehlt =>  {:name => 'Implementierung fehlt', :stylesheets => %w(message)},
+    :'hilfe/Markdown' => {:name => 'Markdown (Hilfe)', :stylesheets => %w(static Markdown)},
+    :'hilfe/FAQ' => {:name => 'Häufig gestellte Fragen (Hilfe)', :stylesheets => %w(static Markdown)}
   }
-  REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets => ['static']} if RAILS_ENV == 'development'
+  REGISTERED_PAGES[:colors] = {:name => 'Farbpalette', :stylesheets =>
+      %w(static)} if RAILS_ENV == 'development'
   
   STYLESHEETS_PATH = File.join Rails.root, 'app', 'views', 'stylesheets'
   append_view_path STYLESHEETS_PATH
   
   def show
     path = File.join(params[:path]).to_sym unless params[:path].nil?
+    
     if REGISTERED_PAGES[path]
       @stylesheets = REGISTERED_PAGES[path][:stylesheets] || []
       @title = REGISTERED_PAGES[path][:name] unless params[:welcome]
       @page = REGISTERED_PAGES[path]
       render :action => path.to_s
     else
-      raise ActionController::RoutingError, "No route matches <#{path.inspect}> with {:method => :get}"
+      no_route_matches path
     end
   end
 
@@ -30,13 +38,18 @@ class StaticController < ApplicationController
     if stylesheet_exists? path
       render :template => File.join('stylesheets', path), :format => :css, :layout => false
     else
-      raise ActionController::RoutingError, "No route matches <stylesheets/#{path.to_s}> with {:method => :get}"
+      no_route_matches path
     end
   end
   
-private
+protected
   
   def stylesheet_exists? path
     File.exists? File.join(STYLESHEETS_PATH, path)
+  end
+  
+  def no_route_matches path
+    raise ActionController::RoutingError, "No route matches
+        <stylesheets/#{path.to_s}> with {:method => :get}".squish
   end
 end

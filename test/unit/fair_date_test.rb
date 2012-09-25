@@ -1,20 +1,43 @@
+# -*- encoding : utf-8 -*-
 require 'test_helper'
 
 class FairDateTest < ActiveSupport::TestCase
-  test "record invalid without from" do
-  	skip("FIXME setting from_date is weird")
+  test_tested_files_checksum 'c786c67f5e1c10ae250f42f24fe7c343'
+  
+  test "default scope" do
+    assert_equal fair_dates(:one, :two, :three), FairDate.all
+  end
+  
+  test "should have a from_date" do
     fair_dates(:one).from_date = nil
     assert_errors_on fair_dates(:one), :on => :from_date
   end
   
-  test "record invalid without to" do
-  	skip("FIXME setting to_date is weird")
+  test "should have a to_date" do
     fair_dates(:one).to_date = nil
     assert_errors_on fair_dates(:one), :on => :to_date
   end
   
-  test "record invalid without name" do
+  test "should have a name" do
     fair_dates(:one).name = ''
     assert_errors_on fair_dates(:one), :on => :name
+  end
+  
+  test "should set valid date" do
+    fair_dates(:one).to_date = "16.04.1991"
+    fair_dates(:two).to_date = "16.4."
+    fair_dates(:three).to_date = Date.new(1991, 4, 16)
+    
+    correct_date = Date.new(1991, 4, 16)
+    correct_derived_date = Date.new(Date.today.year, 4, 16)
+    correct_derived_date += 1.year  if correct_derived_date.past?
+    
+    assert_no_errors_on fair_dates(:one), :on => :to_date
+    assert_no_errors_on fair_dates(:two), :on => :to_date
+    assert_no_errors_on fair_dates(:three), :on => :to_date
+     
+    assert_equal fair_dates(:one).to_date, correct_date
+    assert_equal fair_dates(:two).to_date, correct_derived_date
+    assert_equal fair_dates(:three).to_date, correct_date 
   end
 end

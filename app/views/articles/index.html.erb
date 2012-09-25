@@ -1,25 +1,22 @@
-<% if superuser_logged_in? %>
+<% if logged_in? Employee %>
   <div id="category_administration" class="administration">
     <% unless @subcategory.articles.empty? %>
-      <%= link_to(
-        image_tag('pictogram/medium/reorder.png'),
+      <%= toolbutton_to(
+        :reorder,
         edit_articles_order_path(@subcategory.url_hash),
-        :class => 'toolbutton',
         :title => 'Artikel umsortieren'
       ) %>
     <% end %>
-    <%= link_to(
-      image_tag('pictogram/medium/destroy.png'),
+    <%= toolbutton_to(
+      :destroy,
       ask_destroy_subcategory_path(@subcategory.url_hash),
-      :class => 'toolbutton',
       :title => 'Unterkategorie löschen'
     ) %>
-    <%= link_to_remote(
-      image_tag('pictogram/medium/new.png'),
+    <%= toolbutton_to_remote(
+      :new,
       :url => new_article_path(:subcategory => @subcategory),
       :method => :get,
       :html => {
-        :class => 'toolbutton',
         :title => 'Neuen Artikel einstellen'
       }
     ) %>
@@ -28,6 +25,6 @@
 <% unless @subcategory.articles.empty? %>
   <%= render :partial => 'article', :collection => @subcategory.articles %>
 <% else %>
-  <div class="empty_category">Keine Artikel in dieser Kategorie.</div>
+  <h1 class="empty">Keine Artikel in dieser Kategorie.</h1>
 <% end %>
 

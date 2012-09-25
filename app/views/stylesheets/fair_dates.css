@@ -18,11 +18,9 @@
   color: <%=p :dark_green %>;
 }
 
-#fair_dates h2 a, #fair_dates h2 {
-  text-decoration: none;
-  font-weight: bold;
+#fair_dates h2 .title {
+  margin-right: 1em;
 }
-
 
 #fair_dates .info {
   list-style: none;

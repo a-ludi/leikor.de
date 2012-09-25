@@ -1,0 +1,12 @@
+%div{:class => "user_index #{positional_class}"}
+  %h2
+    = human_type
+    = toolbutton_to(:new, new_profile_path(type), :size => :small,
+      :title => "Neuen #{human_type} eintragen")
+  = clear_float
+  - unless profiles.empty?
+    %ul.infobox
+      = render :partial => 'profile', :collection => profiles
+  - else
+    .infobox
+      %h1.empty Keine #{human_type} eingetragen.

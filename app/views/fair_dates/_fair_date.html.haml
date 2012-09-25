@@ -1,0 +1,27 @@
+%li.fair_date.infobox
+  %h2
+    %span.title= fair_date.name
+    - if logged_in? Employee
+      = toolbutton_to :edit, edit_fair_date_path(fair_date), :size => :small,
+        :title => "Messetermin bearbeiten"
+      = toolbutton_to :destroy, fair_date_path(fair_date), :size => :small, :method => :delete,
+        :confirm => "Soll der Messetermin „#{fair_date.name}“ wirklich gelöscht werden?",
+        :title => "Messetermin löschen"
+  %ul.info
+    %li.date
+      = hard_spaced l(fair_date.from_date, :format => :short)
+      &nbsp;-&nbsp;
+      = hard_spaced l(fair_date.to_date, :format => :short_with_year)
+    %li.stand
+      %span.label Stand:
+      - if fair_date.stand?
+        = fair_date.stand
+      - else
+        %span.not_present noch unbekannt
+    - if fair_date.homepage?
+      %li.website
+        %span.label Website:
+        = link_to nice_url(fair_date.homepage), fair_date.homepage
+  - if fair_date.comment?
+    %p.comment= fair_date.comment
+  =clear_float

@@ -1,0 +1,25 @@
+#message_window
+  - form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do
+    = hidden_field_tag :id, @secure_user_request.external_id #FIXME muss das sein?
+    .message
+      :markdown
+        Hallo #{@secure_user_request.user.name}!
+        
+        Bitte wählen Sie hier ein neues Passwort oder
+        brechen Sie andernfalls die Anfrage ab.
+    = make_if_error_messages_for @secure_user_request.user
+    .message
+      %p
+        = label_tag :password, t('activerecord.attributes.user.new_password')
+        %br
+        = password_field_tag :password, nil, :class => 'value'
+      %p
+        = label_tag :confirm_password, t('activerecord.attributes.user.confirm_new_password')
+        %br
+        = password_field_tag :confirm_password, nil, :class => 'value'
+    .response
+      = a_button_to('Anfrage abbrechen',
+          destroy_secure_user_request_path(@secure_user_request.external_id),
+          :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?')
+      = submit_tag 'Speichern!'
+  = set_focus_to :password

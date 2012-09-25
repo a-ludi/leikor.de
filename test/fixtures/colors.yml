@@ -1,0 +1,11 @@
+red:
+  label: red
+  hex: "#ff0000"
+
+green:
+  label: green
+  hex: "#00ff00"
+
+blue:
+  label: blue
+  hex: "#0000ff"

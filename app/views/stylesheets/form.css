@@ -7,11 +7,30 @@
   width: 100%;
 }
 
-.form .field input, .form .field textarea {
+.form .field .label label {
+  display: inline;
+  width: auto;
+}
+
+.form .field input, .form .field textarea, .form .field .check_box {
   display: block;
   width: 100%;
   font-family: 'Overlock', sans-serif;
   font-size: 100%;
+}
+
+.form input[type=checkbox] { display: inline; width: auto; }
+
+.form .field .check_box { text-align: left; }
+
+.form .field .check_box input, .form .field .check_box label {
+  display: inline;
+  width: auto;
+}
+
+.form ul.field {
+  padding: 0em;
+  list-style: none;
 }
 
 .form input[type=button], .form input[type=submit], .form input[type=reset] {
@@ -20,3 +39,51 @@
 }
 
 .form div.fieldWithErrors { display: block; text-align: left; }
+
+.form .preview {
+  border: 1px solid <%=p :dark_blue %>;
+  background: <%=p :light_blue %>;
+  <%= border_radius '0.5em' %>
+  padding: 0.54em 1.2em;
+  color: <%=p :dark_blue %>;
+}
+
+.form .preview .field span.empty {
+  color: <%=p :dark_blue %>;
+  margin: 0em;
+}
+
+.form .preview.suggestions { padding: 0em; }
+
+.form .preview.suggestions ul {
+  list-style: none;
+  text-align: left;
+  margin: 0em;
+  padding: 0em;
+}
+
+.form .preview.suggestions li {
+  display: block;
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0.2em;
+}
+.form .preview.suggestions li.first { <%= border_radius :top => '0.5em' %> }
+.form .preview.suggestions li.last { <%= border_radius :bottom => '0.5em' %> }
+
+.form .preview.suggestions li.selected {
+  font-weight: bold;
+  background: <%=p :dark_blue %>;
+  color: <%= :white %>;
+}
+
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  .form .field .preview {
+  }
+}

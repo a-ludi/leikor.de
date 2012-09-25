@@ -18,6 +18,7 @@
         <%= submit_tag 'Speichern!', :tabindex => 6 %>
       </div>
       <%= make_if_error_messages_for article  %>
+      <%= help_button :Markdown %>
       <%= f.text_area :description, :cols => 40, :rows => 6, :class => 'description', :tabindex => 2 %>
       <div class="image">
         <% unless article.new_record? %>

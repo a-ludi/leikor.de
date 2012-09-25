@@ -6,20 +6,21 @@
         subcategory_path(category.url_hash) :
         category_path(category.url_hash)
     ) %>
-    <% if superuser_logged_in? %>
-      <%= link_to_remote(
-        image_tag('pictogram/small/edit.png'),
+    <% if logged_in? Employee %>
+      <%= toolbutton_to_remote(
+        :edit,
+        :size => :small,
         :url => edit_category_path(category.id),
         :method => :get,
-        :html => {:class => 'toolbutton', :title => "Titel von #{category.class.human_name} bearbeiten."}
+        :html => {:title => "Titel von #{category.class.human_name} bearbeiten."}
       ) %>
-      <%= link_to(
-        image_tag('pictogram/small/destroy.png'),
+      <%= toolbutton_to(
+        :destroy,
         category.is_a?(Subcategory) ?
           ask_destroy_subcategory_path(category.url_hash) :
           ask_destroy_category_path(category.url_hash),
+        :size => :small,
         :method => :get,
-        :class => 'toolbutton',
         :title => "#{category.class.human_name} löschen!"
       ) %>
     <% end %>

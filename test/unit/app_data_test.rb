@@ -2,6 +2,8 @@
 require 'test_helper'
 
 class AppDataTest < ActiveSupport::TestCase
+  test_tested_files_checksum '0d237e57a8f4868f762d16ff5f0ebcbf'
+  
   test "record invalid with non-unique name" do
     app_datas(:string).name = app_datas(:fixnum).name
     assert_errors_on app_datas(:string), :on => :name

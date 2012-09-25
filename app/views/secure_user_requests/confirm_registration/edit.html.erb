@@ -1,0 +1,38 @@
+<div id="message_window">
+  <% form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do %>
+    <%= hidden_field_tag :id, @secure_user_request.external_id %>
+    <div class="message">
+      <p>
+        Sie wurden bei LEIKOR als neuer <%= @secure_user_request.user.class.human_name %>
+        registriert.
+      </p>
+      <p>
+        Bitte bestätigen Sie die Registrierung mit der Vergabe eines Passworts. Das Passwort muss
+        <b>mindestens 6 Zeichen</b> lang sein und darf <b>beliebige Zeichen</b> enthalten.
+      </p>
+      <p>
+        Ihr Benutzername lautet: <b><%= @secure_user_request.user.login %></b>
+      </p>
+    </div>
+    <%= make_if_error_messages_for @secure_user_request.user  %>
+    <div class="message">
+      <p>
+        <%= label_tag :password, t('activerecord.attributes.user.new_password') %><br />
+        <%= password_field_tag :password, nil, :class => 'value' %>
+      </p>
+      <p>
+        <%= label_tag :confirm_password, t('activerecord.attributes.user.confirm_new_password') %><br />
+        <%= password_field_tag :confirm_password, nil, :class => 'value' %>
+      </p>
+    </div>
+    <div class="response">
+      <%= a_button_to(
+        'Anfrage abbrechen',
+        destroy_secure_user_request_path(@secure_user_request.external_id),
+        :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?'
+      ) %>
+      <%= submit_tag 'Speichern!' %>
+    </div>
+  <% end %>
+  <%= set_focus_to :password %>
+</div>

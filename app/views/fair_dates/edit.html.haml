@@ -1,0 +1,26 @@
+#message_window
+  - form_for @fair_date do |f|
+    .message.form
+      = make_if_error_messages_for @fair_date
+      .field
+        = f.label :name
+        = f.text_field :name, :size => 30, :tabindex => 1
+      .field
+        = f.label :stand
+        = f.text_field :stand, :size => 30, :tabindex => 2
+      .field.date
+        = f.label :from_date, 'Zeitraum', :class => 'header'
+        = f.text_field :from_date, :value => l(@fair_date.from_date), :size => 10, :tabindex => 3, :class => 'from'
+        = f.label :to_date, 'bis'
+        = f.text_field :to_date, :value => l(@fair_date.to_date), :size => 10, :tabindex => 4, :class => 'to'
+        = clear_float
+      .field
+        = f.label :homepage
+        = f.text_field :homepage, :size => 30, :tabindex => 5
+      .field
+        %span.label
+          = f.label :comment
+          = help_button :Markdown
+        = f.text_area :comment, :cols => 30, :rows => 5, :tabindex => 6
+    .response.form= submit_tag 'Speichern!', :tabindex => 7
+= set_focus_to 'fair_date_name'

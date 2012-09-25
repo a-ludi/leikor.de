@@ -1,0 +1,67 @@
+#message_window
+  %h1= @page[:name]
+  .message
+    %p Angaben gemäß § 5 TMG
+    %p
+      %b Petra Leiers-Kording
+      %br
+      geschäftlich handelnd unter der Bezeichnung
+    %p
+      %b LEIKOR Direktimporte
+      %br
+      Ferd.-Tönnies-Str. 45
+      %br
+      23701 Eutin
+    %table.contact
+      %tr
+        %th Telefon:
+        %td 04521 - 830 430
+      %tr
+        %th Fax:
+        %td 03212 - 830 4300
+      %tr
+        %th
+          %span.no_wrap E-Mail:
+        %td
+          %span.mail_to info@leikor.de
+      %tr
+        %th Internet:
+        %td= link_to 'http://www.leikor.de/', 'http://www.leikor.de/'
+    %p
+      Umsatzsteuer-Identifikationsnummer gemäß §27 a Umsatzsteuergesetz:
+      %br
+      DE 187 522 711
+    %p
+      Inhaltlich Verantwortlicher gemäß § 6 MDStV:
+      %br
+      Petra Leiers-Kording
+    %p
+      %b Haftungshinweis:
+      %br
+      Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für
+      die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind
+      ausschließlich deren Betreiber verantwortlich.
+  %h2#urheberrechte Urheberrechte
+  .message
+    %p
+      %a{:rel => 'license', :href => 'http://creativecommons.org/licenses/by-nc-sa/3.0/'}
+        %img{:alt => 'Creative Commons Lizenzvertrag',
+          :src => 'http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png'}
+      %br
+      %span leikor.de
+      von
+      %a{:href => 'http://www.leikor.de/', :rel => 'cc:attributionURL'} LEIKOR
+      steht unter einer
+      %a{:rel => 'license', :href => 'http://creativecommons.org/licenses/by-nc-sa/3.0/'}
+        Creative Commons Namensnennung-Nicht-kommerziell-Weitergabe unter gleichen Bedingungen 3.0
+        Unported Lizenz
+      \.
+  %h2 Webdesign & Entwicklung
+  .message
+    %p Arne Ludwig
+    %table.contact
+      %tr
+        %th
+          %span.no_wrap E-Mail:
+        %td
+          %span.mail_to webmaster@leikor.de

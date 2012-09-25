@@ -1,0 +1,17 @@
+#message_window
+  - form_for @secure_user_request, :url => secure_user_requests_path do |f|
+    = hidden_field_tag :type, @secure_user_request.type
+    .message
+      %p
+        Bitte geben Sie ihren Benutzernamen an. Wir werden Ihnen eine E-Mail mit weiteren
+        Anweisungen an die in ihrem Profil angegebene E-Mail-Adresse schicken.
+    = make_if_error_messages_for @secure_user_request
+    .message
+      %p
+        = label_tag :login, t('activerecord.attributes.user.login')
+        %br
+        = text_field_tag :login, (logged_in? ? @current_user.login : nil), :class => 'value'
+    .response
+      = a_button_to 'Abbrechen.', new_session_path
+      = submit_tag 'Absenden!'
+= set_focus_to :login

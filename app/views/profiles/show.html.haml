@@ -1,0 +1,77 @@
+#message_window
+  .administration
+    = toolbutton_to :edit, edit_path, :title => "Profil bearbeiten."
+    - unless @my_profile
+      = toolbutton_to :destroy, show_path, :title => "Profil löschen.", :method => :delete,
+        :confirm => "Das Profil von\n\n#{@profile.name}\n\nwird dauerhaft gelöscht. Sind Sie sicher?"
+  - if logged_in? Employee
+    %p.type &mdash; #{@profile.class.human_name} &mdash;
+  %h1
+    = @profile.name
+  - if @my_profile
+    .password
+      .value
+        = link_to 'Passwort ändern', edit_password_path
+  .profile.login
+    .label= t('activerecord.attributes.user.login')
+    .value= @profile.login
+  .profile.primary_email_address
+    .label= t('activerecord.attributes.user.primary_email_address')
+    .value= @profile.primary_email_address
+  - if logged_in? Employee
+    - if not @profile.registration? :confirmed
+      .error.message
+        %p Dieser Benutzer muss noch bestätigt werden.
+        %p= a_button_to 'Bestätigungslink kopieren', confirm_registration_url(@profile),
+            :onclick => 'copyToClipboard(this.href); return false;'
+        .h2.center &mdash; oder &mdash;
+        %p= button_to_remote 'Bestätigungsmail versenden',
+          {:url => confirm_registration_request_path(:login => @profile.login, :sendmail => true),
+          :method => :post,
+          :confirm => "Es wird eine E-Mail an\n\n#{@profile.email_address_with_name}\n\nversandt. Fortfahren?"},
+          :href => confirm_registration_request_path(:user => @profile.login, :sendmail => true)
+    - elsif @profile.registration? :denied
+      .error.message
+        %p Dieser Benutzer ist nicht bestätigt.
+        - form_tag confirm_registration_request_path, :method => :post do
+          = hidden_field_tag :login, @profile.login
+          %p= submit_tag "#{t('activerecord.models.secure_user_request/confirm_registration')} wiederholen"
+    .profile
+      .label= t('activerecord.attributes.user.groups')
+      .infobox.groups.value.tags
+        %ul#groups
+          = render :partial => 'tag', :collection => @profile.groups, :locals => {:profile => @profile}
+        = clear_float
+    - unless @profile.notes.blank?
+      .label= t('activerecord.attributes.user.notes')
+      .profile
+        .infobox.notes.value= @profile.notes
+  -#
+    %h2 Kontakt
+    .profile.name
+      %span.value Prof. Dr. Heinz Mustermann
+    .profile.postal_address
+      %span.value
+        Lindenallee 13
+        %br
+        12345 Musterstadt
+        %br
+        Deutschland
+    %ul.profile.email_address
+      %li
+        %span.value= mail_to 'heinz.mustermann@firma.de'
+        &emsp;
+        %span.label geschäftlich
+      %li
+        %span.value= mail_to 'info@firma.de'
+        &emsp;
+        %span.label geschäftlich
+    %ul.profile.phone_number
+      %li
+        %span.value +49 4521 765897
+        &emsp;
+        %span.label geschäftlich
+      %li
+        %span.value +49 1520 17549320
+        &emsp;
+        %span.label mobil
