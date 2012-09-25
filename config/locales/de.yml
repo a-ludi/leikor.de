@@ -334,7 +334,7 @@ de:
   views:
     sections:
       articles_controller: Sortiment
-      blog_controller: Neuigkeiten
+      blog_controller: Aktuelles
       categories_controller: Sortiment
       fair_dates_controller: Messetermine
       profiles_controller: Profile
@@ -345,7 +345,10 @@ de:
         really_mail?: "Soll der Beitrag\n\n„%{title}“\n\nwirklich gemailt werden?"
     notifier:
       blog_post:
-        title: "Neuigkeiten: %{title}"
+        title: "Aktuelles: %{title}"
+    blog:
+      feed:
+        title: Aktuelles von LEIKOR
     labels:
       blog_post:
         mail?: mailen?

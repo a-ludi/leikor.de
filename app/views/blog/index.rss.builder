@@ -1,7 +1,7 @@
 xml.instruct! :xml, :version => "1.0" 
 xml.rss :version => "2.0", 'xmlns:atom' => "http://www.w3.org/2005/Atom" do
   xml.channel do
-    xml.title "Neuigkeiten von LEIKOR"
+    xml.title t('views.blog.feed.title')
     xml.description "Die neusten Meldungen der Firma LEIKOR"
     xml.link blog_posts_url
     xml.language 'de-DE'

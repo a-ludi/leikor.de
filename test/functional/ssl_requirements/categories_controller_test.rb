@@ -5,7 +5,7 @@ module SslRequirements
   class CategoriesControllerTest < ActionController::TestCase
     test_tested_files_checksum(
       ['app/controllers/categories_controller.rb', 'fe5334fbfda3223856f903b6f353b02d'],
-      ['config/routes.rb', 'b3b7d3a8d5580deca782cc3f9ba9acca']
+      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
     )
     
     def setup

@@ -4,8 +4,8 @@ require 'test_helper'
 module SslRequirements
   class SessionsControllerTest < ActionController::TestCase
     test_tested_files_checksum(
-      ['app/controllers/sessions_controller.rb', '7b75b8b656c562f3753abb06cceb6ecb'],
-      ['config/routes.rb', 'b3b7d3a8d5580deca782cc3f9ba9acca']
+      ['app/controllers/sessions_controller.rb', 'bd25db0a86cdc475ba5dda6ba0daaa13'],
+      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
     )
     
     test "ssl requirements without user" do

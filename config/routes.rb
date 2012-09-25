@@ -127,7 +127,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources(
       :blog_posts,
-      :as => 'neuigkeiten',
+      :as => 'aktuelles',
       :member => {
           :mail => [:post, :get],
           :publish => [:post, :get]},
