@@ -1,7 +1,7 @@
 :plain
   Hallo #{@user.name},
   
-  es gibt Neuigkeiten von LEIKOR! Den folgenden [Beitrag](#{blog_post_url(@blog_post)}) können Sie auch jederzeit auf unserer Website nachlesen.
+  es gibt Neuigkeiten von LEIKOR! Den folgenden [Beitrag](#{blog_post_url_with_login_if_required @blog_post}) können Sie auch jederzeit auf unserer Website nachlesen.
 
   ---
   
