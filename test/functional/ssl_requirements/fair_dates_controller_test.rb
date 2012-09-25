@@ -4,7 +4,7 @@ require 'test_helper'
 module SslRequirements
   class FairDatesControllerTest < ActionController::TestCase
     test_tested_files_checksum(
-      ['app/controllers/fair_dates_controller.rb', '88e896c36999436e88ba64807eb8e57c'],
+      ['app/controllers/fair_dates_controller.rb', '529ced7c450f928c57b8e9736987412c'],
       ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
     )
     

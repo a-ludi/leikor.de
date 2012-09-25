@@ -3,7 +3,7 @@ require 'test_helper'
 module SslRequirements
   class ProfilesControllerTest < ActionController::TestCase
     test_tested_files_checksum(
-      ['app/controllers/profiles_controller.rb', '24e904ce217d4b53dacecfb4d93a8d07'],
+      ['app/controllers/profiles_controller.rb', 'd71d9dad0ff829b743691a495febf818'],
       ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
     )
     

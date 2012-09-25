@@ -1,10 +1,14 @@
 # -*- encoding : utf-8 -*-
 
 class Category < ActiveRecord::Base
+  default_scope :order => 'ord ASC'
+  
+  named_scope :is_a_category, :conditions => {:type => nil}
+  
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
   OVERVIEW_COUNT = 4
-  has_many :subcategories, :order => 'ord ASC', :dependent => :destroy
-  has_many :articles, :through => :subcategories, :order => 'ord ASC'
+  has_many :subcategories, :dependent => :destroy
+  has_many :articles, :through => :subcategories
   
   validates_presence_of :name
   validates_numericality_of :ord, :greater_than_or_equal_to => 0, :only_integer => true
@@ -34,7 +38,7 @@ class Category < ActiveRecord::Base
   end
   
   def next_subcategory_ord
-    if subcategory = subcategories.last(:order => 'ord ASC')
+    if subcategory = subcategories.last
       subcategory.ord + 1
     else
       0
@@ -42,7 +46,7 @@ class Category < ActiveRecord::Base
   end
   
   def self.next_ord
-    if category = Category.last(:order => 'ord ASC')
+    if category = Category.is_a_category.last
       category.ord + 1
     else
       0

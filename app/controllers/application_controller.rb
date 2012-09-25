@@ -81,7 +81,7 @@ protected
   end
   
   def fetch_categories
-    @categories = Category.find_all_by_type nil, :order => 'ord ASC'
+    @categories = Category.is_a_category
     
     if params[:subcategory]
       @subcategory = Subcategory.from_param params[:subcategory]

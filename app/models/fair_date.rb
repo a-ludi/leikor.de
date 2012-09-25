@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 class FairDate < ActiveRecord::Base
+  default_scope :order => "from_date ASC, to_date ASC"
+  
   marked_up_with_maruku :comment
 
   DATE_FORMAT = /^(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>\d{4})?$/

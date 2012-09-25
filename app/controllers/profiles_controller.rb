@@ -10,8 +10,8 @@ class ProfilesController < ApplicationController
   
   def index
     #TODO rely on default order
-    @customers = Customer.all :order => 'name ASC'
-    @employees = Employee.all :order => 'name ASC'
+    @customers = Customer.all
+    @employees = Employee.all
     
     @stylesheets = %w(profile)
     @title = "Profile"

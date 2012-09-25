@@ -5,8 +5,7 @@ class FairDatesController < ApplicationController
   before_filter :employee_required, :except => [:index]
   
   def index
-    # TODO default ordering 'from_date ASC, to_date ASC' for FairDate
-    @fair_dates = FairDate.find :all, :order => "from_date ASC, to_date ASC"
+    @fair_dates = FairDate.all
     @stylesheets = %w(fair_dates Markdown)
     @title = 'Messetermine'
   end

@@ -2,7 +2,11 @@
 require 'test_helper'
 
 class FairDateTest < ActiveSupport::TestCase
-  test_tested_files_checksum '3d125d42fb80370e46f49a691af60765'
+  test_tested_files_checksum 'c786c67f5e1c10ae250f42f24fe7c343'
+  
+  test "default scope" do
+    assert_equal fair_dates(:one, :two, :three), FairDate.all
+  end
   
   test "should have a from_date" do
     fair_dates(:one).from_date = nil

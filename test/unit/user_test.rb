@@ -2,8 +2,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test_tested_files_checksum '2b731fe41bececb70ca3e6dcf2ffe0ed'
+  test_tested_files_checksum 'cf812ad628a888aac81e3a41854c30bb'
 
+  test "default order should be name ASC" do
+    assert_equal users(:john, :maxi, :meyer, :moritz), User.all
+  end
+  
   test "notes should be marked up with maruku" do
     assert_equal users(:moritz).notes,
         "<p>Moritz bleibt <strong>immer</strong> treu.</p>"

@@ -3,6 +3,7 @@
 class Article < ActiveRecord::Base
   include UtilityHelper
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/
+  default_scope :order => 'ord ASC'
   
   marked_up_with_maruku :description
   

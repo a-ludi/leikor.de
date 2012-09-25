@@ -2,7 +2,17 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  test_tested_files_checksum '8cb2054191fd5aa02c46dc229edb744c'
+  test_tested_files_checksum '2a84f57047ea7efa54ee6eb614c01c8c'
+  
+  test "default_scope" do
+    assert_equal categories(:super_fst, :super, :sub2, :sub1), Category.all
+  end
+  
+  test "named_scope is_a_category" do
+    Category.is_a_category.all.each do |category|
+      assert_equal Category, category.class
+    end
+  end
 
   test "type should be nil" do
     assert_nil categories(:super)[:type]
@@ -109,11 +119,11 @@ class CategoryTest < ActiveSupport::TestCase
   end
   
   test "::next_ord should return highest_ord + 1" do
-    assert_equal Category.next_ord, 3
+    assert_equal 3, Category.next_ord
   end
   
   test "next_subcategory_ord should return highest_ord + 1" do
-    assert_equal categories(:super).next_subcategory_ord, 3
-    assert_equal categories(:super_fst).next_subcategory_ord, 0
+    assert_equal 5, categories(:super).next_subcategory_ord
+    assert_equal 0, categories(:super_fst).next_subcategory_ord
   end
 end

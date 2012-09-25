@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class FairDatesControllerTest < ActionController::TestCase
-  test_tested_files_checksum '88e896c36999436e88ba64807eb8e57c'
+  test_tested_files_checksum '529ced7c450f928c57b8e9736987412c'
 
   test "new create edit update destroy actions should require employee" do
     [:new, :create, :edit, :update, :destroy].each do |action|

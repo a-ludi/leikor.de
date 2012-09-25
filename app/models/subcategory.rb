@@ -2,7 +2,7 @@
 
 class Subcategory < Category
   belongs_to :category
-  has_many :articles, :order => 'ord ASC', :dependent => :destroy
+  has_many :articles, :dependent => :destroy
 
   validates_presence_of :category_id, :message => 'activerecord.errors.messages.internal_error'
   
@@ -16,7 +16,7 @@ class Subcategory < Category
   end
 
   def next_article_ord
-    if article = articles.last(:order => 'ord ASC')
+    if article = articles.last
       article.ord + 1
     else
       0

@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class Subcategorytest < ActiveSupport::TestCase
-  test_tested_files_checksum 'ce2f040793f7a60a9ce2e69ce22d19b6'
+  test_tested_files_checksum 'c5e97b465b3bebb3f9b38105fdeb3cdd'
 
   test "should have a type" do
     assert_equal 'Subcategory', categories(:sub1)[:type]
@@ -17,7 +17,7 @@ class Subcategorytest < ActiveSupport::TestCase
     assert_equal 5, categories(:sub1).articles.length
   end
   
-  test "articles should be ordered y ord" do
+  test "articles should be ordered by ord" do
     assert_equal(articles(:one, :five, :four, :three, :two),
       categories(:sub1).articles)
   end

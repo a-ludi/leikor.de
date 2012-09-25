@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   LOGIN_FORMAT = /^[a-zA-Z][a-zA-Z-]*$/
   EMAIL_FORMAT = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,6}$/i
   
+  default_scope :order => 'name ASC'
+  
   marked_up_with_maruku :notes
   # TODO untested `acts_as_taggable_on :marks, :groups`; how to?
   acts_as_taggable_on :marks, :groups
@@ -14,8 +16,8 @@ class User < ActiveRecord::Base
   has_one :confirm_registration_request,
       :class_name => 'SecureUserRequest::ConfirmRegistration',
       :dependent => :delete
-  has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id', :order => 'created_at DESC'
-  has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id', :order => 'created_at DESC'
+  has_many :owned_blog_posts, :class_name => 'BlogPost', :foreign_key => 'author_id'
+  has_many :edited_blog_posts, :class_name => 'BlogPost', :foreign_key => 'editor_id'
   
   validates_presence_of :name, :login, :password, :type, :primary_email_address
   # TODO replace message with translated version
