@@ -21,6 +21,12 @@ class SessionsControllerTest < ActionController::TestCase
     assert_equal 'Hans Wurst', assigns(:login)
   end
   
+  test "new action with param referer" do
+    get 'new', {:referer => '/from_here_on'}
+    
+    assert_equal '/from_here_on', assigns(:referer)
+  end
+  
   test "new action with http referer" do
     with_referer
     get 'new'

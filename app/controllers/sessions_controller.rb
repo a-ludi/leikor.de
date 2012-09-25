@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     @stylesheets = %w(message form)
     @title = 'Anmeldung'
     @login = flash[:login] || session[:login]
-    @referer = flash[:referer] || request.referer
+    @referer = params[:referer] || flash[:referer] || request.referer
   end
 
   def create
