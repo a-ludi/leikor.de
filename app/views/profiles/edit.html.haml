@@ -1,0 +1,83 @@
+#message_window.edit.form
+  - form_for :profile, @profile, :url => show_path, :html => {:method => submit_method} do |f|
+    = f.hidden_field :type
+    .administration
+      = a_button_to 'Abbrechen', show_path
+      = submit_tag 'Speichern!'
+    = make_if_error_messages_for @profile
+    - unless logged_in? Employee
+      %h1.profile.user
+        %div= f.label :name
+        %div= f.text_field :name, :class => 'value name'
+    - else
+      %h1.profile.user
+        = f.label :name
+        %br
+        = f.text_field :name, :class => 'value name'
+      .profile.login
+        %span.label
+          = f.label :login
+        %br
+        = f.text_field :login, :class => 'value login'
+      :javascript
+        new AutofillLogin({
+          nameInput: $$('.profile.user input')[0],
+          loginInput: $('profile_login'),
+          insertCheckbox: function(checkbox) {
+            loginLabel = $$('.profile.login label')[0];
+            loginLabel.insert({before: checkbox});
+            loginLabel.on('click', function() {
+              this.checked = !this.checked;
+              this.simulate('change');
+            }.bindAsEventListener(checkbox))
+          }
+        });
+    .profile.primary_email_address
+      .label= f.label :primary_email_address
+      .value= f.text_field :primary_email_address, :class => 'value'
+    - if logged_in? Employee
+      .profile
+        = f.label :groups
+        .infobox.groups.value= f.text_area :group_list, :rows => 5
+      :javascript
+        input = $('profile_group_list');
+        preview_handler = new AutocompletedInput(input);
+        
+        new Ajax.Autocompleter('profile_group_list', preview_handler.preview.identify(), '#{escape_javascript suggest_groups_path}', {paramName: 'token', tokens: ',', parameters: $H({_method: 'get'}).toQueryString()});
+        
+      .profile
+        %span.label
+          = f.label :notes
+          = help_button :Markdown
+        .infobox.notes.value= f.text_area :notes
+    -#
+      %h2 Kontakt
+      .message
+        .profile.name
+          %span.value Prof. Dr. Heinz Mustermann
+        profile.postal_address
+          %span.value
+            Lindenallee 13
+            %br
+            12345 Musterstadt
+            %br
+            Deutschland
+        %ul.profile.email_address
+          %li
+            %span.value= mail_to 'heinz.mustermann@firma.de'
+            &emsp;
+            %span.label geschäftlich
+          %li
+            %span.value= mail_to 'info@firma.de'
+            &emsp;
+            %span.label geschäftlich
+        %ul.profile.phone_number
+          %li
+            %span.value +49 4521 765897
+            &emsp;
+            %span.label geschäftlich
+          %li
+            %span.value +49 1520 17549320
+            &emsp;
+            %span.label mobil
+= set_focus_to 'profile_name'

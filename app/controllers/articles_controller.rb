@@ -1,14 +1,16 @@
 # -*- encoding : utf-8 -*-
+
 class ArticlesController < ApplicationController
-  before_filter :login_required, :except => [:index]
+  before_filter :employee_required, :except => [:index]
   before_filter :fetch_categories, :only => [:index, :edit_order]
-  after_filter :save_updated_at, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy, :reorder]
   
   def index
-    @stylesheets = ['category/browser', 'article/index']
+    @stylesheets = %w(category/browser article/index Markdown)
     @title = "#{@subcategory.name} (#{@category.name})"
+    @scroll_target = 'content'
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def new
@@ -16,9 +18,10 @@ class ArticlesController < ApplicationController
       @article = Article.new do |a|
         a.name = 'Neuer Artikel'
         a.description = 'Hier die Beschreibung einfügen …'
-        a.price = 0.99
+        a.price = 0.01
         a.article_number = generated_article_number
         a.subcategory_id = params[:subcategory].to_i
+        a.ord = 0
       end
     else
       @cancel = true
@@ -27,16 +30,16 @@ class ArticlesController < ApplicationController
   end
   
   def edit_order
-    @stylesheets = ['category/browser', 'article/edit_order']
+    @stylesheets = %w(category/browser article/edit_order)
     @title = "#{@subcategory.name} umsortieren"
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def create
     params[:article][:price] = get_price_from_param params[:article][:price]
     params[:article][:subcategory] = Subcategory.find params[:article][:subcategory_id]
-    params[:article][:ord] = Article.next_ord(params[:article][:subcategory_id])
+    params[:article][:ord] = params[:article][:subcategory].next_article_ord
     @article = Article.create params[:article]
     if @article.save
       @partial = 'article'
@@ -67,7 +70,7 @@ class ArticlesController < ApplicationController
   end
   
   def ask_destroy
-    @stylesheets = ['message']
+    @stylesheets = %w(message)
     @title = "Artikel löschen?"
     @article = Article.find_by_article_number params[:article]
   end
@@ -75,7 +78,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article = Article.find params[:id]
     @article.destroy
-    flash[:message] = {:text => "Artikel „#{@article.name}“ wurde gelöscht."}
+    flash[:message].success "Artikel „#{@article.name}“ wurde gelöscht."
     
     redirect_to subcategory_url(@article.subcategory.url_hash)
   end
@@ -91,20 +94,15 @@ class ArticlesController < ApplicationController
     end
     
     unless errors
-      flash[:message] = {
-        :text => "Reihenfolge aktualisiert.",
-        :class => 'success'}
+      flash[:message].success "Reihenfolge aktualisiert."
     else
-      flash[:message] = {
-        :title => 'Fehler',
-        :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
-        :class => 'error'}
+      flash[:message].error "Speichern der neuen Reihenfolge ist fehlgeschlagen."
     end
     
     render :partial => 'layouts/push_message'
   end
 
-private
+protected
 
   def generated_article_number
     ('%06i' % Time.now.usec)[0...6].insert(-2, '.')

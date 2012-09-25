@@ -1,21 +1,24 @@
 # -*- encoding : utf-8 -*-
+
 class CategoriesController < ApplicationController
-  before_filter :login_required, :except => [:index, :subindex]
+  before_filter :employee_required, :except => [:index, :subindex]
   before_filter :fetch_categories, :only => [:index, :subindex]
-  after_filter :save_updated_at, :only => [:create, :update, :destroy]
+  after_filter :save_updated_at, :only => [:create, :update, :destroy, :reorder]
 
   def index
     @stylesheets = ['category/browser', 'category/index']
     @title = 'Sortiment'
+    @scroll_target = 'categories'
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def subindex
     @stylesheets = ['category/browser', 'category/index']
     @title = @category.name
+    @scroll_target = 'categoryBrowser_' + @category.id.to_s
     
-    render_to_nested_layout :layout => 'browser'
+    render :layout => 'browser'
   end
   
   def new
@@ -24,17 +27,13 @@ class CategoriesController < ApplicationController
       Category.new
     @category.name = "Neue #{@category.class.human_name}"
     set_random_html_id_or_take_from_param
-    @cancel = true unless params[:cancel].blank?
+    @cancel = (not params[:cancel].blank?)
   end
   
   def create
     create_sub_or_category_from_params
     @html_id = params[:html_id]
-    if @category.save
-      @partial = 'category'
-    else
-      @partial = 'form'
-    end
+    @partial = (@category.save ? 'category' : 'form')
     render :action => 'edit'
   end
   
@@ -62,7 +61,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find params[:id]
     @category.destroy
-    flash[:message] = {:text => "#{@category.class.human_name} „#{@category.name}“ wurde gelöscht."}
+    flash[:message].success "#{@category.class.human_name} „#{@category.name}“ wurde gelöscht."
     
     redirect_to @category.class == Subcategory ?
       category_path(@category.category.url_hash) :
@@ -80,27 +79,30 @@ class CategoriesController < ApplicationController
     end
     
     unless errors
-      flash[:message] = {
-        :text => "Reihenfolge aktualisiert.",
-        :class => 'success'}
+      flash[:message].success "Reihenfolge aktualisiert."
     else
-      flash[:message] = {
-        :title => 'Fehler',
-        :text => "Speichern der neuen Reihenfolge ist fehlgeschlagen.",
-        :class => 'error'}
+      flash[:message].error "Speichern der neuen Reihenfolge ist fehlgeschlagen."
     end
     
     render :partial => 'layouts/push_message'
   end
 
-private
+protected
+
   def set_random_html_id_or_take_from_param
     @html_id = params[:html_id] ? params[:html_id] : "new_category_#{Time.now.usec.to_s}"
   end
   
   def create_sub_or_category_from_params
-    if_category = Proc.new {@category = Category.create params[:category].merge(:ord => Category.next_ord)}
-    if_subcategory = Proc.new {@category = Subcategory.create params[:subcategory].merge(:ord => Subcategory.next_ord(params[:subcategory][:category_id]))}
+    if_category = Proc.new {
+        @category = Category.create params[:category].merge(
+            :ord => Category.next_ord)}
+    
+    if_subcategory = Proc.new {
+        category = Category.find params[:subcategory][:category_id]
+        @category = Subcategory.create params[:subcategory].merge(
+            :ord => category.next_subcategory_ord)}
+    
     do_for_sub_or_category if_category, if_subcategory
   end
   

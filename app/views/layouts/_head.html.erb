@@ -9,10 +9,11 @@
 <meta name="author" content="LEIKOR" />
 <link rel="author" title="Impressum" href="<%=static_path :impressum %>" />
 <link rel="copyright" title="Urheberrecht" href="<%=static_path :impressum %>" />
-<link rel="start" title="Über Uns" href="<%=static_path '' %>" />
-<link rel="bookmark" title="leikor.de" href="<%=static_url '' %>" />
-<meta name="keywords" lang="de" content="LEIKOR,Naturmaterialien,Teak-Holz,Teakholz,Baumwolle,Seide,
-  Elefanten,Eulen,Pferde,Wohnaccessoires,Taschen,Schals,Musikinstrumente,Instrumente" />
+<link rel="start" title="Über Uns" href="<%=root_path %>" />
+<link rel="bookmark" title="leikor.de" href="<%=root_url %>" />
+<%= auto_discovery_link_tag(:rss, blog_posts_url(:format => :rss)) %>
+<%= auto_discovery_link_tag(:atom, blog_posts_url(:format => :atom)) %>
+<meta name="keywords" lang="de" content="<%=meta_keywords %>" />
 <meta name="google-site-verification" content="RCwJrk-MoarXBmm6EtlRhS6aKaJnQu8S1bj-Vn0IAsM" />
 <title>leikor.de - <%= @title || 'Willkommen' %></title>
 <%= tag 'link', :rel => 'shortcut icon', :type => 'image/png', :href => '/favicon.png' %>
@@ -21,7 +22,7 @@
 <% @stylesheets.each do |s| %>
   <%= stylesheet_link_tag s %>
 <% end unless @stylesheets.nil? %>
-<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag :all, :cache => true %>
 <!--[if lt IE 9]>
 	<%= javascript_include_tag 'respond.min.js' %>
 <![endif]-->

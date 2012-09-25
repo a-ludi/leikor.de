@@ -1,6 +1,4 @@
-<% if RAILS_ENV != 'development' %>
-  @import url(http://fonts.googleapis.com/css?family=Overlock:400,700&subset=latin,latin-ext);
-<% end %>
+@import url(https://fonts.googleapis.com/css?family=Overlock:400,700&subset=latin,latin-ext);
 
 body {
   font-family: 'Overlock', sans-serif;
@@ -47,7 +45,19 @@ label, .label {
   font-variant: small-caps;
 }
 
+.annotation_mark {
+  font-weight: bold;
+  color: <%=p :mid_red %>;
+  cursor: help;
+}
+
+textarea { font-family: 'Overlock', sans-serif; font-size: small; }
+
+.no_padding { padding: 0em !important; }
+.no_margin { margin: 0em !important; }
+.no_break { white-space: nowrap; }
 .center { text-align: center; }
+.error { color: <%=p :mid_red %>; }
 
 .infobox {
   display: block;
@@ -58,8 +68,13 @@ label, .label {
   margin: 0.18em 0em;
 }
 
-.no_padding { padding: 0em !important; }
-.no_margin { margin: 0em !important; }
+h1.empty {
+  font-size: 200%;
+  color: <%=p :mid_gray %>;
+  text-align: center;
+  font-weight: bold;
+  margin: 0.72em 0em;
+}
 
 span.mail_to { font-weight: bold; }
 
@@ -87,6 +102,10 @@ th {
 div.clear {
   clear: both !important;
   display: block !important;
+  height: 0px !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  border: none !important;
 }
 
 #message {
@@ -112,26 +131,42 @@ div.clear {
   margin-bottom: 0.54em;
 }
 
+#message h2 {
+  font-size: 100%;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: center;
+}
+
 #message p {
   padding: 0em;
-  margin: 0em;
+  margin: 0.54em 0em;
 }
+
+#message h1.close {
+  font-size: 75%;
+  text-align: right;
+  margin: 0em;
+  margin-top: 0.54em;
+}
+
+#message h1.close a { color: <%=p :dark_green %>; }
 
 #message.success {
   background: <%=p :light_green %>;
   border-color: <%=p :dark_green %>;
 }
-#message.success h1 { color: <%=p :dark_green %>; }
+#message.success h1, #message.success h2, #message.success h1.close a { color: <%=p :dark_green %>; }
 
 #message.error {
   background: <%=p :light_red %>;
   border-color: <%=p :mid_red %>;
 }
-#message.error h1 { color: <%=p :mid_red %> }
+#message.error h1, #message.error h2, #message.error h1.close a { color: <%=p :mid_red %> }
 
 #important_links { text-align: right; }
 #important_links .logged_in_user {
-  padding: 0em 1.5em;
+  padding-right: 1.5em;
 }
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
@@ -150,6 +185,7 @@ div.clear {
 #logo_container img { max-width: 90%; margin: 10px; }
 
 #logo_container .medium_logo { display: none; }
+#logo_container .original_logo { display: inline; }
 
 #top_navigation {
   background: <%=p :lighter_gray %>;
@@ -175,7 +211,7 @@ ul.navigation {
   font-variant: small-caps;
   color: <%=p :dark_gray %>;
 }
-#top_navigation a.first {
+#top_navigation .first a {
   padding-left: 1.2em;
   <%=border_radius :left => '0.7em' %>
 }
@@ -193,13 +229,22 @@ ul.navigation {
   margin: 0.54em 0em;
 }
 
-a.toolbutton img {
+a.toolbutton {
   padding: 1px;
-  <%=border_radius '22.22%' %>
+  background-repeat: no-repeat;
+  background-position: 1px 1px;
+  display: inline-block;
 }
-a.toolbutton:hover img {
-  background: <%=p :mid_red %>;
-}
+
+a.toolbutton:hover,
+a.toolbutton.red:hover { background-color: <%=p :mid_red %>; }
+a.toolbutton.blue:hover { background-color: <%=p :dark_blue %>; }
+a.toolbutton.green:hover { background-color: <%=p :dark_green %>; }
+a.toolbutton.blank:hover { background-color: transparent; }
+
+a.toolbutton.xsmall { <%=border_radius '4px' %> height: 16px; width: 16px; }
+a.toolbutton.small { <%=border_radius '5.5px' %> height: 24px; width: 24px; }
+a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
 
 #picture_viewer, #picture_viewer div.background {
   top: 0px;
@@ -271,6 +316,19 @@ a.toolbutton:hover img {
  */
 
 @media (max-width:470px) {
+  body {
+    font-family: 'Overlock', sans-serif;
+    font-size: 18px;
+  }
+
+  #important_links { text-align: left; }
+
+  #important_links .logged_in_user {
+    display: block;
+    padding: 0em;
+    margin-bottom: 0.54em;
+  }
+  
   #logo_container .medium_logo { display: inline; }
   #logo_container .original_logo { display: none; }
 

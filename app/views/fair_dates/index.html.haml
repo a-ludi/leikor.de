@@ -1,0 +1,8 @@
+.administration
+  - if logged_in? Employee
+    = toolbutton_to :new, new_fair_date_path, :title => 'Neuen Messetermin erstellen'
+- unless @fair_dates.empty?
+  %ul#fair_dates= render :partial => 'fair_date', :collection => @fair_dates
+  =clear_float
+- else
+  %h1.empty Zur Zeit keine Messetermine.

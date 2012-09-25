@@ -1,0 +1,25 @@
+%li{:class => @blog_posts ? positional_class(blog_post_counter, @blog_posts.count, 'blog_post') : 'blog_post first last'}
+  .info
+    .created_at= l(blog_post.created_at.to_date, :format => :long)
+    - if logged_in? Employee
+      .author von #{blog_post.author.name}
+  %h1
+    - if @dont_link_title
+      %span.title= blog_post.title
+    - else
+      = link_to blog_post.title, blog_post_path(blog_post), :class => 'title'
+    - if logged_in? Employee
+      = render :partial => 'flags', :locals => {:blog_post => blog_post}
+      = toolbutton_to :edit, edit_blog_post_path(blog_post), :size => :small,
+        :title => t('views.labels.blog_post.edit')
+      = toolbutton_to :destroy, blog_post_path(blog_post), :size => :small, :method => :delete,
+        :confirm => "Soll der Beitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
+        :title => t('views.labels.blog_post.destroy')
+  = clear_float
+  %p=blog_post.body
+  - if blog_post.created_at != blog_post.updated_at
+    %p.edited
+      %span.edited_at Zuletzt bearbeitet am #{l(blog_post.updated_at)}
+      - if logged_in? Employee and blog_post.editor != blog_post.author
+        %span.editor von #{blog_post.editor.name}
+    = clear_float

@@ -2,41 +2,100 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "save succeeds with test hash" do
-    assert_creates_record_from User, {:name => 'Heinz Hinze', :login => 'hinze', :password => 'loeffel'}
+  test_tested_files_checksum 'cf812ad628a888aac81e3a41854c30bb'
+
+  test "default order should be name ASC" do
+    assert_equal users(:john, :maxi, :meyer, :moritz), User.all
   end
   
-  test "record invalid without name" do
+  test "notes should be marked up with maruku" do
+    assert_equal users(:moritz).notes,
+        "<p>Moritz bleibt <strong>immer</strong> treu.</p>"
+  end
+  
+  test "has a reset_password_request" do
+    assert_equal users(:john).reset_password_request,
+        secure_user_requests(:john_reset)
+  end
+  
+  test "deletes reset_password_request on destroy" do
+    users(:john).destroy
+    
+    assert_raises ActiveRecord::RecordNotFound do
+      secure_user_requests(:john_reset)
+    end
+  end
+  
+  test "has a confirm_registration_request" do
+    assert_equal users(:maxi).confirm_registration_request,
+        secure_user_requests(:max_confirm)
+  end
+  
+  test "deletes confirm_registration_request on destroy" do
+    users(:maxi).destroy
+    
+    assert_raises ActiveRecord::RecordNotFound do
+      secure_user_requests(:max_confirm)
+    end
+  end
+  
+  test "has many owned_blog_posts" do
+    assert_equal blog_posts(:public_post, :mailed_post), users(:maxi).owned_blog_posts
+  end
+  
+  test "has many edited_blog_posts" do
+    assert_equal [blog_posts(:public_post)], users(:john).edited_blog_posts
+  end
+  
+  test "should have a name" do
     users(:john).name = ''
     assert_errors_on users(:john), :on => :name
   end
 
-  test "record invalid without login" do
+  test "should have a login" do
     users(:john).login = ''
     assert_errors_on users(:john), :on => :login
   end
 
-  test "record invalid without password" do
+  test "should have a type" do
+    users(:john).type = nil
+    assert_errors_on users(:john), :on => :type
+  end
+
+  test "should have a primary_email_address" do
+    users(:john).primary_email_address = ''
+    assert_errors_on users(:john), :on => :primary_email_address
+  end
+
+  test "should have a password" do
     users(:john).password = ''
     assert_errors_on users(:john), :on => :password
   end
 
-  test "record invalid with short login" do
+  test "should have correctly formatted primary_email_address" do
+    %w(john@john john@users. @users.com john@.com).each do |invalid_address|
+      users(:john).primary_email_address = invalid_address
+      assert_errors_on users(:john), :on => :primary_email_address,
+          :message => "accepted invalid email address <#{invalid_address}>"
+    end
+  end
+  
+  test "should have a long enough login" do
     users(:john).login = 'jon'
     assert_errors_on users(:john), :on => :login
   end
   
-  test "record invalid with long login" do
+  test "should have a short enough login" do
     users(:john).login = 'john_doe_the_hero_of_america_damn'
     assert_errors_on users(:john), :on => :login
   end
   
-  test "record invalid with invalid first char in login" do
+  test "should have a valid first char in login" do
     users(:john).login = '_john'
     assert_errors_on users(:john), :on => :login
   end
   
-  test "record invalid with invalid char in login" do
+  test "should have only valid chars in login" do
     users(:john).login = 'john!'
     assert_errors_on users(:john), :on => :login
     
@@ -50,12 +109,12 @@ class UserTest < ActiveSupport::TestCase
     assert_errors_on users(:john), :on => :login
   end
   
-  test "record invalid with non-unique login" do
-    users(:john).login = users(:max).login
+  test "should have a unique login" do
+    users(:john).login = users(:maxi).login
     assert_errors_on users(:john), :on => :login
   end
   
-  test "record invalid with short password" do
+  test "should have a long password" do
     users(:john).password = 'big'
     assert_errors_on users(:john), :on => :password
   end
@@ -80,13 +139,49 @@ class UserTest < ActiveSupport::TestCase
     assert_equal users(:john).password, 'sekuriti'
   end
   
-  test "saves correct password length" do
-    users(:john).send(:save_password_length, 'sekuriti')
-    assert_equal users(:john).send(:password_length), 8
+  test "should set a random password" do
+    users(:john).set_random_password
+    
+    refute users(:john).password == 'sekret'
+    
+    old_password = users(:john).password.to_s
+    users(:john).set_random_password
+    
+    refute users(:john).password.to_s == old_password
   end
   
-  test "saves password length on set" do
-    users(:john).password = 'sekuriti'
-    assert_equal users(:john).send(:password_length), 8
+  test "registration should be confirmed" do
+    assert users(:john).registration?(:confirmed)
+  end
+  
+  test "registration should be unconfirmed" do
+    refute users(:maxi).registration?(:confirmed)
+  end
+  
+  test "registration should be denied" do
+    users(:maxi).registration = :denied
+    
+    assert users(:maxi).registration?(:denied)
+  end
+  
+  test "registration should be undenied" do
+    refute users(:john).registration?(:denied)
+    refute users(:maxi).registration?(:denied)
+  end
+  
+  test "should not deny already confirmed registration" do
+    assert_raises RuntimeError do
+      users(:john).registration = :denied
+    end
+  end
+  
+  test "email_address_with_name returns correct value" do
+    assert_equal users(:john).email_address_with_name,
+        %Q("John Doe" <john@doe.com>)
+  end
+  
+  test "email_address_with_name should return primary by default" do
+    assert_equal users(:john).email_address_with_name,
+        users(:john).email_address_with_name(:primary)
   end
 end

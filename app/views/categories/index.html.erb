@@ -1,9 +1,8 @@
-<% if superuser_logged_in? %>
+<% if logged_in? Employee %>
   <div id="category_administration" class="administration">
-    <%= link_to_remote(
-      image_tag('pictogram/medium/new.png'),
+    <%= toolbutton_to_remote(
+      :new,
       :url => new_category_path,
-      :class => 'toolbutton',
       :title => 'Neue Kategorie',
       :method => :get
     ) %>
@@ -12,5 +11,5 @@
 <% unless @categories.empty? %>
   <%= render :partial => 'category', :collection => @categories %>
 <% else %>
-  <div class="empty_category">Keine Kategorien vorhanden.</div>
+  <h1 class="empty">Keine Kategorien vorhanden.</h1>
 <% end %>

@@ -1,41 +1,58 @@
 # -*- encoding: utf-8 -*-
 
 class FairDate < ActiveRecord::Base
-  DATE_FORMAT = /^(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>(\d{4}|\d{2}))?$/
-  FORMAT_ERROR = "hat ein falsches Format. Gültig sind Angaben wie z.B. 24.12.2011, 24.12.11 oder 24.12."
-  validates_presence_of :from_date, :to_date, :name
+  default_scope :order => "from_date ASC, to_date ASC"
   
-  def from_date= value
-    set_date_on :from_date, value, Date.today
+  marked_up_with_maruku :comment
+
+  DATE_FORMAT = /^(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>\d{4})?$/
+  DATE_FORMAT_IN_WORDS = '21.03.1981, 21.3.'
+
+  validates_presence_of :from_date, :to_date, :name
+  validates_markdown :comment
+  validate :dates_are_dates
+  
+  def from_date= value;
+    set_date_on :from_date, value
   end
   
   def to_date= value
-    set_date_on :to_date, value, Date.today + 1.month
+    set_date_on :to_date, value
   end
   
-private
+protected
   
-  def set_date_on attr, value, default_value
-    catch :format_error do
-      self[attr] = case value
-        when Date then value
-        else parse_date value.to_s
-      end
-    end
-    
-    self[attr] = default_value
-    self.errors.add attr, FairDate::FORMAT_ERROR
+  def set_date_on attr, value
+    self[attr] = parse_date(value) || value
   end
   
   def parse_date string
+    return string  unless string.is_a? String
+    
     match_data = string.match FairDate::DATE_FORMAT
-    throw :format_error if match_data.nil?
+    return if match_data.nil?
     
-    year = match_data[:year] || Date.today.year
-    month = match_data[:month]
-    day = match_data[:day]
+    make_date(match_data[:year], match_data[:month], match_data[:day])
+  end
+  
+  def make_date(in_year, in_month, in_day)
+    year = in_year.blank? ? Date.today.year : in_year.to_i
+    month = in_month.to_i
+    day = in_day.to_i
     
-    date = Date.new year.to_i, month.to_i, day.to_i
-    date += 1.year  if date.past?
+    date = Date.new year, month, day
+    date += 1.year if in_year.blank? and date.past?
+    
+    return date
+  end
+  
+  def dates_are_dates
+    attrs = [:to_date, :from_date].map{ |attr| [attr, self[attr].is_a?(Date)] }
+    
+    return if attrs.map{|_, is_valid| is_valid}.all? 
+    
+    attrs.each do |attr, is_valid|
+      errors.add attr, :invalid_format, :valid_format => FairDate::DATE_FORMAT_IN_WORDS unless is_valid
+    end
   end
 end

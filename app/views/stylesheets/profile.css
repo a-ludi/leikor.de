@@ -1,0 +1,115 @@
+#body .index { text-align: center; padding: 0.54em 0.8em; }
+#body .index .container { display: inline-block; }
+
+#message_window h1.empty {
+  font-size: 100%;
+  margin: 0.72em 0em;
+  font-variant: normal;
+}
+
+.profile input, .profile textarea {
+  font-size: 100%;
+}
+
+.administration {
+  text-align: right;
+}
+
+.profile {
+  margin-top: 1.08em;
+}
+
+ul.profile {
+  list-style: none;
+  margin-left: 0em;
+  margin-bottom: 0em;
+  margin-right: 0em;
+  padding: 0em;
+}
+
+.edit .profile input, .edit .profile textarea { width: 18em; max-width: 100%; }
+.edit .profile input[type=checkbox] { width: auto; }
+.edit .profile .scope { width: 6em; }
+.edit .profile.user .name { width: 12em; }
+.edit .profile.postal_address .postcode { width: 3em; }
+.edit .profile.postal_address .city { width: 14.57em; }
+.edit .profile.email_address .email_address { width: 11.57em; }
+.edit .profile.phone_number .country { width: 1.5em; }
+.edit .profile.phone_number .prefix { width: 2.5em; }
+.edit .profile.phone_number .number { width: 5.95em; }
+.edit .profile textarea { height: 12em; }
+.edit .profile .groups textarea { height: 4em; }
+
+.type {
+  font-weight: bold;
+  font-size: small;
+}
+
+.login .value {
+  font-weight: bold;
+}
+
+.primary_email_address .value {
+  font-weight: bold;
+}
+
+.email_address .label, .phone_number .label {
+  color: <%=p :dark_gray %>;
+}
+
+#body div.notes {
+  text-align: left;
+}
+
+.user_index { float: left; margin: 0em 1em; }
+.user_index.first { margin-left: 0em; }
+.user_index.last { margin-right: 0em; }
+
+.user_index h2 .toolbutton { display: block; float: right; }
+.user_index ul { margin-top: 0.54em; list-style: none; }
+
+.tags ul {
+  list-style: none;
+  padding: 0em;
+  margin: 0em;
+}
+
+.tags { padding: 0.405em 1.065em; }
+
+.tags .tag {
+  display: block;
+  float: left;
+  color: <%=p :dark_green %>;
+  border: 1px solid <%=p :dark_green %>;
+  background: <%=p :light_green %>;
+  <%= border_radius '1.08em' %>
+  padding: 0.135em 0.54em;
+  margin: 0.135em;
+}
+
+.tags .new.tag {
+  border-color: transparent;
+  background: none;
+  font-weight: bold;
+}
+
+.tags .tag .remove {
+  position: relative;
+  bottom: 0.5em;
+  font-size: 80%;
+  height: 0.6em;
+  color: <%=p :dark_red %>;
+}
+
+/**
+ * Mobile (small) Version
+ */
+
+@media (max-width:470px) {
+  #body .index .container { text-align: center; }
+  .user_index {
+    display: inline-block;
+    float: none;
+    margin: 0em;
+  }
+}

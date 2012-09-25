@@ -1,0 +1,10 @@
+%li
+  - link_to profile_path(profile.login), :title => 'Profil anzeigen' do
+    #{profile.name} (#{profile.login})
+  - if not profile.registration? :confirmed
+    %span.annotation_mark{:title => "#{profile.class.human_name} muss noch bestätigt werden.",
+      :onclick => "copyToClipboard('#{confirm_registration_url(profile)}')"}
+      *
+  - elsif profile.registration? :denied
+    %span.annotation_mark{:title => "#{profile.class.human_name} hat die Bestätigung abgelehnt."}
+      %sup &dagger;

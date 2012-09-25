@@ -1,14 +1,19 @@
-<% if not flash[:message].nil? %>
-  <% message = flash[:message] %>
-  <div id="message" onmouseover="hideMessage()" class="<%= message[:class] %>">
+<% if flash.include? :message and not flash[:message].empty? %>
+  <div id="message" class="<%= flash[:message].klass %>">
     <h1>
-      <%= message[:title] or 'Hinweis' %>
+      <%= flash_message_title %>
     </h1>
-    <p>
-      <%= message[:text] %>
-    </p>
+    <%= render flash[:message].render_options %>
+    <h1 class="close">
+      <%= link_to(
+        'schließen',
+        '#',
+        :onclick => 'Effect.Fade("message", {duration: 0.3}); return false;',
+      ) %>
+    </h1>
   </div>
-  <% flash.discard :message %>
+  <% log_flash_message unless RAILS_ENV == 'production' %>
+  <% flash.discard(:message) %>
 <% else %>
   <div id="message" style="display: none;"></div>
 <% end %>

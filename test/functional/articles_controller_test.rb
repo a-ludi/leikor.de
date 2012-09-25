@@ -2,22 +2,27 @@
 require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
-  test "new create edit update ask_destroy destroy actions should require login" do
-    [:new, :create, :edit, :update, :ask_destroy, :destroy].each do |action|
-      assert_before_filter_applied :login_required, action
+  test_tested_files_checksum '8964002b761e81fc942dea3e4867161b'
+  
+  test "new edit_order create edit update ask_destroy destroy reorder actions should require
+      employee" do
+    [:new, :create, :edit_order, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
+      assert_before_filter_applied :employee_required, action
     end
   end
   
-  test "index action should not require login" do
-    assert_before_filter_not_applied :login_required, :index
+  test "index action should not require employee" do
+    assert_before_filter_not_applied :employee_required, :index
   end
   
-  test "index action should fetch categories" do
-    assert_before_filter_applied :fetch_categories, :index
+  test "index edit_order action should fetch categories" do
+    [:index, :edit_order].each do |action|
+      assert_before_filter_applied :fetch_categories, action
+    end
   end
   
-  test "create update destroy actions should save updated_at" do
-    [:create, :update, :destroy].each do |action|
+  test "create update destroy reorder actions should save updated_at" do
+    [:create, :update, :destroy, :reorder].each do |action|
       assert_after_filter_applied :save_updated_at, action
     end
   end
@@ -26,31 +31,37 @@ class ArticlesControllerTest < ActionController::TestCase
     get_index
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_kind_of String, assigns(:title)
+    assert_present assigns(:title)
+    assert_present assigns(:scroll_target)
   end
   
   test "new action sets proper article" do
     get_new
     
     assert_kind_of Article, assigns(:article)
-    assert_non_empty_kind_of String, assigns(:article).name
-    assert_non_empty_kind_of String, assigns(:article).description
-    assert_equal 0.0, assigns(:article).price
-    assert_non_empty_kind_of String, assigns(:article).article_number
-    assert_kind_of Fixnum, assigns(:article).subcategory_id
+    assert_no_errors_on assigns(:article)
   end
   
   test "new action with cancel" do
     get_new :cancel => true
     
     assert assigns(:cancel)
-    assert_non_empty_kind_of String, assigns(:html_id)
+    assert_present assigns(:html_id)
+  end
+  
+  test "edit_order action" do
+    @subcategory = categories(:sub1)
+    @category = @subcategory.category
+    https!
+    get 'edit_order', {:category => @category.to_param, :subcategory => @subcategory.to_param}, with_user
+    
+    assert_respond_to assigns(:stylesheets), :each
+    assert_present assigns(:title)
   end
   
   test "successful create action" do
     post_create
     
-    assert_kind_of Float, @controller.params[:article][:price]
     assert_equal @subcategory, @controller.params[:article][:subcategory]
     assert_kind_of Article, assigns(:article)
     assert_equal 'article', assigns(:partial)
@@ -79,7 +90,7 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_equal @article, assigns(:article)
     assert_equal 'article', assigns(:partial)
   end
-  
+
   test "update action" do
     put_update
     
@@ -100,22 +111,37 @@ class ArticlesControllerTest < ActionController::TestCase
   
   test "ask_destroy action" do
     @article = articles(:one)
+    https!
     get 'ask_destroy', @article.url_hash, with_user
     
     assert_respond_to assigns(:stylesheets), :each
-    assert_non_empty_kind_of String, assigns(:title)
+    assert_present assigns(:title)
     assert_equal @article, assigns(:article)
   end
   
   test "destroy action" do
     @article = articles(:one)
+    https!
     delete 'destroy', {:id => @article.to_param}, with_user
     
     assert_equal @article, assigns(:article)
-    assert assigns(:article).frozen?
-    assert ! Article.exists?(@article.id)
-    assert_not_empty flash[:message]
+    assert assigns(:article).destroyed?
+    refute Article.exists?(@article.id)
+    refute_empty flash[:message]
     assert_redirected_to subcategory_url(@article.subcategory.url_hash)
+  end
+  
+  test "reorder action" do
+    @articles_list = Article.find(:all, :order => "RANDOM()").collect {|a| a.id}
+    @subcategory = categories(:sub1)
+    @category = categories(:sub1).category
+    
+    https!
+    post 'reorder', {:subcategory => @subcategory.to_param,
+        :category => @category.to_param, :articles_list => @articles_list}, with_user
+    
+    @new_articles_list = Article.find(:all, :order => "ord ASC").collect {|a| a.id}
+    assert_equal @articles_list, @new_articles_list
   end
   
   test "generated_article_number" do
@@ -137,6 +163,7 @@ private
   def get_index
     @subcategory = categories(:sub1)
     @category = @subcategory.category
+    
     get 'index', {:category => @category.to_param, :subcategory => @subcategory.to_param}
   end
   
@@ -149,6 +176,8 @@ private
     else
       cancel = {}
     end
+    
+    https!
     get 'new', {:category => @category.to_param, :subcategory => @subcategory.to_param}.merge(cancel), with_user
   end
   
@@ -162,12 +191,16 @@ private
       :subcategory_id => @subcategory.id}
     @article[:name] = '' if options[:with] == :errors
     @html_id = articles(:one).html_id
+    
+    https!
     post 'create', {:article => @article, :html_id => @html_id}, with_user
   end
   
   def get_edit(options={})
     @article = articles(:one)
     params = {:id => @article.to_param}.merge(options)
+    
+    https!
     get 'edit', params, with_user
   end
   
@@ -178,6 +211,7 @@ private
     params = {:id => @article.to_param, :article => {:name => @new_name, :price => '11,11'}, :html_id => @html_id}
     params[:article][:name] = '' if options[:with] == :errors
     
+    https!
     put 'update', params, with_user
   end
 end

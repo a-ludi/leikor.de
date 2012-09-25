@@ -1,0 +1,8 @@
+:maruku
+  Hallo #{@user.name},
+  
+  es gibt News von LEIKOR! Den folgenden [Beitrag](#{blog_post_url_with_login_if_required @blog_post}) können Sie auch jederzeit auf unserer Website nachlesen.
+  
+  ---
+
+= @blog_post.body

@@ -6,8 +6,7 @@ RAILS_GEM_VERSION = '2.3.14' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-require 'string_blank_patch'
-require 'smtp_authentication'
+require 'bcrypt'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -25,6 +24,10 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem 'paperclip', :version => '~> 2.4.5'
   config.gem 'bcrypt-ruby', :lib => 'bcrypt', :version => '~> 3.0.1'
+  config.gem 'ssl_requirement', :version => '~> 0.1.0'
+  config.gem 'acts-as-taggable-on', :version => '~> 2.1.0'
+  config.gem 'haml', :version => '~> 3.1.4'
+  config.gem 'maruku', :version => '~> 0.6.0'
   config.gem 'exception_notification', :version => '~> 2.3.3.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
@@ -40,19 +43,20 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Berlin'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :de
-
   config.action_controller.resources_path_names = {
     :new => 'neu',
     :edit => 'bearbeiten',
     :destroy => 'loeschen'
   }
+  
+  config.action_mailer.delivery_method = :smtp
 end
 
-ActionMailer::Base.delivery_method = :smtp
-SmtpAuthentication.setup
-
+Haml::Template.options[:format] = :html4
+ExceptionNotification::Notifier.sender_address = '"Fehlerbericht" <fehler@leikor.de>'
+ExceptionNotification::Notifier.exception_recipients = %w(webmaster@leikor.de)

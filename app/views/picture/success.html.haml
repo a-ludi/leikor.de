@@ -1,0 +1,11 @@
+#message_window{:class => flash[:message].klass}
+  %h1 Änderungen am Bild gespeichert
+  .message
+    %p= render flash[:message].render_options
+    - if @article.picture?
+      %p= image_tag @article.picture.url(:thumb)
+  .response
+    = link_to_function 'Fenster schließen.', 'window.close()'
+:javascript
+  closeAfter(1500)
+

@@ -1,0 +1,5 @@
+- unless readers.empty?
+  %span.readers
+    = readers.map{|r| r.name}.join ', '
+- else
+  %span.field.empty Keine Leser

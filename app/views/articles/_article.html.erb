@@ -1,25 +1,26 @@
 <div id="<%= article.html_id %>" class="article">
   <h2>
     <span><%= article.name %></span>
-    <% if superuser_logged_in? %>
-      <%= link_to(
-        image_tag('pictogram/small/link.png'),
+    <% if logged_in? Employee %>
+      <%= toolbutton_to(
+        :link,
         subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),
-        :class => 'toolbutton',
+        :size => :small,
         :title => article.name,
         :onclick => 'copyToClipboard(this.href); return false;'
       ) %>
-      <%= link_to_remote(
-        image_tag('pictogram/small/edit.png'),
+      <%= toolbutton_to_remote(
+        :edit,
+        :size => :small,
         :url => edit_article_path(article),
         :method => :get,
-        :html => {:class => 'toolbutton', :title => "„#{article.name}“ bearbeiten."}
+        :html => {:title => "„#{article.name}“ bearbeiten."}
       ) %>
-      <%= link_to(
-        image_tag('pictogram/small/destroy.png'),
+      <%= toolbutton_to(
+        :destroy,
         ask_destroy_article_url(article.url_hash),
         :method => :get,
-        :class => 'toolbutton',
+        :size => :small,
         :title => "„#{article.name}“ löschen!"
       ) %>
     <% end %>
@@ -36,7 +37,7 @@
           :title => 'Klicken zum Vergrößern des Bildes.'}
       ) %>
     </div>
-    <% if superuser_logged_in? %>
+    <% if logged_in? Employee %>
       <div class="administration">
         <% if flash[:saved_article_id] === article.id %>
           <span class="message">Änderungen gespeichert.</span>
@@ -49,7 +50,7 @@
     <!--div class="dimensions">
       <span class="label">Größe:</span> ca. 13x20x12 cm
     </div-->
-    <% if user_logged_in? %>
+    <% if logged_in? %>
       <div class="price">
         <%= article.format :price %> €
       </div>

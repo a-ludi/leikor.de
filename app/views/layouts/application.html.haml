@@ -1,0 +1,11 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml", 'xml:lang' => 'de', :lang => 'de'}
+  %head= render :partial => 'layouts/head'
+  %body
+    = render :partial => 'layouts/message'
+    = render :partial => 'layouts/header'
+    #body
+      = yield :body or yield
+      = clear_float
+    = render :partial => 'layouts/footer'
+    #picture_viewer

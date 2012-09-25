@@ -1,0 +1,25 @@
+<% content_tag :span, :id => dom_id(blog_post, :flags) do %>
+  <%= toolbutton_to_remote(
+    "public_#{blog_post.is_published?}",
+    :size => :small,
+    :url => publish_blog_post_path(blog_post),
+    :update => dom_id(blog_post, :flags),
+    :after => "this.replace('#{escape_javascript loading_animation(:size => :small)}')",
+    :html => {
+        :class => 'blue',
+        :href => publish_blog_post_path(blog_post),
+        :title => t(blog_post.is_published?, :scope => 'views.labels.blog_post.published?')}
+  )%>
+  <%= toolbutton_to_remote(
+    "mail_#{blog_post.is_mailed?}",
+    :size => :small,
+    :url => mail_blog_post_path(blog_post),
+    :confirm => t('views.messages.blog_post.really_mail?', :title => blog_post.title),
+    :update => dom_id(blog_post, :flags),
+    :after => "this.replace('#{loading_animation :size => :small, :title => 'E-Mails werden verschickt ...'}')",
+    :html => {
+        :class => 'blue',
+        :href => mail_blog_post_path(blog_post),
+        :title => t(blog_post.is_mailed?, :scope => 'views.labels.blog_post.mailed?')}
+  )%>
+<% end %>

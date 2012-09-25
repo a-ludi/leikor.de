@@ -1,0 +1,18 @@
+#message_window
+  %h1
+    Bild von „#{@article.name}“bearbeiten
+  - form_for @article, :url => article_picture_path(@article.id), :method => :put, :html => {:multipart => true} do |f|
+    = hidden_field_tag 'popup', true if @popup
+    = make_if_error_messages_for @article
+    .message
+      = f.file_field :picture
+    .response
+      = submit_tag 'Bild speichern!', :disable_with => 'Wird hochgeladen …'
+  = set_focus_to 'article_picture'
+  .response
+    = button_to(                                                        |
+        'Bild löschen?',                                                |
+        article_picture_path(@article.id, :popup => @popup),            |
+        :method => :delete,                                             |
+        :confirm => 'Soll das Bild wirklich dauerhaft gelöscht werden?' |
+      ) if @article.picture?                                            |

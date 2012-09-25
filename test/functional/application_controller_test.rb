@@ -2,100 +2,257 @@
 require 'test_helper'
 
 class ApplicationControllerTest < ActionController::TestCase
-  tests CategoriesController
-  
+  test_tested_files_checksum '14a37fa25fa945ea0f3e26249805c642'
+
   test "before filters active" do
-    [:fetch_logged_in_user, :fetch_updated_at].each do |filter|
-      assert_before_filter_applied filter, @controller
+    [:fetch_current_user, :fetch_updated_at, :prepare_flash_message].each do |filter|
+      assert_before_filter_applied filter
     end
   end
   
   test "after filters active" do
-    [:log_if_title_not_set].each do |filter|
-      assert_after_filter_applied filter, @controller
-    end
+    assert_after_filter_applied :log_if_title_not_set, :test_method
+    assert_after_filter_not_applied :log_if_title_not_set, :stylesheet
+    assert_after_filter_not_applied :log_if_title_not_set, :pictures
   end
   
   test "save_updated_at" do
-    t = @controller.send :save_updated_at
-    t = t.to_s.to_time
+    @saved_time = call_method :save_updated_at
     
-    assert_equal t.to_f, AppData['updated_at'].to_f
+    assert_equal @saved_time.to_s.to_time, AppData['updated_at']
   end
   
   test "fetch_updated_at always returns Time" do
-    get 'index' # calls fetch_updated_at
+    call_method :fetch_updated_at
     
     assert_kind_of Time, assigns(:updated_at)
   end  
   
   test "fetch_updated_at returns correct Time" do
-    t = @controller.send :save_updated_at
-    t = t.to_s.to_time
-    get 'index' # calls fetch_updated_at
+    @saved_time = call_method :save_updated_at
+    call_method :fetch_updated_at
     
-    assert_equal t, assigns(:updated_at)
+    assert_equal @saved_time.to_s.to_time, assigns(:updated_at)
   end
   
-  test "user_logged_in?" do
-    get 'index', {}, with_user
+  test "prepare_flash_message" do
+    call_method :prepare_flash_message
     
-    assert @controller.send :user_logged_in?
+    assert_includes flash, :message
+    assert_kind_of FlashMessage, flash[:message]
   end
   
-  test "superuser_logged_in?" do
-    assert_respond_to @controller, :superuser_logged_in?
+  test "prepare_flash_message with already set message" do
+    call_method :prepare_flash_message, [], :flash => {:message => 42}
+    
+    assert_includes flash, :message
+    refute_kind_of FlashMessage, flash[:message]
   end
   
-  test "login_required with format html and referer present" do
-    @request.env['HTTP_REFERER'] = '/from_here_on'
-    get 'new' # calls login_required
+  test "login_user!" do
+    @user = users(:john)
+    call_method :login_user!, [@user]
     
-    assert_equal '/from_here_on', flash[:referer]
-    assert_not_empty flash[:message]
-    assert_redirected_to new_session_path
+    assert_equal @user.id, session[:user_id]
+    assert_equal @user.login, session[:login]
+    assert_equal @user, assigns(:current_user)
   end
   
-  test "login_required format js and no referer present" do
-    get 'new', :format => 'js' # calls login_required
+  test "logout_user!" do
+    https!
+    call_method :logout_user!, [], :session => with_user
     
-    assert_nil flash[:referer]
-    assert_template 'layouts/_push_message'
+    assert_empty flash[:message]
+    assert_nil session[:user_id]
+    assert_nil assigns(:current_user)
   end
   
-  test "login_required with login" do
-    get 'new', {}, with_user
+  test "not logged_in?" do
+  	@logged_in = call_method :logged_in?
+  	
+  	refute @logged_in
+  end
+  
+  test "logged_in? employee check" do
+    https!
+  	@logged_in_employee = call_method :logged_in?, [Employee], :session => with_user(:john)
+  	@logged_in_customer = call_method :logged_in?, [Customer], :session => with_user(:john)
+  	
+  	assert @logged_in_employee
+  	refute @logged_in_customer
+  end
+  
+  test "logged_in? customer check" do
+    https!
+  	@logged_in_employee = call_method :logged_in?, [Employee], :session => with_user(:moritz)
+  	@logged_in_customer = call_method :logged_in?, [Customer], :session => with_user(:moritz)
+  	
+  	refute @logged_in_employee
+  	assert @logged_in_customer
+  end
+  
+  test "logged_in? user check" do
+    session = with_user
+    https!
+  	@logged_in = call_method :logged_in?, [@user], :session => session
+  	
+  	assert @logged_in
+  end
+  
+  test "fetch_current_user" do
+    https!
+    call_method :fetch_current_user, [], :session => with_user
     
-    assert_template 'new'
+    assert_equal @user, assigns(:current_user)
+  end
+  
+  test "user_required passes" do
+    https!
+    @passed = call_method :user_required, [], :session => with_user
+    
+    assert @passed
+  end
+  
+  test "user_required fails" do
+    @passed = call_method :user_required, [], :render => false
+    
+    refute @passed
+    assert_present flash[:message]
+  end
+  
+  test "employee_required passes" do
+    https!
+    @passed = call_method :employee_required, [], :session => with_user
+    
+    assert @passed
+  end
+  
+  test "employee_required fails" do
+    https!
+    @passed = call_method :employee_required, [], :render => false, :session => with_user(:moritz)
+    
+    refute @passed
+    assert_present flash[:message]
   end
   
   test "fetch_categories without params" do
-    get 'index' # calls fetch_categories
+    @passed = call_method :fetch_categories
     
-    assert_not_empty assigns(:categories)
-    assert_equal [categories(:super_fst), categories(:super)], assigns(:categories)
+    assert @passed
+    assert_respond_to assigns(:categories), :each
+    refute_empty assigns(:categories)
+    assigns(:categories).each do |category|
+      refute_kind_of Subcategory, category
+      assert_kind_of Category, category
+    end
   end
   
   test "fetch_categories with category" do
     @category = categories(:super)
-    get 'index', @category.url_hash
+    @passed = call_method :fetch_categories, [], :params => {:category => @category.to_param}
     
-    assert_not_empty assigns(:categories)
+    assert @passed
+    assert_respond_to assigns(:categories), :each
     assert_equal @category, assigns(:category)
   end
   
   test "fetch_categories with subcategory" do
     @subcategory = categories(:sub1)
-    get 'index', @subcategory.url_hash
+    @category = @subcategory.category
+    @passed = call_method :fetch_categories, [], :params => {:category => @category.to_param,
+        :subcategory => @subcategory.to_param}
     
-    assert_not_empty assigns(:categories)
-    assert_equal @subcategory.category, assigns(:category)
+    assert @passed
+    assert_respond_to assigns(:categories), :each
+    assert_equal @category, assigns(:category)
     assert_equal @subcategory, assigns(:subcategory)
+  end
+  
+  test "not_found with defaults" do
+    @proc = Proc.new {@controller.send :not_found}
+    assert_raises ActionController::RoutingError do
+      @proc.call
+    end
+    
+    begin
+      @proc.call
+    rescue ActionController::RoutingError => e
+      refute_empty e.to_s
+    end
+  end
+  
+  test "not_found with custom message and logger" do
+    @message = 'Special Message #23196700797360814'
+    @proc = Proc.new {@controller.send :not_found, @message, :log => true}
+    assert_raises ActionController::RoutingError do
+      @proc.call
+    end
+    
+    begin
+      @proc.call
+    rescue ActionController::RoutingError => e
+      assert_equal @message, e.to_s
+    end
+    
+    assert_logs do
+      begin
+        @proc.call
+      rescue ActionController::RoutingError
+      end
+    end
   end
   
   test "log_if_title_not_set logs and passes" do
     assert_logs do
-      assert @controller.send :log_if_title_not_set
+      @passed = @controller.send :log_if_title_not_set
     end
+    assert @passed
+  end
+  
+  test "log_if_title_not_set doesn't log but passes" do
+    get :set_title
+    refute_logs do
+      @passed = @controller.send :log_if_title_not_set
+    end
+    assert @passed
+  end
+  
+  test "escape_like_pattern" do
+    @pattern = 'This is a _pattern_ with 0% alcohol'
+    @expected_pattern = 'This is a \\_pattern\\_ with 0\\% alcohol'
+    @escaped_pattern = call_method :escape_like_pattern, [@pattern]
+    
+    assert_equal @expected_pattern, @escaped_pattern
+  end
+  
+  test "set_up_user_required_message with html response" do
+    @passed = call_method :user_required, [], :render => false
+    
+    refute @passed
+    assert_present flash[:message]
+    assert_redirected_to new_session_path
+  end
+  
+  test "set_up_user_required_message with js response" do
+    @passed = call_method :user_required, [], :render => false, :xhr => true
+    
+    refute @passed
+    assert_present flash[:message]
+    assert_template :partial => 'layouts/_push_message', :count => 1
+  end
+  
+  test "set_up_user_required_message conserves flash referer" do
+    @referer = '/from/here/on'
+    @passed = call_method :user_required, [], :render => false, :flash => {:referer => @referer}
+    
+    refute @passed
+    assert_equal @referer, flash[:referer]
+  end
+  
+  test "set_up_user_required_message conserves request path" do
+    @passed = call_method :user_required, [], :render => false
+    
+    refute @passed
+    assert_equal '/test/application/test_method', flash[:referer]
   end
 end

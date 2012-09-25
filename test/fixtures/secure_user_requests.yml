@@ -1,0 +1,19 @@
+max_confirm:
+  external_id: "6466a73419aa2d29e8f42457d0898f41"
+  type: SecureUserRequest::ConfirmRegistration
+  memo: Has some unused text.
+  user: maxi
+
+john_reset:
+  external_id: "f7740d3057569e542d15ade48afb03fa"
+  type: SecureUserRequest::ResetPassword
+  memo: This is never used. Maybe I should delete it.
+  user: john
+
+expired:
+  external_id: "d0e5ff48c004275693c94aee39e35431"
+  type: SecureUserRequest::ConfirmRegistration
+  memo: Ignored.
+  user: meyer
+  updated_at: <%= 1.year.ago.to_s(:db) %>
+

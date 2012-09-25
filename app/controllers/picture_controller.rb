@@ -2,7 +2,7 @@
 class PictureController < ApplicationController
   include Paperclip::Storage::Database::ControllerClassMethods
   
-  before_filter :login_required, :except => [:show, :pictures]
+  before_filter :employee_required, :except => [:show, :pictures]
   after_filter :save_updated_at, :only => [:update, :destroy]
   after_filter :update_picture_dimensions, :only => [:update, :destroy]
   downloads_files_for :article, :picture, :file_name => :name
@@ -52,12 +52,13 @@ private
     @popup = params[:popup]
     @stylesheets = ['message']
     if @article.save
-      flash[:message] = {:class => 'success', :text => options[:success]} unless options[:success].blank?
+      flash[:message].success options[:success] unless options[:success].blank?
       render_response :success
     else
       logger.debug "[PictureController] errors on article: <#{@article.errors.inspect}>"
       @article.errors.clear and @article.errors.add(
         :picture, Article::PICTURE_INVALID_MESSAGE)
+      self.class.skip_after_filter :update_picture_dimensions
       render_response :failure
     end
   end
@@ -65,7 +66,7 @@ private
   def render_response(state=:success)
     case state
       when :success
-        @title ||= flash[:message][:text]
+        @title ||= flash[:message].text
         if @popup
           render :action => 'success', :layout => 'popup'
         else

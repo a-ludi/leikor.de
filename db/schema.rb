@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404075630) do
+ActiveRecord::Schema.define(:version => 20120409095432) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20120404075630) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "app_datas", ["name"], :name => "by_name", :unique => true
 
   create_table "articles", :force => true do |t|
     t.string   "article_number"
@@ -37,6 +39,21 @@ ActiveRecord::Schema.define(:version => 20120404075630) do
     t.integer  "ord"
   end
 
+  add_index "articles", ["article_number"], :name => "by_article_number", :unique => true
+
+  create_table "blog_posts", :id => false, :force => true do |t|
+    t.string   "public_id"
+    t.string   "title"
+    t.text     "body"
+    t.integer  "author_id"
+    t.integer  "editor_id"
+    t.string   "groups"
+    t.boolean  "is_mailed"
+    t.boolean  "is_published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "category_id"
@@ -45,6 +62,15 @@ ActiveRecord::Schema.define(:version => 20120404075630) do
     t.string   "type"
     t.integer  "ord"
   end
+
+  create_table "colors", :force => true do |t|
+    t.string   "label"
+    t.string   "hex"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "colors", ["label"], :name => "by_label", :unique => true
 
   create_table "fair_dates", :force => true do |t|
     t.date     "from_date"
@@ -57,18 +83,32 @@ ActiveRecord::Schema.define(:version => 20120404075630) do
     t.datetime "updated_at"
   end
 
-  create_table "pictures", :force => true do |t|
-    t.string   "filename"
-    t.string   "content_type"
-    t.binary   "file"
-    t.binary   "micro_thumb_file"
-    t.binary   "thumb_file"
-    t.binary   "medium_file"
-    t.integer  "width"
-    t.integer  "height"
-    t.integer  "ord"
+  create_table "secure_user_requests", :force => true do |t|
+    t.string   "external_id"
+    t.string   "type"
+    t.text     "memo"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "secure_user_requests", ["external_id"], :name => "by_external_id", :unique => true
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "taggable_type"
+    t.string   "context"
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", :force => true do |t|
+    t.string "name"
   end
 
   create_table "users", :force => true do |t|
@@ -77,6 +117,11 @@ ActiveRecord::Schema.define(:version => 20120404075630) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
+    t.text     "notes"
+    t.string   "primary_email_address"
   end
+
+  add_index "users", ["login"], :name => "by_login", :unique => true
 
 end
