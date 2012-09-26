@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PID_FILE='spork.pid'
+LOG_FILE='log/spork.log'
+
+if [[ -e "$PID_FILE" ]]; then
+  PID=`cat "$PID_FILE"`
+  kill -KILL $PID
+  rm -f "$PID_FILE"
+  echo "Killed Spork with PID=$PID"
+else
+  echo "Starting Spork ..."
+  echo "Logging output to ´$LOG_FILE´."
+  spork &>> "$LOG_FILE" & echo $! > "$PID_FILE"
+  tail -f "$LOG_FILE"
+fi
