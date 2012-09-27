@@ -3,14 +3,38 @@
 PID_FILE='spork.pid'
 LOG_FILE='log/spork.log'
 
+ANIMATION='☰☱☳☷☶☴☰☴☶☷☳☱'
+ANIMATION='-/|\'
+ANIMATION='▉▊▋▌▍▎▏▎▍▌▋▊▉'
+ANIMATION='⠀⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
+SLEEP_TIME=0.15
+
 if [[ -e "$PID_FILE" ]]; then
   PID=`cat "$PID_FILE"`
-  kill -KILL $PID
+  if ( kill -KILL $PID &> /dev/null ); then
+    echo "Killed Spork with PID=$PID" | tee "$LOG_FILE"
+  else
+    echo "Spork was not running."
+    echo "Removing lock file ..."
+  fi
   rm -f "$PID_FILE"
-  echo "Killed Spork with PID=$PID"
 else
-  echo "Starting Spork ..."
   echo "Logging output to ´$LOG_FILE´."
+  echo -n "Starting Spork ..."
   spork &>> "$LOG_FILE" & echo $! > "$PID_FILE"
-  tail -f "$LOG_FILE"
+  
+  WAITING=0
+  echo -n " ${ANIMATION:WAITING:1}"
+  while (( $WAITING + 1 )); do
+    REPLY=`tail -n 1 "$LOG_FILE"`
+    if [[ "$REPLY" == Spork\ is\ ready* ]]; then
+      WAITING=-1
+      notify-send -i stock_yes "$REPLY"
+      echo -e "\\bdone"
+    else
+      WAITING=$(( (WAITING + 1) % ${#ANIMATION} ))
+      echo -ne "\\b${ANIMATION:WAITING:1}"
+      sleep $SLEEP_TIME
+    fi
+  done
 fi
