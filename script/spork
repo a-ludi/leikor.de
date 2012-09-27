@@ -3,10 +3,9 @@
 PID_FILE='spork.pid'
 LOG_FILE='log/spork.log'
 
-ANIMATION='☰☱☳☷☶☴☰☴☶☷☳☱'
-ANIMATION='-/|\'
-ANIMATION='▉▊▋▌▍▎▏▎▍▌▋▊▉'
-ANIMATION='⠀⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
+ANIMATION='⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
+ANIMATION='⠁⠂⠄⡀⢀⠠⠐⠈'
+ANIMATION='⠀⣀⣤⣶⣿⠿⠛⠉⠀⠉⠛⠿⣿⣶⣤⣀'
 SLEEP_TIME=0.15
 
 if [[ -e "$PID_FILE" ]]; then
@@ -21,7 +20,7 @@ if [[ -e "$PID_FILE" ]]; then
 else
   echo "Logging output to ´$LOG_FILE´."
   echo -n "Starting Spork ..."
-  spork &>> "$LOG_FILE" & echo $! > "$PID_FILE"
+  spork testunit &>> "$LOG_FILE" & echo $! > "$PID_FILE"
   
   WAITING=0
   echo -n " ${ANIMATION:WAITING:1}"
