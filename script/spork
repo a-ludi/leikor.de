@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PID_FILE='spork.pid'
+PID_FILE='tmp/pids/spork.pid'
 LOG_FILE='log/spork.log'
 
 ANIMATION='⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
@@ -20,7 +20,7 @@ if [[ -e "$PID_FILE" ]]; then
 else
   echo "Logging output to ´$LOG_FILE´."
   echo -n "Starting Spork ..."
-  spork testunit &>> "$LOG_FILE" & echo $! > "$PID_FILE"
+  spork &>> "$LOG_FILE" & echo $! > "$PID_FILE"
   
   WAITING=0
   echo -n " ${ANIMATION:WAITING:1}"
