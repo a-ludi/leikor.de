@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   has_many :prices, :dependent => :destroy, :autosave => true
   has_and_belongs_to_many :colors, :before_add => :ignore_if_color_already_present,
       :after_remove => :removed_unused_color
+  has_and_belongs_to_many :materials
   has_attached_file(
     :picture,
     :storage => :database,

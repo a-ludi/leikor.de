@@ -10,7 +10,8 @@ one:
   depth: 10.0
   unit: cm
   colors: red, green, blue
-
+  materials: teakwood, linen
+  
 two:
   name: Chiwawa
   description: desc
@@ -23,6 +24,7 @@ two:
   depth: 
   unit: m
   colors: red
+  materials: teakwood
 
 three:
   name: Beluga
@@ -36,6 +38,7 @@ three:
   depth: 
   unit: dm
   colors: green
+  materials: linen
 
 four:
   name: Möwe
@@ -49,6 +52,7 @@ four:
   depth: 50.0
   unit: mm
   colors: blue
+  materials: teakwood, linen
 
 five:
   name: Entenerpel
@@ -62,4 +66,11 @@ five:
   depth: 
   unit: 
   colors:
+  picture_file_name: amsel.jpg
+  picture_content_type: image/jpeg
+  picture_file: <%=Fixture::file 'pictures/article/original.jpg' %>
+  picture_medium_file: <%=Fixture::file 'pictures/article/medium.jpg' %>
+  picture_thumb_file: <%=Fixture::file 'pictures/article/thumb.jpg' %>
+  picture_width: 600
+  picture_height: 600
 

@@ -1,0 +1,11 @@
+teakwood:
+  name: Teakholz
+  picture_filename: teakwood.gif
+  picture_content_type: image/gif
+  picture_file: <%=Fixture::file 'pictures/material/teakwood.gif' %>
+
+linen:
+  name: Leinen
+  picture_filename: linen.gif
+  picture_content_type: image/gif
+  picture_file: <%=Fixture::file 'pictures/material/linen.gif' %>
