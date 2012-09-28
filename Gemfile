@@ -16,7 +16,6 @@ group :development do
   gem 'guard-minitest', '~> 0.5.0'
   gem 'guard-bundler', '~> 1.0.0'
   gem 'guard-markdown', '~> 0.2.0'
-  gem 'guard-spork', '~> 1.2.0'
   gem 'spork', '~> 0.8.5'
   gem 'spork-testunit', '~> 0.0.8'
 end

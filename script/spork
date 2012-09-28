@@ -1,12 +1,11 @@
 #!/bin/bash
 
-PID_FILE='spork.pid'
+PID_FILE='tmp/pids/spork.pid'
 LOG_FILE='log/spork.log'
 
-ANIMATION='☰☱☳☷☶☴☰☴☶☷☳☱'
-ANIMATION='-/|\'
-ANIMATION='▉▊▋▌▍▎▏▎▍▌▋▊▉'
-ANIMATION='⠀⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
+ANIMATION='⠁⠃⠇⠧⠶⠼⠹⠙⠉⠁'
+ANIMATION='⠁⠂⠄⡀⢀⠠⠐⠈'
+ANIMATION='⠀⣀⣤⣶⣿⠿⠛⠉⠀⠉⠛⠿⣿⣶⣤⣀'
 SLEEP_TIME=0.15
 
 if [[ -e "$PID_FILE" ]]; then
