@@ -1,0 +1,36 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one_first:
+  amount: 10.00
+  minimum_count: 0
+  article: one
+
+one_second:
+  amount:  9.50
+  minimum_count: 100
+  article: one
+
+one_third:
+  amount:  8.00
+  minimum_count: 1000
+  article: one
+
+two_only:
+  amount: 7.0
+  minimum_count: 0
+  article: two
+
+three_only:
+  amount: 6.0
+  minimum_count: 0
+  article: three
+
+four_only:
+  amount: 5.0
+  minimum_count: 0
+  article: four
+
+five_only:
+  amount: 4.0
+  minimum_count: 0
+  article: five

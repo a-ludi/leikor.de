@@ -13,8 +13,6 @@ Spork.prefork do
     self.use_transactional_fixtures = true
     self.use_instantiated_fixtures  = false
     
-    fixtures :all
-
     include UtilityHelper
     include TestsHelper
     include AssertionsHelper
@@ -23,5 +21,6 @@ end
 
 Spork.each_run do
   class ActiveSupport::TestCase
+    fixtures :all
   end
 end

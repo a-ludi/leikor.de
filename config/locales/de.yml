@@ -256,7 +256,14 @@ de:
         internal_error: "ist ungültig. Dies ist ein Interner Fehler. Bitte informieren Sie den Administrator."
         taken: "ist bereits vergeben"
         record_invalid: "Gültigkeitsprüfung ist fehlgeschlagen: %{errors}"
+        too_few: "sind zu wenige (nicht weniger als %{count} Stück)"
+        too_many: "sind zu viele (nicht mehr als %{count} Stück)"
         <<: *errors_messages
+      models:
+        price:
+          attributes:
+            base:
+              rising_minimum_count_means_falling_amount: "Bei steigender Anzahl soll der Betrag fallen."
       template:
         <<: *errors_template
 
@@ -275,14 +282,19 @@ de:
       secure_user_request/confirm_registration: Registrierung bestätigen
       notifier: Benachrichtiger
       blog_post: Beitrag
+      price: Preis
       
     attributes:
       article:
         name: Name
         description: Beschreibung
-        price: Preis
+        prices: Preise
         article_number: Artikelnummer
         picture: Bild
+        width: Breite
+        height: Höhe
+        depth: Tiefe
+        unit: Einheit
       category:
         name: Name
         ord: Rang
@@ -315,6 +327,9 @@ de:
         groups: Gruppen
         is_mailed: wurde gemailt
         is_published: wurde veröffentlicht
+      price:
+        amount: Betrag
+        minimum_count: Mindestanzahl
   flash_message:
     title:
       error: Fehler

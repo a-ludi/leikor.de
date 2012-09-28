@@ -11,8 +11,7 @@ module AssertionsHelper::SslAssertions
       else
         msg = message(msg) do
           if redirect?
-            build_message 'Expected redirect to https location, but was <?>',
-              @response['Location']
+            build_message 'Expected redirect to https location, but was <?>', @response['Location']
           else
             'Expected redirect'
           end

@@ -3,6 +3,7 @@ require 'test_helper'
 
 module SslRequirements
   class PictureControllerTest < ActionController::TestCase
+    tests PictureController
     test_tested_files_checksum(
       ['app/controllers/picture_controller.rb', 'ab3ef36a4880bcf4a40fa3e224692088'],
       ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']

@@ -2,21 +2,39 @@
 require 'test_helper'
 
 class ColorTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'e6f1779ffe82fed16356710d48164019'
+  test_tested_files_checksum '59ee0dfa16097dae213df258d5c6e0c8'
+  
+  def setup
+    @color = colors(:green)
+  end
+  
+  test "should be ordered by label ASC" do
+    assert_equal colors(:blue, :green, :red), Color.all
+  end
   
   test "should have a unique label" do
-    colors(:green).label = 'red'
-    assert_errors_on colors(:green), :on => :label
+    @color.label = 'red'
+    assert_errors_on @color, :on => :label
     
-    colors(:red).label = nil
-    assert_errors_on colors(:red), :on => :label
+    @color = colors(:red)
+    @color.label = nil
+    assert_errors_on @color, :on => :label
   end
 
   test "should have a hex code with correct format" do
-    colors(:green).hex = 'invalid_hex_code'
-    assert_errors_on colors(:green), :on => :hex
+    @color.hex = 'invalid_hex_code'
+    assert_errors_on @color, :on => :hex
     
-    colors(:red).hex = nil
-    assert_errors_on colors(:red), :on => :hex
+    @color = colors(:red)
+    @color.hex = nil
+    assert_errors_on @color, :on => :hex
+  end
+  
+  test "should have many articles" do
+    assert_present @color.articles
+  end
+
+  test "articles are only added once" do
+    assert_equal @color.articles, @color.articles << articles(:one)
   end
 end

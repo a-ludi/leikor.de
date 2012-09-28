@@ -3,24 +3,29 @@ module AssertionsHelper::ActiveRecordAssertions
   def assert_errors_on(obj, options={})
     run_validations obj
     if options[:on].is_a? Symbol
-      options[:message] ||= "expected errors on <#{obj}.#{options[:on]}>"
+      options[:message] = message(options[:message]) {
+          "expected errors on <#{obj.class.to_s}\##{options[:on].to_s}>" }
       refute obj.errors.on(options[:on]).blank?, options[:message]
     else
-      options[:message] ||= "expected errors on <#{obj}>"
+      options[:message] = message(options[:message]) {
+          "expected errors on <#{obj.class.to_s}>" }
       assert obj.errors.any?, options[:message]
     end
   end
   
-  def assert_no_errors_on(obj, options={})
+  def refute_errors_on(obj, options={})
     run_validations obj
     if options[:on].is_a? Symbol
-      options[:message] ||= "expected no errors on <#{obj}.#{options[:on]}>"
+      options[:message] = message(options[:message]) {
+          "expected no errors on <#{obj.class.to_s}\##{options[:on].to_s}>, but found:\n#{obj.errors.on(options[:on])}" }
       assert obj.errors.on(options[:on]).blank?, options[:message]
     else
-      options[:message] ||= "expected no errors on <#{obj}>"
+      options[:message] = message(options[:message]) {
+          "expected no errors on <#{obj.class.to_s}>, but found:\n#{obj.errors.full_messages}" }
       assert obj.errors.empty?, options[:message]
     end
   end
+  alias :assert_no_errors_on :refute_errors_on
   
   def assert_creates_record_from(record_class, options={})
     message = "record of class #{record_class} could not be generated from #{options.inspect}"

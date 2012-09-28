@@ -5,6 +5,11 @@ one:
   article_number: 12345.1
   subcategory: sub1
   ord: 1
+  width: 10.0
+  height: 10.0
+  depth: 10.0
+  unit: cm
+  colors: red, green, blue
 
 two:
   name: Chiwawa
@@ -13,6 +18,11 @@ two:
   article_number: 12345.2
   subcategory: sub1
   ord: 5
+  width: 10.0
+  height: 
+  depth: 
+  unit: m
+  colors: red
 
 three:
   name: Beluga
@@ -21,6 +31,11 @@ three:
   article_number: 12345.3
   subcategory: sub1
   ord: 4
+  width: 10.0
+  height: 
+  depth: 
+  unit: dm
+  colors: green
 
 four:
   name: Möwe
@@ -29,6 +44,11 @@ four:
   article_number: 12345.4
   subcategory: sub1
   ord: 3
+  width: 10.0
+  height: 100.0
+  depth: 50.0
+  unit: mm
+  colors: blue
 
 five:
   name: Entenerpel
@@ -37,3 +57,9 @@ five:
   article_number: 12345.5
   subcategory: sub1
   ord: 2
+  width: 
+  height: 
+  depth: 
+  unit: 
+  colors:
+

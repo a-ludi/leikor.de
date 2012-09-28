@@ -2,63 +2,147 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'afd9d86afc2605467fb964530e50b6d7'
+  test_tested_files_checksum 'b86abcf7867b92c909b248caae8f6705'
+  
+  def setup
+    @article = articles(:one)
+  end
 
   test "default_scope" do
     assert_equal articles(:one, :five, :four, :three, :two), Article.all
   end
   
-  test "should have a name" do
-    articles(:one).name = ''
-    assert_errors_on articles(:one), :on => :name
+  test "should have many colors" do
+    assert_present @article.colors
   end
   
-  test "should have a price" do
-    articles(:one).price = ''
-    assert_errors_on articles(:one), :on => :price
+  test "colors are only added once" do
+    assert_equal @article.colors, @article.colors << colors(:red)
+  end
+  
+  test "unused colors are deleted" do
+    @color = Color.create(:label => 'new_color', :hex => '#123456')
+    @article.colors << @color
+    assert_includes @article.colors, @color
+    
+    @article.colors.delete @color
+    
+    refute Color.exists?(@color.id), 'unused color was not deleted'
+  end
+  
+  test "prices should be dependent" do
+    @article.destroy
+    @article.prices.each do |price|
+      assert price.destroyed?, '#{price.inspect} should be destroy'
+    end
+  end
+  
+  test "should have at least one price" do
+    refute_errors_on @article, :on => :prices
+    @article.prices.clear
+    assert_errors_on @article, :on => :prices
+  end
+  
+  test "should have a name" do
+    @article.name = ''
+    assert_errors_on @article, :on => :name
   end
   
   test "should have a article number" do
-    articles(:one).article_number = ''
-    assert_errors_on articles(:one), :on => :article_number
+    @article.article_number = ''
+    assert_errors_on @article, :on => :article_number
   end
   
   test "should have a subcategory" do
-    articles(:one).subcategory = nil
-    assert_errors_on articles(:one), :on => :subcategory
+    @article.subcategory = nil
+    assert_errors_on @article, :on => :subcategory
   end
   
-  test "should have a numeric price" do
-    articles(:one).price = 'Five Dollars Fiveteen'
-    assert_errors_on articles(:one), :on => :price
+  test "should have a numeric ord" do
+    should_be_numeric :ord
   end
   
-  test "should have a positive price" do
-    articles(:one).price = 0.0
-    assert_errors_on articles(:one), :on => :price
+  test "should have a ord greater than or equal to 0" do
+    should_be_greater_than_or_equal_to :ord, 0
+  end
+  
+  test "should have a integer ord" do
+    refute_errors_on @article, :on => :ord
+    @article.ord = 1.5
+    assert_errors_on @article, :on => :ord
+  end
+  
+  test "width can be nil" do
+    can_be_nil :width
+  end
+  
+  test "should have a numeric width" do
+    should_be_numeric :width
+  end
+  
+  test "should have a positive width" do
+    should_be_greater_than :width, 0.0
+  end
+  
+  test "height can be nil" do
+    can_be_nil :height
+  end
+  
+  test "should have a numeric height" do
+    should_be_numeric :height
+  end
+  
+  test "should have a positive height" do
+    should_be_greater_than :height, 0.0
+  end
+  
+  test "depth can be nil" do
+    can_be_nil :depth
+  end
+  
+  test "should have a numeric depth" do
+    should_be_numeric :depth
+  end
+  
+  test "should have a positive depth" do
+    should_be_greater_than :depth, 0.0
+  end
+  
+  test "should have a unit if width, height or depth is present" do
+    refute_errors_on @article, :on => :unit
+    @article.unit = nil
+    assert_errors_on @article, :on => :unit
+    refute_errors_on articles(:five), :on => :unit
+  end
+
+  test "should have a known unit" do
+    Article::UNITS.each do |unit|
+      @article.unit = unit
+      refute_errors_on @article, :on => :unit
+    end
     
-    articles(:one).price = -1.0
-    assert_errors_on articles(:one), :on => :price
+    @article.unit = 'Unknown'
+    assert_errors_on @article, :on => :unit
   end
   
   test "should have a unique article number" do
-    articles(:one).article_number = articles(:two).article_number
-    assert_errors_on articles(:one), :on => :article_number
+    @article.article_number = articles(:two).article_number
+    assert_errors_on @article, :on => :article_number
   end
   
   test "should have a well-formatted article number" do
     for mf_number in ['123456.1', '12345.123', 'a2345.1', '1234.12', '12345,1']
-      articles(:one).article_number = mf_number
-      assert_errors_on articles(:one), :on => :article_number, :message => "article number #{mf_number} is invalid"
+      @article.article_number = mf_number
+      assert_errors_on @article, :on => :article_number, :message => "article number #{mf_number} is invalid"
     end
   end
   
   test "should return default picture url" do
-    assert_equal '/images/picture/original/dummy.png', articles(:one).picture.url
+    assert_equal '/images/picture/original/dummy.png', @article.picture.url
   end
   
   test "html_id returns string" do
-    assert_equal String, articles(:one).html_id.class
+    assert_kind_of String, @article.html_id
   end
   
   test "html ids are unique" do
@@ -69,30 +153,52 @@ class ArticleTest < ActiveSupport::TestCase
   
   test "url_hash includes neccessary fields" do
   	[:category, :subcategory, :article].each do |field|
-    	assert_includes articles(:one).url_hash, field
+    	assert_includes @article.url_hash, field
     end
   end
   
   test "url_hash includes correct values" do
-    a = articles(:one)
-    assert_equal(Hash[:category => a.subcategory.category.to_param,
-      :subcategory => a.subcategory.to_param, :article => a.article_number],
-      articles(:one).url_hash)
+    assert_equal(Hash[:category => @article.subcategory.category.to_param,
+      :subcategory => @article.subcategory.to_param, :article => @article.article_number],
+      @article.url_hash)
   end
   
   test "url_hash propagates custom options" do
-    url_hash = articles(:one).url_hash(:custom_key => :custom_value)
+    url_hash = @article.url_hash(:custom_key => :custom_value)
     assert_includes url_hash, :custom_key
     assert_equal :custom_value, url_hash[:custom_key]
   end
   
-  test "format :price has correct format" do
-    articles(:one).price = 24.57
-    assert_equal '24,57', articles(:one).format(:price)
+  test "description should be marked up with maruku" do
+    assert_equal @article.description,
+      "<p>This <em>is a</em> <strong>marked up</strong> description!</p>"
+  end
+
+private
+  
+  def should_be_numeric field
+    @article.send "#{field.to_s}=".to_sym, 'Five Dollars Fiveteen'
+    assert_errors_on @article, :on => field.to_sym
   end
   
-  test "description should be marked up with maruku" do
-    assert_equal articles(:one).description,
-      "<p>This <em>is a</em> <strong>marked up</strong> description!</p>"
+  def should_be_greater_than field, value
+    @article.send "#{field.to_s}=".to_sym, value
+    assert_errors_on @article, :on => field.to_sym
+    
+    @article.send "#{field.to_s}=".to_sym, (value - 1.0)
+    assert_errors_on @article, :on => field.to_sym
+  end
+  
+  def should_be_greater_than_or_equal_to field, value
+    @article.send "#{field.to_s}=".to_sym, value
+    refute_errors_on @article, :on => field.to_sym
+    
+    @article.send "#{field.to_s}=".to_sym, (value - 1.0)
+    assert_errors_on @article, :on => field.to_sym
+  end
+  
+  def can_be_nil field
+    @article.send "#{field.to_s}=".to_sym, nil
+    refute_errors_on @article, :on => field.to_sym
   end
 end

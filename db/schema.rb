@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925141240) do
+ActiveRecord::Schema.define(:version => 20120928131730) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -37,9 +37,18 @@ ActiveRecord::Schema.define(:version => 20120925141240) do
     t.integer  "picture_width"
     t.integer  "picture_height"
     t.integer  "ord"
+    t.float    "width"
+    t.float    "height"
+    t.float    "depth"
+    t.string   "unit",                 :limit => 5
   end
 
   add_index "articles", ["article_number"], :name => "by_article_number", :unique => true
+
+  create_table "articles_colors", :id => false, :force => true do |t|
+    t.integer "article_id"
+    t.integer "color_id"
+  end
 
   create_table "blog_posts", :id => false, :force => true do |t|
     t.string   "public_id"
@@ -79,6 +88,14 @@ ActiveRecord::Schema.define(:version => 20120925141240) do
     t.string   "homepage"
     t.string   "stand"
     t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "prices", :force => true do |t|
+    t.decimal  "amount"
+    t.integer  "minimum_count"
+    t.integer  "article_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
