@@ -8,6 +8,8 @@ Spork.prefork do
   ENV["RAILS_ENV"] = "test"
   require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
   require 'test_help'
+  MiniTest::Unit
+  require 'minitest/rg'
 
   class ActiveSupport::TestCase
     self.use_transactional_fixtures = true

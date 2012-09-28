@@ -18,4 +18,6 @@ group :development do
   gem 'guard-markdown', '~> 0.2.0'
   gem 'spork', '~> 0.8.5'
   gem 'spork-testunit', '~> 0.0.8'
+  gem 'minitest', '~> 3.5.0'
+  gem 'minitest-rg', '~> 1.1.0'
 end
