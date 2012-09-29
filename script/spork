@@ -20,8 +20,10 @@ if [[ -e "$PID_FILE" ]]; then
 else
   echo "Logging output to ´$LOG_FILE´."
   echo -n "Starting Spork ..."
-  spork &>> "$LOG_FILE" & echo $! > "$PID_FILE"
-  
+  spork &>> "$LOG_FILE" & PID=$!
+
+  echo $PID > "$PID_FILE"
+  PROC_FD="/proc/$PID"
   WAITING=0
   echo -n " ${ANIMATION:WAITING:1}"
   while (( $WAITING + 1 )); do
@@ -30,6 +32,13 @@ else
       WAITING=-1
       notify-send -i stock_yes "$REPLY"
       echo -e "\\bdone"
+    elif [[ ! -e "$PROC_FD" ]]; then
+      WAITING=-1
+      echo -e "\\bdied"
+      echo "Removing lock file ..."
+      rm -f "$PID_FILE"
+      notify-send -i stock_stop "Spork died." "Showing logs ..."
+      less +G "$LOG_FILE"
     else
       WAITING=$(( (WAITING + 1) % ${#ANIMATION} ))
       echo -ne "\\b${ANIMATION:WAITING:1}"
