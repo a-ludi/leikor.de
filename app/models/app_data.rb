@@ -2,7 +2,7 @@
 
 class AppData < ActiveRecord::Base
   validates_uniqueness_of :name
-  validates_inclusion_of :data_type, :in => [String, Fixnum, Float, Time].collect {|c| c.to_s}
+  validates_inclusion_of :data_type, :in => %w(String Fixnum Float Time)
   
   def self.[](name)
     record = AppData.find_by_name name.to_s
