@@ -11,15 +11,15 @@ SLEEP_TIME=0.15
 if [[ -e "$PID_FILE" ]]; then
   PID=`cat "$PID_FILE"`
   if ( kill -KILL $PID &> /dev/null ); then
-    echo "Killed Spork with PID=$PID" | tee "$LOG_FILE"
+    echo "$(date +'[%F %T]') Killed Spork with PID=$PID" | tee "$LOG_FILE"
   else
-    echo "Spork was not running."
-    echo "Removing lock file ..."
+    echo "$(date +'[%F %T]') Spork was not running."
+    echo "$(date +'[%F %T]') Removing lock file ..."
   fi
   rm -f "$PID_FILE"
 else
-  echo "Logging output to ´$LOG_FILE´."
-  echo -n "Starting Spork ..."
+  echo "$(date +'[%F %T]') Logging output to ´$LOG_FILE´."
+  echo -n "$(date +'[%F %T]') Starting Spork ..."
   spork &>> "$LOG_FILE" & PID=$!
 
   echo $PID > "$PID_FILE"
@@ -35,7 +35,7 @@ else
     elif [[ ! -e "$PROC_FD" ]]; then
       WAITING=-1
       echo -e "\\bdied"
-      echo "Removing lock file ..."
+      echo "$(date +'[%F %T]') Removing lock file ..."
       rm -f "$PID_FILE"
       notify-send -i stock_stop "Spork died." "Showing logs ..."
       less +G "$LOG_FILE"
