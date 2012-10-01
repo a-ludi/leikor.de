@@ -11,9 +11,9 @@
   #top_navigation
     %h1{:style => "display: none;"} Navigation
     %ul.navigation
-      = list_menu(static_link_to(:'ueber-uns'),
+      = list_menu(link_to(t('views.sections.categories_controller'), :categories),
                   link_to(t('views.sections.blog_controller'), :blog_posts),
-                  link_to(t('views.sections.categories_controller'), :categories),
                   link_to(t('views.sections.fair_dates_controller'), fair_dates_path),
+                  static_link_to(:'ueber-uns'),
                   (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee))
     = clear_float
