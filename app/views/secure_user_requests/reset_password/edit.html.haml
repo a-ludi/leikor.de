@@ -1,6 +1,6 @@
 #message_window
-  - form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do
-    = hidden_field_tag :id, @secure_user_request.external_id #FIXME muss das sein?
+  - form_tag secure_user_request_path(@secure_user_request), :method => :put do
+    = hidden_field_tag :id, @secure_user_request.id
     .message
       :markdown
         Hallo #{@secure_user_request.user.name}!
@@ -19,7 +19,7 @@
         = password_field_tag :confirm_password, nil, :class => 'value'
     .response
       = a_button_to('Anfrage abbrechen',
-          destroy_secure_user_request_path(@secure_user_request.external_id),
+          destroy_secure_user_request_path(@secure_user_request),
           :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?')
       = submit_tag 'Speichern!'
   = set_focus_to :password

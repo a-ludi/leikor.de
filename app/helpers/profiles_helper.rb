@@ -6,7 +6,7 @@ module ProfilesHelper
   end
   
   def confirm_registration_url(user)
-    edit_secure_user_request_url(user.confirm_registration_request.external_id)
+    edit_secure_user_request_url(user.confirm_registration_request)
   end
   
   def group_path(user, tag)

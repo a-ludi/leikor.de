@@ -1,6 +1,6 @@
 <div id="message_window">
-  <% form_tag secure_user_request_path(@secure_user_request.external_id), :method => :put do %>
-    <%= hidden_field_tag :id, @secure_user_request.external_id %>
+  <% form_tag secure_user_request_path(@secure_user_request), :method => :put do %>
+    <%= hidden_field_tag :id, @secure_user_request.id %>
     <div class="message">
       <p>
         Sie wurden bei LEIKOR als neuer <%= @secure_user_request.user.class.human_name %>
@@ -28,7 +28,7 @@
     <div class="response">
       <%= a_button_to(
         'Anfrage abbrechen',
-        destroy_secure_user_request_path(@secure_user_request.external_id),
+        destroy_secure_user_request_path(@secure_user_request),
         :confirm => 'Die Anfrage wird endgültig abgebrochen. Sind Sie sicher?'
       ) %>
       <%= submit_tag 'Speichern!' %>

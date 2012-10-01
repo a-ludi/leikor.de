@@ -2,12 +2,13 @@
 
 class SecureUserRequest < ActiveRecord::Base
   include Digest
+  set_primary_key :external_id
   
   belongs_to :user
 
   validates_presence_of :type, :user_id
   
-  after_validation_on_create :generate_external_id
+  after_validation_on_create :generate_id
 
   def lifetime
     self.class::LIFETIME
@@ -19,9 +20,9 @@ class SecureUserRequest < ActiveRecord::Base
 
 protected
   
-  def generate_external_id
-    self.external_id = Digest::MD5.hexdigest(ActiveSupport::SecureRandom.base64(32))
+  def generate_id
+    self.id = Digest::MD5.hexdigest(ActiveSupport::SecureRandom.base64(32))
     
-    generate_external_id unless SecureUserRequest.find_by_external_id(self.external_id).nil?
+    generate_id if SecureUserRequest.exists? self.id
   end
 end
