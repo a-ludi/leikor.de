@@ -16,7 +16,7 @@
         :confirm => "Soll der Beitrag\n\n„#{blog_post.title}“\n\nvom #{l blog_post.created_at.to_date} wirklich gelöscht werden?",
         :title => t('views.labels.blog_post.destroy')
   = clear_float
-  %p=blog_post.body
+  %div.maruku=blog_post.body
   - if blog_post.created_at != blog_post.updated_at
     %p.edited
       %span.edited_at Zuletzt bearbeitet am #{l(blog_post.updated_at)}

@@ -30,7 +30,6 @@
 #content .article .body .image img {
   max-width: 100%;
   border: 1px solid <%=p :mid_gray %>;
-  <%=border_radius  %>
 }
 #content .article .body .image img:hover {
   border-color: <%=p :darker_gray %>;
