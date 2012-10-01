@@ -22,7 +22,7 @@ Rails::Initializer.run do |config|
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
-  config.gem 'paperclip', :version => '~> 2.4.5'
+  config.gem 'paperclip', :version => '~> 2.7.1'
   config.gem 'bcrypt-ruby', :lib => 'bcrypt', :version => '~> 3.0.1'
   config.gem 'ssl_requirement', :version => '~> 0.1.0'
   config.gem 'acts-as-taggable-on', :version => '~> 2.1.0'
