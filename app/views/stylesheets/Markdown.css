@@ -45,3 +45,17 @@
 .maruku footnotes li p {}
 
 .maruku footnotes li a {}
+
+.maruku img {
+  max-width: 90%;
+  border: 1px solid <%=p :mid_gray %>;
+  float: right;
+}
+
+@media (max-width:600px) {
+  .maruku img {
+    border: 1px solid <%=p :mid_gray %>;
+    float: none;
+    display: block;
+  }
+}
