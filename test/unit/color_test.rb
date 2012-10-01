@@ -2,7 +2,7 @@
 require 'test_helper'
 
 class ColorTest < ActiveSupport::TestCase
-  test_tested_files_checksum '59ee0dfa16097dae213df258d5c6e0c8'
+  test_tested_files_checksum 'd820aa5cc45f7785f5d495cda03cec1c'
   
   def setup
     @color = colors(:green)

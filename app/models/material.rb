@@ -1,3 +1,5 @@
 class Material < ActiveRecord::Base
-  has_and_belongs_to_many :articles
+  include IgnoreIfAlreadyInCollectionExtension
+  
+  has_and_belongs_to_many :articles, :before_add => ignore_if_already_in_collection(:articles)
 end

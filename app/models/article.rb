@@ -2,6 +2,7 @@
 
 class Article < ActiveRecord::Base
   include UtilityHelper
+  include IgnoreIfAlreadyInCollectionExtension
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/
   UNITS = %w(mm cm dm m)
   default_scope :order => 'ord ASC'
@@ -10,9 +11,9 @@ class Article < ActiveRecord::Base
   
   belongs_to :subcategory
   has_many :prices, :dependent => :destroy, :autosave => true
-  has_and_belongs_to_many :colors, :before_add => :ignore_if_color_already_present,
+  has_and_belongs_to_many :colors, :before_add => ignore_if_already_in_collection(:colors),
       :after_remove => :removed_unused_color
-  has_and_belongs_to_many :materials
+  has_and_belongs_to_many :materials, :before_add => ignore_if_already_in_collection(:materials)
   has_attached_file(
     :picture,
     :storage => :database,
@@ -57,10 +58,6 @@ class Article < ActiveRecord::Base
   
 private
 
-  def ignore_if_color_already_present(color)
-    raise ActiveRecord::Rollback if self.colors.include? color
-  end
-  
   def removed_unused_color(color)
     color.destroy if color.articles.empty?
   end

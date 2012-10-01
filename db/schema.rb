@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928150047) do
+ActiveRecord::Schema.define(:version => 20121001102522) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -50,10 +50,14 @@ ActiveRecord::Schema.define(:version => 20120928150047) do
     t.integer "color_id"
   end
 
+  add_index "articles_colors", ["article_id", "color_id"], :name => "index_articles_colors_on_article_id_and_color_id", :unique => true
+
   create_table "articles_materials", :id => false, :force => true do |t|
     t.integer "article_id"
     t.integer "material_id"
   end
+
+  add_index "articles_materials", ["article_id", "material_id"], :name => "index_articles_materials_on_article_id_and_material_id", :unique => true
 
   create_table "blog_posts", :id => false, :force => true do |t|
     t.string   "public_id"
