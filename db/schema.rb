@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001102522) do
+ActiveRecord::Schema.define(:version => 20121001115101) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -103,7 +103,7 @@ ActiveRecord::Schema.define(:version => 20121001102522) do
 
   create_table "materials", :force => true do |t|
     t.string   "name"
-    t.string   "picture_filename"
+    t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.binary   "picture_file"
     t.datetime "created_at"
