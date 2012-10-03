@@ -171,9 +171,25 @@ div.clear {
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
 
+#left_header_image, #right_header_image {
+  min-height: 150px;
+  background-repeat: no-repeat;
+}
+#left_header_image {
+  background-image: url(<%= AppData['left_header_image_path'] %>);
+  background-position: center left;
+}
+#right_header_image {
+  background-image: url(<%= AppData['right_header_image_path'] %>);
+  background-position: center right;
+}
+
+#left_header_image .toolbutton, #right_header_image .toolbutton { display: block; }
+#left_header_image .toolbutton { float: left; }
+#right_header_image .toolbutton { float: right; }
+
 #logo_container {
-  padding-top: 0.36em;
-  padding-bottom: 0.72em;
+  padding: 0.36em 150px 0.72em;
   text-align: center;
 }
 #logo_container.popup {
@@ -315,11 +331,22 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
  * Mobile (small) Version
  */
 
+@media (max-width:650px) {
+  #left_header_image { background-position: top left; }
+  #right_header_image { background-position: top right; }
+  #logo_container { padding: 150px 0em 0.72em; }
+  #logo_container .medium_logo { display: inline; }
+  #logo_container .original_logo { display: none; }
+}
+
 @media (max-width:470px) {
   body {
     font-family: 'Overlock', sans-serif;
     font-size: 18px;
   }
+  
+  #logo_container { padding: 0em 0.54em; }
+  #left_header_image, #right_header_image { background: none; min-height: 0px; }
 
   #important_links { text-align: left; }
 
@@ -329,9 +356,6 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     margin-bottom: 0.54em;
   }
   
-  #logo_container .medium_logo { display: inline; }
-  #logo_container .original_logo { display: none; }
-
   #top_navigation li {
     float: none;
     padding: 0em;

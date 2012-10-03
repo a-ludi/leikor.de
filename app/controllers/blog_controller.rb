@@ -9,13 +9,13 @@ class BlogController < ApplicationController
   def index
     @blog_posts = blog_posts
     @title = section_name
-    @stylesheets = %w(blog)
+    @stylesheets = %w(blog Markdown)
   end
   
   def show
     @blog_post = blog_posts(params[:id])
     @title = "#{@blog_post.title} (#{section_name})"
-    @stylesheets = %w(blog)
+    @stylesheets = %w(blog Markdown)
     @dont_link_title = true
   end
 

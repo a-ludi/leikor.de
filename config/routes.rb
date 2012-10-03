@@ -140,6 +140,12 @@ ActionController::Routing::Routes.draw do |map|
           :readers => 'leser'},
       :controller => 'blog')
   
+  map.header_images(
+      'seitenkopf-bilder/:id',
+      :controller => 'header_images',
+      :action => 'update',
+      :conditions => {:method => :put})
+  
   map.stylesheet(
       'stylesheets/*path',
       :controller => 'static',

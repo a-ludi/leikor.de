@@ -2,6 +2,24 @@
   <h2>
     <span><%= article.name %></span>
     <% if logged_in? Employee %>
+      <%= toolbutton_to_remote(
+        :left_header_image,
+        :size => :small,
+        :url => header_images_path(:id => 'links', :article_number => article.article_number),
+        :method => :put,
+        :html => {
+            :href => header_images_path(:id => 'links', :article_number => article.article_number),
+            :title => "Bild links neben dem LEIKOR-Logo anzeigen"}
+      ) %>
+      <%= toolbutton_to_remote(
+        :right_header_image,
+        :size => :small,
+        :url => header_images_path(:id => 'rechts', :article_number => article.article_number),
+        :method => :put,
+        :html => {
+            :href => header_images_path(:id => 'rechts', :article_number => article.article_number),
+            :title => "Bild rechts neben dem LEIKOR-Logo anzeigen"}
+      ) %>
       <%= toolbutton_to(
         :link,
         subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),

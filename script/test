@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TIMEOUT=5000
+OUTPUT=`bundle exec testdrb -Itest "$@"`
+RESULT=`echo "$OUTPUT" | tail -n3 | head -n1`
+
+if [[ "$RESULT" == *\ 0\ failures,\ 0\ errors* ]]; then
+  notify-send -t $TIMEOUT -i dialog-ok "Test run succeeded [$# files]" "$RESULT"
+else
+  notify-send -t $TIMEOUT -i dialog-error "Test run failed [$# files]" "$RESULT"
+fi
