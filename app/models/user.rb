@@ -2,7 +2,7 @@
 
 class User < ActiveRecord::Base
   include BCrypt
-  LOGIN_FORMAT = /^[a-zA-Z0-9][a-zA-Z0-9-]*$/
+  LOGIN_FORMAT = /^[a-z0-9][a-z0-9-]*$/i
   EMAIL_FORMAT = /^[A-ZäöüÄÖÜ0-9._%+-]+@(?:[A-ZäöüÄÖÜ0-9-]+\.)+[A-Z]{2,6}$/i
   
   default_scope :order => 'name ASC'
@@ -25,9 +25,9 @@ class User < ActiveRecord::Base
       falsches Format.'.squish
   validates_length_of :login, :in => 3..32
   # TODO replace message with translated version
-  validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'muss mit einem
-      Groß-/Kleinbuchstaben beginnen und darf nur aus Groß-/Kleinbuchstaben und den Zeichen
-      <tt>.-</tt> bestehen.'.squish
+  validates_format_of :login, :with => User::LOGIN_FORMAT, :message => 'darf nur aus
+      Buchstaben (ohne Umlaute), Zahlen oder Bindestrichen bestehen und muss mit einem Buchstaben
+      oder einer Zahl beginnen.'.squish
   validates_uniqueness_of :login
   validate :password_longer_than
   # TODO test `validates_markdown :notes`; how to? 
