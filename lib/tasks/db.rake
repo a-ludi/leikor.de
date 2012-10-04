@@ -6,13 +6,15 @@ namespace :db do
       desc 'Load a csv file line-by-line into the database using ActiveRecord. The model is inferred automagically from filename, but you can override this with MODEL.'
       task :csv, [:filename] => [:environment] do |t, args|
         require 'csv'
+        require 'open-uri'
         
-        model = (ENV['MODEL'] || File::basename(args.filename, '.csv').classify).constantize
+        model = (ENV['MODEL'] || args.filename[/^.*\/([^\/]+)\.csv\?.*$/, 1].classify).constantize
         count = {:created => 0, :skipped => 0}
         skip_all = false
         
         begin
-          CSV.foreach(args.filename, :headers => true) do |row|
+          data = open(args.filename) {|f| f.read}
+          CSV.parse(data, :headers => true) do |row|
             begin
               model.create! row.to_hash
             rescue ActiveRecord::RecordInvalid => invalid
