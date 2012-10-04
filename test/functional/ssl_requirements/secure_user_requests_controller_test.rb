@@ -2,11 +2,6 @@ require 'test_helper'
 
 module SslRequirements
   class SecureUserRequestsControllerTest < ActionController::TestCase
-    test_tested_files_checksum(
-      ['app/controllers/secure_user_requests_controller.rb', '0cbda0cf4a90fae952ccdd5316535d97'],
-      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
-    )
-    
     def setup
       @id = secure_user_requests(:max_confirm).to_param
     end

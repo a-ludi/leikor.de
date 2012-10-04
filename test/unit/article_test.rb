@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'afd9d86afc2605467fb964530e50b6d7'
-
   test "default_scope" do
     assert_equal articles(:one, :five, :four, :three, :two), Article.all
   end

@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'cf812ad628a888aac81e3a41854c30bb'
-
   test "default order should be name ASC" do
     assert_equal users(:john, :maxi, :meyer, :moritz), User.all
   end
@@ -81,7 +79,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "should have a long enough login" do
-    users(:john).login = 'jon'
+    users(:john).login = 'jo'
     assert_errors_on users(:john), :on => :login
   end
   

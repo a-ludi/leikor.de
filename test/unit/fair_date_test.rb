@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class FairDateTest < ActiveSupport::TestCase
-  test_tested_files_checksum 'c786c67f5e1c10ae250f42f24fe7c343'
-  
   test "default scope" do
     assert_equal fair_dates(:one, :two, :three), FairDate.all
   end

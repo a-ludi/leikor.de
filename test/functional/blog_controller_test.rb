@@ -3,11 +3,6 @@ require 'test_helper'
 class BlogControllerTest < ActionController::TestCase
   tests_mailer Notifier
 
-  test_tested_files_checksum(
-    ['app/controllers/blog_controller.rb', '0d49fab92f3992df746c71d137f59a3b'],
-    ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
-  )
-  
   test "new create edit update mail publish destroy readers should require employee" do
     [:new, :create, :edit, :update, :mail, :publish, :destroy, :readers].each do |action|
       assert_before_filter_applied :employee_required, action

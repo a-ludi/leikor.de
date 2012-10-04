@@ -3,11 +3,6 @@ require 'test_helper'
 
 module SslRequirements
   class CategoriesControllerTest < ActionController::TestCase
-    test_tested_files_checksum(
-      ['app/controllers/categories_controller.rb', 'fe5334fbfda3223856f903b6f353b02d'],
-      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
-    )
-    
     def setup
       @id = @subcategory = categories(:sub1).to_param
       @category = categories(:sub1).category.to_param

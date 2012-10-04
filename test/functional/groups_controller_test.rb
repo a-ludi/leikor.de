@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
-  test_tested_files_checksum '452e1667dbe0443a4aa6c76094439a92'
-
   def setup
     https! # every action require SSL
     @user = users(:john)

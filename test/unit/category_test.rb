@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class CategoryTest < ActiveSupport::TestCase
-  test_tested_files_checksum '2a84f57047ea7efa54ee6eb614c01c8c'
-  
   test "default_scope" do
     assert_equal categories(:super_fst, :super, :sub2, :sub1), Category.all
   end

@@ -2,11 +2,6 @@ require 'test_helper'
 
 module SslRequirements
   class BlogControllerTest < ActionController::TestCase
-    test_tested_files_checksum(
-      ['app/controllers/blog_controller.rb', '0d49fab92f3992df746c71d137f59a3b'],
-      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
-    )
-      
     def setup
       @id = blog_posts(:mailed_post).to_param
     end
