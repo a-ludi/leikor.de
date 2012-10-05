@@ -1,6 +1,8 @@
 %div{:class => "user_index #{positional_class}"}
   %h2
     = human_type
+    - unless profiles.empty?
+      (#{profiles.count})
     = toolbutton_to(:new, new_profile_path(type), :size => :small,
       :title => "Neuen #{human_type} eintragen")
   = clear_float
