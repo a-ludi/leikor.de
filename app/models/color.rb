@@ -10,4 +10,12 @@ class Color < ActiveRecord::Base
   validates_presence_of :label, :hex
   validates_uniqueness_of :label
   validates_format_of :hex, :with => HEX_FORMAT
+  
+  def to_param
+    self.label
+  end
+  
+  def self.from_param(label)
+    self.find_by_label label
+  end
 end

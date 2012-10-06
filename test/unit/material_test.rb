@@ -59,6 +59,12 @@ class MaterialTest < ActiveSupport::TestCase
     
     assert_equal "GIF", @format
   end
+  
+  test "should use name as param" do
+    assert_equal @material.name, @material.to_param
+    assert_equal @material, Material.from_param(@material.name)
+    assert_equal @material, Material.from_param(@material.to_param)
+  end
 
 private
   

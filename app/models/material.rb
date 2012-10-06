@@ -14,4 +14,12 @@ class Material < ActiveRecord::Base
     :url => '/material/:id/bild/download/:style.:extension',
     :styles => { :original => ['600x600#', :gif] }
   )
+  
+  def to_param
+    self.name
+  end
+  
+  def self.from_param(name)
+    self.find_by_name name
+  end
 end

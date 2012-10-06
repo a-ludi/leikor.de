@@ -35,4 +35,10 @@ class ColorTest < ActiveSupport::TestCase
   test "articles are only added once" do
     assert_equal @color.articles, @color.articles << articles(:one)
   end
+
+  test "should use label as param" do
+    assert_equal @color.label, @color.to_param
+    assert_equal @color, Color.from_param(@color.label)
+    assert_equal @color, Color.from_param(@color.to_param)
+  end
 end
