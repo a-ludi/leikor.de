@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PriceTest < ActiveSupport::TestCase
-  test_tested_files_checksum '135ba60b4f81811f609193bb6a71e0e8'
-  
   def setup
     @price = prices(:one_first)
     @article = articles(:one)

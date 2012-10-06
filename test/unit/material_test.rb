@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class MaterialTest < ActiveSupport::TestCase
-  test_tested_files_checksum '0ab542d562ca483223696d4a0bb29c1e'
-  
   def setup
     @material = materials(:teakwood)
   end
