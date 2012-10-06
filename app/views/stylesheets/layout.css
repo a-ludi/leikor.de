@@ -171,6 +171,18 @@ div.clear {
 #important_links .logged_in_user .name { font-weight: bold; }
 #important_links .logged_in_user a { font-weight: normal; }
 
+#logo_container {
+  padding: 0.72em 150px;
+  text-align: center;
+}
+#logo_container.popup {
+  padding: 0em;
+  text-align: center;
+  border-bottom: 1px solid <%=p :mid_gray %>;
+  margin: 0em 1em;
+}
+
+#header_images_with_logo{padding: 0em 0.5em;}
 #left_header_image, #right_header_image {
   min-height: 150px;
   background-repeat: no-repeat;
@@ -188,16 +200,6 @@ div.clear {
 #left_header_image .toolbutton { float: left; }
 #right_header_image .toolbutton { float: right; }
 
-#logo_container {
-  padding: 0.36em 150px 0.72em;
-  text-align: center;
-}
-#logo_container.popup {
-  padding: 0em;
-  text-align: center;
-  border-bottom: 1px solid <%=p :mid_gray %>;
-  margin: 0em 1em;
-}
 #logo_container img { max-width: 90%; margin: 10px; }
 
 #logo_container .medium_logo { display: none; }

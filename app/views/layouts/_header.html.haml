@@ -7,23 +7,24 @@
                 static_link_to(:kontakt),
                 static_link_to(:impressum),
                 static_link_to(:AGB))
-  #left_header_image
-    - if logged_in? Employee and not AppData['left_header_image_path'].blank?
-      = toolbutton_to_remote(:close, :size => :xsmall,
-        :url => header_images_path(:id => 'links'),
-        :method => :put, :html => {:title => "Bild entfernen"})
-    #right_header_image
-      - if logged_in? Employee and not AppData['right_header_image_path'].blank?
+  #header_images_with_logo
+    #left_header_image
+      - if logged_in? Employee and not AppData['left_header_image_path'].blank?
         = toolbutton_to_remote(:close, :size => :xsmall,
-          :url => header_images_path(:id => 'rechts'),
+          :url => header_images_path(:id => 'links'),
           :method => :put, :html => {:title => "Bild entfernen"})
-      #logo_container
-        = link_to(image_tag('logo/original.png', :alt => 'LEIKOR-Logo',
-          :title => 'Zurück zur Startseite'), :root, :class => 'original_logo')
-        = link_to(image_tag('logo/medium.png', :alt => 'LEIKOR-Logo',
-          :title => 'Zurück zur Startseite'), :root, :class => 'medium_logo')
-  - if logged_in? Employee
-    = clear_float
+      #right_header_image
+        - if logged_in? Employee and not AppData['right_header_image_path'].blank?
+          = toolbutton_to_remote(:close, :size => :xsmall,
+            :url => header_images_path(:id => 'rechts'),
+            :method => :put, :html => {:title => "Bild entfernen"})
+        #logo_container
+          = link_to(image_tag('logo/original.png', :alt => 'LEIKOR-Logo',
+            :title => 'Zurück zur Startseite'), :root, :class => 'original_logo')
+          = link_to(image_tag('logo/medium.png', :alt => 'LEIKOR-Logo',
+            :title => 'Zurück zur Startseite'), :root, :class => 'medium_logo')
+      - if logged_in? Employee
+        = clear_float
   #top_navigation
     %h1{:style => "display: none;"} Navigation
     %ul.navigation

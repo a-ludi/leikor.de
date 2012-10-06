@@ -1,6 +1,5 @@
 %li
-  - link_to profile_path(profile.login), :title => 'Profil anzeigen' do
-    #{profile.name} (#{profile.login})
+  = link_to profile.name, profile_path(profile.login), :title => 'Profil anzeigen'
   - if not profile.registration? :confirmed
     %span.annotation_mark{:title => "#{profile.class.human_name} muss noch bestätigt werden.",
       :onclick => "copyToClipboard('#{confirm_registration_url(profile)}')"}

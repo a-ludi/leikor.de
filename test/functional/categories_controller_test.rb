@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class CategoriesControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'fe5334fbfda3223856f903b6f353b02d'
-
   test "login required for new create edit update ask_destroy destroy reorder" do
     [:new, :create, :edit, :update, :ask_destroy, :destroy, :reorder].each do |action|
       assert_before_filter_applied :employee_required, action

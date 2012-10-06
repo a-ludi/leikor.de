@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'bd25db0a86cdc475ba5dda6ba0daaa13'
-  
   def setup
     https! # (nearly) every action requires SSL
   end

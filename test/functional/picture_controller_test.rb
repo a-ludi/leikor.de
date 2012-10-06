@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class PictureControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'ab3ef36a4880bcf4a40fa3e224692088'
-  
   test "login required except show pictures" do
     [:show, :pictures].each do |action|
       assert_before_filter_not_applied :employee_required, action

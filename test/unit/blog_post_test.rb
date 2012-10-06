@@ -2,11 +2,6 @@
 require 'test_helper'
 
 class BlogPostTest < ActiveSupport::TestCase
-  test_tested_files_checksum(
-    ['app/models/blog_post.rb', 'c76e00c6e2bba05110fc4703b2be6235'],
-    ['lib/readers_from_groups_extension.rb', '962de3b933562076b3ebabe858839536']
-  )
-
   test "primary key should be public_id" do
     BlogPost.all.each do |blog_post|
       assert_equal blog_post.public_id, blog_post.id

@@ -3,12 +3,6 @@ require 'test_helper'
 
 module SslRequirements
   class ArticlesControllerTest < ActionController::TestCase
-    tests ArticlesController
-    test_tested_files_checksum(
-      ['app/controllers/articles_controller.rb', '8964002b761e81fc942dea3e4867161b'],
-      ['config/routes.rb', 'fc70545d8376feb442ad4df1ef94556f']
-    )
-    
     def setup
       @article = articles(:one)
       @subcategory = @article.subcategory

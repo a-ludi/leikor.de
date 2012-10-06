@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class HeaderImagesControllerTest < ActionController::TestCase
-  test_tested_files_checksum '5291de9a9141b67ec7129c833fd6809e'
-  
   def setup
     https!
   end

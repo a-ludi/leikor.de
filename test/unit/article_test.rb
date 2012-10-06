@@ -2,8 +2,6 @@
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
-  test_tested_files_checksum '4d1446d7c88e36e29ffd42752afbfe42'
-  
   def setup
     @article = articles(:one)
   end

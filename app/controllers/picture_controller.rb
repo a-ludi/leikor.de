@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class PictureController < ApplicationController
   include Paperclip::Storage::Database::ControllerClassMethods
+  ssl_allowed :pictures
   
   before_filter :employee_required, :except => [:show, :pictures]
   after_filter :save_updated_at, :only => [:update, :destroy]

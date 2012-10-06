@@ -1,7 +1,6 @@
 #body .index { text-align: center; padding: 0.54em 0.8em; }
-#body .index .container { display: inline-block; }
 
-#message_window h1.empty {
+.infobox h1.empty {
   font-size: 100%;
   margin: 0.72em 0em;
   font-variant: normal;
@@ -61,9 +60,13 @@ ul.profile {
   text-align: left;
 }
 
-.user_index { float: left; margin: 0em 1em; }
-.user_index.first { margin-left: 0em; }
-.user_index.last { margin-right: 0em; }
+.user_index {
+  margin: 1.08em 0em;
+  display: inline-block;
+  min-width: 10em;
+}
+.user_index.first { margin-top: 0em; }
+.user_index.last { margin-bottom: 0em; }
 
 .user_index h2 .toolbutton { display: block; float: right; }
 .user_index ul { margin-top: 0.54em; list-style: none; }
@@ -99,17 +102,4 @@ ul.profile {
   font-size: 80%;
   height: 0.6em;
   color: <%=p :dark_red %>;
-}
-
-/**
- * Mobile (small) Version
- */
-
-@media (max-width:470px) {
-  #body .index .container { text-align: center; }
-  .user_index {
-    display: inline-block;
-    float: none;
-    margin: 0em;
-  }
 }

@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class ProfilesControllerTest < ActionController::TestCase
-  test_tested_files_checksum 'd71d9dad0ff829b743691a495febf818'
-  
   def setup
     https! # every action requires SSL
   end
