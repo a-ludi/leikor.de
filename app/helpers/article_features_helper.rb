@@ -1,0 +1,2 @@
+module ArticleFeaturesHelper
+end
