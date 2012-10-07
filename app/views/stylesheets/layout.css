@@ -363,11 +363,10 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     padding: 0em;
   }
 
-  #top_navigation a.first {
-    <%=border_radius '0em' %>
-    <%=border_radius :top => '0.7em' %>
+  #top_navigation .first a {
+    <%=border_radius :bottom => '0em', :top => '0.7em' %>
   }
-  #top_navigation a.last {
+  #top_navigation .last a {
     <%=border_radius :bottom => '0.7em' %>
   }
 }
