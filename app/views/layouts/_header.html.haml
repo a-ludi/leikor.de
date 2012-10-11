@@ -26,7 +26,10 @@
       - if logged_in? Employee
         = clear_float
   #top_navigation
-    %h1{:style => "display: none;"} Navigation
+    %h1.control{:style => "display: none;"}
+      %a{:href => '#'}
+        %span.pictogram
+          Menü
     %ul.navigation
       = list_menu(link_to(t('views.sections.categories_controller'), :categories),
                   link_to(t('views.sections.blog_controller'), :blog_posts),
@@ -34,3 +37,22 @@
                   static_link_to(:'ueber-uns'),
                   (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee))
     = clear_float
+    :javascript
+      $$('#top_navigation .control')[0].show();
+      document.observe('resize', function() {
+        if(document.viewport.getWidth() <= 470){
+          $$('#top_navigation .navigation')[0].hide();
+        } else {
+          $$('#top_navigation .navigation')[0].show();
+        }
+      });
+      
+      $$('#top_navigation .control')[0].on('click', function () {
+        Effect.toggle($$('#top_navigation .navigation')[0], 'blind')
+        if($('top_navigation').classNames().include('close'))
+          $('top_navigation').removeClassName('close');
+        else
+          $('top_navigation').addClassName('close');
+        
+        return false;
+      });

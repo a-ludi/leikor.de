@@ -239,6 +239,8 @@ ul.navigation {
   font-style: normal;
 }
 
+#top_navigation .control { display: none; }
+
 #body {
   background: <%=p :light_gray %>;
   padding: 0.54em 1.2em;
@@ -363,11 +365,42 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     padding: 0em;
   }
 
-  #top_navigation a.first {
-    <%=border_radius '0em' %>
-    <%=border_radius :top => '0.7em' %>
+  #top_navigation .first a {
+    <%=border_radius :bottom => '0em', :top => '0.7em' %>
+    padding-left: 1.0em;
   }
-  #top_navigation a.last {
+  #top_navigation .last a {
     <%=border_radius :bottom => '0.7em' %>
+  }
+  
+  #top_navigation.close .first a {
+    <%=border_radius '0em' %>
+  }
+
+  #top_navigation .control {
+    display: block;
+    margin: 0em;
+    margin-bottom: 0.72em;
+    font-size: 100%;
+  }
+  
+  #top_navigation .control a {
+    <%=border_radius :top => '0.7em' %>
+    background-color: <%=p :darker_gray %>;
+    color: <%=p :white %>;
+  }
+  
+  #top_navigation .control a:hover, #top_navigation .control a:focus {
+    background: <%=p :dark_blue %>;
+  }
+  
+  #top_navigation .control .pictogram {
+    display: block;
+    background: url('<%=image_path 'pictogram/small/menu-open.png' %>') no-repeat center left;
+    padding-left: 29px;
+    margin-left: -8px;
+  }
+  #top_navigation.close .control .pictogram {
+    background-image: url('<%=image_path 'pictogram/small/menu-close.png' %>');
   }
 }
