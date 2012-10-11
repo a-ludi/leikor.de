@@ -18,7 +18,7 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal @article.colors, @article.colors << colors(:red)
   end
   
-  test "unused colors are deleted" do
+  test "should delete unused colors" do
     @color = Color.create(:label => 'new_color', :hex => '#123456')
     @article.colors << @color
     assert_includes @article.colors, @color
@@ -26,6 +26,22 @@ class ArticleTest < ActiveSupport::TestCase
     @article.colors.delete @color
     
     refute Color.exists?(@color.id), 'unused color was not deleted'
+  end
+  
+  test "should have many tags" do
+    assert_present @article.tags
+  end
+  
+  test "should have a tag_list" do
+    assert_present @article.tag_list
+  end
+  
+  test "tags are only added once" do
+    @tag_list = @article.tag_list.dup.freeze
+    @article.tag_list << @article.tag_list.first
+    assert @article.save and @article.reload
+    
+    assert_equal @tag_list, @article.tag_list
   end
   
   test "prices should be dependent" do

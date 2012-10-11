@@ -11,6 +11,7 @@ one:
   unit: cm
   colors: red, green, blue
   materials: teakwood, linen
+  #tags: 'New, Old'
   
 two:
   name: Chiwawa
@@ -25,6 +26,7 @@ two:
   unit: m
   colors: red
   materials: teakwood
+  #tags: 'New'
 
 three:
   name: Beluga
@@ -39,6 +41,7 @@ three:
   unit: dm
   colors: green
   materials: linen
+  #tags: 'Old'
 
 four:
   name: Möwe

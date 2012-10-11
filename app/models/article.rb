@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
   marked_up_with_maruku :description
   
   belongs_to :subcategory
+  acts_as_taggable_on :tags
   has_many :prices, :dependent => :destroy, :autosave => true
   has_and_belongs_to_many :colors, :before_add => ignore_if_already_in_collection(:colors),
       :after_remove => :removed_unused_color

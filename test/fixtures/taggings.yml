@@ -4,9 +4,21 @@
   :moritz => [:lampen, :spielzeug],
   :meyer => [:holz, :tiere]
 }.each do |user, tags|; tags.each do |tag| %>
-<%= user %>-<%= tag%>:
+user-<%= user %>-<%= tag%>:
   taggable_id: <%= Fixtures.identify user %>
   taggable_type: User
   tag_id: <%= Fixtures.identify tag %>
   context: groups
+<% end; end %>
+
+<% {
+  :one => [:new, :old],
+  :two => [:new],
+  :three => [:old],
+}.each do |article, tags|; tags.each do |tag| %>
+article-<%= article %>-<%= tag%>:
+  taggable_id: <%= Fixtures.identify article %>
+  taggable_type: Article
+  tag_id: <%= Fixtures.identify tag %>
+  context: tags
 <% end; end %>
