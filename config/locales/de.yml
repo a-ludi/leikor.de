@@ -349,6 +349,7 @@ de:
   views:
     sections:
       articles_controller: Sortiment
+      article_features_controller: Artikelmerkmale
       blog_controller: Aktuelles
       categories_controller: Sortiment
       fair_dates_controller: Messetermine

@@ -11,8 +11,9 @@ class Material < ActiveRecord::Base
   has_attached_file(
     :picture,
     :storage => :database,
-    :url => '/material/:id/bild/download/:style.:extension',
-    :styles => { :original => ['600x600#', :gif] }
+    :url => '/artikelmerkmale/materialien/:id/bild/:style.:extension',
+    :default_url => '/images/picture/:style/material-missing.png',
+    :styles => { :original => ['32x32#', :gif] }
   )
   
   def to_param
