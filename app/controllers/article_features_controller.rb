@@ -1,20 +1,9 @@
 class ArticleFeaturesController < ApplicationController
   def index
+    @colors = Color.all
+    @materials = Material.all
+    
+    @title = 'Artikelmerkmale'
+    @stylesheets = %w(article_features)
   end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
 end

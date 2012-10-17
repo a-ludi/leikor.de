@@ -1,0 +1,24 @@
+#body .article_features ul {
+  list-style: none;
+  margin: 0em 1em 0.54em;
+  padding: 0em;
+}
+
+#body .article_features li {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+}
+
+#body .article_features .feature a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  <%=border_radius '16px' %>
+  border: 1px solid <%=p :black %>;
+}
+
+#body .article_features .material a {
+  background-color: <%=p :white %>;
+}
+

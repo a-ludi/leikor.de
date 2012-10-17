@@ -1,0 +1,14 @@
+.article_features
+  %h2
+    Farben
+  %ul.colors
+    = render :partial => 'color', :collection => @colors
+    %li
+      =toolbutton_to :new, new_color_path, :title => 'Neue Farbe erstellen'
+  %h2
+    Materialien
+  %ul.materials
+    = render :partial => 'material', :collection => @materials
+    %li
+      =toolbutton_to :new, new_material_path, :title => 'Neues Material erstellen'
+
