@@ -27,7 +27,9 @@ options = {
   :path            => nil,
   :SSLEnable       => true,
   :SSLVerifyClient => OpenSSL::SSL::VERIFY_NONE,
-  :SSLCertName     => [ [ "CN", WEBrick::Utils::getservername ] ]
+  :SSLPrivateKey   => OpenSSL::PKey::RSA.new(File.open("config/cert/ss/leikor.cert.key").read),
+  :SSLCertificate  => OpenSSL::X509::Certificate.new(File.open("config/cert/ss/leikor.cert.crt").read),
+  :SSLCertName     => [["CN", WEBrick::Utils::getservername]],
 }
 
 ARGV.clone.options do |opts|

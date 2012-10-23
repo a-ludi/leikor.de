@@ -1,0 +1,45 @@
+%div{:id => article.html_id, :class => "article"}
+  %h2
+    %span= article.name
+    - if logged_in? Employee
+      = toolbutton_to_remote(:left_header_image, :size => :small,
+        :url => header_images_path(:id => 'links', :article_number => article.article_number),
+        :method => :put, :html => {:href => header_images_path(:id => 'links',
+        :article_number => article.article_number),
+        :title => "Bild links neben dem LEIKOR-Logo anzeigen"})
+      = toolbutton_to_remote(:right_header_image, :size => :small,
+        :url => header_images_path(:id => 'rechts', :article_number => article.article_number),
+        :method => :put, :html => {:href => header_images_path(:id => 'rechts',
+        :article_number => article.article_number),
+        :title => "Bild rechts neben dem LEIKOR-Logo anzeigen"})
+      = toolbutton_to(:link,
+        subcategory_path(article.subcategory.url_hash(:anchor => article.html_id)),
+        :size => :small, :title => article.name,
+        :onclick => 'copyToClipboard(this.href); return false;')
+      = toolbutton_to_remote(:edit, :size => :small, :url => edit_article_path(article),
+        :method => :get, :html => {:title => "„#{article.name}“ bearbeiten."})
+      = toolbutton_to(:destroy, ask_destroy_article_url(article.url_hash), :method => :get,
+        :size => :small, :title => "„#{article.name}“ löschen!")
+  .body
+    .image= link_to_remote(image_tag(article.picture.url(:medium), :alt => article.name),
+            :url => article_picture_path(article.id), :method => :get,
+            :html => {:href => article_picture_path(article.id), :target => '_blank',
+            :title => 'Klicken zum Vergrößern des Bildes.'})
+    - if logged_in? Employee
+      .administration
+        - if flash[:saved_article_id] === article.id
+          %span.message
+            Änderungen gespeichert.
+    .description= article.description
+    - if article.height? or article.width? or article.depth?
+      .dimensions
+        %span.label= dimensions_label article
+        %span.value= dimensions article
+    - if logged_in?
+      .price= "#{article.format :price}&nbsp;€"
+    .article_number
+      %span.label
+        Artikelnummer:
+      %span.value= article.article_number
+    =clear_float
+
