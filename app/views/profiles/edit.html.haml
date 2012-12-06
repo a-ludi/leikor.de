@@ -1,5 +1,5 @@
 #message_window.edit.form
-  - form_for :profile, @profile, :url => show_path, :html => {:method => submit_method} do |f|
+  - form_for :profile, @profile, :url => show_path, :html => {:method => submit_method, :onsubmit => "$('profile_login').enable();"} do |f|
     = f.hidden_field :type
     .administration
       = a_button_to 'Abbrechen', show_path
