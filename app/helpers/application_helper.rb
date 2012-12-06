@@ -39,6 +39,13 @@ module ApplicationHelper
     collection.join
   end
   
+  # Returns an (hopefully) unique tabindex for the given object. It is intended
+  # to avoid conflicts in asynchroniously created forms.
+  def tabindex_for(index, object)
+    offset = (24298*object.object_id + 99991) % 2**14
+    offset.round + index
+  end
+  
   def brick(name, object=nil)
     render :partial => "bricks/#{name.to_s}", :object => object
   end

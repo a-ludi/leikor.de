@@ -1,0 +1,44 @@
+.article.edit{:id => article.html_id}
+  - action = article.new_record? ? 'create' : 'update'
+  - remote_form_for article, :url => {:action => action,
+      :html_id => article.html_id} do |f|
+    = f.hidden_field :subcategory_id
+    %h2= f.text_field :name, :size => 40, :tabindex => tabindex_for(1, article)
+    .body
+      .administration
+        = button_to_remote 'Abbrechen', {:url => cancel_path(article),
+            :method => :get}, :tabindex => tabindex_for(11, article)
+        = submit_tag 'Speichern!', :tabindex => tabindex_for(10, article)
+      = make_if_error_messages_for article
+      = help_button :Markdown
+      = f.text_area :description, :cols => 40, :rows => 6,
+          :class => 'description', :tabindex => tabindex_for(2, article)
+      .image
+        - unless article.new_record?
+          = link_to image_tag(article.picture.url(:thumb)),
+              edit_article_picture_path(article.id),
+              :onclick => edit_image_on_click_handler,
+              :title => 'Klicken um das Bild zu bearbeiten.',
+              :tabindex => tabindex_for(9, article)
+        - else
+          = image_tag(article.picture.url(:thumb))
+      .dimensions
+        %span.label= dimensions_label
+        %span.value
+          = f.text_field :height, :size => 3, :tabindex => tabindex_for(3,
+              article)
+          = f.text_field :width, :size => 3, :tabindex => tabindex_for(4,
+              article)
+          = f.text_field :depth, :size => 3, :tabindex => tabindex_for(5,
+              article)
+          = f.select :unit, Article::UNITS, {:include_blank => true},
+              :tabindex => tabindex_for(6, article)
+      .price
+        = f.text_field :price, :value => article.format(:price), :size => 7,
+            :tabindex => tabindex_for(7, article)
+        €
+      .article_number
+        = f.label :article_number, 'Artikelnummer:', :class => 'label'
+        = f.text_field :article_number, :size => 8, :maxlength => 8,
+            :class => 'value', :tabindex => tabindex_for(8, article)
+  = set_focus_to 'article_name'

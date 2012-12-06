@@ -36,7 +36,7 @@
         %span.label= dimensions_label article
         %span.value= dimensions article
     - if logged_in?
-      .price= "#{article.format :price}&nbsp;€"
+      .price #{article.format :price}&nbsp;€
     .article_number
       %span.label
         Artikelnummer:
