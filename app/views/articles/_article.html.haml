@@ -36,7 +36,8 @@
         %span.label= dimensions_label article
         %span.value= dimensions article
     - if logged_in?
-      .price #{article.format :price}&nbsp;€
+      %div{:style => 'text-align: right;'}
+        .prices= render :partial => 'price', :collection => article.prices
     .article_number
       %span.label
         Artikelnummer:

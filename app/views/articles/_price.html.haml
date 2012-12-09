@@ -1,0 +1,6 @@
+.price{:class => ("first" if price_counter == 0)}
+  .minimum_count
+    - if price.minimum_count > 0
+      ab #{price.minimum_count} Stück
+  .amount= number_to_currency price.amount, :locale => :de
+

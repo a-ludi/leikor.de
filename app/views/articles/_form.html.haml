@@ -27,16 +27,18 @@
         %span.value
           = f.text_field :height, :size => 3, :tabindex => tabindex_for(3,
               article)
+          &times;
           = f.text_field :width, :size => 3, :tabindex => tabindex_for(4,
               article)
+          &times;
           = f.text_field :depth, :size => 3, :tabindex => tabindex_for(5,
               article)
           = f.select :unit, Article::UNITS, {:include_blank => true},
               :tabindex => tabindex_for(6, article)
-      .price
-        = f.text_field :price, :value => article.format(:price), :size => 7,
-            :tabindex => tabindex_for(7, article)
-        €
+      .prices
+      %div{:style => 'text-align: right;'}
+        .prices
+          = render :partial => 'price_form', :collection => article.prices, :as => :price
       .article_number
         = f.label :article_number, 'Artikelnummer:', :class => 'label'
         = f.text_field :article_number, :size => 8, :maxlength => 8,

@@ -43,21 +43,40 @@
 
 #content .article .administration { margin-top: 0em; }
 #content .article .body .description {
-  margin-bottom: 2.15em;
+  margin-bottom: 0.36em;
 }
 
 #content .article .body .dimensions {
   text-align: left;
-  margin-top: 0.36em;
+  margin-bottom: 2.15em;
 }
 
 #content .article .body .dimensions .label {
   font-weight: bold;
 }
 
-#content .article .body .price {
+#content .article .body .prices {
   text-align: right;
-  font-size: 200%;
+  display: inline-table;
+}
+
+#content .article .body .prices .price {
+  display: table-row;
+}
+
+#content .article .body .prices .minimum_count,
+#content .article .body .prices .amount {
+  display: table-cell;
+}
+
+#content .article .body .prices .price.first {
+  font-size: 150%;
+}
+
+#content .article .body .prices .minimum_count {
+  font-size: 75%;
+  padding-right: 5pt;
+  font-variant: small-caps;
 }
 
 #content .article .body .article_number {
