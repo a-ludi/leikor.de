@@ -1,5 +1,5 @@
 class Price < ActiveRecord::Base
-  default_scope :order => 'amount DESC'
+  default_scope :order => 'amount ASC'
   
   belongs_to :article
   
