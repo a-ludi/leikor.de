@@ -19,6 +19,36 @@ module ArticlesHelper
     labels.join_present('&times;') + ':'
   end
   
+  # Formats a +number+ into a currency string without the actual unit (e.g., 13.65). You can customize the format
+  # in the +options+ hash.
+  #
+  # ==== Options
+  # * <tt>:precision</tt>  -  Sets the level of precision (defaults to 2).
+  # * <tt>:separator</tt>  - Sets the separator between the units (defaults to ".").
+  # * <tt>:delimiter</tt>  - Sets the thousands delimiter (defaults to ",").
+  def number_to_currency_value(number, options={})
+    options.symbolize_keys!
+ 
+    defaults  = I18n.translate(:'number.format', :locale => options[:locale], :raise => true) rescue {}
+    currency  = I18n.translate(:'number.currency.format', :locale => options[:locale], :raise => true) rescue {}
+    defaults  = defaults.merge(currency)
+
+    precision = options[:precision] || defaults[:precision]
+    separator = options[:separator] || defaults[:separator]
+    delimiter = options[:delimiter] || defaults[:delimiter]
+    separator = '' if precision == 0
+
+    begin
+      number_with_precision(
+          number,
+          :precision => precision,
+          :delimiter => delimiter,
+          :separator => separator)
+    rescue
+      number
+    end
+  end
+  
   def cancel_path article
     unless article.new_record?
       edit_article_path(article, :cancel => true)
