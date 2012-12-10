@@ -36,7 +36,9 @@ class ApplicationController < ActionController::Base
 protected
   alias orig_ssl_required? ssl_required?
   def ssl_required?
-    logged_in? or orig_ssl_required?
+    !Rails.env.development? and
+    logged_in? or
+    orig_ssl_required?
   end
   
   def save_updated_at
