@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   belongs_to :subcategory
   acts_as_taggable_on :tags
   has_many :prices, :dependent => :destroy, :autosave => true
+  accepts_nested_attributes_for :prices, :allow_destroy => true
   has_and_belongs_to_many :colors, :before_add => ignore_if_already_in_collection(:colors),
       :after_remove => :removed_unused_color
   has_and_belongs_to_many :materials, :before_add => ignore_if_already_in_collection(:materials)

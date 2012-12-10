@@ -60,4 +60,25 @@ module ArticlesHelper
   def edit_image_on_click_handler
     "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && #{open_popup}"
   end
+  
+  def insert_new_price(price_form)
+    new_content = render :partial => 'price_form', :object => price_form
+    
+    return "$(this).insert({before: '#{escape_javascript new_content}'}); return false;"
+  end
+  
+  def make_prices_with_new(article)
+    new_count = [4 - article.prices.count, 1].max
+    
+    article.prices + new_count.times.collect {article.prices.new}
+  end
+  
+  def activate_or_deactivate_price_form
+    "$(this).up('.price').select('input[type=text]').each(function(input) {
+       if(this.checked)
+         input.enable();
+       else
+         input.disable();
+     }, $(this))".gsub(/\s+/, " ")
+  end
 end

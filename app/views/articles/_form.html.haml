@@ -38,7 +38,8 @@
       .prices
       %div{:style => 'text-align: right;'}
         .prices
-          = render :partial => 'price_form', :collection => article.prices, :as => :price
+          - f.fields_for :prices, make_prices_with_new(article) do |price_form|
+            = render :partial => 'price_form', :object => price_form
       .article_number
         = f.label :article_number, 'Artikelnummer:', :class => 'label'
         = f.text_field :article_number, :size => 8, :maxlength => 8,

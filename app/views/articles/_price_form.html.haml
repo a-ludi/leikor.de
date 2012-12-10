@@ -1,9 +1,15 @@
-- fields_for "article[prices][]", price do |p|
-  .price
-    .minimum_count
-      ab #{p.text_field :minimum_count, :size => 4} Stück
-    .amount
-      = p.text_field(:amount,
-        :value => number_to_currency_value(price.amount, :locale => :de),
-        :size => 4)
-      &euro;
+.price
+  .minimum_count
+    ab #{price_form.text_field :minimum_count, :size => 4, :disabled => price_form.object.new_record?} Stück
+  .amount
+    = price_form.text_field(:amount,                                 |
+        :value => number_to_currency_value(price_form.object.amount, |
+                                           :locale => :de),          |
+        :size => 4,                                                  |
+        :disabled => price_form.object.new_record?)                  |
+    &euro;
+  .active
+    = price_form.check_box(:_destroy,                     |
+        {:checked => !price_form.object.new_record?,      |
+         :onchange => activate_or_deactivate_price_form}, |
+        "false", "true")                                  |

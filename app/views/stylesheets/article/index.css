@@ -65,7 +65,8 @@
 }
 
 #content .article .body .prices .minimum_count,
-#content .article .body .prices .amount {
+#content .article .body .prices .amount,
+#content .article .body .prices .active {
   display: table-cell;
 }
 
