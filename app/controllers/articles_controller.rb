@@ -59,6 +59,7 @@ class ArticlesController < ApplicationController
     flash[:html_id] = params[:html_id]
     
     if @article.update_attributes params[:article]
+      @article.reload
       @partial = 'article'
       flash[:saved_article_id] = @article.id
     else
@@ -109,8 +110,10 @@ protected
   def convert_prices_amount_to_numbers
     prices = (params[:article][:prices_attributes] || {})
     prices.map do |key, price|
-      params[:article][:prices_attributes][key][:amount] =
-          BigDecimal.from_s(price[:amount], :locale => :de)
+      unless price[:amount].nil?
+        params[:article][:prices_attributes][key][:amount] =
+            BigDecimal.from_s(price[:amount], :locale => :de)
+      end
     end
   end
 end
