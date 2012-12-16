@@ -12,10 +12,10 @@ class Color < ActiveRecord::Base
   validates_format_of :hex, :with => HEX_FORMAT
   
   def to_param
-    self.label
+    "#{id}-#{label.url_safe}"
   end
   
-  def self.from_param(label)
-    self.find_by_label label
+  def self.from_param(param)
+    Color.find(param.to_i)
   end
 end

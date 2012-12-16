@@ -8,9 +8,12 @@
       .field
         = f.label :hex
         = f.text_field :hex, :size => 30, :tabindex => 2
-        #hex_preview
-          &nbsp;
+        %input#hex_preview{:type => 'text', :size => 30, :disabled => true}
         :javascript
           new colorPicker('color_hex', {bare: true, previewElement: 'hex_preview', color: '#{@color.hex.sub '#', ''}'});
-    .response.form= submit_tag 'Speichern!', :tabindex => 3
+    .response.form
+      = submit_tag 'Speichern!', :tabindex => 3
+  - unless @color.new_record?
+    = button_to('Farbe löschen?', color_path(@color), :method => :delete,
+      :confirm => 'Soll die Farbe wirklich gelöscht werden?')
 

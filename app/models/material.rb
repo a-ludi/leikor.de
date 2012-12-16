@@ -17,10 +17,10 @@ class Material < ActiveRecord::Base
   )
   
   def to_param
-    self.name
+    "#{id}-#{name.url_safe}"
   end
   
-  def self.from_param(name)
-    self.find_by_name name
+  def self.from_param(param)
+    Material.find(param.to_i)
   end
 end
