@@ -14,7 +14,7 @@
   display: block;
   width: 32px;
   height: 32px;
-  <%=border_radius '16px' %>
+  <%=border_radius '7px' %>
   border: 1px solid <%=p :black %>;
 }
 

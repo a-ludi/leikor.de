@@ -51,9 +51,33 @@
   margin-bottom: 2.15em;
 }
 
-#content .article .body .dimensions .label {
+#content .article .body .label {
   font-weight: bold;
 }
+
+/******************************************************************************/
+
+#content .article .body .features ul {
+  list-style: none;
+  margin: 0em 1em 0.54em;
+  padding: 0em;
+}
+
+#content .article .body .features li.feature {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  <%=border_radius '7px' %>
+  border: 1px solid <%=p :black %>;
+  cursor: help;
+  background-color: <%=p :white %>;
+}
+
+#content .article .body .features .feature .alt {
+  display: none;
+}
+
+/******************************************************************************/
 
 #content .article .body .prices {
   text-align: right;

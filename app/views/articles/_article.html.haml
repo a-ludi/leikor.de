@@ -31,6 +31,18 @@
           %span.message
             Änderungen gespeichert.
     .description= article.description
+    - unless article.colors.empty?
+      .colors.features
+        %span.label
+          Farben:
+        %ul.value
+          = render :partial => 'color', :collection => article.colors
+    - unless article.materials.empty?
+      .materials.features
+        %span.label
+          Materialien:
+        %ul.value
+          = render :partial => 'material', :collection => article.materials
     - if article.height? or article.width? or article.depth?
       .dimensions
         %span.label= dimensions_label article
