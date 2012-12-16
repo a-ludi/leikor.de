@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
   before_filter :fetch_current_user, :fetch_updated_at, :prepare_flash_message
   unless Rails.env.production?
     after_filter :log_if_title_not_set, :except => [:stylesheet, :pictures]
-  end
-  
-  include SslRequirement
+  end  
   
   if Rails.env.test?
     def test_method
@@ -34,11 +32,16 @@ class ApplicationController < ActionController::Base
   end
   
 protected
-  alias orig_ssl_required? ssl_required?
-  def ssl_required?
-    !Rails.env.development? and
-    logged_in? or
-    orig_ssl_required?
+
+  unless Rails.env.development?
+    include SslRequirement
+
+    alias orig_ssl_required? ssl_required?
+    def ssl_required?
+      logged_in? or orig_ssl_required?
+    end
+  else
+    include MockSslRequirement
   end
   
   def save_updated_at
