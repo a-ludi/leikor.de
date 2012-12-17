@@ -22,6 +22,33 @@
               :tabindex => tabindex_for(9, article)
         - else
           = image_tag(article.picture.url(:thumb))
+      .colors.features
+        %span.label
+          Farben:
+        %ul.value.chosen{:id => dom_id(article, :chosen_colors)}
+          = render(:partial => 'color', :collection => article.colors,
+            :locals => {:article => article})
+        %hr
+        %ul.value.available{:id => dom_id(article, :available_colors)}
+          = render(:partial => 'color', :collection => (Color.all - article.colors),
+            :locals => {:article => article})
+      .materials.features
+        %span.label
+          Materialien:
+        %ul.value.chosen{:id => dom_id(article, :chosen_materials)}
+          = render(:partial => 'material', :collection => article.materials,
+            :locals => {:article => article})
+        %hr
+        %ul.value.available{:id => dom_id(article, :available_materials)}
+          = render(:partial => 'material', :collection => (Material.all - article.materials),
+            :locals => {:article => article})
+        - [[dom_id(article, :chosen_colors), dom_id(article, :available_colors)],
+          [dom_id(article, :chosen_materials), dom_id(article, :available_materials)]].each do |chosen, available|
+          - options = {:constraint => false, :dropOnEmpty => true,
+            :overlap => :horizontal, :onChange => "function() {}", :onUpdate => "function() {}"}
+          = sortable_element(chosen, options.merge(:containment => available))
+          = sortable_element(available, options.merge(:containment => chosen))
+          -# for event handling see index.html.erb
       .dimensions
         %span.label= dimensions_label
         %span.value

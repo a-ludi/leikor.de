@@ -1,2 +1,3 @@
-%li.feature.material{:title => material.name, :style => "background-image: url(#{material.picture});"}
+%li.feature.material{:id => dom_id(material, dom_id(article)), :title => material.name,
+    :style => "background-image: url(#{material.picture});"}
   %div.alt= material.name

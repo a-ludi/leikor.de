@@ -27,4 +27,26 @@
 <% else %>
   <h1 class="empty">Keine Artikel in dieser Kategorie.</h1>
 <% end %>
-
+<% javascript_tag do %>
+  Draggables.addObserver({
+    onStart: function(eventName, draggable, event) {
+      this.element = draggable.element;
+      this.otherContainer().addClassName("drop_target");
+    },
+    
+    onEnd: function(eventName, draggable, event) {
+      this.element = draggable.element;
+      this.currentContainer().removeClassName("drop_target");
+      this.otherContainer().removeClassName("drop_target");
+    },
+    
+    currentContainer: function() {
+      return this.element.up("ul.value");
+    },
+    
+    otherContainer: function() {
+      return this.currentContainer().next(".chosen, .available") ||
+             this.currentContainer().previous(".chosen, .available");
+    }
+  });
+<% end %>
