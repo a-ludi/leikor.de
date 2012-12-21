@@ -134,7 +134,14 @@ protected
   
   def mail_blog_post
     if params[:mail?] == 'yes'
-      @blog_post.readers.each { |user| Notifier.deliver_blog_post user, @blog_post }
+      @blog_post.readers.each do |user|
+        begin
+          Notifier.deliver_blog_post user, @blog_post
+        rescue StandardError => deliver_error 
+          @error_data = {:user => user, :blog_post => @blog_post}
+          notify_about_exception(deliver_error)
+        end
+      end
       @blog_post.is_mailed = true
       @blog_post.save!
       
@@ -151,5 +158,10 @@ protected
       
       redirect_to path
     end
+  end
+
+  exception_data :error_data
+  def error_data
+    @error_data
   end
 end
