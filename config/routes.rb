@@ -99,23 +99,6 @@ ActionController::Routing::Routes.draw do |map|
       :type => 'Employee',
       :conditions => {:method => :get})
   
-  map.resources :article_features, :as => 'artikelmerkmale', :only => [:index]
-  map.resources(
-      :colors,
-      :as => 'farben',
-      :except => [:index, :show],
-      :path_prefix => 'artikelmerkmale')
-  map.resources(
-      :materials,
-      :as => 'materialien',
-      :except => [:index, :show],
-      :path_prefix => 'artikelmerkmale')
-  map.material_picture(
-      'artikelmerkmale/materialien/:id/bild/:style.:extension',
-      :controller => 'materials',
-      :action => 'pictures',
-      :conditions => {:method => :get})
-  
   map.new_reset_password_request(
       'passwort-zuruecksetzen',
       :controller => 'secure_user_requests',

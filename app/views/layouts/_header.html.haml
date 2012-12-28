@@ -35,8 +35,7 @@
                   link_to(t('views.sections.blog_controller'), :blog_posts),
                   link_to(t('views.sections.fair_dates_controller'), fair_dates_path),
                   static_link_to(:'ueber-uns'),
-                  (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee),
-                  (link_to(t('views.sections.article_features_controller'), article_features_path) if logged_in? Employee))
+                  (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee))
     = clear_float
     :javascript
       $$('#top_navigation .control')[0].show();
