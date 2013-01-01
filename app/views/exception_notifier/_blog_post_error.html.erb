@@ -1,0 +1,5 @@
+<% unless @user.nil? or @blog_post.nil? %>
+Mailer error; details:
+      user: <%= @user.email_address_with_name %>
+      blog_post: <%= @blog_post.public_id %>
+<% end %>

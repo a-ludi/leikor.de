@@ -60,3 +60,4 @@ end
 Haml::Template.options[:format] = :html4
 ExceptionNotification::Notifier.sender_address = '"Fehlerbericht" <fehler@leikor.de>'
 ExceptionNotification::Notifier.exception_recipients = %w(webmaster@leikor.de)
+ExceptionNotification::Notifier.sections << "blog_post_error"
