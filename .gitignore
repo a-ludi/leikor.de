@@ -3,3 +3,4 @@ meta*
 *.sh
 *.log
 .project
+.idea
