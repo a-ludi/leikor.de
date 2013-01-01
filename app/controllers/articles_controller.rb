@@ -39,7 +39,8 @@ class ArticlesController < ApplicationController
   def create
     params[:article][:subcategory] = Subcategory.find params[:article][:subcategory_id]
     params[:article][:ord] = params[:article][:subcategory].next_article_ord
-    @article = Article.create params[:article]
+    
+    @article = Article.new params[:article]
     if @article.save
       @partial = 'article'
       flash[:html_id] = params[:html_id]
@@ -57,7 +58,6 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find params[:id]
     flash[:html_id] = params[:html_id]
-    
     if @article.update_attributes params[:article]
       @article.reload
       @partial = 'article'

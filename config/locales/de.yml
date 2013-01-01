@@ -260,10 +260,10 @@ de:
         too_many: "sind zu viele (nicht mehr als %{count} Stück)"
         <<: *errors_messages
       models:
-        price:
+        article:
           attributes:
-            base:
-              rising_minimum_count_means_falling_amount: "Bei steigender Anzahl soll der Betrag fallen."
+            prices:
+              rising_minimum_count_means_falling_amount: "bei steigender Menge muss der Preis fallen."
       template:
         <<: *errors_template
 

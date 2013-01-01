@@ -1,15 +1,18 @@
-.price
+%div{:class => ["price", ("fieldWithErrors" if price_form.object.errors.on_base)].join_present}
+  = price_form.hidden_field :article_id
+  - if price_form.object.id.present?
+    = price_form.hidden_field :id
   .minimum_count
-    ab #{price_form.text_field :minimum_count, :size => 4, :disabled => price_form.object.new_record?} Stück
+    ab #{price_form.text_field :minimum_count, :size => 4, :disabled => price_form.object.inactive?} Stück
   .amount
-    = price_form.text_field(:amount,                                 |
-        :value => number_to_currency_value(price_form.object.amount, |
-                                           :locale => :de),          |
-        :size => 4,                                                  |
-        :disabled => price_form.object.new_record?)                  |
+    = price_form.text_field(:amount,                                           |
+        :value => number_to_currency_value(price_form.object.amount,           |
+                                           :locale => :de),                    |
+        :size => 4,                                                            |
+        :disabled => price_form.object.inactive?)                              |
     &euro;
   .active
-    = price_form.check_box(:_destroy,                     |
-        {:checked => !price_form.object.new_record?,      |
-         :onchange => activate_or_deactivate_price_form}, |
-        "false", "true")                                  |
+    = price_form.check_box(:_destroy,                                          |
+        {:checked => price_form.object.active?,                                |
+         :onchange => activate_or_deactivate_price_form},                      |
+        "false", "true")                                                       |
