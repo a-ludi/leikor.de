@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001115101) do
+ActiveRecord::Schema.define(:version => 20130102173433) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20121001115101) do
     t.string   "article_number"
     t.string   "name"
     t.text     "description"
-    t.float    "price"
     t.integer  "subcategory_id"
     t.datetime "created_at"
     t.datetime "updated_at"

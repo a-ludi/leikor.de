@@ -37,7 +37,6 @@ class ArticlesControllerTest < ActionController::TestCase
     get_new
     
     assert_kind_of Article, assigns(:article)
-    assert_no_errors_on assigns(:article)
   end
   
   test "new action with cancel" do
@@ -94,7 +93,6 @@ class ArticlesControllerTest < ActionController::TestCase
     
     assert_equal @article, assigns(:article)
     assert_equal @html_id, flash[:html_id]
-    assert_kind_of Float, @controller.params[:article][:price]
     assert_equal @new_name, assigns(:article).name
     assert_equal 'article', assigns(:partial)
     assert_equal @article.id, flash[:saved_article_id]
@@ -151,13 +149,8 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_items_unique article_numbers
   end
   
-  test "get_price_from_param" do
-    ['11.11', '11,11'].each do |price|
-      assert_equal 11.11, @controller.send(:get_price_from_param, price), "price is <#{price.inspect}>"
-    end
-  end
-  
 private
+
   def get_index
     @subcategory = categories(:sub1)
     @category = @subcategory.category
@@ -184,7 +177,7 @@ private
     @article = {
       :name => 'Testy',
       :description => 'Testy is used for testing purposes.',
-      :price => '11,11',
+      :prices_attributes => {:"1" => {:amount => '11,11', :minimum_count => '1'}},
       :article_number => '12345.6',
       :subcategory_id => @subcategory.id}
     @article[:name] = '' if options[:with] == :errors
@@ -206,7 +199,10 @@ private
     @article = articles(:one)
     @new_name = 'New Name'
     @html_id = @article.html_id
-    params = {:id => @article.to_param, :article => {:name => @new_name, :price => '11,11'}, :html_id => @html_id}
+    params = {
+        :id => @article.to_param,
+        :article => {:name => @new_name},
+        :html_id => @html_id}
     params[:article][:name] = '' if options[:with] == :errors
     
     https!

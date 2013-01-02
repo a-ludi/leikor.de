@@ -109,7 +109,7 @@ protected
   
   def convert_prices_amount_to_numbers
     prices = (params[:article][:prices_attributes] || {})
-    prices.map do |key, price|
+    prices.each do |key, price|
       unless price[:amount].nil?
         params[:article][:prices_attributes][key][:amount] =
             BigDecimal.from_s(price[:amount], :locale => :de)
