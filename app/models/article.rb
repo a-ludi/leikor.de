@@ -36,7 +36,7 @@ class Article < ActiveRecord::Base
   validate :rising_minimum_count_means_falling_amount
   validates_presence_of :name, :article_number, :subcategory
   validates_numericality_of :ord, :greater_than_or_equal_to => 0, :only_integer => true
-  validates_numericality_of :width, :height, :depth, :greater_than => 0.0, :allow_nil => true
+  validates_numericality_of :width, :height, :depth, :greater_than => 0.0, :allow_blank => true
   validates_presence_of :unit, :if => :width_height_or_depth_present?
   validates_inclusion_of :unit, :in => Article::UNITS, :allow_blank => true
   validates_uniqueness_of :article_number
