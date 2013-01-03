@@ -283,6 +283,8 @@ de:
       notifier: Benachrichtiger
       blog_post: Beitrag
       price: Preis
+      color: Farbe
+      material: Material
       
     attributes:
       article:
@@ -330,6 +332,12 @@ de:
       price:
         amount: Betrag
         minimum_count: Mindestanzahl
+      color:
+        label: Beschriftung
+        hex: Hex-Code
+      material:
+        name: Name
+        picture: Bild
   flash_message:
     title:
       error: Fehler
