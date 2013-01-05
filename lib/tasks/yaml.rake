@@ -38,6 +38,8 @@ class YamlLoader
         update_attributes if @record_data.include? 'update_attributes'
       rescue FieldMissingError, ActiveRecord::ActiveRecordError => error
         add_error "#{error.class.to_s}: #{error.to_s}"
+      rescue => error
+        add_error "#{error.class.to_s}: #{error.to_s}\n  #{error.bracktrace.join('\n  ')}"
       ensure
         register_record
       end
@@ -113,7 +115,7 @@ class YamlReporter
   def write
     begin
       open(@file_name, 'w') {|f| f.write @data.to_yaml }
-    rescue StandardError => error
+    rescue => error
       $stderr.puts "#{error.class.to_s}: #{error.to_s}"
       $stderr.puts "Writing contents to standard errror:"
       $stderr.puts "# BEGIN file contents"
