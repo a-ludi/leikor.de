@@ -39,7 +39,7 @@ class YamlLoader
       rescue FieldMissingError, ActiveRecord::ActiveRecordError => error
         add_error "#{error.class.to_s}: #{error.to_s}"
       rescue => error
-        add_error "#{error.class.to_s}: #{error.to_s}\n  #{error.bracktrace.join('\n  ')}"
+        add_error "#{error.class.to_s}: #{error.to_s}\n  #{error.backtrace.join('\n  ')}"
       ensure
         register_record
       end
