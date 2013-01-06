@@ -138,7 +138,7 @@ private
     flash[:referer] = request.path  if flash[:referer].blank?
     flash[:message].error message
     respond_to do |format|
-      format.html { redirect_to new_session_path }
+      format.html { flash.keep; redirect_to new_session_path }
       format.js { render :partial => 'layouts/push_message' }
     end
     
