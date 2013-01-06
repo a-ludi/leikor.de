@@ -345,6 +345,8 @@ de:
       default: Hinweis
     messages:
       blog_controller:
+        show:
+          missing: Der angeforderte Beitrag ist nicht verfügbar.
         destroy:
           success: Der Beitrag „%{title}“ wurde gelöscht.
         mail:

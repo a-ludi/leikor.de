@@ -13,10 +13,18 @@ class BlogController < ApplicationController
   end
   
   def show
-    @blog_post = blog_posts(params[:id])
-    @title = "#{@blog_post.title} (#{section_name})"
-    @stylesheets = %w(blog Markdown)
-    @dont_link_title = true
+    begin
+      @blog_post = blog_posts(params[:id])
+      @title = "#{@blog_post.title} (#{section_name})"
+      @stylesheets = %w(blog Markdown)
+      @dont_link_title = true
+    rescue ActiveRecord::RecordNotFound
+      user_required or return
+      
+      flash[:message].error flash_message_text('missing')
+      flash.keep
+      redirect_to blog_posts_path
+    end
   end
 
   def new
