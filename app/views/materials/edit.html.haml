@@ -1,0 +1,15 @@
+#message_window
+  - form_for @material, :html => {:multipart => true} do |f|
+    .message.form
+      = make_if_error_messages_for @material
+      .field
+        = f.label :name
+        = f.text_field :name, :size => 30, :tabindex => 1
+      .field
+        = f.label :picture
+        = f.file_field :picture, :tabindex => 2
+    .response.form= submit_tag 'Speichern!', :tabindex => 3
+  - unless @material.new_record?
+    = button_to('Material löschen?', color_path(@material), :method => :delete,
+      :confirm => 'Soll das Material wirklich gelöscht werden?')
+
