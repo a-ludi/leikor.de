@@ -53,11 +53,6 @@ class BlogControllerTest < ActionController::TestCase
     assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
     assert assigns(:dont_link_title), '@dont_link_title is not true'
-    
-    assert_raises ActiveRecord::RecordNotFound do
-      @unavailable_blog_post = blog_posts(:mailed_post)
-      get :show, {:id => @unavailable_blog_post.to_param}
-    end
   end
   
   test "show action with user" do
@@ -69,6 +64,20 @@ class BlogControllerTest < ActionController::TestCase
     assert_present assigns(:title)
     assert_respond_to assigns(:stylesheets), :each
     assert assigns(:dont_link_title), '@dont_link_title is not true'
+  end
+  
+  test "show action without user and unavailable blog post" do
+    get :show, {:id => "the-unavailable-blog-post"}
+    
+    assert_redirected_to new_session_path
+  end
+  
+  test "show action with user and unavailable blog post" do
+    https!
+    get :show, {:id => "the-unavailable-blog-post"}, with_user
+    
+    assert_redirected_to blog_posts_path
+    assert_present flash[:message]
   end
   
   test "new action" do

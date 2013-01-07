@@ -139,13 +139,13 @@ module ApplicationHelper
   
   public
   
-  def make_if_error_messages_for(record)
-    error_messages_for(
-      :id => nil,
-      :object => record,
-      :header_message => nil,
-      :class => 'error message'
-    ) unless record.errors.empty?
+  def make_if_error_messages_for(record, options={})
+    options.merge!(
+        :id => nil,
+        :object => record,
+        :header_message => nil,
+        :class => 'error message')
+    error_messages_for options unless record.errors.empty?
   end
   
   def set_focus_to(html_id)

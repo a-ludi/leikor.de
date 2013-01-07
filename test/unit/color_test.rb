@@ -36,9 +36,10 @@ class ColorTest < ActiveSupport::TestCase
     assert_equal @color.articles, @color.articles << articles(:one)
   end
 
-  test "should use label as param" do
-    assert_equal @color.label, @color.to_param
-    assert_equal @color, Color.from_param(@color.label)
+  test "should use 'id-label.url_safe' as param" do
+    @param = "278588964-green"
+    assert_equal @param, @color.to_param
+    assert_equal @color, Color.from_param(@param)
     assert_equal @color, Color.from_param(@color.to_param)
   end
 end

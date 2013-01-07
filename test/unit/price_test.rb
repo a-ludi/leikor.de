@@ -6,9 +6,16 @@ class PriceTest < ActiveSupport::TestCase
     @article = articles(:one)
   end
   
-  test "should be ordered by amount DESC" do
-    assert_equal prices(:one_first, :one_second, :one_third, :two_only, :three_only, :four_only,
-        :five_only), Price.all
+  test "should be ordered by amount ASC" do
+    assert_equal prices(
+      :five_only,
+      :four_only,
+      :three_only,
+      :two_only,
+      :one_third,
+      :one_second,
+      :one_first
+    ), Price.all
   end
   
   test "should have a article" do
@@ -40,33 +47,4 @@ class PriceTest < ActiveSupport::TestCase
     @price.minimum_count = -10
     assert_errors_on @price, :on => :minimum_count
   end
-  
-  test "minimum_count should be unique per article" do
-    @article.prices.clear
-    @prices = 2.times.map {|n| @article.prices.create :amount => 10.0+n, :minimum_count => 10 }
-    
-    assert_errors_on @prices.last, :on => :minimum_count
-    assert_errors_on @article, :on => 'prices.minimum_count'
-  end
-  
-  test "amount should be unique per article" do
-    @article.prices.clear
-    @prices = 2.times.map {|n| @article.prices.create :amount => 10.0, :minimum_count => 10*n }
-    
-    assert_errors_on @prices.last, :on => :amount
-    assert_errors_on @article, :on => 'prices.amount'
-  end
-  
-  test "rising minimum_count should mean falling amount" do
-    @article.prices.clear
-    @prices = 2.times.map {|n| @article.prices.create :amount => 10.0 - n, :minimum_count => n }
-    
-    refute_errors_on @prices.last
-    refute_errors_on @article, :on => :prices
-    
-    @article.prices.clear
-    @prices = 2.times.map {|n| @article.prices.create :amount => 10.0 + 10.0*n, :minimum_count => 10*n }
-    
-    assert_errors_on @prices.last
-  end  
 end

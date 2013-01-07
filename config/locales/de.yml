@@ -260,10 +260,10 @@ de:
         too_many: "sind zu viele (nicht mehr als %{count} Stück)"
         <<: *errors_messages
       models:
-        price:
+        article:
           attributes:
-            base:
-              rising_minimum_count_means_falling_amount: "Bei steigender Anzahl soll der Betrag fallen."
+            prices:
+              rising_minimum_count_means_falling_amount: "bei steigender Menge muss der Preis fallen."
       template:
         <<: *errors_template
 
@@ -283,6 +283,8 @@ de:
       notifier: Benachrichtiger
       blog_post: Beitrag
       price: Preis
+      color: Farbe
+      material: Material
       
     attributes:
       article:
@@ -330,6 +332,12 @@ de:
       price:
         amount: Betrag
         minimum_count: Mindestanzahl
+      color:
+        label: Beschriftung
+        hex: Hex-Code
+      material:
+        name: Name
+        picture: Bild
   flash_message:
     title:
       error: Fehler
@@ -337,6 +345,8 @@ de:
       default: Hinweis
     messages:
       blog_controller:
+        show:
+          missing: Der angeforderte Beitrag ist nicht verfügbar.
         destroy:
           success: Der Beitrag „%{title}“ wurde gelöscht.
         mail:

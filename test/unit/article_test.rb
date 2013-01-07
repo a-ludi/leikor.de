@@ -44,6 +44,10 @@ class ArticleTest < ActiveSupport::TestCase
     assert_equal @tag_list, @article.tag_list
   end
   
+  test "should have many prices" do
+    assert_present @article.prices
+  end
+  
   test "prices should be dependent" do
     @article.destroy
     @article.prices.each do |price|
@@ -51,11 +55,61 @@ class ArticleTest < ActiveSupport::TestCase
     end
   end
   
+  test "should accept nested attributes for prices" do
+    @attributes = Hash.new
+    @article.prices.each_with_index do |price, index|
+      @attributes[index.to_s] = {
+          "id" => price.id,
+          "amount" => BigDecimal.new((1 + index*10).to_s),
+          "minimum_count" => 1000 - index*10}
+    end
+    @article.update_attributes :prices_attributes => @attributes
+    
+    @attributes.each do |key, attrs|
+      price = Price.find attrs["id"]
+      attrs_from_price = {
+          "id" => price.id,
+          "amount" => price.amount,
+          "minimum_count" => price.minimum_count}
+      assert_equal attrs, attrs_from_price
+    end
+  end
+  
+  test "should destroy prices trough nested attributes" do
+    @id = @article.prices.first.id
+    @attributes = {"0" => {"id" => @id, "_destroy" => "1"}}
+    @article.update_attributes :prices_attributes => @attributes
+    
+    assert_nil Price.find_by_id(@id)
+  end
+  
   test "should have at least one price" do
     refute_errors_on @article, :on => :prices
     @article.prices.clear
     assert_errors_on @article, :on => :prices
   end
+  
+  test "rising minimum_count should mean falling amount" do
+    @article.prices.clear
+    @prices = 2.times.map {|n| @article.prices.build :amount => 10.0 - n, :minimum_count => n }
+    
+    refute_errors_on @article, :on => :prices
+    
+    @article.prices.clear
+    @prices = 2.times.map {|n| @article.prices.build :amount => 10.0 + 10.0*n, :minimum_count => 10*n }
+    
+    assert_errors_on @article, :on => :prices
+    
+    @article.prices.clear
+    @prices = 2.times.map {|n| @article.prices.build :amount => 10.0, :minimum_count => 10*n }
+    
+    assert_errors_on @article, :on => :prices
+    
+    @article.prices.clear
+    @prices = 2.times.map {|n| @article.prices.build :amount => 10.0*n, :minimum_count => 10 }
+    
+    assert_errors_on @article, :on => :prices
+  end  
   
   test "should have a name" do
     @article.name = ''

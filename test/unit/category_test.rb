@@ -105,8 +105,15 @@ class CategoryTest < ActiveSupport::TestCase
   test "overview returns at most 4 articles" do
     c = categories(:sub1)
     for i in 1..6
-      c.articles.new :name => 'name', :description => 'desc', :price => 1.0,
+      c.articles.new(
+        :name => 'name',
+        :description => 'desc',
+        :prices_attributes => {1 => {
+          :amount => BigDecimal.new("1"),
+          :minimum_count => 1
+        }},
         :article_number => "12345.#{i}"
+      )
     end
     assert c.overview.length <= 4
   end
