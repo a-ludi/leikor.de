@@ -54,7 +54,7 @@ Rails::Initializer.run do |config|
     :destroy => 'loeschen'
   }
   
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
 end
 
 Haml::Template.options[:format] = :html4
