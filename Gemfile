@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '~> 2.3.14'
+gem 'rails', '~> 2.3.15'
 gem 'paperclip', '~> 2.4.5'
 gem 'pg', '~> 0.14.0'
 gem 'ssl_requirement', '~> 0.1.0'
@@ -17,4 +17,5 @@ group :development do
   gem 'guard-bundler', '~> 1.0.0'
   gem 'spork', '~> 0.8.5'
   gem 'spork-testunit', '~> 0.0.8'
+  gem 'mailtrap', '~> 0.2.1'
 end
