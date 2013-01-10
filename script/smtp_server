@@ -1,0 +1,2 @@
+#!/bin/bash
+bundle exec mailtrap run --host $GMAIL_SMTP_ADDRESS --port $GMAIL_SMTP_PORT --file "$LEIKOR_HOME/log/mail.log" 
