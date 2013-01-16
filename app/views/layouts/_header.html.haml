@@ -38,21 +38,41 @@
                   (link_to(t('views.sections.profiles_controller'), profiles_path) if logged_in? Employee))
     = clear_float
     :javascript
-      $$('#top_navigation .control')[0].show();
-      document.observe('resize', function() {
-        if(document.viewport.getWidth() <= 470){
-          $$('#top_navigation .navigation')[0].hide();
-        } else {
+      showMenu = function(doInstantly) {
+        $('top_navigation').addClassName('close');
+        if(doInstantly)
           $$('#top_navigation .navigation')[0].show();
+        else
+          Effect.BlindDown($$('#top_navigation .navigation')[0]);
+      }
+
+      hideMenu = function(doInstantly) {
+        $('top_navigation').removeClassName('close');
+        if(doInstantly)
+          $$('#top_navigation .navigation')[0].hide();
+        else
+          Effect.BlindUp($$('#top_navigation .navigation')[0]);
+      }
+
+      updateMenu = function() {
+        if(document.viewport.getWidth() <= 470){
+          $$('#top_navigation .control')[0].show();
+          hideMenu(true);
+        } else {
+          $$('#top_navigation .control')[0].hide();
+          showMenu(true);
         }
-      });
+      }
+
+      $$('#top_navigation .control')[0].show();
+      updateMenu();
+      Event.observe(window, 'resize', updateMenu);
       
       $$('#top_navigation .control')[0].on('click', function () {
-        Effect.toggle($$('#top_navigation .navigation')[0], 'blind')
         if($('top_navigation').classNames().include('close'))
-          $('top_navigation').removeClassName('close');
+          hideMenu();
         else
-          $('top_navigation').addClassName('close');
+          showMenu();
         
         return false;
       });
