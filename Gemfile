@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'rails', '~> 2.3.15'
+gem 'rake', '~> 0.9.2'
 gem 'paperclip', '~> 2.4.5'
 gem 'pg', '~> 0.14.0'
 gem 'ssl_requirement', '~> 0.1.0'
