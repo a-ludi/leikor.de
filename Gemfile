@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '~> 2.3.15'
+gem 'rails', '~> 2.3.16'
 gem 'rake', '~> 0.9.2'
 gem 'paperclip', '~> 2.4.5'
 gem 'pg', '~> 0.14.0'
