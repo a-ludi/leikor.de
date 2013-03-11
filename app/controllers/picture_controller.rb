@@ -34,6 +34,7 @@ class PictureController < ApplicationController
   end
 
   def update
+    try_save_and_render_response(:failure) and return unless params.include? :article
     @article = Article.find params[:article_id]
     params[:article].delete :picture_height
     params[:article].delete :picture_width
