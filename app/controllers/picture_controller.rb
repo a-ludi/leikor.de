@@ -75,6 +75,8 @@ private
           redirect_to subcategory_url(@article.subcategory.url_hash)
         end
       when :failure
+        @stylesheets = ['message']
+        @title = "Bild von „#{@article.name}“ bearbeiten"
         render :action => 'edit', :layout => @popup ? 'popup' : true
       else
         raise StandardError, 'internal error: state <#{state.inspect}> is unknown'
