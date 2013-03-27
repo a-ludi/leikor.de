@@ -1,5 +1,5 @@
 one:
-  name: Amsel
+  name: Elefanten-Relief in Teakholz
   description: "This _is a_ **marked up** description!"
   article_number: 12345.1
   subcategory: sub1
@@ -13,7 +13,7 @@ one:
   #tags: 'New, Old'
   
 two:
-  name: Chiwawa
+  name: Elefantenpaar Relief
   description: desc
   article_number: 12345.2
   subcategory: sub1
@@ -27,7 +27,7 @@ two:
   #tags: 'New'
 
 three:
-  name: Beluga
+  name: Elefanten-Familie in Teakholz
   description: desc
   article_number: 12345.3
   subcategory: sub1
@@ -41,7 +41,7 @@ three:
   #tags: 'Old'
 
 four:
-  name: Möwe
+  name: Elefant im Teakholzstamm
   description: desc
   article_number: 12345.4
   subcategory: sub1
@@ -54,7 +54,7 @@ four:
   materials: teakwood, linen
 
 five:
-  name: Entenerpel
+  name: Bottom Elefant (Größe 1)
   description: desc
   article_number: 12345.5
   subcategory: sub1

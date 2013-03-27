@@ -1,19 +1,19 @@
 super:
-  name: Super Category
+  name: Schönes aus Holz
   ord: 2
 
 super_fst:
-  name: Züper Category
+  name: Accessoires
   ord: 1
 
 sub1:
-  name: Subcategory A1
+  name: Elefanten
   category: super
   type: Subcategory
   ord: 4
 
 sub2:
-  name: Subcategory B2
+  name: Eulen
   category: super
   type: Subcategory
   ord: 3
