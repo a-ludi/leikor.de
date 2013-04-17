@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   named_scope :is_a_category, :conditions => {:type => nil}
   
   PARAM_FORMAT = /\d+-[a-z0-9-]+/
-  OVERVIEW_COUNT = 4
+  OVERVIEW_COUNT = 5
   has_many :subcategories, :dependent => :destroy
   has_many :articles, :through => :subcategories
   
