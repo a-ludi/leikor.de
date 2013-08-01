@@ -2,23 +2,23 @@
 
 module ArticlesHelper
   UNITS_PRECISION = {'mm' => 0, 'cm' => 0, 'dm' => 1, 'm' => 1}
-  DIMENSION_LABEL = {:height => '<span title="Höhe">H</span>',
+  DIMENSION_LABEL = {:height => '<span title="Länge">L</span>',
       :width => '<span title="Breite">B</span>', :depth => '<span title="Tiefe">T</span>'}
-  
+
   def dimensions article
     dimensions = [article.height, article.width, article.depth]
     dimensions.map! {|v| "%.#{UNITS_PRECISION[article.unit]}f" % v unless v.blank?}
-    
+
     "ca.&nbsp;#{dimensions.join_present('&times;')}&nbsp;#{article.unit}"
   end
-  
+
   def dimensions_label article=nil
     labels = [(DIMENSION_LABEL[:height] if article.nil? or article.height?),
               (DIMENSION_LABEL[:width] if article.nil? or article.width?),
               (DIMENSION_LABEL[:depth] if article.nil? or article.depth?)]
     labels.join_present('&times;') + ':'
   end
-  
+
   # Formats a +number+ into a currency string without the actual unit (e.g., 13.65). You can customize the format
   # in the +options+ hash.
   #
@@ -28,7 +28,7 @@ module ArticlesHelper
   # * <tt>:delimiter</tt>  - Sets the thousands delimiter (defaults to ",").
   def number_to_currency_value(number, options={})
     options.symbolize_keys!
- 
+
     defaults  = I18n.translate(:'number.format', :locale => options[:locale], :raise => true) rescue {}
     currency  = I18n.translate(:'number.currency.format', :locale => options[:locale], :raise => true) rescue {}
     defaults  = defaults.merge(currency)
@@ -48,7 +48,7 @@ module ArticlesHelper
       number
     end
   end
-  
+
   def cancel_path article
     unless article.new_record?
       edit_article_path(article, :cancel => true)
@@ -56,23 +56,23 @@ module ArticlesHelper
       new_article_path(:html_id => article.html_id, :cancel => true)
     end
   end
-  
+
   def edit_image_on_click_handler
     "$(this).replaceSurroundedImage('#{image_path 'picture/thumb/in_work.png'}') && #{open_popup}"
   end
-  
+
   def insert_new_price(price_form)
     new_content = render :partial => 'price_form', :object => price_form
-    
+
     return "$(this).insert({before: '#{escape_javascript new_content}'}); return false;"
   end
-  
+
   def make_prices_with_new(article)
     new_count = [4 - article.prices.count, 1].max
-    
+
     article.prices + new_count.times.collect {article.prices.new}
   end
-  
+
   def activate_or_deactivate_price_form
     "$(this).up('.price').select('input[type=text]').each(function(input) {
        if(this.checked)

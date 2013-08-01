@@ -235,7 +235,7 @@ de:
       odd: "muss ungerade sein"
       even: "muss gerade sein"
       not_an_integer: "muss ganzzahlig sein"
-      not_saved: 
+      not_saved:
         one:    "Speichern nicht möglich: ein Fehler."
         other:  "Speichern nicht möglich: %{count} Fehler."
       invalid_markup: "hat Fehler in der Textauszeichnung"
@@ -285,7 +285,7 @@ de:
       price: Preis
       color: Farbe
       material: Material
-      
+
     attributes:
       article:
         name: Name
@@ -294,7 +294,7 @@ de:
         article_number: Artikelnummer
         picture: Bild
         width: Breite
-        height: Höhe
+        height: Länge
         depth: Tiefe
         unit: Einheit
       category:
@@ -389,4 +389,3 @@ de:
         new: Beitrag schreiben
         edit: Beitrag bearbeiten
         destroy: Beitrag löschen
-
