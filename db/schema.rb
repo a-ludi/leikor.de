@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102173433) do
+ActiveRecord::Schema.define(:version => 20130801134030) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -108,6 +108,8 @@ ActiveRecord::Schema.define(:version => 20130102173433) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "materials", ["name"], :name => "index_materials_on_name", :unique => true
 
   create_table "prices", :force => true do |t|
     t.decimal  "amount"
