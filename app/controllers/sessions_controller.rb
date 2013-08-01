@@ -43,6 +43,6 @@ class SessionsController < ApplicationController
     flash.keep
 
     logout_user!
-    redirect_to :root
+    redirect_to (request.referer || :root)
   end
 end
