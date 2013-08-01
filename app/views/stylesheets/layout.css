@@ -348,7 +348,7 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     font-family: 'Overlock', sans-serif;
     font-size: 18px;
   }
-  
+
   #logo_container { padding: 0em 0.54em; }
   #left_header_image, #right_header_image { background: none; min-height: 0px; }
 
@@ -359,7 +359,7 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     padding: 0em;
     margin-bottom: 0.54em;
   }
-  
+
   #top_navigation li {
     float: none;
     padding: 0em;
@@ -372,7 +372,7 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
   #top_navigation .last a {
     <%=border_radius :bottom => '0.7em' %>
   }
-  
+
   #top_navigation.close .first a {
     <%=border_radius '0em' %>
   }
@@ -383,24 +383,26 @@ a.toolbutton.medium { <%=border_radius '7px' %> height: 32px; width: 32px; }
     margin-bottom: 0.72em;
     font-size: 100%;
   }
-  
+
   #top_navigation .control a {
     <%=border_radius :top => '0.7em' %>
     background-color: <%=p :darker_gray %>;
     color: <%=p :white %>;
   }
-  
+
   #top_navigation .control a:hover, #top_navigation .control a:focus {
     background: <%=p :dark_blue %>;
   }
-  
+
   #top_navigation .control .pictogram {
     display: block;
-    background: url('<%=image_path 'pictogram/small/menu-open.png' %>') no-repeat center left;
+    background: url('<%=image_path 'pictogram/small/menu-controls.png' %>');
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
     padding-left: 29px;
     margin-left: -8px;
   }
   #top_navigation.close .control .pictogram {
-    background-image: url('<%=image_path 'pictogram/small/menu-close.png' %>');
+    background-position: 0px -24px;
   }
 }
