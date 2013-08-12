@@ -2,13 +2,15 @@
 
 class Article < ActiveRecord::Base
   include UtilityHelper
+  include PrivateAssetsHelper
   include IgnoreIfAlreadyInCollectionExtension
+
   ARTICLE_NUMBER_FORMAT = /\d{5}\.\d{1,2}/
   UNITS = %w(mm cm dm m)
   default_scope :order => 'ord ASC'
-  
+
   marked_up_with_maruku :description
-  
+
   belongs_to :subcategory
   acts_as_taggable_on :tags
   has_many :prices, :dependent => :destroy, :autosave => true
@@ -23,15 +25,30 @@ class Article < ActiveRecord::Base
     :url => '/artikel/:id/bild/download/:style.:extension',
     :default_url => '/images/picture/:style/dummy.png',
     :styles => {
-      :original => ['600x600>', :jpg],
-      :thumb => ['150x150#', :jpg],
-      :medium => ['300x300#', :jpg],
+      :original => {
+        :geometry => '600x600>',
+        :format => :jpg,
+        :watermark => {
+          :file => path_to_private('images/watermark/original.png'),
+          :visibility => 10,
+          :randomize => 3
+        },
+        :processors => [:thumbnail, :watermark]
+      },
+      :thumb => {
+        :geometry => '150x150#',
+        :format => :jpg,
+      },
+      :medium => {
+        :geometry => '300x300#',
+        :format => :jpg,
+      }
     }
   )
   PICTURE_INVALID_MESSAGE = 'scheint ungültig zu sein. Bitte wählen Sie ein
                              anderes. Falls der Fehler wieder auftritt,
                              informieren Sie bitte einen Administrator.'
-  
+
   validates_size_of :prices, :minimum => 1, :message => :too_few
   validate :rising_minimum_count_means_falling_amount
   validates_presence_of :name, :article_number, :subcategory
@@ -42,16 +59,16 @@ class Article < ActiveRecord::Base
   validates_uniqueness_of :article_number
   validates_format_of :article_number, :with => UtilityHelper::delimited(ARTICLE_NUMBER_FORMAT)
   validates_markdown :description
-  
+
   def html_id
     "artnr_#{article_number}".sub '.', '-'
   end
-  
+
   def url_hash(options={})
     hash = {:article => article_number}.merge(options)
     subcategory.url_hash(hash)
   end
-  
+
   def format(attribute)
     if attribute === :price
       ('%.2f' % price).sub '.', ','
@@ -61,7 +78,7 @@ class Article < ActiveRecord::Base
   end
 
 protected
-  
+
   def rising_minimum_count_means_falling_amount
     rising_minimum_counts = self.prices.sort do |a, b|
       sorting = a.minimum_count <=> b.minimum_count
@@ -69,29 +86,29 @@ protected
     falling_amounts = self.prices.sort do |a, b|
       -(a.amount <=> b.amount)
     end
-    
+
     unless prices_amounts_and_minimum_counts_uniq? and rising_minimum_counts == falling_amounts
       self.errors.add :prices, :rising_minimum_count_means_falling_amount
     end
   end
-  
+
 private
 
   def prices_amounts_and_minimum_counts_uniq?
     amounts = self.prices.map{|p| p.amount}
     minimum_counts = self.prices.map{|p| p.minimum_count}
-    
+
     amounts.count == amounts.uniq.count and minimum_counts.count == minimum_counts.uniq.count
   end
 
   def removed_unused_color(color)
     color.destroy if color.articles.empty?
   end
-  
+
   def width_height_or_depth_present?
     self.width? or self.height? or self.depth?
   end
-  
+
   def associate_article_to_prices
     self.prices.each{|price| price.article = self}
   end
