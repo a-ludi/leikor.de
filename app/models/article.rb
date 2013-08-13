@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
         :format => :jpg,
         :watermark => {
           :file => path_to_private('images/watermark/original.png'),
-          :visibility => 10,
+          :visibility => AppData['watermark_visibilty'],
           :randomize => 3
         },
         :processors => [:thumbnail, :watermark]
