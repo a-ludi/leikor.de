@@ -4,3 +4,4 @@ meta*
 *.log
 .project
 .idea
+.env

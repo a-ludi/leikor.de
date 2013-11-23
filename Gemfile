@@ -1,4 +1,5 @@
-source :rubygems
+source 'https://rubygems.org'
+ruby '1.9.2'
 
 gem 'rails', '~> 2.3.16'
 gem 'rake', '~> 0.9.2'
@@ -11,6 +12,10 @@ gem 'haml', '~> 3.1.4'
 gem 'maruku', '~> 0.6.0'
 gem 'exception_notification', '~> 2.3.3.0'
 
+group :production do
+  gem 'unicorn', '~> 4.7.0' # embedded server for production 
+end
+
 group :development do
   gem 'libnotify', '~> 0.7.4'
   gem 'rb-inotify', '~> 0.8.8'
@@ -19,4 +24,5 @@ group :development do
   gem 'spork', '~> 0.8.5'
   gem 'spork-testunit', '~> 0.0.8'
   gem 'mailtrap', '~> 0.2.1'
+  gem 'foreman'
 end
