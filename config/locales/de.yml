@@ -350,7 +350,7 @@ de:
         destroy:
           success: Der Beitrag „%{title}“ wurde gelöscht.
         mail:
-          success: Der Beitrag „%{title}“ wurde an %{count} Adressen geschickt.
+          success: Der Beitrag „%{title}“ wird an %{count} Adressen geschickt.
         publish:
           success:
             published:
