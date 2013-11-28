@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '1.9.2'
 
-gem 'rails', '~> 2.3.16'
+gem 'rails', '~> 2.3.18'
 gem 'rake', '~> 0.9.2'
 gem 'paperclip', '~> 2.4.5'
 gem 'pg', '~> 0.14.0'
@@ -11,7 +11,7 @@ gem 'acts-as-taggable-on', '~> 2.1.0'
 gem 'haml', '~> 3.1.4'
 gem 'maruku', '~> 0.6.0'
 gem 'exception_notification', '~> 2.3.3.0'
-gem 'delayed_job', '~> 2.0.4'
+gem 'delayed_job', :branch => 'v2.0', :git => 'git://github.com/collectiveidea/delayed_job.git'
 
 group :production do
   gem 'unicorn', '~> 4.7.0' # embedded server for production 
