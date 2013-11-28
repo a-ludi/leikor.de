@@ -12,6 +12,7 @@ gem 'haml', '~> 3.1.4'
 gem 'maruku', '~> 0.6.0'
 gem 'exception_notification', '~> 2.3.3.0'
 gem 'delayed_job', :branch => 'v2.0', :git => 'git://github.com/collectiveidea/delayed_job.git'
+gem 'hirefire', '~> 0.1.4'
 
 group :production do
   gem 'unicorn', '~> 4.7.0' # embedded server for production 
