@@ -28,7 +28,10 @@ class Notifier < ActionMailer::Base
     body       :user => recipient, :request => recipient.confirm_registration_request
   end
   
-  def blog_post(recipient, blog_post)
+  def blog_post(recipient_id, blog_post_id)
+    recipient = User.find recipient_id
+    blog_post = BlogPost.find blog_post_id
+    
     recipients recipient.email_address_with_name
     from       leikor_mail_address
     reply_to   leikor_mail_address(:customer)

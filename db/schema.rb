@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130801134030) do
+ActiveRecord::Schema.define(:version => 20131128404040) do
 
   create_table "app_datas", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(:version => 20130801134030) do
 
   add_index "articles_materials", ["article_id", "material_id"], :name => "index_articles_materials_on_article_id_and_material_id", :unique => true
 
+  create_table "baskets", :force => true do |t|
+    t.string   "external_id", :limit => 32
+    t.string   "type"
+    t.text     "note"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "blog_posts", :id => false, :force => true do |t|
     t.string   "public_id"
     t.string   "title"
@@ -89,6 +98,21 @@ ActiveRecord::Schema.define(:version => 20130801134030) do
 
   add_index "colors", ["label"], :name => "by_label", :unique => true
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "fair_dates", :force => true do |t|
     t.date     "from_date"
     t.date     "to_date"
@@ -99,6 +123,16 @@ ActiveRecord::Schema.define(:version => 20130801134030) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "items", :force => true do |t|
+    t.integer  "basket_id"
+    t.integer  "article_id"
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "items", ["basket_id", "article_id"], :name => "index_items_on_basket_id_and_article_id", :unique => true
 
   create_table "materials", :force => true do |t|
     t.string   "name"
@@ -156,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20130801134030) do
     t.string   "type"
     t.text     "notes"
     t.string   "primary_email_address"
+    t.integer  "basket_id"
   end
 
   add_index "users", ["login"], :name => "by_login", :unique => true

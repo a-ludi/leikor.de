@@ -148,10 +148,14 @@ protected
     if params[:mail?] == 'yes'
       @blog_post.readers.each do |user|
         begin
-          Notifier.deliver_blog_post user, @blog_post
+          Notifier.delay.deliver_blog_post user.id, @blog_post.id
         rescue StandardError => deliver_error
-          @error_data = {:user => user, :blog_post => @blog_post}
-          notify_about_exception(deliver_error)
+          if Rails.env.production?
+            @error_data = {:user => user, :blog_post => @blog_post}
+            notify_about_exception(deliver_error)
+          else
+            raise deliver_error
+          end
         end
       end
       @blog_post.is_mailed = true
