@@ -80,7 +80,7 @@ namespace :db do
                 method_or_proc_or_value
             end
             
-            value.to_s.tr "\t", " "
+            value.to_s.tr "\t\n\r", "   "
           end
         end
       end
