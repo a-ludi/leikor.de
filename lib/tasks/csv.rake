@@ -58,6 +58,36 @@ namespace :db do
       end
     end
   end
+  
+  namespace :dump do
+    desc 'Print data in a csv format suitable for importing into PlentyMarkets.'
+    task :plentymarktes => [:environment] do |t, args|
+      require 'csv'
+      
+      csv_data = CSV.generate(
+        :headers => TRANSLATE_TO_PLENTY_MARKETS_FIELD.keys,
+        :write_headers => true,
+        :col_sep => "\t"
+      ) do |csv|
+        Article.all.each do |article|
+          csv << TRANSLATE_TO_PLENTY_MARKETS_FIELD.map do |key, method_or_proc_or_value|
+            value = case method_or_proc_or_value
+              when Symbol then
+                article.send(method_or_proc_or_value)
+              when Proc then
+                method_or_proc_or_value.call(article)
+              else
+                method_or_proc_or_value
+            end
+            
+            value.to_s.tr "\t", " "
+          end
+        end
+      end
+      
+      puts csv_data
+    end
+  end
 end
 
 private
@@ -108,3 +138,64 @@ private
       end
     end
   end
+
+
+  UNIT_TO_MM = {:mm => 1, :cm => 10, :dm => 100, :m => 1000}
+  
+  def dimension_in_mm dimension
+    lambda do |article|
+      unless article.send(dimension).nil?
+        article.send(dimension) * UNIT_TO_MM[article.unit.to_sym]
+      else
+        0
+      end
+    end
+  end
+
+  def price_amount i
+    lambda do |article|
+      if i < article.prices.length
+        article.prices[i].amount
+      else
+        0
+      end
+    end
+  end
+
+  def price_minimum_count i
+    lambda do |article|
+      if i < article.prices.length
+        article.prices[i].minimum_count
+      else
+        0
+      end
+    end
+  end
+
+  TRANSLATE_TO_PLENTY_MARKETS_FIELD = {
+    'ItemImageURL' => lambda {|a| a.picture.url},
+    'ItemPosition' => :ord,
+    'ItemTextName' => :name,
+    'ItemTextDescription' => :description,
+    'ItemTextMeta' => :description,
+    'ItemTextLang' => 'de',
+    'ItemNo' => :article_number, # FIXME Punkt ist nicht erlaubt
+    'PriceHeight' => dimension_in_mm(:height),
+    'PriceLength' => dimension_in_mm(:depth),
+    'PriceWidth' => dimension_in_mm(:width),
+    'Price6' => price_amount(0),
+    'Price7' => price_amount(1),
+    'Price8' => price_amount(2),
+    'Price9' => price_amount(3),
+    'Price10' => price_amount(4),
+    'Price11' => price_amount(5),
+    'PriceDiscountLevel6' => price_minimum_count(0),
+    'PriceDiscountLevel7' => price_minimum_count(1),
+    'PriceDiscountLevel8' => price_minimum_count(2),
+    'PriceDiscountLevel9' => price_minimum_count(3),
+    'PriceDiscountLevel10' => price_minimum_count(4),
+    'PriceDiscountLevel11' => price_minimum_count(5),
+    'CategoryLevel1Name' => lambda {|a| a.subcategory.name},
+    'CategoryLevel2Name' => lambda {|a| a.subcategory.category.name}
+  }
+
