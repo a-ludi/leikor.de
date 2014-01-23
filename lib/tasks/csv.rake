@@ -81,7 +81,7 @@ namespace :db do
             end
             
             value.to_s.tr "\t\n\r", "   "
-            value.replace '"', "&#x22;"
+            value.gsub '"', "&#x22;"
           end
         end
       end
