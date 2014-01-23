@@ -61,7 +61,7 @@ namespace :db do
   
   namespace :dump do
     desc 'Print data in a csv format suitable for importing into PlentyMarkets.'
-    task :plentymarktes => [:environment] do |t, args|
+    task :plentymarkets => [:environment] do |t, args|
       require 'csv'
       
       csv_data = CSV.generate(

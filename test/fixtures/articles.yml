@@ -14,7 +14,7 @@ one:
   
 two:
   name: Elefantenpaar Relief
-  description: desc
+  description: "This description needs two paragraph.\n\nThis is the second one."
   article_number: 12345.2
   subcategory: sub1
   ord: 5
@@ -28,7 +28,7 @@ two:
 
 three:
   name: Elefanten-Familie in Teakholz
-  description: desc
+  description: 
   article_number: 12345.3
   subcategory: sub1
   ord: 4
