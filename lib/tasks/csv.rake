@@ -176,6 +176,7 @@ private
   end
 
   TRANSLATE_TO_PLENTY_MARKETS_FIELD = {
+    'ItemID' => :id,
     'ItemImageURL' => lambda {|a| a.picture.url},
     'ItemPosition' => :ord,
     'ItemTextName' => :name,
