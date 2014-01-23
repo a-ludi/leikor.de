@@ -80,13 +80,15 @@ namespace :db do
                 method_or_proc_or_value
             end
             
+            # Avoid usage of characters, that require quotes
             value.to_s.tr("\t\n\r", "   ")
                       .gsub '"', "&#x22;"
           end
         end
       end
       
-      puts csv_data
+      # Remove quoted empty fields
+      puts csv_data.replace('""', '')
     end
   end
 end
