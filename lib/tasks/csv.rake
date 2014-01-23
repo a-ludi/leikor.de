@@ -88,7 +88,7 @@ namespace :db do
       end
       
       # Remove quoted empty fields
-      puts csv_data.replace('""', '')
+      puts csv_data.gsub('""', '')
     end
   end
 end
