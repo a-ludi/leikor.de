@@ -60,9 +60,15 @@ namespace :db do
   end
   
   namespace :dump do
-    desc 'Print data in a csv format suitable for importing into PlentyMarkets.'
-    task :plentymarkets => [:environment] do |t, args|
+    desc 'Print data in a csv format suitable for importing into PlentyMarkets. The displayed data is encoded in base64'
+    task :plentymarkets, [:host_prefix] => [:environment] do |t, args|
       require 'csv'
+      require 'base64'
+      
+      if args.host_prefix.blank?
+        puts "Error: missing argument host_prefix."
+        return
+      end
       
       csv_data = CSV.generate(
         :headers => TRANSLATE_TO_PLENTY_MARKETS_FIELD.keys,
@@ -75,7 +81,11 @@ namespace :db do
               when Symbol then
                 article.send(method_or_proc_or_value)
               when Proc then
-                method_or_proc_or_value.call(article)
+                if method_or_proc_or_value.lambda?
+                  method_or_proc_or_value.call(article)
+                else
+                  method_or_proc_or_value.call(article, args)
+                end
               else
                 method_or_proc_or_value
             end
@@ -87,8 +97,8 @@ namespace :db do
         end
       end
       
-      # Remove quoted empty fields
-      puts csv_data.gsub('""', '')
+      # Remove quoted empty fields and encode in base64
+      puts Base64.encode64(csv_data.gsub('""', ''))
     end
   end
 end
@@ -177,13 +187,13 @@ private
 
   TRANSLATE_TO_PLENTY_MARKETS_FIELD = {
     'ItemID' => :id,
-    'ItemImageURL' => lambda {|a| a.picture.url},
+    'ItemImageURL' => proc {|a, args| "http://#{args.host_prefix}#{a.picture.url}"},
     'ItemPosition' => :ord,
     'ItemTextName' => :name,
     'ItemTextDescription' => :description,
     'ItemTextMeta' => :description,
     'ItemTextLang' => 'de',
-    'ItemNo' => :article_number, # FIXME Punkt ist nicht erlaubt
+    'ItemNo' => :article_number,
     'PriceHeight' => dimension_in_mm(:height),
     'PriceLength' => dimension_in_mm(:depth),
     'PriceWidth' => dimension_in_mm(:width),
@@ -199,7 +209,7 @@ private
     'PriceDiscountLevel9' => price_minimum_count(3),
     'PriceDiscountLevel10' => price_minimum_count(4),
     'PriceDiscountLevel11' => price_minimum_count(5),
-    'CategoryLevel1Name' => lambda {|a| a.subcategory.name},
-    'CategoryLevel2Name' => lambda {|a| a.subcategory.category.name}
+    'CategoryLevel1Name' => lambda {|a| a.subcategory.category.name},
+    'CategoryLevel2Name' => lambda {|a| a.subcategory.name}
   }
 
