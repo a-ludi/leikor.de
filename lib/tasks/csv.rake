@@ -60,10 +60,9 @@ namespace :db do
   end
   
   namespace :dump do
-    desc 'Print data in a csv format suitable for importing into PlentyMarkets. The displayed data is encoded in base64'
+    desc 'Print data in a csv format suitable for importing into PlentyMarkets.'
     task :plentymarkets, [:host_prefix] => [:environment] do |t, args|
       require 'csv'
-      require 'base64'
       
       if args.host_prefix.blank?
         puts "Error: missing argument host_prefix."
@@ -97,8 +96,8 @@ namespace :db do
         end
       end
       
-      # Remove quoted empty fields and encode in base64
-      puts Base64.encode64(csv_data.gsub('""', ''))
+      # Remove quoted empty fields
+      puts csv_data.gsub('""', '')
     end
   end
 end
@@ -188,7 +187,7 @@ private
   TRANSLATE_TO_PLENTY_MARKETS_FIELD = {
     'ItemID' => :id,
     'ItemImageURL' => proc {|a, args| "http://#{args.host_prefix}#{a.picture.url}"},
-    'ItemPosition' => :ord,
+    'ItemPosition' => proc {|a| a.subcategory.articles.count - a.ord },
     'ItemTextName' => :name,
     'ItemTextDescription' => :description,
     'ItemTextMeta' => :description,
